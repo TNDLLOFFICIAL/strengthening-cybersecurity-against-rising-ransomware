@@ -3,68 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Science & Math | Ransomware 2026</title>
+    <title>SEC-OPS | CRYPTO</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0b0e14; color: #c9d1d9; font-family: 'Inter', sans-serif; }
-        .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; }
-        .nav-link { color: #58a6ff !important; font-weight: 600; }
-        .math-block { background: #161b22; border: 1px dashed #58a6ff; padding: 25px; border-radius: 10px; font-family: 'Courier New', Courier, monospace; margin: 20px 0; }
-        .highlight { color: #d299ff; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono&display=swap');
+        :root { --bg: #010409; --card: #0d1117; --accent: #d299ff; --border: #30363d; }
+        body { background-color: var(--bg); color: #c9d1d9; font-family: 'Inter', sans-serif; padding-top: 100px; }
+        .navbar { background: rgba(13, 17, 23, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+        .nav-link { color: #8b949e !important; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; }
+        .report-section { background: var(--card); border: 1px solid var(--border); padding: 40px; margin-bottom: 20px; border-radius: 8px; }
+        h1 { color: #fff; font-weight: 800; margin-bottom: 40px; }
+        h3 { color: var(--accent); font-weight: 700; }
+        .math { font-family: 'JetBrains Mono'; background: #000; padding: 15px; border-radius: 4px; display: block; margin-top: 10px; }
+        footer { padding: 40px; text-align: center; color: #484f58; font-size: 0.7rem; border-top: 1px solid var(--border); }
     </style>
 </head>
 <body>
-
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <a class="navbar-brand text-info" href="index.html">CORE_DEFENSE_2026</a>
-            <div class="navbar-nav ms-auto">
-                <a class="nav-link px-3" href="index.html">HOME</a>
-                <a class="nav-link px-3" href="threats.html">THREAT_LAB</a>
-                <a class="nav-link px-3" href="science.html">SCIENCE/MATH</a>
-                <a class="nav-link px-3" href="solutions.html">SOLUTIONS</a>
-                <a class="nav-link px-3" href="impact.html">GLOBAL_IMPACT</a>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container"><a class="navbar-brand text-white fw-bold" href="index.html">SEC-OPS</a>
+            <div class="navbar-nav ms-auto flex-row">
+                <a class="nav-link px-3" href="threats.html">Intelligence</a>
+                <a class="nav-link px-3" href="science.html">Cryptography</a>
+                <a class="nav-link px-3" href="solutions.html">Protocols</a>
+                <a class="nav-link px-3" href="impact.html">Assessment</a>
             </div>
         </div>
     </nav>
-
-    <div class="container my-5">
-        <h1 class="text-info mb-4">The Science of Encryption & Human Behavior</h1>
-
-        <section class="mb-5">
-            <h2 class="highlight">01. Behavioral Science: Social Engineering</h2>
-            <p>The "Science" of ransomware isn't just code; it's <strong>Cognitive Psychology</strong>. Hackers use "Amydgala Hijacking"—creating a state of panic so the victim bypasses their rational thinking.</p>
-            <ul>
-                <li><strong>Urgency:</strong> "Your account will be deleted in 10 minutes."</li>
-                <li><strong>Authority:</strong> Mimicking a high-ranking official or government agency.</li>
-                <li><strong>Fear:</strong> Threats of legal action or public embarrassment.</li>
-            </ul>
-        </section>
-
-        <section class="mb-5">
-            <h2 class="highlight">02. The Mathematics of Cryptography</h2>
-            <p>Ransomware uses <strong>Asymmetric Encryption</strong>. This relies on the mathematical difficulty of factoring large prime numbers.</p>
-            
-            <div class="math-block">
-                <h4>RSA Algorithm Logic</h4>
-                <p>1. Choose two large prime numbers, <span class="text-warning">p</span> and <span class="text-warning">q</span>.</p>
-                <p>2. Calculate <span class="text-warning">n = p * q</span>.</p>
-                <p>3. The difficulty for a defender is that while multiplying <span class="text-warning">p</span> and <span class="text-warning">q</span> is easy, finding <span class="text-warning">p</span> and <span class="text-warning">q</span> from a massive <span class="text-warning">n</span> is mathematically impossible for modern computers.</p>
-            </div>
-
-            <h3>Computational Complexity</h3>
-            <p>To "brute force" a 2048-bit RSA key, it would take a standard supercomputer approximately <strong>300 trillion years</strong>. This is why you can't just "guess" the password once your files are locked.</p>
-        </section>
-
-        <section class="mb-5">
-            <h2 class="highlight">03. The Quantum Leap (2026 Perspective)</h2>
-            <p>The new "unsolved" math problem is <strong>Shor's Algorithm</strong>. If a functional Quantum Computer is built, it could solve the prime factorization problem in minutes, making all current encryption useless.</p>
-        </section>
+    <div class="container">
+        <h1>Cryptographic Analysis</h1>
+        <div class="report-section"><h3>Asymmetric Complexity</h3><p>Ransomware leverages the prime factorization problem. Factoring a 2048-bit key is computationally impossible for current hardware.</p><code class="math">N = P * Q (Where P/Q are large primes)</code></div>
+        <div class="report-section"><h3>Symmetric Speed</h3><p>Attackers use AES-256 for rapid file locking, then protect that key with RSA, creating a hybrid encryption trap.</p></div>
+        <div class="report-section"><h3>Quantum Risk</h3><p>Emerging Shor's Algorithm threats suggest that current encryption standards may fall as quantum processing matures.</p></div>
     </div>
-
-    <footer class="text-center py-4 border-top border-secondary">
-        <p>STEAM Project 2026 | Page 3: Science & Mathematics</p>
-    </footer>
-
+    <footer>INTERNAL USE ONLY // SEC-OPS 2026 FRAMEWORK</footer>
 </body>
 </html>
