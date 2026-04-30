@@ -6,56 +6,65 @@
     <title>SEC-OPS | ASSESSMENT</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono&display=swap');
-        :root { --bg: #010409; --card: #0d1117; --accent: #ff7b72; --border: #30363d; }
-        body { background-color: var(--bg); color: #c9d1d9; font-family: 'Inter', sans-serif; padding-top: 120px; }
-        .navbar { background: rgba(13, 17, 23, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-        .nav-link { color: #8b949e !important; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; }
-        .report-section { background: var(--card); border: 1px solid var(--border); padding: 50px; margin-bottom: 40px; border-radius: 12px; border-left: 6px solid var(--accent); }
-        h1 { color: #fff; font-weight: 800; margin-bottom: 60px; font-size: 3.5rem; letter-spacing: -2px; }
-        h3 { color: var(--accent); font-weight: 700; margin-bottom: 25px; }
-        .impact-stat { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding: 15px 0; font-family: 'JetBrains Mono'; }
-        .impact-stat span:last-child { color: var(--accent); font-weight: bold; }
-        footer { padding: 60px 0; text-align: center; color: #484f58; font-size: 0.75rem; border-top: 1px solid var(--border); }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono&display=swap');
+        :root { --bg: #010409; --card: #0d1117; --accent: #ff7b72; --border: #30363d; --text: #c9d1d9; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; padding-top: 150px; }
+        .navbar { background: rgba(13, 17, 23, 0.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
+        .nav-link { color: #8b949e !important; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin: 0 15px; }
+        h1 { font-size: 4rem; font-weight: 900; color: #fff; margin-bottom: 60px; letter-spacing: -2px; }
+        .impact-box { background: var(--card); border: 1px solid var(--border); border-left: 8px solid var(--accent); padding: 60px; margin-bottom: 40px; border-radius: 12px; }
+        h3 { color: var(--accent); font-weight: 700; margin-bottom: 25px; text-transform: uppercase; }
+        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin: 40px 0; }
+        .stat-card { background: #000; padding: 30px; border-radius: 8px; border: 1px solid #21262d; text-align: center; }
+        .stat-val { display: block; font-size: 2rem; font-weight: 900; color: var(--accent); }
+        .stat-label { font-size: 0.75rem; text-transform: uppercase; color: #8b949e; letter-spacing: 1px; }
+        footer { padding: 100px 0; border-top: 1px solid var(--border); text-align: center; margin-top: 100px; }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container"><a class="navbar-brand text-white fw-bold" href="index.html">SEC-OPS</a>
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold" href="index.html">SEC-OPS</a>
             <div class="navbar-nav ms-auto flex-row">
-                <a class="nav-link px-3" href="threats.html">Intelligence</a>
-                <a class="nav-link px-3" href="science.html">Cryptography</a>
-                <a class="nav-link px-3" href="solutions.html">Protocols</a>
-                <a class="nav-link px-3" href="impact.html">Assessment</a>
+                <a class="nav-link" href="threats.html">Intelligence</a>
+                <a class="nav-link" href="science.html">Cryptography</a>
+                <a class="nav-link" href="solutions.html">Protocols</a>
+                <a class="nav-link" href="impact.html">Assessment</a>
             </div>
         </div>
     </nav>
-    <div class="container py-5">
+
+    <div class="container">
         <h1>Global Impact Assessment</h1>
 
-        <div class="report-section">
-            <h3>Economic Destruction</h3>
-            <p>The financial impact of ransomware in 2026 has transitioned from individual business loss to systemic economic risk. Major attacks now threaten the liquidity of regional banks and the stability of global stock exchanges.</p>
-            <div class="impact-stat"><span>Global Damage (2026 Est.)</span><span>$42.5 Billion</span></div>
-            <div class="impact-stat"><span>Average Ransom Demand</span><span>$1.4 Million</span></div>
-            <div class="impact-stat"><span>Avg. Recovery Time</span><span>22 Days</span></div>
+        <div class="impact-box">
+            <h3>01. Systemic Economic Deficit</h3>
+            <p>The 2026 economic landscape reveals that the cost of ransomware is no longer just the ransom itself. It is "Total Business Interruption." For every $1 demanded in ransom, the victim organization loses an average of $10 in downtime, lost productivity, and legal fees.</p>
+            <div class="stat-grid">
+                <div class="stat-card"><span class="stat-val">$42B</span><span class="stat-label">Global Loss 2026</span></div>
+                <div class="stat-card"><span class="stat-val">22 Days</span><span class="stat-label">Avg. Downtime</span></div>
+                <div class="stat-card"><span class="stat-val">1.4M</span><span class="stat-label">Avg. Payment</span></div>
+            </div>
         </div>
 
-        <div class="report-section">
-            <h3>Healthcare & Infrastructure</h3>
-            <p>Ransomware is no longer a digital-only crime. When attackers lock down hospital systems, ambulances must be diverted, and critical surgeries are canceled. The "Physical Impact" of ransomware is now measured in human lives, particularly when targeting power grids and water treatment plants.</p>
+        <div class="impact-box">
+            <h3>02. Infrastructure & Critical Utility</h3>
+            <p>The most devastating impact is on Critical National Infrastructure (CNI). When ransomware strikes a power grid, a water treatment plant, or a hospital, the result is no longer measured in dollars, but in human safety. Diversion of ambulances and loss of utility access create physical world consequences that far outweigh the digital breach.</p>
         </div>
 
-        <div class="report-section">
-            <h3>The Ethical Dilemma</h3>
-            <p>Does paying a ransom make you a criminal? In 2026, governments are increasingly passing laws that criminalize ransom payments, viewing them as a form of funding for international criminal syndicates. Organizations are now trapped between losing all their data or facing federal prosecution.</p>
+        <div class="impact-box">
+            <h3>03. The Geopolitical Proxy</h3>
+            <p>Ransomware has become a tool of war. Nation-states now use "Proxy Criminals"—groups that appear to be independent hackers but are actually funded and directed by foreign governments to destabilize a target country’s economy without initiating a formal declaration of conflict.</p>
         </div>
 
-        <div class="report-section">
-            <h3>National Security</h3>
-            <p>Many ransomware groups are now "Proxy Actors" for foreign nations. This turns a simple extortion attempt into a tool of geopolitical warfare, designed to destabilize a country's infrastructure before a physical conflict begins.</p>
+        <div class="impact-box">
+            <h3>04. The Ethical Paradox</h3>
+            <p>Is paying a ransom unethical? In 2026, the global consensus is shifting. Paying a ransom funds the R&D of the hackers, ensuring they can breach more organizations. However, if an organization refuses to pay, they risk the public exposure of sensitive customer data. Organizations are now trapped between ethical responsibility and survival.</p>
         </div>
     </div>
-    <footer>© 2026 SEC-OPS INTELLIGENCE DIVISION // CLASSIFIED CONTENT</footer>
+
+    <footer>
+        <span class="text-secondary small fw-bold">INTERNAL USE ONLY // SEC-OPS 2026</span>
+    </footer>
 </body>
 </html>
