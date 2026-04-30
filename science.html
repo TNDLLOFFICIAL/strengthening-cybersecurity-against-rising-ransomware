@@ -6,58 +6,65 @@
     <title>SEC-OPS | CRYPTO</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono&display=swap');
-        :root { --bg: #010409; --card: #0d1117; --accent: #d299ff; --border: #30363d; }
-        body { background-color: var(--bg); color: #c9d1d9; font-family: 'Inter', sans-serif; padding-top: 120px; }
-        .navbar { background: rgba(13, 17, 23, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-        .nav-link { color: #8b949e !important; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; }
-        .report-section { background: var(--card); border: 1px solid var(--border); padding: 50px; margin-bottom: 40px; border-radius: 12px; border-left: 6px solid var(--accent); }
-        h1 { color: #fff; font-weight: 800; margin-bottom: 60px; font-size: 3.5rem; letter-spacing: -2px; }
-        h3 { color: var(--accent); font-weight: 700; margin-bottom: 25px; }
-        .math-box { font-family: 'JetBrains Mono'; background: #000; padding: 30px; border-radius: 6px; border: 1px solid #21262d; margin: 25px 0; color: #fff; }
-        footer { padding: 60px 0; text-align: center; color: #484f58; font-size: 0.75rem; border-top: 1px solid var(--border); }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono&display=swap');
+        :root { --bg: #010409; --card: #0d1117; --accent: #d299ff; --border: #30363d; --text: #c9d1d9; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; padding-top: 150px; }
+        .navbar { background: rgba(13, 17, 23, 0.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
+        .nav-link { color: #8b949e !important; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin: 0 15px; }
+        h1 { font-size: 4rem; font-weight: 900; color: #fff; margin-bottom: 60px; letter-spacing: -2px; }
+        .math-block { background: #000; border: 1px solid var(--border); border-left: 8px solid var(--accent); padding: 50px; margin-bottom: 40px; border-radius: 12px; }
+        h3 { color: var(--accent); font-weight: 700; margin-bottom: 25px; text-transform: uppercase; font-size: 1.4rem; }
+        .equation { font-family: 'JetBrains Mono'; background: #161b22; padding: 25px; border-radius: 8px; color: #fff; margin: 25px 0; border: 1px dashed var(--accent); }
+        footer { padding: 100px 0; border-top: 1px solid var(--border); text-align: center; margin-top: 100px; }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container"><a class="navbar-brand text-white fw-bold" href="index.html">SEC-OPS</a>
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold" href="index.html">SEC-OPS</a>
             <div class="navbar-nav ms-auto flex-row">
-                <a class="nav-link px-3" href="threats.html">Intelligence</a>
-                <a class="nav-link px-3" href="science.html">Cryptography</a>
-                <a class="nav-link px-3" href="solutions.html">Protocols</a>
-                <a class="nav-link px-3" href="impact.html">Assessment</a>
+                <a class="nav-link" href="threats.html">Intelligence</a>
+                <a class="nav-link" href="science.html">Cryptography</a>
+                <a class="nav-link" href="solutions.html">Protocols</a>
+                <a class="nav-link" href="impact.html">Assessment</a>
             </div>
         </div>
     </nav>
-    <div class="container py-5">
-        <h1>Cryptographic Vulnerability Analysis</h1>
 
-        <div class="report-section">
-            <h3>01. The Math of Prime Factorization</h3>
-            <p>Ransomware utilizes Asymmetric Encryption, primarily RSA-4096. The mathematical "unsolved" problem here is the Prime Factorization Problem. While it is easy to multiply two enormous prime numbers (P and Q), it is mathematically impossible for current supercomputers to reverse the process and find the factors from the product (N) within a human lifetime.</p>
-            <div class="math-box">
-                // CRYPTOGRAPHIC CHALLENGE<br>
-                Encryption: C = M^e mod n<br>
-                Decryption: M = C^d mod n<br>
-                Required compute time for brute-force: > 100 Trillion Years.
+    <div class="container">
+        <h1>Cryptographic Analysis</h1>
+
+        <div class="math-block">
+            <h3>01. Asymmetric Trapdoor Functions</h3>
+            <p>The science of ransomware is built on the "Trapdoor Function"—a mathematical operation that is easy to perform in one direction but virtually impossible to reverse without a specific piece of information (the private key).</p>
+            <p>RSA-4096 encryption relies on the Prime Factorization Problem. While multiplying two 2048-bit primes (P and Q) takes microseconds, factoring the resulting 4096-bit number (N) back into P and Q would take a classical computer millions of years.</p>
+            <div class="equation">
+                // RSA KEY GENERATION SCIENCE<br>
+                n = p * q | φ(n) = (p-1)(q-1)<br>
+                Public Key (e, n) | Private Key (d, n)<br>
+                Complexity: O(2^(n^(1/3) log n^(2/3)))
             </div>
         </div>
 
-        <div class="report-section">
-            <h3>02. Symmetric Speed: AES-256</h3>
-            <p>Attackers do not use Asymmetric encryption for files (too slow). They use Symmetric AES-256 to lock the data. The "Science" lies in the 14 rounds of substitution and permutation. The RSA key is only used to lock the tiny AES key, creating a nearly unbreakable "digital vault" in milliseconds.</p>
+        <div class="math-block">
+            <h3>02. Symmetric AES-256 Saturation</h3>
+            <p>Attackers use a hybrid approach. RSA is too slow for large data. Instead, a unique AES-256 key is generated for every file. AES (Advanced Encryption Standard) uses "Substitution-Permutation Networks" (SPN) to scramble data through 14 rounds of mathematical chaos. The RSA key is then used only to "lock" the tiny AES key.</p>
+            <p>This hybrid science allows ransomware to lock 10GB of data in seconds, while remaining impossible to decrypt without the master RSA key.</p>
         </div>
 
-        <div class="report-section">
-            <h3>03. Behavioral Science: Amygdala Hijacking</h3>
-            <p>Cybersecurity is also a Social Science. Attackers use "Psychological Priming" to trigger the human Amygdala (the fear center of the brain). By creating high-stress scenarios (e.g., "Your account will be deleted in 4 minutes"), they force victims to bypass logical reasoning and grant administrative access.</p>
+        <div class="math-block">
+            <h3>03. Behavioral Cognitive Science</h3>
+            <p>Cybersecurity is not just math; it is the science of human behavior. Attackers leverage "Cognitive Bias" and "Urgency Priming." By overwhelming a human administrator with 500 simultaneous technical alerts (Alert Fatigue), the brain’s executive function fails, leading the human to click "Allow" on a malicious connection just to clear the screen.</p>
         </div>
 
-        <div class="report-section">
-            <h3>04. Post-Quantum Math (PQC)</h3>
-            <p>The next frontier is "Lattice-based Cryptography." We are analyzing mathematical problems that even quantum computers (using Shor's Algorithm) cannot solve efficiently. In 2026, transitioning to PQC is the only way to ensure long-term data survival.</p>
+        <div class="math-block">
+            <h3>04. Post-Quantum Lattice Math</h3>
+            <p>We are currently entering the "Post-Quantum" era. Modern RSA and AES may be vulnerable to Shor's Algorithm running on a stable Quantum Computer. The next generation of defense science uses "Lattice-Based Cryptography," which involves finding the closest vector in a high-dimensional space—a problem that remains unsolved even by quantum processing.</p>
         </div>
     </div>
-    <footer>© 2026 SEC-OPS INTELLIGENCE DIVISION // CLASSIFIED CONTENT</footer>
+
+    <footer>
+        <span class="text-secondary small fw-bold">INTERNAL USE ONLY // SEC-OPS 2026</span>
+    </footer>
 </body>
 </html>
