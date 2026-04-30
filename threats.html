@@ -8,20 +8,19 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono&display=swap');
         :root { --bg: #010409; --card: #0d1117; --accent: #f85149; --border: #30363d; }
-        body { background-color: var(--bg); color: #c9d1d9; font-family: 'Inter', sans-serif; padding-top: 100px; }
-        .navbar { background: rgba(13, 17, 23, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+        body { background-color: var(--bg); color: #c9d1d9; font-family: 'Inter', sans-serif; padding-top: 120px; }
+        .navbar { background: rgba(13, 17, 23, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
         .nav-link { color: #8b949e !important; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; }
-        .report-section { background: var(--card); border: 1px solid var(--border); padding: 45px; margin-bottom: 30px; border-radius: 8px; border-left: 5px solid var(--accent); }
-        h1 { color: #fff; font-weight: 800; margin-bottom: 50px; }
-        h3 { color: var(--accent); font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
-        .tech-detail { font-family: 'JetBrains Mono'; font-size: 0.85rem; color: #8b949e; background: #000; padding: 20px; border-radius: 4px; margin-top: 20px; border: 1px solid #21262d; }
-        footer { padding: 40px; text-align: center; color: #484f58; font-size: 0.7rem; border-top: 1px solid var(--border); margin-top: 50px; }
+        .report-section { background: var(--card); border: 1px solid var(--border); padding: 50px; margin-bottom: 40px; border-radius: 12px; border-left: 6px solid var(--accent); }
+        h1 { color: #fff; font-weight: 800; margin-bottom: 60px; font-size: 3.5rem; letter-spacing: -2px; }
+        h3 { color: var(--accent); font-weight: 700; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
+        .case-log { font-family: 'JetBrains Mono'; font-size: 0.85rem; color: #8b949e; background: #000; padding: 25px; border-radius: 6px; border: 1px solid #21262d; margin: 25px 0; }
+        footer { padding: 60px 0; text-align: center; color: #484f58; font-size: 0.75rem; border-top: 1px solid var(--border); }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand text-white fw-bold" href="index.html">SEC-OPS</a>
+        <div class="container"><a class="navbar-brand text-white fw-bold" href="index.html">SEC-OPS</a>
             <div class="navbar-nav ms-auto flex-row">
                 <a class="nav-link px-3" href="threats.html">Intelligence</a>
                 <a class="nav-link px-3" href="science.html">Cryptography</a>
@@ -30,42 +29,35 @@
             </div>
         </div>
     </nav>
-
-    <div class="container">
-        <h1>Advanced Threat Intelligence</h1>
+    <div class="container py-5">
+        <h1>Advanced Persistent Threats</h1>
 
         <div class="report-section">
-            <h3>01. Autonomous Lateral Movement</h3>
-            <p>Once initial access is established, the threat utilizes "Living off the Land" (LotL) techniques. By using legitimate system tools such as PowerShell and Windows Management Instrumentation (WMI), the ransomware moves through the network undetected by standard signature-based scanners.</p>
-            <div class="tech-detail">
-                [LOG_ANALYSIS]: Detection of lateral pivoting via encrypted tunnels using legitimate administrative credentials. No external malware binaries detected.
+            <h3>01. Agentic Phishing Engines</h3>
+            <p>Attackers no longer send millions of generic emails. Instead, they deploy Large Language Models (LLMs) tuned for social engineering. These agents research a target’s LinkedIn, public interviews, and social media to craft 100% personalized phishing attempts that have a nearly perfect success rate.</p>
+            <div class="case-log">
+                [INTEL]: Agent "Hydra-V4" detected. Capability: Real-time deepfake audio synthesis during live customer support calls. Status: Critical.
             </div>
         </div>
 
         <div class="report-section">
-            <h3>02. Polymorphic Code Evolution</h3>
-            <p>Modern ransomware variants employ metamorphic engines that rewrite their own binary code during execution. This prevents "Endpoint Detection and Response" (EDR) systems from flagging the file, as every instance of the malware looks unique to the security engine.</p>
-            <p>This "Polymorphism" is the primary reason why static antivirus solutions have become obsolete in 2026. Defense must now rely on behavioral heuristics rather than file signatures.</p>
+            <h3>02. Living Off The Land (LotL)</h3>
+            <p>Malware binaries are increasingly rare. Attackers now use "Living off the Land"—hijacking legitimate, pre-installed Windows and Linux tools (like PowerShell, WMI, or Bash) to carry out malicious actions. Since the tools are legitimate, traditional antivirus software does not flag the activity, allowing the breach to persist for months without detection.</p>
         </div>
 
         <div class="report-section">
-            <h3>03. Supply Chain Infiltration</h3>
-            <p>Rather than attacking the target directly, sophisticated actors compromise third-party software updates. By injecting malicious code into trusted applications, they gain access to thousands of downstream organizations simultaneously.</p>
-            <div class="tech-detail">
-                [CASE_STUDY]: SolarWinds/Kaseya evolution. Modern variants now target open-source AI libraries to gain access to corporate data-science pipelines.
+            <h3>03. Supply Chain Integrity Breaches</h3>
+            <p>The most dangerous threats in 2026 target the software supply chain. By compromising a single piece of code in a popular open-source library or a trusted vendor update, attackers gain "backdoor" access to thousands of companies at once, bypassing all perimeter firewalls.</p>
+            <div class="case-log">
+                [SECURITY_ALERT]: Unauthorized code injection detected in the global "Node-JS" package stream. Impact: 4,200 organizations potentially compromised.
             </div>
         </div>
 
         <div class="report-section">
-            <h3>04. Triple Extortion Dynamics</h3>
-            <p>The blackmail process now includes three distinct pressure points:
-                <br>1. File Encryption (Internal operations halt)
-                <br>2. Data Leakage (Public reputation damage)
-                <br>3. DDoS Attacks (Total service blackout until payment is verified)
-            </p>
+            <h3>04. Ransomware-as-a-Service (RaaS)</h3>
+            <p>The business model has shifted. Sophisticated developer groups now "rent" high-end ransomware kits to lower-level criminals for a percentage of the ransom. This specialization allows developers to focus on breaking encryption science while "affiliates" focus on finding victims, leading to a massive increase in attack volume.</p>
         </div>
     </div>
-
-    <footer>INTERNAL USE ONLY // SEC-OPS 2026 FRAMEWORK</footer>
+    <footer>© 2026 SEC-OPS INTELLIGENCE DIVISION // CLASSIFIED CONTENT</footer>
 </body>
 </html>
