@@ -11,15 +11,17 @@
         body { background-color: var(--bg); color: #c9d1d9; font-family: 'Inter', sans-serif; padding-top: 100px; }
         .navbar { background: rgba(13, 17, 23, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
         .nav-link { color: #8b949e !important; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; }
-        .report-section { background: var(--card); border: 1px solid var(--border); padding: 40px; margin-bottom: 20px; border-radius: 8px; }
-        h1 { color: #fff; font-weight: 800; margin-bottom: 40px; }
-        h3 { color: var(--accent); font-weight: 700; }
-        footer { padding: 40px; text-align: center; color: #484f58; font-size: 0.7rem; border-top: 1px solid var(--border); }
+        .report-section { background: var(--card); border: 1px solid var(--border); padding: 45px; margin-bottom: 30px; border-radius: 8px; border-left: 5px solid var(--accent); }
+        h1 { color: #fff; font-weight: 800; margin-bottom: 50px; }
+        h3 { color: var(--accent); font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .tech-detail { font-family: 'JetBrains Mono'; font-size: 0.85rem; color: #8b949e; background: #000; padding: 20px; border-radius: 4px; margin-top: 20px; border: 1px solid #21262d; }
+        footer { padding: 40px; text-align: center; color: #484f58; font-size: 0.7rem; border-top: 1px solid var(--border); margin-top: 50px; }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container"><a class="navbar-brand text-white fw-bold" href="index.html">SEC-OPS</a>
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold" href="index.html">SEC-OPS</a>
             <div class="navbar-nav ms-auto flex-row">
                 <a class="nav-link px-3" href="threats.html">Intelligence</a>
                 <a class="nav-link px-3" href="science.html">Cryptography</a>
@@ -28,12 +30,42 @@
             </div>
         </div>
     </nav>
+
     <div class="container">
-        <h1>Intelligence Assessment</h1>
-        <div class="report-section"><h3>Agentic AI Execution</h3><p>Software agents now perform autonomous network traversal and data encryption without human guidance.</p></div>
-        <div class="report-section"><h3>Living Off The Land</h3><p>Attackers use legitimate system administrative tools to execute malicious commands, bypassing file-based detection.</p></div>
-        <div class="report-section"><h3>Polymorphic Payloads</h3><p>Code that rewrites its own signature every few seconds to evade traditional antivirus software.</p></div>
+        <h1>Advanced Threat Intelligence</h1>
+
+        <div class="report-section">
+            <h3>01. Autonomous Lateral Movement</h3>
+            <p>Once initial access is established, the threat utilizes "Living off the Land" (LotL) techniques. By using legitimate system tools such as PowerShell and Windows Management Instrumentation (WMI), the ransomware moves through the network undetected by standard signature-based scanners.</p>
+            <div class="tech-detail">
+                [LOG_ANALYSIS]: Detection of lateral pivoting via encrypted tunnels using legitimate administrative credentials. No external malware binaries detected.
+            </div>
+        </div>
+
+        <div class="report-section">
+            <h3>02. Polymorphic Code Evolution</h3>
+            <p>Modern ransomware variants employ metamorphic engines that rewrite their own binary code during execution. This prevents "Endpoint Detection and Response" (EDR) systems from flagging the file, as every instance of the malware looks unique to the security engine.</p>
+            <p>This "Polymorphism" is the primary reason why static antivirus solutions have become obsolete in 2026. Defense must now rely on behavioral heuristics rather than file signatures.</p>
+        </div>
+
+        <div class="report-section">
+            <h3>03. Supply Chain Infiltration</h3>
+            <p>Rather than attacking the target directly, sophisticated actors compromise third-party software updates. By injecting malicious code into trusted applications, they gain access to thousands of downstream organizations simultaneously.</p>
+            <div class="tech-detail">
+                [CASE_STUDY]: SolarWinds/Kaseya evolution. Modern variants now target open-source AI libraries to gain access to corporate data-science pipelines.
+            </div>
+        </div>
+
+        <div class="report-section">
+            <h3>04. Triple Extortion Dynamics</h3>
+            <p>The blackmail process now includes three distinct pressure points:
+                <br>1. File Encryption (Internal operations halt)
+                <br>2. Data Leakage (Public reputation damage)
+                <br>3. DDoS Attacks (Total service blackout until payment is verified)
+            </p>
+        </div>
     </div>
+
     <footer>INTERNAL USE ONLY // SEC-OPS 2026 FRAMEWORK</footer>
 </body>
 </html>
