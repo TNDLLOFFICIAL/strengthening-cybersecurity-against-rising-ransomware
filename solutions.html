@@ -8,16 +8,14 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono&display=swap');
         :root { --bg: #010409; --card: #0d1117; --accent: #3fb950; --border: #30363d; }
-        body { background-color: var(--bg); color: #c9d1d9; font-family: 'Inter', sans-serif; padding-top: 100px; }
-        .navbar { background: rgba(13, 17, 23, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+        body { background-color: var(--bg); color: #c9d1d9; font-family: 'Inter', sans-serif; padding-top: 120px; }
+        .navbar { background: rgba(13, 17, 23, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
         .nav-link { color: #8b949e !important; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; }
-        .report-section { background: var(--card); border: 1px solid var(--border); padding: 45px; margin-bottom: 30px; border-radius: 8px; border-left: 5px solid var(--accent); }
-        h1 { color: #fff; font-weight: 800; margin-bottom: 50px; }
-        h3 { color: var(--accent); font-weight: 700; margin-bottom: 20px; }
-        .protocol-list { list-style: none; padding: 0; }
-        .protocol-list li { margin-bottom: 15px; padding-left: 25px; position: relative; }
-        .protocol-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
-        footer { padding: 40px; text-align: center; color: #484f58; font-size: 0.7rem; border-top: 1px solid var(--border); margin-top: 50px; }
+        .report-section { background: var(--card); border: 1px solid var(--border); padding: 50px; margin-bottom: 40px; border-radius: 12px; border-left: 6px solid var(--accent); }
+        h1 { color: #fff; font-weight: 800; margin-bottom: 60px; font-size: 3.5rem; letter-spacing: -2px; }
+        h3 { color: var(--accent); font-weight: 700; margin-bottom: 25px; }
+        .protocol-pill { background: rgba(63, 185, 80, 0.1); border: 1px solid var(--accent); color: var(--accent); padding: 5px 15px; border-radius: 50px; font-size: 0.8rem; font-family: 'JetBrains Mono'; margin-right: 10px; margin-bottom: 15px; display: inline-block; }
+        footer { padding: 60px 0; text-align: center; color: #484f58; font-size: 0.75rem; border-top: 1px solid var(--border); }
     </style>
 </head>
 <body>
@@ -31,29 +29,34 @@
             </div>
         </div>
     </nav>
-    <div class="container">
-        <h1>Mitigation Protocols</h1>
+    <div class="container py-5">
+        <h1>Engineering Mitigation Protocols</h1>
 
         <div class="report-section">
             <h3>01. Zero Trust Architecture (ZTA)</h3>
-            <p>ZTA removes the concept of "implicit trust." No user or device is trusted by default, regardless of their location on the network. Every access request is strongly authenticated, authorized within policy constraints, and inspected for anomalies before access is granted.</p>
+            <p>The "Castle and Moat" defense is dead. ZTA operates on the principle of "Never Trust, Always Verify." Every request for access to the internal network—whether from a CEO or a server—must be re-authenticated and inspected in real-time. This prevents "Lateral Movement" if one account is compromised.</p>
+            <div>
+                <span class="protocol-pill">Micro-segmentation</span>
+                <span class="protocol-pill">Continuous Auth</span>
+                <span class="protocol-pill">Least Privilege</span>
+            </div>
         </div>
 
         <div class="report-section">
-            <h3>02. Immutable Data Integrity</h3>
-            <p>Engineering backups to be "Immutable" means they are stored in a Write-Once-Read-Many (WORM) format. In the event of a total system breach, even an attacker with root administrative privileges cannot delete or modify the backup snapshots.</p>
-            <ul class="protocol-list">
-                <li>Physical Air-Gapping of critical data cores</li>
-                <li>Cryptographic hashing to verify data original state</li>
-                <li>Automated redundancy across isolated regions</li>
-            </ul>
+            <h3>02. Immutable Storage & Air-Gapping</h3>
+            <p>Ransomware now targets backups first. The engineering solution is "Immutability"—storage that is physically Write-Once-Read-Many (WORM). Once data is written to these drives, the hardware itself prevents it from being deleted or modified for a set period, even by a system administrator.</p>
         </div>
 
         <div class="report-section">
-            <h3>03. Extended Detection & Response (XDR)</h3>
-            <p>XDR platforms integrate telemetry from across the entire stack—endpoints, networks, and cloud workloads. By using machine learning to establish a "behavioral baseline," the system can automatically isolate an infected node in milliseconds.</p>
+            <h3>03. Agentic AI Firewalls</h3>
+            <p>To fight autonomous malware, we use autonomous defense. AI Firewalls analyze network patterns in microseconds. If a user begins downloading data at an "impossible" speed or from an unusual location, the AI severs the connection instantly, long before a human admin could even receive the alert.</p>
+        </div>
+
+        <div class="report-section">
+            <h3>04. The 3-2-1-1 Rule</h3>
+            <p>Engineering resilience requires <strong>3</strong> copies of data, on <strong>2</strong> different types of media, with <strong>1</strong> copy off-site, and <strong>1</strong> copy being completely offline (air-gapped) and immutable.</p>
         </div>
     </div>
-    <footer>INTERNAL USE ONLY // SEC-OPS 2026 FRAMEWORK</footer>
+    <footer>© 2026 SEC-OPS INTELLIGENCE DIVISION // CLASSIFIED CONTENT</footer>
 </body>
 </html>
