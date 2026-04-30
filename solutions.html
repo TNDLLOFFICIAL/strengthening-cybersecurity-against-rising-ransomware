@@ -11,10 +11,13 @@
         body { background-color: var(--bg); color: #c9d1d9; font-family: 'Inter', sans-serif; padding-top: 100px; }
         .navbar { background: rgba(13, 17, 23, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
         .nav-link { color: #8b949e !important; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; }
-        .report-section { background: var(--card); border: 1px solid var(--border); padding: 40px; margin-bottom: 20px; border-radius: 8px; }
-        h1 { color: #fff; font-weight: 800; margin-bottom: 40px; }
-        h3 { color: var(--accent); font-weight: 700; }
-        footer { padding: 40px; text-align: center; color: #484f58; font-size: 0.7rem; border-top: 1px solid var(--border); }
+        .report-section { background: var(--card); border: 1px solid var(--border); padding: 45px; margin-bottom: 30px; border-radius: 8px; border-left: 5px solid var(--accent); }
+        h1 { color: #fff; font-weight: 800; margin-bottom: 50px; }
+        h3 { color: var(--accent); font-weight: 700; margin-bottom: 20px; }
+        .protocol-list { list-style: none; padding: 0; }
+        .protocol-list li { margin-bottom: 15px; padding-left: 25px; position: relative; }
+        .protocol-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+        footer { padding: 40px; text-align: center; color: #484f58; font-size: 0.7rem; border-top: 1px solid var(--border); margin-top: 50px; }
     </style>
 </head>
 <body>
@@ -30,9 +33,26 @@
     </nav>
     <div class="container">
         <h1>Mitigation Protocols</h1>
-        <div class="report-section"><h3>Zero Trust Architecture</h3><p>Assume breach. Every user and device must be continuously verified regardless of network location.</p></div>
-        <div class="report-section"><h3>Immutable Data Vaults</h3><p>Data storage designed to be write-once, read-many (WORM). Even admin credentials cannot delete these backups.</p></div>
-        <div class="report-section"><h3>Automated XDR</h3><p>Using machine learning to detect and sever anomalous connections in milliseconds, closing the velocity gap.</p></div>
+
+        <div class="report-section">
+            <h3>01. Zero Trust Architecture (ZTA)</h3>
+            <p>ZTA removes the concept of "implicit trust." No user or device is trusted by default, regardless of their location on the network. Every access request is strongly authenticated, authorized within policy constraints, and inspected for anomalies before access is granted.</p>
+        </div>
+
+        <div class="report-section">
+            <h3>02. Immutable Data Integrity</h3>
+            <p>Engineering backups to be "Immutable" means they are stored in a Write-Once-Read-Many (WORM) format. In the event of a total system breach, even an attacker with root administrative privileges cannot delete or modify the backup snapshots.</p>
+            <ul class="protocol-list">
+                <li>Physical Air-Gapping of critical data cores</li>
+                <li>Cryptographic hashing to verify data original state</li>
+                <li>Automated redundancy across isolated regions</li>
+            </ul>
+        </div>
+
+        <div class="report-section">
+            <h3>03. Extended Detection & Response (XDR)</h3>
+            <p>XDR platforms integrate telemetry from across the entire stack—endpoints, networks, and cloud workloads. By using machine learning to establish a "behavioral baseline," the system can automatically isolate an infected node in milliseconds.</p>
+        </div>
     </div>
     <footer>INTERNAL USE ONLY // SEC-OPS 2026 FRAMEWORK</footer>
 </body>
