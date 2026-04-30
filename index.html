@@ -3,99 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CYBER-SHIELD 2026 | Global Ransomware Defense</title>
+    <title>SEC-OPS // RANSOMWARE INTELLIGENCE 2026</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0b0e14; color: #c9d1d9; font-family: 'Inter', sans-serif; }
-        .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; }
-        .nav-link { color: #58a6ff !important; font-weight: 600; }
-        .hero-section { background: radial-gradient(circle at center, #1c2128 0%, #0b0e14 100%); padding: 120px 0; border-bottom: 1px solid #00d4ff; }
-        .status-bar { background: #21262d; padding: 10px; border-radius: 5px; border-left: 4px solid #3fb950; font-family: monospace; }
-        .content-card { background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 30px; margin-bottom: 30px; }
-        .neon-text { color: #00d4ff; text-shadow: 0 0 10px rgba(0, 212, 255, 0.5); }
-        footer { background: #0d1117; padding: 50px 0; border-top: 1px solid #30363d; }
+        body { background-color: #0d1117; color: #c9d1d9; font-family: 'JetBrains Mono', monospace; }
+        .navbar { background-color: rgba(22, 27, 34, 0.95); border-bottom: 1px solid #30363d; backdrop-filter: blur(10px); }
+        .nav-link { color: #58a6ff !important; font-size: 0.9rem; letter-spacing: 1px; }
+        .hero { padding: 120px 0; background: linear-gradient(180deg, #0d1117 0%, #161b22 100%); border-bottom: 1px solid #238636; }
+        .glitch { font-weight: bold; text-transform: uppercase; color: #fff; text-shadow: 2px 2px #238636; }
+        .terminal-window { background: #010409; border: 1px solid #30363d; border-radius: 6px; padding: 20px; font-family: monospace; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .status-dot { height: 10px; width: 10px; background-color: #238636; border-radius: 50%; display: inline-block; margin-right: 5px; animation: blink 1.5s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        .data-grid { border: 1px solid #30363d; padding: 20px; border-radius: 4px; transition: 0.2s; }
+        .data-grid:hover { background: #161b22; border-color: #58a6ff; }
     </style>
 </head>
 <body>
 
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand neon-text" href="index.html">CORE_DEFENSE_2026</a>
+            <a class="navbar-brand text-white" href="index.html"><strong>SEC-OPS // 2026</strong></a>
             <div class="navbar-nav ms-auto">
-                <a class="nav-link px-3" href="index.html">HOME</a>
-                <a class="nav-link px-3" href="threats.html">THREAT_LAB</a>
-                <a class="nav-link px-3" href="science.html">SCIENCE/MATH</a>
-                <a class="nav-link px-3" href="solutions.html">SOLUTIONS</a>
-                <a class="nav-link px-3" href="impact.html">GLOBAL_IMPACT</a>
+                <a class="nav-link px-3" href="threats.html">THREAT_INTEL</a>
+                <a class="nav-link px-3" href="science.html">CRYPTOGRAPHY</a>
+                <a class="nav-link px-3" href="solutions.html">PROTOCOLS</a>
+                <a class="nav-link px-3" href="impact.html">ANALYSIS</a>
             </div>
         </div>
     </nav>
 
-    <header class="hero-section text-center">
+    <header class="hero">
         <div class="container">
-            <h1 class="display-2 fw-bold mb-3">Strengthening Cybersecurity Against <span class="neon-text">Rising Ransomware</span></h1>
-            <p class="lead mb-4">An Unsolved Technological Crisis in the Age of Agentic AI</p>
-            <div class="status-bar d-inline-block">SYSTEM STATUS: MONITORING LIVE THREATS... ENCRYPTION ACTIVE</div>
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <h1 class="display-4 glitch">CYBER_EXTORTION_REPORT</h1>
+                    <p class="lead text-secondary">Advanced persistent threat analysis for the 2026 ransomware landscape. Real-time intelligence on automated encryption vectors.</p>
+                    <div class="mt-4">
+                        <span class="status-dot"></span> <span class="small text-success">NETWORK MONITOR ACTIVE</span>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="terminal-window">
+                        <div class="text-success">>> scanning_network...</div>
+                        <div class="text-white">>> threat_detected: AGENTIC_AI_v4</div>
+                        <div class="text-danger">>> breach_probability: 84%</div>
+                        <div class="text-info">>> initiating_zero_trust_protocol...</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
     <main class="container my-5">
-        <div class="content-card">
-            <h2 class="neon-text mb-4">01. The Unsolved Crisis</h2>
-            <p>Ransomware is no longer a virus; it is an automated business model. In 2026, the traditional "firewall" is dead. Attackers use <strong>polymorphic code</strong> that changes its own structure to avoid detection, making static defenses useless.</p>
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <h5>The "Velocity Gap"</h5>
-                    <p>AI-driven attacks can compromise a network in under 15 minutes. The average human response time is 4 hours. This gap is where companies are lost.</p>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="data-grid">
+                    <h4 class="text-white">Active Vector: Double Extortion</h4>
+                    <p class="small">Attackers are prioritizing data exfiltration over encryption. The current "unsolved" gap lies in the speed of unauthorized data transfer vs. detection latency.</p>
                 </div>
-                <div class="col-md-6">
-                    <h5>Data Sovereignty</h5>
-                    <p>Once data is exfiltrated, it is gone. Even if the ransom is paid, the "trust" is broken permanently.</p>
+            </div>
+            <div class="col-md-6">
+                <div class="data-grid">
+                    <h4 class="text-white">Technical Debt</h4>
+                    <p class="small">Legacy infrastructure remains the primary entry point. 2026 data indicates 68% of successful breaches utilized unpatched 'Living off the Land' vulnerabilities.</p>
                 </div>
             </div>
         </div>
-
-        <div class="content-card">
-            <h2 class="neon-text mb-4">02. The STEAM Integration</h2>
-            <div class="row g-4">
-                <div class="col-md-3">
-                    <div class="p-3 border border-secondary rounded">
-                        <h6 class="text-info">SCIENCE</h6>
-                        <small>Behavioral analysis of "adversarial AI" patterns.</small>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="p-3 border border-secondary rounded">
-                        <h6 class="text-info">TECHNOLOGY</h6>
-                        <small>Quantum-resistant encryption and Zero-Trust APIs.</small>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="p-3 border border-secondary rounded">
-                        <h6 class="text-info">ENGINEERING</h6>
-                        <small>Building immutable backup pipelines that can't be deleted.</small>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="p-3 border border-secondary rounded">
-                        <h6 class="text-info">MATH</h6>
-                        <small>Probability modeling of "Lateral Movement" within networks.</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="py-5 text-center">
-            <p class="text-muted small">SCROLL TO DISCOVER DEEP THREAT VECTORS</p>
-            <div class="animate-bounce">↓</div>
-        </div>
-
     </main>
 
-    <footer>
-        <div class="container text-center">
-            <p class="mb-0 text-muted">Authorized for STEAM Project Release 2026</p>
-        </div>
+    <footer class="text-center py-5 border-top border-secondary mt-5">
+        <p class="small text-secondary">© 2026 SEC-OPS INTELLIGENCE FRAMEWORK | INTERNAL USE ONLY</p>
     </footer>
 
 </body>
