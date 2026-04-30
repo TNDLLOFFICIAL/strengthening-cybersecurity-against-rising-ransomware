@@ -6,100 +6,285 @@
     <title>SEC-OPS | COMMAND</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=JetBrains+Mono&display=swap');
-        :root { --bg: #010409; --card: #0d1117; --accent: #2f81f7; --border: #30363d; --success: #3fb950; --danger: #f85149; }
-        body { background-color: var(--bg); color: #c9d1d9; font-family: 'Inter', sans-serif; line-height: 1.6; }
-        .navbar { background: rgba(13, 17, 23, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 1.2rem 0; }
-        .nav-link { color: #8b949e !important; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-        .hero { padding: 160px 0 100px; background: radial-gradient(circle at 50% -20%, #1c2128, #010409); border-bottom: 1px solid var(--border); }
-        .console-box { background: #000; border: 1px solid var(--border); border-radius: 8px; padding: 25px; font-family: 'JetBrains Mono'; font-size: 0.8rem; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-        .data-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 40px; height: 100%; transition: 0.4s; }
-        .data-card:hover { border-color: var(--accent); transform: translateY(-8px); }
-        .section-header { border-left: 4px solid var(--accent); padding-left: 20px; margin-bottom: 40px; }
-        .stat-badge { background: rgba(47, 129, 247, 0.1); border: 1px solid var(--accent); color: var(--accent); padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; margin-bottom: 15px; display: inline-block; }
-        footer { padding: 80px 0; border-top: 1px solid var(--border); text-align: center; color: #484f58; font-size: 0.75rem; background: #0d1117; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono&display=swap');
+        
+        :root {
+            --bg: #010409;
+            --card: #0d1117;
+            --accent: #2f81f7;
+            --border: #30363d;
+            --success: #3fb950;
+            --danger: #f85149;
+            --warning: #d29922;
+            --text-main: #c9d1d9;
+            --text-dim: #8b949e;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* NAVIGATION */
+        .navbar {
+            background: rgba(13, 17, 23, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            font-size: 1.8rem;
+            color: #fff !important;
+        }
+
+        .nav-link {
+            color: var(--text-dim) !important;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin: 0 15px;
+            transition: 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent) !important;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 200px 0 120px;
+            background: radial-gradient(circle at 50% -20%, #1c2128, #010409);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            letter-spacing: -3px;
+            color: #fff;
+            margin-bottom: 25px;
+        }
+
+        .hero .lead {
+            font-size: 1.4rem;
+            color: var(--text-dim);
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+
+        /* CONSOLE ELEMENT */
+        .console-box {
+            background: #000;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            min-height: 320px;
+        }
+
+        .console-line { margin-bottom: 8px; }
+        .c-green { color: var(--success); }
+        .c-blue { color: var(--accent); }
+        .c-red { color: var(--danger); }
+        .c-yellow { color: var(--warning); }
+
+        /* DATA CARDS */
+        .card-grid { padding: 100px 0; }
+        
+        .data-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 45px;
+            height: 100%;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .data-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-10px);
+            background: #161b22;
+        }
+
+        .card-index {
+            font-family: 'JetBrains Mono';
+            color: var(--accent);
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .data-card h3 {
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 1.75rem;
+        }
+
+        /* SYSTEM STATUS PILL */
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(63, 185, 80, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono';
+            margin-bottom: 30px;
+        }
+
+        /* SECTION DIVIDER */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 80px 0;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0d1117;
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-text {
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .blink { animation: blinker 1s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
+
     </style>
 </head>
 <body>
+
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand text-white fw-bold fs-4" href="index.html">SEC-OPS</a>
+            <a class="navbar-brand" href="index.html">SEC-OPS</a>
             <div class="navbar-nav ms-auto flex-row">
-                <a class="nav-link px-3" href="threats.html">Intelligence</a>
-                <a class="nav-link px-3" href="science.html">Cryptography</a>
-                <a class="nav-link px-3" href="solutions.html">Protocols</a>
-                <a class="nav-link px-3" href="impact.html">Assessment</a>
+                <a class="nav-link" href="threats.html">Intelligence</a>
+                <a class="nav-link" href="science.html">Cryptography</a>
+                <a class="nav-link" href="solutions.html">Protocols</a>
+                <a class="nav-link" href="impact.html">Assessment</a>
             </div>
         </div>
     </nav>
 
-    <header class="hero text-center text-lg-start">
+    <header class="hero">
         <div class="container">
-            <div class="row g-5 align-items-center">
+            <div class="row align-items-center g-5">
                 <div class="col-lg-7">
-                    <span class="text-success fw-bold font-monospace mb-3 d-block">● GLOBAL_NETWORK_READY</span>
-                    <h1 class="display-2 fw-bold text-white mb-4">Autonomous Threat Analysis 2026</h1>
-                    <p class="fs-4 text-secondary mb-5">Deploying advanced heuristic frameworks to bridge the velocity gap between agentic encryption vectors and human defense cycles.</p>
-                    <div class="d-flex flex-wrap gap-4">
-                        <div class="text-center p-3 border border-secondary rounded flex-grow-1">
-                            <div class="h3 text-white mb-0">1.4s</div>
-                            <div class="small text-secondary">Mean Response Time</div>
+                    <div class="status-pill">● SECURE GATEWAY ACTIVE</div>
+                    <h1>Strategic Defense Framework</h1>
+                    <p class="lead">An advanced monitoring initiative focused on neutralizing autonomous ransomware agents, high-velocity encryption vectors, and systemic infrastructure vulnerabilities in the 2026 digital landscape.</p>
+                    <div class="d-flex gap-4 mt-5">
+                        <div class="p-4 border border-secondary rounded-3 flex-grow-1">
+                            <h4 class="text-white mb-1">0.82s</h4>
+                            <span class="small text-secondary">Global Threat Sync</span>
                         </div>
-                        <div class="text-center p-3 border border-secondary rounded flex-grow-1">
-                            <div class="h3 text-white mb-0">9.2k</div>
-                            <div class="small text-secondary">Daily Deflections</div>
+                        <div class="p-4 border border-secondary rounded-3 flex-grow-1">
+                            <h4 class="text-white mb-1">Active</h4>
+                            <span class="small text-secondary">Neural Defense Mesh</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-5">
                     <div class="console-box">
-                        <div class="text-success">[01:14:52] SECURE_HANDSHAKE: SECTOR_7G</div>
-                        <div class="text-info">[01:14:55] SCANNING: HEURISTIC_PATTERNS...</div>
-                        <div class="text-warning">[01:15:02] DETECTED: ANOMALOUS_DATA_TRANSFER</div>
-                        <div class="text-danger">[01:15:05] ALERT: AGENTIC_LOCKDOWN_PROTOCOL_INITIATED</div>
-                        <div class="text-white mt-4 fw-bold">> SYSTEM_READY_FOR_OVERRIDE <span class="blink">_</span></div>
+                        <div class="console-line c-green">[SYSTEM] Handshake initiated...</div>
+                        <div class="console-line c-blue">[INFO] Loading heuristic database 4.0.26...</div>
+                        <div class="console-line c-yellow">[WARN] Anomaly detected in US-EAST-1 cluster...</div>
+                        <div class="console-line c-red">[ALERT] Rapid encryption attempt identified...</div>
+                        <div class="console-line c-red">[ALERT] Isolating node 192.168.1.42...</div>
+                        <div class="console-line c-green">[SUCCESS] Threat neutralized via Agentic Lockdown.</div>
+                        <div class="console-line text-white mt-4 fw-bold">> READY FOR OVERRIDE <span class="blink">_</span></div>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="container py-5 my-5">
-        <div class="section-header">
-            <h2 class="text-white display-5 fw-bold">Executive Intelligence</h2>
-            <p class="text-secondary">Strategic priorities for the 2026 defensive posture.</p>
-        </div>
-
-        <div class="row g-4 mb-5">
-            <div class="col-md-6 col-lg-4">
+    <section class="container card-grid">
+        <div class="row g-4">
+            <div class="col-md-6">
                 <div class="data-card">
-                    <span class="stat-badge">VECTOR ALPHA</span>
-                    <h3 class="text-white">Velocity Asymmetry</h3>
-                    <p>The 2026 landscape is defined by the "Velocity Gap." Modern ransomware agents execute complex encryption chains in under 120 seconds. Traditional human-led Security Operation Centers (SOCs) require an average of 45 minutes for verification. This delta is the primary reason for current infrastructure failures.</p>
+                    <span class="card-index">VECTOR ALPHA-01</span>
+                    <h3>The Velocity Asymmetry</h3>
+                    <p>The primary unsolved problem in current technology is the speed delta. Modern agentic malware initiates encryption chains in under 180 seconds. Human response teams, even with automated alerts, take an average of 42 minutes to verify a breach. This 39-minute window is the "Velocity Gap" where 90% of data loss occurs.</p>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-6">
                 <div class="data-card">
-                    <span class="stat-badge">VECTOR BETA</span>
-                    <h3 class="text-white">Identity Synthesis</h3>
-                    <p>Passwords are obsolete. Attackers now utilize "Identity Synthesis"—using high-fidelity AI to mimic biometrics and vocal patterns. By assuming the identity of a C-suite executive, attackers bypass perimeter defenses without triggering a single technical alarm.</p>
+                    <span class="card-index">VECTOR BETA-02</span>
+                    <h3>Identity Synthesis Analysis</h3>
+                    <p>Traditional firewalls have become redundant entry points. Attackers now utilize identity synthesis—high-fidelity AI avatars and deepfake audio—to impersonate C-level executives. By hijacking the "Trust Perimeter," threats bypass MFA and technical safeguards by simply asking for access.</p>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-4">
                 <div class="data-card">
-                    <span class="stat-badge">VECTOR GAMMA</span>
-                    <h3 class="text-white">Double Extortion Plus</h3>
-                    <p>Modern exfiltration protocols prioritize the theft of high-value intellectual property before any encryption occurs. The threat is no longer "pay to unlock your files," but "pay to prevent your company’s trade secrets from being auctioned to competitors."</p>
+                    <span class="card-index">VECTOR GAMMA-03</span>
+                    <h3>Data Exfiltration Prioritization</h3>
+                    <p>Encryption is no longer the main threat. Current ransomware actors prioritize "Silent Siphoning"—stealing gigabytes of sensitive data weeks before the actual lock occurs. This ensures leverage even if the victim has perfect backups.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="data-card">
+                    <span class="card-index">VECTOR DELTA-04</span>
+                    <h3>Autonomous Lateral Movement</h3>
+                    <p>Malware now possesses "Decision Logic." Instead of waiting for a hacker's command, these software agents scan the local network, identify the 'Crown Jewels' (databases, HR records), and pivot across segments autonomously using stolen admin tokens.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="data-card">
+                    <span class="card-index">VECTOR EPSILON-05</span>
+                    <h3>Living Off The Land (LotL)</h3>
+                    <p>Modern attacks use zero external code. By hijacking legitimate system tools like PowerShell, WMI, and administrative protocols, the ransomware hides in plain sight, appearing as standard system maintenance to 99% of monitoring software.</p>
                 </div>
             </div>
         </div>
 
-        <div class="bg-dark p-5 rounded-4 border border-secondary shadow-lg">
-            <h2 class="text-white mb-4">Core Intelligence Gap</h2>
-            <p class="text-secondary fs-5">The fundamental unsolved problem in 2026 is <strong>Agentic Autonomy</strong>. Malware has evolved into independent software entities that do not require instructions from a hacker. They can make decisions, solve CAPTCHAs, and navigate internal networks in total silence. This site serves as the briefing for mitigating these autonomous threats.</p>
-        </div>
-    </main>
+        <div class="divider"></div>
 
-    <footer>© 2026 SEC-OPS INTELLIGENCE DIVISION // CLASSIFIED CONTENT</footer>
+        <div class="p-5 border border-secondary rounded-4 bg-dark">
+            <h2 class="text-white mb-4">Mission Critical Oversight</h2>
+            <p class="text-secondary mb-4">As we move through 2026, the convergence of Agentic AI and Ransomware-as-a-Service (RaaS) has created a threat landscape that moves at machine speed. This site serves as the central intelligence repository for identifying, analyzing, and mitigating these risks through scientific rigor and engineered protocols.</p>
+            <p class="text-secondary">Every tab in this console contains classified intelligence on the mathematical vulnerabilities of encryption, the architecture of mitigation, and the global economic impact of failed defense.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <span class="footer-logo">SEC-OPS INTELLIGENCE</span>
+            <p class="footer-text">Unauthorized access to this node is strictly prohibited. © 2026 INTERNAL DOCUMENTATION.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
