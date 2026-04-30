@@ -11,11 +11,11 @@
         body { background-color: var(--bg); color: #c9d1d9; font-family: 'Inter', sans-serif; padding-top: 100px; }
         .navbar { background: rgba(13, 17, 23, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
         .nav-link { color: #8b949e !important; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; }
-        .report-section { background: var(--card); border: 1px solid var(--border); padding: 40px; margin-bottom: 20px; border-radius: 8px; }
-        h1 { color: #fff; font-weight: 800; margin-bottom: 40px; }
-        h3 { color: var(--accent); font-weight: 700; }
-        .math { font-family: 'JetBrains Mono'; background: #000; padding: 15px; border-radius: 4px; display: block; margin-top: 10px; }
-        footer { padding: 40px; text-align: center; color: #484f58; font-size: 0.7rem; border-top: 1px solid var(--border); }
+        .report-section { background: var(--card); border: 1px solid var(--border); padding: 45px; margin-bottom: 30px; border-radius: 8px; border-left: 5px solid var(--accent); }
+        h1 { color: #fff; font-weight: 800; margin-bottom: 50px; }
+        h3 { color: var(--accent); font-weight: 700; margin-bottom: 20px; text-transform: uppercase; }
+        .math-block { font-family: 'JetBrains Mono'; background: #000; padding: 25px; border-radius: 4px; border: 1px solid #21262d; margin-top: 20px; color: #fff; }
+        footer { padding: 40px; text-align: center; color: #484f58; font-size: 0.7rem; border-top: 1px solid var(--border); margin-top: 50px; }
     </style>
 </head>
 <body>
@@ -30,10 +30,33 @@
         </div>
     </nav>
     <div class="container">
-        <h1>Cryptographic Analysis</h1>
-        <div class="report-section"><h3>Asymmetric Complexity</h3><p>Ransomware leverages the prime factorization problem. Factoring a 2048-bit key is computationally impossible for current hardware.</p><code class="math">N = P * Q (Where P/Q are large primes)</code></div>
-        <div class="report-section"><h3>Symmetric Speed</h3><p>Attackers use AES-256 for rapid file locking, then protect that key with RSA, creating a hybrid encryption trap.</p></div>
-        <div class="report-section"><h3>Quantum Risk</h3><p>Emerging Shor's Algorithm threats suggest that current encryption standards may fall as quantum processing matures.</p></div>
+        <h1>Cryptographic Vector Analysis</h1>
+
+        <div class="report-section">
+            <h3>01. Asymmetric Prime Factorization</h3>
+            <p>Modern encryption relies on the mathematical complexity of the RSA algorithm. The security of the system is based on the fact that multiplying two large prime numbers is easy, but factoring the resulting product (the public key) is computationally unfeasible for classical computers.</p>
+            <div class="math-block">
+                // RSA LOGIC OVERVIEW<br>
+                n = p * q (p and q are 2048-bit primes)<br>
+                Public Key: (e, n) | Private Key: (d, n)<br>
+                Status: Verified Secure (Classical Hardware)
+            </div>
+        </div>
+
+        <div class="report-section">
+            <h3>02. Hybrid Encryption Schemes</h3>
+            <p>Ransomware does not use RSA to encrypt large files because it is too slow. Instead, it uses a hybrid approach: AES-256 (Symmetric) to lock the actual data, and RSA (Asymmetric) to encrypt the AES key. This combines the speed of symmetric math with the security of asymmetric key exchange.</p>
+        </div>
+
+        <div class="report-section">
+            <h3>03. Behavioral Psychology (Cognitive Science)</h3>
+            <p>The "Science" of the breach often targets the human element. Attackers utilize <strong>Cognitive Overload</strong>—sending multiple urgent, conflicting alerts to an administrator to force a rapid, irrational decision that bypasses standard security protocols.</p>
+        </div>
+
+        <div class="report-section">
+            <h3>04. Post-Quantum Cryptography (PQC)</h3>
+            <p>The 2026 intelligence landscape is shifting toward PQC. As quantum computers advance, algorithms like Shor’s threaten to solve the prime factorization problem in minutes, requiring a complete rewrite of global encryption standards.</p>
+        </div>
     </div>
     <footer>INTERNAL USE ONLY // SEC-OPS 2026 FRAMEWORK</footer>
 </body>
