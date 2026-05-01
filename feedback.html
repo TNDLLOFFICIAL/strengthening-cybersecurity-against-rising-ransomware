@@ -12,20 +12,18 @@
         .form-card { max-width: 600px; margin: 40px auto; background: #161b22; padding: 30px; border-radius: 15px; border: 1px solid #30363d; }
         .form-control, .form-select { background-color: #010409 !important; border: 1px solid #30363d !important; color: white !important; }
         
-        /* Version Tag */
         .version-tag { position: fixed; bottom: 10px; right: 15px; background: rgba(22,27,34,0.9); color: #8b949e; padding: 4px 10px; border-radius: 5px; font-size: 11px; font-family: monospace; border: 1px solid #30363d; }
 
-        /* Pop-up Verification Modal */
+        /* Modal Overlay */
         #verify-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); z-index: 10000; align-items: center; justify-content: center;
+            background: rgba(0,0,0,0.95); z-index: 10000; align-items: center; justify-content: center;
         }
         .modal-box {
-            background: #1c2128; padding: 30px; border-radius: 15px; border: 2px solid #58a6ff;
-            max-width: 350px; text-align: center;
+            background: #1c2128; padding: 40px; border-radius: 15px; border: 2px solid #58a6ff;
+            max-width: 400px; text-align: center; box-shadow: 0 0 30px rgba(88, 166, 255, 0.2);
         }
-        .btn-verify { background: #238636; color: white; border: none; padding: 10px; width: 100%; border-radius: 5px; margin-top: 15px; font-weight: bold; }
-        
+        .btn-verify { background: #238636; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; margin-top: 15px; font-weight: bold; }
         #success-view { display: none; text-align: center; padding: 50px; }
     </style>
 </head>
@@ -48,30 +46,28 @@
         <div class="form-card">
             <div id="form-view">
                 <h2 class="text-white mb-3">Project Feedback</h2>
-                <p class="text-muted">Tell us what you think about the site! No email required.</p>
-                <hr border-color="#333">
-                
                 <form id="feedbackForm" action="https://formspree.io/f/mrejgobo" method="POST">
                     <label class="form-label">Your Name</label>
-                    <input type="text" name="name" class="form-control mb-3" placeholder="Nickname or Name" required>
+                    <input type="text" name="name" class="form-control mb-3" required>
 
                     <label class="form-label">I am a...</label>
                     <select name="user_type" class="form-select mb-3" required>
+                        <option value="" disabled selected>-- Select an option --</option>
                         <option value="Student">Student</option>
                         <option value="Teacher">Teacher</option>
                         <option value="Guest">Guest</option>
                     </select>
 
-                    <label class="form-label">What should we add next?</label>
-                    <textarea name="message" class="form-control mb-4" rows="4" placeholder="Type your ideas here..." required></textarea>
+                    <label class="form-label">Comments</label>
+                    <textarea name="message" class="form-control mb-4" rows="4" required></textarea>
 
-                    <button type="button" class="btn btn-primary w-100 py-2 fw-bold" onclick="startVerify()">SUBMIT AND VERIFY</button>
+                    <button type="button" class="btn btn-primary w-100 py-3 fw-bold" onclick="launchCaptcha()">SUBMIT AND VERIFY</button>
                 </form>
             </div>
 
             <div id="success-view">
-                <h2 style="color: #3fb950;">Thanks for the feedback!</h2>
-                <p>Your response was verified and sent.</p>
+                <h2 style="color: #3fb950;">✔ Sent!</h2>
+                <p>Verification complete. Data transmitted.</p>
                 <a href="index.html" class="btn btn-outline-primary mt-3">Back to Home</a>
             </div>
         </div>
@@ -79,46 +75,69 @@
 
     <div id="verify-modal">
         <div class="modal-box">
-            <h4 class="text-white">Bot Check</h4>
-            <p class="text-muted small">Solve this to prove you're human:</p>
-            <h1 id="math-display" class="my-4 text-info"></h1>
-            <input type="number" id="math-input" class="form-control text-center fs-3" placeholder="?">
-            <button class="btn-verify" onclick="checkAnswer()">Confirm</button>
-            <button class="btn btn-link btn-sm mt-2 text-muted" onclick="closePop()">Cancel</button>
+            <h4 class="text-white" id="modal-title">Bot Challenge</h4>
+            <p id="modal-instruction" class="text-muted small mb-4"></p>
+            <h2 id="challenge-display" class="mb-4 text-info"></h2>
+            
+            <div id="input-area">
+                <input type="text" id="captcha-input" class="form-control text-center fs-4" placeholder="Type answer">
+            </div>
+
+            <button class="btn-verify" onclick="validateCaptcha()">Verify Identity</button>
+            <button class="btn btn-link btn-sm mt-2 text-muted" onclick="document.getElementById('verify-modal').style.display='none'">Cancel</button>
         </div>
     </div>
 
-    <div class="version-tag">SEC-OPS: v1.5.1</div>
+    <div class="version-tag">SEC-OPS: v1.6.0</div>
 
     <script>
-        let answer = 0;
+        let currentSolution = "";
 
-        function startVerify() {
-            // Randomly picks addition, subtraction, or multiplication
-            const n1 = Math.floor(Math.random() * 20) + 1;
-            const n2 = Math.floor(Math.random() * 10) + 1;
-            const modes = ['+', '-', '*'];
-            const mode = modes[Math.floor(Math.random() * modes.length)];
+        function launchCaptcha() {
+            const challengeType = Math.floor(Math.random() * 3); // 0, 1, or 2
+            const display = document.getElementById('challenge-display');
+            const instruction = document.getElementById('modal-instruction');
+            const input = document.getElementById('captcha-input');
+            input.value = "";
 
-            if(mode === '+') { answer = n1 + n2; document.getElementById('math-display').innerText = n1 + " + " + n2; }
-            if(mode === '-') { answer = n1 - n2; document.getElementById('math-display').innerText = n1 + " - " + n2; }
-            if(mode === '*') { answer = n1 * n2; document.getElementById('math-display').innerText = n1 + " x " + n2; }
+            if (challengeType === 0) {
+                // MATH MODE
+                const n1 = Math.floor(Math.random() * 50) + 5;
+                const n2 = Math.floor(Math.random() * 10) + 2;
+                instruction.innerText = "Solve this equation:";
+                display.innerText = `${n1} + ${n2}`;
+                currentSolution = (n1 + n2).toString();
+            } 
+            else if (challengeType === 1) {
+                // COLOR MODE
+                const colors = ["Red", "Blue", "Green", "Yellow", "Purple", "Orange"];
+                const target = colors[Math.floor(Math.random() * colors.length)];
+                instruction.innerText = `Type the color shown below (Exactly):`;
+                display.innerText = target;
+                display.style.color = target.toLowerCase(); // Visual clue
+                currentSolution = target;
+            } 
+            else {
+                // PATTERN MODE (Find the lowercase)
+                const patterns = ["AAAAaAA", "BBBbBBB", "XXXxXXX", "MMMmMMM", "PPPpPPP"];
+                const pick = patterns[Math.floor(Math.random() * patterns.length)];
+                instruction.innerText = "Find and type the lowercase letter in the string:";
+                display.innerText = pick;
+                currentSolution = pick.match(/[a-z]/)[0];
+            }
 
             document.getElementById('verify-modal').style.display = 'flex';
         }
 
-        function closePop() {
-            document.getElementById('verify-modal').style.display = 'none';
-        }
-
-        async function checkAnswer() {
-            const userIn = document.getElementById('math-input').value;
-            if(userIn == answer) {
-                closePop();
+        async function validateCaptcha() {
+            const userVal = document.getElementById('captcha-input').value.trim();
+            
+            if(userVal.toLowerCase() === currentSolution.toLowerCase()) {
+                document.getElementById('verify-modal').style.display = 'none';
                 const form = document.getElementById('feedbackForm');
-                const submitBtn = document.querySelector('button[onclick="startVerify()"]');
-                submitBtn.innerText = "Sending...";
-                submitBtn.disabled = true;
+                const btn = document.querySelector('button[onclick="launchCaptcha()"]');
+                btn.innerText = "Transmitting...";
+                btn.disabled = true;
 
                 const data = new FormData(form);
                 await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
@@ -126,9 +145,8 @@
                 document.getElementById('form-view').style.display = 'none';
                 document.getElementById('success-view').style.display = 'block';
             } else {
-                alert("Wrong answer! Try a new one.");
-                startVerify(); // Get a new random problem
-                document.getElementById('math-input').value = "";
+                alert("Verification Failed. Retrying...");
+                launchCaptcha();
             }
         }
     </script>
