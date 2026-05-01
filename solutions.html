@@ -56,6 +56,7 @@
                 <a class="nav-link active" href="solutions.html">Solutions</a>
                 <a class="nav-link" href="impact.html">Impact</a>
                 <a class="nav-link" href="feedback.html">Feedback</a>
+                <a class="nav-link" href="demo.html">Demo</a>
             </div>
         </div>
     </nav>
@@ -71,58 +72,28 @@
     <div class="main-content">
         <section>
             <h2>01. The Zero Trust Architecture (ZTA)</h2>
-            <p>Traditional security relied on the "Castle and Moat" strategy—once you were inside the network, you were trusted. Modern security has moved to <strong>Zero Trust</strong>. The core philosophy is: "Never Trust, Always Verify." Every request, whether it comes from inside or outside the network, must be fully authenticated, authorized, and encrypted before access is granted.</p>
+            <p>Traditional security relied on the "Castle and Moat" strategy. Modern security has moved to <strong>Zero Trust</strong>. The core philosophy is: "Never Trust, Always Verify."</p>
             
             <div class="defense-card">
                 <h3>The Three Pillars of Zero Trust</h3>
                 <div class="protocol-box">
                     <span class="step-label">I. Identity Verification</span>
-                    <p>Moving beyond passwords to biometric and hardware-based Multi-Factor Authentication (MFA). If the identity cannot be proven with 100% certainty, access is denied.</p>
+                    <p>Moving beyond passwords to biometric and hardware-based Multi-Factor Authentication (MFA).</p>
                 </div>
                 <div class="protocol-box">
                     <span class="step-label">II. Least Privilege Access</span>
-                    <p>Users are given only the minimum level of access required to do their jobs. This prevents "lateral movement" by hackers—if one account is compromised, they can't jump to the rest of the system.</p>
+                    <p>Users are given only the minimum level of access required to do their jobs.</p>
                 </div>
                 <div class="protocol-box">
                     <span class="step-label">III. Micro-Segmentation</span>
-                    <p>Breaking the network into small, isolated zones. If an attack occurs in one zone, it is "contained" and cannot spread to the rest of the infrastructure.</p>
+                    <p>Breaking the network into small, isolated zones to contain potential attacks.</p>
                 </div>
             </div>
         </section>
 
         <section>
             <h2>02. Advanced Network Hardening</h2>
-            <p>Hardening is the process of securing a system by reducing its surface of vulnerability. Every open port or unnecessary service is a potential door for an attacker.</p>
-            
-            <h3>End-to-End Encryption (E2EE)</h3>
-            <p>Encryption shouldn't just happen at rest; it must happen in transit. By implementing <strong>TLS 1.3</strong> and E2EE, we ensure that even if a "Man-in-the-Middle" (MitM) attack intercepts the data packets, they remain mathematically impossible to read without the private keys stored on the end-user devices.</p>
-
-            <div class="defense-card">
-                <h3>Air-Gapping & Cold Storage</h3>
-                <p>For the most sensitive data (like encryption master keys or critical backups), SEC-OPS recommends <strong>Air-Gapping</strong>. This involves keeping the hardware physically disconnected from any network, including the internet. It is the only 100% effective defense against remote exploitation.</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>03. Incident Response & Recovery</h2>
-            <p>Security is not just about stopping attacks; it is about how you respond when one succeeds. A robust <strong>Incident Response (IR)</strong> plan can be the difference between a minor glitch and a company-ending disaster.</p>
-            
-            <div class="tech-specs mt-4" style="background: #161b22; border-color: #3fb950; font-family: inherit;">
-                <h4 style="color: #3fb950;">The IR Lifecycle:</h4>
-                <ol>
-                    <li><strong>Preparation:</strong> Training staff and deploying monitoring tools (SIEM/EDR).</li>
-                    <li><strong>Detection:</strong> Identifying a breach through anomaly detection.</li>
-                    <li><strong>Containment:</strong> Shutting down affected servers to stop the spread.</li>
-                    <li><strong>Eradication:</strong> Removing the malware and closing the vulnerability.</li>
-                    <li><strong>Recovery:</strong> Restoring systems from clean, verified backups.</li>
-                    <li><strong>Lessons Learned:</strong> Analyzing the attack to prevent future occurrences.</li>
-                </ol>
-            </div>
-        </section>
-
-        <section>
-            <h2>04. The Human Firewall</h2>
-            <p>Since 95% of breaches involve human error, the final solution is <strong>Continuous Training</strong>. Security is not a product you buy; it is a mindset you build. Through phishing simulations and security awareness campaigns, we turn employees from targets into the first line of defense.</p>
+            <p>Hardening is the process of securing a system by reducing its surface of vulnerability. This includes implementing End-to-End Encryption (E2EE) using TLS 1.3 protocols.</p>
         </section>
 
         <footer style="margin-top: 80px; text-align: center; border-top: 1px solid #30363d; padding-top: 30px; color: #8b949e; font-size: 0.9rem;">
