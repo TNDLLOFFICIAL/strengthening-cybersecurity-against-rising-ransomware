@@ -2,15 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home | SEC-OPS</title>
+    <title>SEC-OPS | Global Cyber Initiative</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; padding-top: 80px; }
+        body { background-color: #0d1117; color: #c9d1d9; padding-top: 80px; line-height: 1.8; }
         .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; }
         .nav-link { color: #8b949e !important; }
         .active { color: #58a6ff !important; font-weight: bold; border-bottom: 2px solid #58a6ff; }
-        .hero { padding: 80px 0; text-align: center; background: radial-gradient(circle, #1c2128 0%, #0d1117 100%); }
-        .version-tag { position: fixed; bottom: 10px; right: 15px; background: rgba(22,27,34,0.9); color: #8b949e; padding: 4px 10px; border-radius: 5px; font-size: 11px; font-family: monospace; border: 1px solid #30363d; z-index: 10000; pointer-events: none; }
+        
+        .hero-section { 
+            background: radial-gradient(circle at center, #1c2128 0%, #0d1117 100%);
+            padding: 120px 0; border-bottom: 1px solid #30363d; text-align: center;
+        }
+        .hero-title { font-size: 5rem; font-weight: 900; letter-spacing: -3px; color: white; text-transform: uppercase; }
+        .glitch-text { color: #58a6ff; text-shadow: 2px 2px #f85149; }
+
+        .mission-box { 
+            max-width: 900px; margin: -50px auto 50px; background: #161b22; 
+            border: 1px solid #30363d; padding: 50px; border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+        .stat-card { background: #010409; padding: 20px; border-radius: 10px; border: 1px solid #30363d; text-align: center; }
+        .stat-number { display: block; font-size: 2rem; font-weight: bold; color: #3fb950; }
+        .stat-label { color: #8b949e; font-size: 0.9rem; text-transform: uppercase; }
+
+        .content-body { max-width: 900px; margin: auto; padding: 50px 20px; }
+        h2 { color: #58a6ff; font-weight: 800; margin-bottom: 25px; border-left: 5px solid #58a6ff; padding-left: 15px; }
+        
+        .objective-card { 
+            background: #161b22; border: 1px solid #30363d; padding: 30px; 
+            border-radius: 12px; margin-bottom: 20px; transition: 0.3s;
+        }
+        .objective-card:hover { border-color: #58a6ff; transform: translateY(-5px); }
+
+        .version-tag { 
+            position: fixed; bottom: 10px; right: 15px; background: rgba(22,27,34,0.9); 
+            color: #8b949e; padding: 4px 10px; border-radius: 5px; font-size: 11px; 
+            font-family: monospace; border: 1px solid #30363d; z-index: 10000; pointer-events: none; 
+        }
     </style>
 </head>
 <body>
@@ -27,12 +58,59 @@
             </div>
         </div>
     </nav>
-    <header class="hero">
-        <div class="container text-white">
-            <h1 class="display-2 fw-bold">SEC-OPS</h1>
-            <p class="lead">Cybersecurity Awareness Framework</p>
+
+    <header class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">SEC<span class="glitch-text">-OPS</span></h1>
+            <p class="lead fs-3 text-secondary">Securing the future, one byte at a time.</p>
         </div>
     </header>
-    <div class="version-tag">v3.8.2.1</div>
+
+    <div class="container">
+        <div class="mission-box">
+            <h2>The Mission</h2>
+            <p>The SEC-OPS Global Initiative was founded on the principle that digital security is a fundamental human right. In an era where our personal lives, financial systems, and national infrastructures are entirely digitized, the threat of cyber warfare has become the most significant challenge of the 21st century. Our goal is to provide elite-level intelligence, scientific breakdowns, and actionable solutions to empower the next generation of digital defenders.</p>
+            
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <span class="stat-number">$10.5T</span>
+                    <span class="stat-label">Annual Cybercrime Cost</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">39s</span>
+                    <span class="stat-label">Time Between Attacks</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-label">Caused by Human Error</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-body">
+            <h2>Core Objectives</h2>
+            <div class="objective-card">
+                <h4>01. Threat Neutralization</h4>
+                <p>We analyze real-world attack vectors, from sophisticated state-sponsored malware to common phishing schemes, ensuring users understand how to identify and bypass malicious intent before a breach occurs.</p>
+            </div>
+            <div class="objective-card">
+                <h4>02. Cryptographic Literacy</h4>
+                <p>By breaking down the complex mathematics behind AES-256 and RSA encryption, we move security from a "mystery" to a transparent science that anyone can understand and verify.</p>
+            </div>
+            <div class="objective-card">
+                <h4>03. Proactive Defense</h4>
+                <p>Defense is not just about reacting; it is about building resilient systems. We promote the "Zero Trust" model—never trust, always verify—as the gold standard for personal and corporate security.</p>
+            </div>
+
+            <h2 class="mt-5">Why SEC-OPS?</h2>
+            <p>Most security awareness projects focus only on the "what." SEC-OPS focuses on the "how" and "why." Whether you are a student, a teacher, or a professional developer, our framework provides the technical depth required to truly master the digital landscape. We believe that an educated user is the strongest firewall in existence.</p>
+        </div>
+
+        <footer style="margin: 100px 0 50px; text-align: center; border-top: 1px solid #30363d; padding-top: 30px; color: #8b949e;">
+            <p>© 2024 SEC-OPS GLOBAL | SYSTEM STATUS: OPTIMAL</p>
+        </footer>
+    </div>
+
+    <div class="version-tag">v5.8.2.1</div>
 </body>
 </html>
