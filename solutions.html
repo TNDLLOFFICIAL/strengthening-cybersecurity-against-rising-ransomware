@@ -5,18 +5,20 @@
     <title>SEC-OPS | Solutions</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; }
+        body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; }
         .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; padding: 1rem; }
-        .nav-link { color: #8b949e !important; }
+        .nav-link { color: #8b949e !important; margin: 0 10px; }
         .active { color: #2ea043 !important; font-weight: bold; border-bottom: 2px solid #2ea043; }
-        .step-card { background: #161b22; padding: 30px; border-radius: 15px; border: 1px solid #30363d; margin-bottom: 25px; }
+        .solution-card { background: #161b22; padding: 30px; border-radius: 15px; border: 1px solid #30363d; margin-bottom: 20px; }
+        img { border-radius: 15px; margin-bottom: 20px; border: 1px solid #30363d; }
+        footer { padding: 40px; text-align: center; color: #8b949e; border-top: 1px solid #30363d; margin-top: 50px; }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">SEC-OPS</a>
-            <div class="navbar-nav ms-auto d-flex flex-row gap-3">
+            <div class="navbar-nav ms-auto d-flex flex-row">
                 <a class="nav-link" href="index.html">Home</a>
                 <a class="nav-link" href="threats.html">Threats</a>
                 <a class="nav-link" href="science.html">Science</a>
@@ -27,13 +29,28 @@
         </div>
     </nav>
 
-    <div class="container my-5 text-center">
-        <h1 class="text-white fw-bold">Defense Solutions</h1>
-        <img src="http://googleusercontent.com/image_collection/image_retrieval/8799605011151397087_0" alt="Firewall" style="max-width: 500px; border-radius: 15px; margin: 30px 0;">
-        <div class="step-card text-start">
-            <h3>Firewalls & 2FA</h3>
-            <p>A firewall is like a digital security guard for your Wi-Fi. 2FA (Two-Factor Authentication) is even better—it sends a code to your phone so hackers can't get in even if they have your password.</p>
+    <div class="container my-5">
+        <div class="text-center">
+            <h1 class="display-4 fw-bold text-white">Our Defense Solutions</h1>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Cloud_Computing_Security_Diagram.svg/640px-Cloud_Computing_Security_Diagram.svg.png" alt="Security Map" class="img-fluid" style="max-width: 400px;">
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="solution-card">
+                    <h3>Firewalls</h3>
+                    <p>A firewall is your first line of defense. It checks every piece of data trying to come in or leave your network.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="solution-card">
+                    <h3>2FA</h3>
+                    <p>MFA is like having two locks on your door. Even with your password, hackers still need your phone.</p>
+                </div>
+            </div>
         </div>
     </div>
+
+    <footer>&copy; 2026 SEC-OPS Project</footer>
 </body>
 </html>
