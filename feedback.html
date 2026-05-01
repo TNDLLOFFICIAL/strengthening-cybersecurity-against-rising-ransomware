@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEC-OPS | FEEDBACK PORTAL</title>
+    <title>SEC-OPS | USER PROFILE & FEEDBACK</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono&display=swap');
         
         :root {
             --bg: #010409;
@@ -14,68 +14,94 @@
             --accent: #2f81f7;
             --border: #30363d;
             --success: #3fb950;
-            --text: #c9d1d9;
+            --text-main: #c9d1d9;
+            --text-dim: #8b949e;
         }
 
         body {
             background-color: var(--bg);
-            color: var(--text);
+            color: var(--text-main);
             font-family: 'Inter', sans-serif;
             padding-top: 140px;
-            min-height: 100vh;
+            line-height: 1.6;
         }
 
-        .navbar { background: rgba(13, 17, 23, 0.95); border-bottom: 1px solid var(--border); padding: 1.2rem 0; }
-        .nav-link { color: #8b949e !important; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin: 0 15px; }
+        /* NAVIGATION */
+        .navbar {
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+            padding: 1.2rem 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand { font-weight: 800; color: #fff !important; }
+        .nav-link { color: var(--text-dim) !important; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin: 0 15px; }
+        .nav-link:hover { color: var(--accent) !important; }
 
         /* FORM STYLING */
-        .portal-container {
-            max-width: 800px;
-            margin: 0 auto;
+        .feedback-card {
+            max-width: 850px;
+            margin: 0 auto 100px;
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 20px;
             padding: 60px;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
         }
 
-        .terminal-header {
+        .section-title {
             font-family: 'JetBrains Mono';
             color: var(--accent);
             font-size: 0.8rem;
+            letter-spacing: 2px;
             margin-bottom: 40px;
-            border-left: 3px solid var(--accent);
-            padding-left: 20px;
+            display: block;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
         }
 
         .form-label {
-            font-family: 'JetBrains Mono';
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            color: #8b949e;
+            font-weight: 600;
+            font-size: 0.9rem;
             margin-bottom: 10px;
-            display: block;
+            color: #fff;
         }
 
-        .form-control {
+        .form-control, .form-select {
             background: #000;
             border: 1px solid var(--border);
             color: #fff;
-            padding: 18px;
+            padding: 15px;
             border-radius: 8px;
             margin-bottom: 30px;
             transition: 0.3s;
         }
 
-        .form-control:focus {
+        .form-control:focus, .form-select:focus {
             background: #000;
             border-color: var(--accent);
-            box-shadow: 0 0 0 4px rgba(47, 129, 247, 0.1);
+            box-shadow: 0 0 0 4px rgba(47, 129, 247, 0.15);
             color: #fff;
-            outline: none;
         }
 
-        .btn-submit {
+        /* CONDITIONAL FIELD ANIMATION */
+        #other-job-wrapper, #other-sector-wrapper {
+            display: none;
+            animation: slideDown 0.4s ease forwards;
+            background: rgba(47, 129, 247, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            margin-bottom: 30px;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-send {
             background: var(--accent);
             color: #fff;
             border: none;
@@ -85,111 +111,187 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             width: 100%;
-            transition: 0.4s;
+            margin-top: 20px;
+            transition: 0.3s;
         }
 
-        .btn-submit:hover { transform: translateY(-3px); background: #1f6feb; }
+        .btn-send:hover {
+            background: #1f6feb;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
 
-        #verify-step { display: none; text-align: center; }
-        #success-msg { display: none; text-align: center; padding: 40px; }
-
-        .code-input {
-            font-size: 2rem;
+        /* SUCCESS SCREEN */
+        #success-container {
+            display: none;
             text-align: center;
-            letter-spacing: 10px;
-            font-weight: 800;
-            color: var(--success);
-            border-color: var(--success);
+            padding: 60px 0;
         }
 
-        footer { padding: 100px 0; border-top: 1px solid var(--border); text-align: center; color: #8b949e; font-size: 0.7rem; }
+        .success-icon {
+            font-size: 5rem;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
 
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand text-white fw-bold" href="index.html">SEC-OPS</a>
+            <a class="navbar-brand" href="index.html">SEC-OPS</a>
             <div class="navbar-nav ms-auto flex-row">
                 <a class="nav-link" href="index.html">Command</a>
                 <a class="nav-link" href="threats.html">Intelligence</a>
                 <a class="nav-link" href="science.html">Cryptography</a>
                 <a class="nav-link" href="solutions.html">Protocols</a>
                 <a class="nav-link" href="impact.html">Assessment</a>
-                <a class="nav-link active" href="feedback.html">Feedback</a>
+                <a class="nav-link" href="feedback.html">Feedback</a>
             </div>
         </div>
     </nav>
 
     <div class="container">
-        <div class="portal-container">
-            <div id="main-form-content">
-                <div class="terminal-header">
-                    > ENCRYPTED UPLINK ESTABLISHED<br>
-                    > TARGET: ahnafz2011@gmail.com<br>
-                    > STATUS: AWAITING_FEEDBACK
-                </div>
-
-                <form id="feedback-form" action="https://formspree.io/f/mrejgobo" method="POST">
-                    <div id="step-1">
-                        <label class="form-label">Agent Email Address</label>
-                        <input type="email" name="email" id="user-email" class="form-control" placeholder="agent@sec-ops.org" required>
-
-                        <label class="form-label">Intelligence Subject</label>
-                        <select name="subject" class="form-control">
-                            <option>Technical Improvement</option>
-                            <option>Vulnerability Report</option>
-                            <option>Strategic Inquiry</option>
-                        </select>
-
-                        <label class="form-label">Transmission Message</label>
-                        <textarea name="message" class="form-control" rows="6" placeholder="Provide detailed technical feedback..." required></textarea>
-
-                        <button type="button" onclick="startVerify()" class="btn-submit">Initialize Verification</button>
-                    </div>
-
-                    <div id="verify-step">
-                        <div class="terminal-header" style="color: var(--success); border-color: var(--success);">
-                            > SECURITY TOKEN GENERATED<br>
-                            > CHECKING AGENT INBOX...
+        <div class="feedback-card">
+            <div id="form-content">
+                <span class="section-title">> INBOUND_USER_MANIFEST</span>
+                
+                <form id="pro-feedback-form" action="https://formspree.io/f/mrejgobo" method="POST">
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label">Full Legal Name</label>
+                            <input type="text" name="full_name" class="form-control" placeholder="John Doe" required>
                         </div>
-                        <label class="form-label">Enter 6-Digit Token</label>
-                        <input type="text" class="form-control code-input" maxlength="6" placeholder="000000">
-                        <button type="submit" class="btn-submit" style="background: var(--success);">Authorize & Send</button>
+                        <div class="col-md-6">
+                            <label class="form-label">Operational Role (Job)</label>
+                            <select name="job_role" id="job-select" class="form-select" onchange="toggleOtherJob()" required>
+                                <option value="" disabled selected>Select your role...</option>
+                                <option value="Cybersecurity Analyst">Cybersecurity Analyst</option>
+                                <option value="Software Engineer">Software Engineer</option>
+                                <option value="IT Administrator">IT Administrator</option>
+                                <option value="Medical Professional">Medical Professional</option>
+                                <option value="Government / Police">Government / Police</option>
+                                <option value="Student / Researcher">Student / Researcher</option>
+                                <option value="Other">Other (Specify...)</option>
+                            </select>
+                        </div>
                     </div>
+
+                    <div id="other-job-wrapper">
+                        <label class="form-label">Specify Your Exact Job Role</label>
+                        <input type="text" name="custom_job" id="custom-job-input" class="form-control" placeholder="e.g. Civil Engineer">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="form-label">Primary Sector of Interest</label>
+                            <select name="sector" id="sector-select" class="form-select" onchange="toggleOtherSector()" required>
+                                <option value="" disabled selected>Select sector...</option>
+                                <option value="Financial Systems">Financial Systems</option>
+                                <option value="Healthcare Privacy">Healthcare Privacy</option>
+                                <option value="National Defense">National Defense</option>
+                                <option value="Cloud Infrastructure">Cloud Infrastructure</option>
+                                <option value="Other">Other...</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="other-sector-wrapper">
+                        <label class="form-label">State Your Specific Area of Interest</label>
+                        <input type="text" name="custom_sector" id="custom-sector-input" class="form-control" placeholder="e.g. Space Satellite Security">
+                    </div>
+
+                    <label class="form-label">Project Intelligence (Feedback)</label>
+                    <textarea name="feedback_message" class="form-control" rows="6" placeholder="What do you think of the SEC-OPS solutions? Any suggestions for improvement?" required></textarea>
+
+                    <button type="submit" class="btn-send">Transmit Data Packet</button>
                 </form>
             </div>
 
-            <div id="success-msg">
-                <h2 class="text-success fw-bold">✓ MISSION SUCCESSFUL</h2>
-                <p class="text-secondary mt-3">Intelligence report has been encrypted and delivered.</p>
-                <a href="index.html" class="btn-submit d-inline-block mt-4" style="width: auto; padding: 15px 40px;">Return Home</a>
+            <div id="success-container">
+                <div class="success-icon">✦</div>
+                <h2 class="text-white fw-bold">MANIFEST SECURED</h2>
+                <p class="text-secondary">Your data has been added to the SEC-OPS lead architect's database.</p>
+                <div class="mt-5">
+                    <a href="index.html" class="btn btn-outline-primary px-5 py-3">Return to Command</a>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        const form = document.getElementById("feedback-form");
-        
-        function startVerify() {
-            if(document.getElementById("user-email").value.includes('@')) {
-                document.getElementById("step-1").style.display = "none";
-                document.getElementById("verify-step").style.display = "block";
-            } else { alert("Error: Invalid Identity."); }
+        // LOGIC FOR THE "OTHER" JOB BOX
+        function toggleOtherJob() {
+            const select = document.getElementById('job-select');
+            const wrapper = document.getElementById('other-job-wrapper');
+            const input = document.getElementById('custom-job-input');
+
+            if (select.value === 'Other') {
+                wrapper.style.display = 'block';
+                input.required = true;
+            } else {
+                wrapper.style.display = 'none';
+                input.required = false;
+            }
         }
 
-        form.addEventListener("submit", async (e) => {
+        // LOGIC FOR THE "OTHER" SECTOR BOX
+        function toggleOtherSector() {
+            const select = document.getElementById('sector-select');
+            const wrapper = document.getElementById('other-sector-wrapper');
+            const input = document.getElementById('custom-sector-input');
+
+            if (select.value === 'Other') {
+                wrapper.style.display = 'block';
+                input.required = true;
+            } else {
+                wrapper.style.display = 'none';
+                input.required = false;
+            }
+        }
+
+        // AJAX SUBMISSION (PROFESSIONAL WAY)
+        const form = document.getElementById('pro-feedback-form');
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const data = new FormData(form);
-            const response = await fetch(form.action, { method: "POST", body: data, headers: { 'Accept': 'application/json' } });
-            if (response.ok) {
-                document.getElementById("main-form-content").style.display = "none";
-                document.getElementById("success-msg").style.display = "block";
-            } else { alert("Critical Error: Transmission Interrupted."); }
+            
+            // Show loading state
+            document.querySelector('.btn-send').innerText = "ENCRYPTING...";
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    document.getElementById('form-content').style.display = 'none';
+                    document.getElementById('success-container').style.display = 'block';
+                } else {
+                    alert("Transmission Error. Check network connection.");
+                    document.querySelector('.btn-send').innerText = "TRANSMIT DATA PACKET";
+                }
+            } catch (err) {
+                alert("Critical System Failure. Try again.");
+                document.querySelector('.btn-send').innerText = "TRANSMIT DATA PACKET";
+            }
         });
     </script>
 
-    <footer>SEC-OPS COMMAND // AHNAFZ-2011 // NODE-74-ALPHA</footer>
+    <footer>
+        SEC-OPS GLOBAL ARCHIVE // NODE: 2026 // USER_DATA_PROTECTION: ACTIVE
+    </footer>
 
 </body>
 </html>
