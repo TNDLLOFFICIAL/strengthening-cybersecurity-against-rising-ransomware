@@ -3,68 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEC-OPS | ASSESSMENT</title>
+    <title>SEC-OPS | IMPACT ANALYSIS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono&display=swap');
-        :root { --bg: #010409; --card: #0d1117; --accent: #ff7b72; --border: #30363d; --text: #c9d1d9; }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; padding-top: 150px; }
-        .navbar { background: rgba(13, 17, 23, 0.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
-        .nav-link { color: #8b949e !important; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin: 0 15px; }
-        h1 { font-size: 4rem; font-weight: 900; color: #fff; margin-bottom: 60px; letter-spacing: -2px; }
-        .impact-box { background: var(--card); border: 1px solid var(--border); border-left: 8px solid var(--accent); padding: 60px; margin-bottom: 40px; border-radius: 12px; }
-        h3 { color: var(--accent); font-weight: 700; margin-bottom: 25px; text-transform: uppercase; }
-        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin: 40px 0; }
-        .stat-card { background: #000; padding: 30px; border-radius: 8px; border: 1px solid #21262d; text-align: center; }
-        .stat-val { display: block; font-size: 2rem; font-weight: 900; color: var(--accent); }
-        .stat-label { font-size: 0.75rem; text-transform: uppercase; color: #8b949e; letter-spacing: 1px; }
-        footer { padding: 100px 0; border-top: 1px solid var(--border); text-align: center; margin-top: 100px; }
+        
+        :root {
+            --bg: #010409;
+            --card: #0d1117;
+            --accent: #ff7b72;
+            --border: #30363d;
+            --text: #c9d1d9;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            padding-top: 140px;
+        }
+
+        .navbar { background: rgba(13, 17, 23, 0.95); border-bottom: 1px solid var(--border); padding: 1.2rem 0; }
+        .nav-link { color: #8b949e !important; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin: 0 15px; }
+
+        .impact-hero { margin-bottom: 80px; text-align: center; }
+        .impact-hero h1 { font-size: 4rem; font-weight: 900; color: #fff; }
+
+        .case-study {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 60px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .case-study h2 { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 30px; }
+        
+        .stat-bar-container { margin: 40px 0; }
+        .stat-label { font-family: 'JetBrains Mono'; font-size: 0.8rem; color: #8b949e; display: block; margin-bottom: 10px; }
+        .stat-bar { height: 12px; background: #21262d; border-radius: 50px; overflow: hidden; }
+        .stat-fill { height: 100%; background: var(--accent); border-radius: 50px; }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .impact-box {
+            background: #161b22;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .impact-box h3 { color: var(--accent); font-weight: 800; font-size: 1.8rem; }
+        .impact-box p { font-size: 0.8rem; color: #8b949e; text-transform: uppercase; letter-spacing: 1px; }
+
+        footer { padding: 100px 0; border-top: 1px solid var(--border); text-align: center; }
     </style>
 </head>
 <body>
+
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand text-white fw-bold" href="index.html">SEC-OPS</a>
             <div class="navbar-nav ms-auto flex-row">
+                <a class="nav-link" href="index.html">Command</a>
                 <a class="nav-link" href="threats.html">Intelligence</a>
                 <a class="nav-link" href="science.html">Cryptography</a>
                 <a class="nav-link" href="solutions.html">Protocols</a>
-                <a class="nav-link" href="impact.html">Assessment</a>
+                <a class="nav-link active" href="impact.html">Assessment</a>
+                <a class="nav-link" href="feedback.html">Feedback</a>
             </div>
         </div>
     </nav>
 
     <div class="container">
-        <h1>Global Impact Assessment</h1>
+        <div class="impact-hero">
+            <h1>Economic Aftermath</h1>
+            <p class="lead text-secondary">Measuring the societal and financial collapse caused by the 2026 RaaS wave.</p>
+        </div>
 
-        <div class="impact-box">
-            <h3>01. Systemic Economic Deficit</h3>
-            <p>The 2026 economic landscape reveals that the cost of ransomware is no longer just the ransom itself. It is "Total Business Interruption." For every $1 demanded in ransom, the victim organization loses an average of $10 in downtime, lost productivity, and legal fees.</p>
-            <div class="stat-grid">
-                <div class="stat-card"><span class="stat-val">$42B</span><span class="stat-label">Global Loss 2026</span></div>
-                <div class="stat-card"><span class="stat-val">22 Days</span><span class="stat-label">Avg. Downtime</span></div>
-                <div class="stat-card"><span class="stat-val">1.4M</span><span class="stat-label">Avg. Payment</span></div>
+        <section class="case-study">
+            <h2>The Logistics Blackout (Q1 2026)</h2>
+            <p>In early 2026, a triple-extortion attack targeted the three largest global shipping hubs. The result was a complete suspension of maritime trade for 14 days, leading to a localized GDP drop of 4.2% in affected regions.</p>
+            
+            <div class="stat-bar-container">
+                <span class="stat-label">FINANCIAL LOSS: $42.8 BILLION</span>
+                <div class="stat-bar"><div class="stat-fill" style="width: 90%;"></div></div>
             </div>
-        </div>
 
-        <div class="impact-box">
-            <h3>02. Infrastructure & Critical Utility</h3>
-            <p>The most devastating impact is on Critical National Infrastructure (CNI). When ransomware strikes a power grid, a water treatment plant, or a hospital, the result is no longer measured in dollars, but in human safety. Diversion of ambulances and loss of utility access create physical world consequences that far outweigh the digital breach.</p>
-        </div>
+            <div class="impact-grid">
+                <div class="impact-box">
+                    <h3>14 Days</h3>
+                    <p>System Downtime</p>
+                </div>
+                <div class="impact-box">
+                    <h3>88%</h3>
+                    <p>Data Recovered</p>
+                </div>
+                <div class="impact-box">
+                    <h3>$12M</h3>
+                    <p>Average Ransom</p>
+                </div>
+            </div>
+        </section>
 
-        <div class="impact-box">
-            <h3>03. The Geopolitical Proxy</h3>
-            <p>Ransomware has become a tool of war. Nation-states now use "Proxy Criminals"—groups that appear to be independent hackers but are actually funded and directed by foreign governments to destabilize a target country’s economy without initiating a formal declaration of conflict.</p>
-        </div>
+        <section class="case-study">
+            <h2>Healthcare Infrastructure Failure</h2>
+            <p>Attackers targeted the interoperability layers between regional hospitals. By encrypting the patient record synchronization service, they effectively blocked emergency room access for over 1.2 million citizens.</p>
+            <p class="mt-4">This event shifted the global perspective on ransomware from a "financial crime" to a "threat to human life," leading to the SEC-OPS mandate for hospitals to maintain air-gapped immutable records.</p>
+        </section>
 
-        <div class="impact-box">
-            <h3>04. The Ethical Paradox</h3>
-            <p>Is paying a ransom unethical? In 2026, the global consensus is shifting. Paying a ransom funds the R&D of the hackers, ensuring they can breach more organizations. However, if an organization refuses to pay, they risk the public exposure of sensitive customer data. Organizations are now trapped between ethical responsibility and survival.</p>
-        </div>
+        <section class="case-study" style="background: linear-gradient(135deg, #0d1117 0%, #1c1111 100%);">
+            <h2>The Trust Erosion Index</h2>
+            <p>Beyond the money, the true impact is the loss of digital trust. Surveys indicate that 65% of consumers now avoid high-frequency digital transactions due to fears of identity synthesis and secondary data leaks.</p>
+        </section>
     </div>
 
     <footer>
-        <span class="text-secondary small fw-bold">INTERNAL USE ONLY // SEC-OPS 2026</span>
+        IMPACT DATASET v9.0 // UPDATED 2026 // CONFIDENTIAL
     </footer>
+
 </body>
 </html>
