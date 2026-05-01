@@ -10,8 +10,7 @@
         .nav-link { color: #8b949e !important; margin: 0 10px; }
         .active { color: #2ea043 !important; font-weight: bold; border-bottom: 2px solid #2ea043; }
         .solution-card { background: #161b22; padding: 30px; border-radius: 15px; border: 1px solid #30363d; margin-bottom: 20px; }
-        img { border-radius: 15px; margin-bottom: 20px; border: 1px solid #30363d; }
-        footer { padding: 40px; text-align: center; color: #8b949e; border-top: 1px solid #30363d; margin-top: 50px; }
+        .icon-box { font-size: 40px; margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -30,27 +29,23 @@
     </nav>
 
     <div class="container my-5">
-        <div class="text-center">
-            <h1 class="display-4 fw-bold text-white">Our Defense Solutions</h1>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Cloud_Computing_Security_Diagram.svg/640px-Cloud_Computing_Security_Diagram.svg.png" alt="Security Map" class="img-fluid" style="max-width: 400px;">
-        </div>
-
-        <div class="row mt-4">
+        <h1 class="text-center mb-5">Defense Tools</h1>
+        <div class="row">
             <div class="col-md-6">
-                <div class="solution-card">
+                <div class="solution-card text-center">
+                    <div class="icon-box">🛡️</div>
                     <h3>Firewalls</h3>
-                    <p>A firewall is your first line of defense. It checks every piece of data trying to come in or leave your network.</p>
+                    <p>Blocks unwanted traffic from entering your personal network.</p>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="solution-card">
+                <div class="solution-card text-center">
+                    <div class="icon-box">📱</div>
                     <h3>2FA</h3>
-                    <p>MFA is like having two locks on your door. Even with your password, hackers still need your phone.</p>
+                    <p>Requires a second code from your phone to verify it's really you.</p>
                 </div>
             </div>
         </div>
     </div>
-
-    <footer>&copy; 2026 SEC-OPS Project</footer>
 </body>
 </html>
