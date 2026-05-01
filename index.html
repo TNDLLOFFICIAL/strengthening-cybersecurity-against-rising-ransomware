@@ -6,12 +6,13 @@
     <title>SEC-OPS | Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; }
+        body { background-color: #0d1117; color: #c9d1d9; font-family: 'Segoe UI', Tahoma, sans-serif; }
         .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; padding: 1rem; }
-        .nav-link { color: #8b949e !important; }
-        .active { color: #58a6ff !important; font-weight: bold; }
-        .hero { padding: 80px 0; text-align: center; background: #161b22; border-bottom: 1px solid #30363d; }
-        .info-card { background: #161b22; padding: 30px; border-radius: 15px; border: 1px solid #30363d; height: 100%; }
+        .nav-link { color: #8b949e !important; margin: 0 10px; }
+        .active { color: #58a6ff !important; font-weight: bold; border-bottom: 2px solid #58a6ff; }
+        .hero { padding: 100px 0; text-align: center; background: radial-gradient(circle at top, #1c2128, #0d1117); }
+        .feature-card { background: #161b22; padding: 40px; border-radius: 15px; border: 1px solid #30363d; height: 100%; transition: 0.3s; }
+        .feature-card:hover { border-color: #58a6ff; }
         footer { padding: 40px; text-align: center; color: #8b949e; border-top: 1px solid #30363d; margin-top: 50px; }
     </style>
 </head>
@@ -19,7 +20,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">SEC-OPS</a>
-            <div class="navbar-nav ms-auto d-flex flex-row gap-3">
+            <div class="navbar-nav ms-auto d-flex flex-row">
                 <a class="nav-link active" href="index.html">Home</a>
                 <a class="nav-link" href="threats.html">Threats</a>
                 <a class="nav-link" href="science.html">Science</a>
@@ -32,28 +33,30 @@
 
     <header class="hero">
         <div class="container">
-            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80" alt="Cybersecurity" style="max-width: 500px; border-radius: 15px; margin-bottom: 20px;">
-            <h1 class="display-3 fw-bold text-white">Cybersecurity for Everyone.</h1>
-            <p class="lead mx-auto" style="max-width: 800px;">The internet is a massive place, but it isn't always safe. SEC-OPS is a hub where we make digital safety easy to understand. We help you protect your passwords, your photos, and your identity.</p>
+            <img src="https://source.unsplash.com/600x400/?cybersecurity,technology" alt="Cybersecurity Hub" style="max-width: 500px; border-radius: 20px; margin-bottom: 30px; box-shadow: 0 0 20px rgba(88, 166, 255, 0.2);">
+            <h1 class="display-3 fw-bold text-white">Protecting Your Digital Identity.</h1>
+            <p class="lead mx-auto" style="max-width: 850px;">
+                In today's world, your phone and computer are just as important as your house. But most people don't know how to "lock the doors" on the internet. <strong>SEC-OPS</strong> was created to give you the keys. We break down the hardest parts of tech safety into simple, easy lessons for everyone.
+            </p>
         </div>
     </header>
 
     <div class="container my-5">
         <div class="row g-4">
             <div class="col-md-6">
-                <div class="info-card">
-                    <h3>What is SEC-OPS?</h3>
-                    <p>SEC-OPS stands for Security Operations. This project was built to show that you don't need to be a computer genius to stay safe online. We break down the complicated "tech talk" into simple ideas that anyone can learn.</p>
+                <div class="feature-card">
+                    <h3>The Mission</h3>
+                    <p>Hackers aren't just characters in movies; they are real people looking for easy targets. Our mission is to make sure <strong>you</strong> aren't one of them. By spending just a few minutes on this site, you'll learn how to spot a scam from a mile away and how to use tools that keep your data private.</p>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="info-card">
-                    <h3>Why Safety Matters</h3>
-                    <p>Every time you log into a game or a social media app, you are sharing information. If you don't know how to protect that info, hackers can steal it. We teach you how to lock your digital doors so the bad guys stay out.</p>
+                <div class="feature-card">
+                    <h3>The Vision</h3>
+                    <p>We believe that privacy is a human right. As 9th graders, we are the first generation to grow up entirely online. That means we have the biggest responsibility to lead the way in digital safety. SEC-OPS isn't just a project—it's a toolkit for a safer future.</p>
                 </div>
             </div>
         </div>
     </div>
-    <footer>&copy; 2026 SEC-OPS Project | 9th Grade Class Presentation</footer>
+    <footer>&copy; 2026 SEC-OPS Hub | Digital Defense Project</footer>
 </body>
 </html>
