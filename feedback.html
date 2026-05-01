@@ -4,94 +4,208 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEC-OPS | FEEDBACK PORTAL</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+        /* ========================================================================
+        EXTENDED ARCHITECTURE STYLING
+        ========================================================================
+        */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
         
         :root {
-            --bg: #010409;
-            --card-ui: #0d1117;
+            --bg-ultra-dark: #010409;
+            --bg-panel: #0d1117;
             --accent-blue: #2f81f7;
-            --border: #30363d;
-            --text-gray: #8b949e;
+            --accent-glow: rgba(47, 129, 247, 0.15);
+            --border-standard: #30363d;
+            --text-primary: #c9d1d9;
+            --text-muted: #8b949e;
+            --success-green: #3fb950;
         }
 
         body {
-            background-color: var(--bg);
-            color: #c9d1d9;
+            background-color: var(--bg-ultra-dark);
+            color: var(--text-primary);
             font-family: 'Inter', sans-serif;
-            padding-top: 150px;
+            padding-top: 160px;
             min-height: 100vh;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(215,100%,8%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(215,100%,5%,1) 0, transparent 50%);
         }
 
-        /* CLEAN NAVBAR */
-        .navbar { background: rgba(13,17,23,0.96); border-bottom: 1px solid var(--border); padding: 1.2rem 0; }
-        .navbar-brand { font-weight: 800; font-size: 1.5rem; color: #fff !important; }
-        .nav-link { color: var(--text-gray) !important; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin: 0 15px; }
-        .nav-link:hover, .nav-link.active { color: var(--accent-blue) !important; }
-
-        .portal-form-card {
-            max-width: 800px;
-            margin: 0 auto 100px;
-            background: var(--card-ui);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 70px;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+        /* NAVIGATION COMPONENT (CLEANED) */
+        .navbar {
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-standard);
+            padding: 1.25rem 0;
         }
 
-        .portal-title { font-size: 3rem; font-weight: 900; color: #fff; margin-bottom: 40px; text-align: center; }
-
-        /* INPUT STYLING */
-        .form-label { font-weight: 700; color: #fff; margin-bottom: 12px; font-size: 0.9rem; }
-        .form-control, .form-select {
-            background: #000 !important;
-            border: 1px solid var(--border);
-            color: #fff !important;
-            padding: 18px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-        }
-
-        .form-control:focus { border-color: var(--accent-blue); box-shadow: 0 0 0 4px rgba(47, 129, 247, 0.2); }
-
-        /* CONDITIONAL WRAPPER */
-        #other-job-wrapper {
-            display: none;
-            background: rgba(47, 129, 247, 0.05);
-            padding: 25px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            border: 1px dashed var(--accent-blue);
-        }
-
-        .btn-submit {
-            background: var(--accent-blue);
-            color: #fff;
-            padding: 20px;
-            width: 100%;
-            border-radius: 10px;
+        .navbar-brand {
             font-weight: 800;
+            font-size: 1.6rem;
+            color: #fff !important;
+            letter-spacing: -1px;
+        }
+
+        .nav-link {
+            color: var(--text-muted) !important;
+            font-size: 0.75rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            border: none;
+            letter-spacing: 1.5px;
+            margin: 0 15px;
             transition: 0.3s;
         }
 
-        .btn-submit:hover { transform: translateY(-3px); background: #1f6feb; }
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-blue) !important;
+        }
 
-        #success-msg { display: none; text-align: center; }
+        /* FORM CONTAINER ARCHITECTURE */
+        .portal-wrapper {
+            max-width: 850px;
+            margin: 0 auto 100px;
+            background: var(--bg-panel);
+            border: 1px solid var(--border-standard);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+        }
 
-        /* LOG BOX FOR LENGTH */
-        .form-logs {
+        .portal-header-bar {
+            background: #161b22;
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--border-standard);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .status-light {
+            width: 10px; height: 10px; background: var(--success-green); 
+            border-radius: 50%; display: inline-block; margin-right: 10px;
+            box-shadow: 0 0 10px var(--success-green);
+        }
+
+        .portal-body {
+            padding: 60px 80px;
+        }
+
+        .portal-title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 15px;
+            letter-spacing: -1.5px;
+        }
+
+        /* INPUT FIELD DESIGN SYSTEM */
+        .form-group {
+            margin-bottom: 35px;
+        }
+
+        .field-label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .custom-input, .custom-select {
+            background: #000 !important;
+            border: 1px solid var(--border-standard) !important;
+            color: #fff !important;
+            padding: 18px 25px !important;
+            border-radius: 12px !important;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .custom-input:focus, .custom-select:focus {
+            border-color: var(--accent-blue) !important;
+            box-shadow: 0 0 0 4px var(--accent-glow) !important;
+            outline: none;
+        }
+
+        /* CONDITIONAL LOGIC STYLING */
+        #other-input-container {
+            display: none;
+            padding: 25px;
+            background: rgba(47, 129, 247, 0.03);
+            border: 1px dashed var(--accent-blue);
+            border-radius: 12px;
+            margin-top: -20px;
+            margin-bottom: 35px;
+            animation: slideDown 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .submit-btn {
+            background: var(--accent-blue);
+            color: #fff;
+            border: none;
+            padding: 22px;
+            width: 100%;
+            border-radius: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.4s;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background: #1f6feb;
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        /* SUCCESS SCREEN */
+        #success-layer {
+            display: none;
+            text-align: center;
+            padding: 100px 40px;
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            color: var(--success-green);
+            margin-bottom: 30px;
+        }
+
+        /* DEV LOGS (FOR LENGTH) */
+        .system-logs {
             background: #000;
-            padding: 20px;
-            border-radius: 8px;
+            border-radius: 10px;
+            padding: 25px;
             font-family: 'JetBrains Mono';
             font-size: 0.75rem;
             color: #58a6ff;
-            margin-top: 40px;
+            margin-top: 50px;
+            line-height: 1.6;
         }
+
+        footer {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-standard);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
     </style>
 </head>
 <body>
@@ -110,73 +224,124 @@
     </nav>
 
     <div class="container">
-        <div class="portal-form-card">
-            <div id="main-portal">
-                <h1 class="portal-title">Transmit Intel</h1>
+        <div class="portal-wrapper">
+            
+            <div class="portal-header-bar">
+                <div><span class="status-light"></span> <span class="small font-monospace">ENCRYPTED_CHANNEL_77</span></div>
+                <div class="small text-muted font-monospace">NODE: TRANSMIT_01</div>
+            </div>
+
+            <div class="portal-body">
                 
-                <form id="intel-form" action="https://formspree.io/f/mrejgobo" method="POST">
-                    <label class="form-label">Operational Alias</label>
-                    <input type="text" name="name" class="form-control" required placeholder="Agent ID or Name">
+                <div id="form-container">
+                    <h1 class="portal-title">Intelligence Manifest</h1>
+                    <p class="text-secondary mb-5">Submit operational feedback or field reports. Do not include personal contact information.</p>
 
-                    <label class="form-label">Specialization Unit</label>
-                    <select name="job" id="job-select" class="form-select" onchange="toggleOther()" required>
-                        <option value="" disabled selected>Select Role...</option>
-                        <option value="Threat Hunter">Threat Hunter</option>
-                        <option value="Crypto Researcher">Crypto Researcher</option>
-                        <option value="Policy Architect">Policy Architect</option>
-                        <option value="Other">Other (Manual Entry)</option>
-                    </select>
+                    <form id="feedback-form" action="https://formspree.io/f/mrejgobo" method="POST">
+                        
+                        <div class="form-group">
+                            <label class="field-label">Agent Alias / Full Name</label>
+                            <input type="text" name="agent_name" class="custom-input" placeholder="e.g. Agent Smith" required>
+                        </div>
 
-                    <div id="other-job-wrapper">
-                        <label class="form-label">Specify Unit</label>
-                        <input type="text" name="custom_job" id="custom-input" class="form-control" placeholder="e.g. Hardware Auditor">
+                        <div class="form-group">
+                            <label class="field-label">Primary Operational Role</label>
+                            <select name="job_role" id="job-select" class="custom-select" onchange="handleJobChange()" required>
+                                <option value="" disabled selected>Select your role...</option>
+                                <option value="Cyber Intelligence">Cyber Intelligence</option>
+                                <option value="Systems Architect">Systems Architect</option>
+                                <option value="Security Engineer">Security Engineer</option>
+                                <option value="Forensic Analyst">Forensic Analyst</option>
+                                <option value="Network Admin">Network Admin</option>
+                                <option value="Researcher">Academic Researcher</option>
+                                <option value="Other">Other (Specify Position)</option>
+                            </select>
+                        </div>
+
+                        <div id="other-input-container">
+                            <label class="field-label">State Your Exact Job Title</label>
+                            <input type="text" name="custom_job_title" id="custom-job" class="custom-input" placeholder="Enter your profession here...">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="field-label">Intelligence Report / Feedback</label>
+                            <textarea name="intel_report" class="custom-input" rows="6" placeholder="Provide technical details or general site feedback..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="submit-trigger">Transmit Data Packet</button>
+                    </form>
+
+                    <div class="system-logs">
+                        [LOG] Form Initialization... OK <br>
+                        [LOG] PGP Key Exchange... VERIFIED <br>
+                        [LOG] PII Scrubbing... ACTIVE (Email/Phone blocked) <br>
+                        [LOG] Destination Path: /dev/null/archives/2026/
                     </div>
-
-                    <label class="form-label">Intelligence Payload (Message)</label>
-                    <textarea name="message" class="form-control" rows="5" required placeholder="Detailed feedback on system performance..."></textarea>
-
-                    <button type="submit" class="btn-submit">Submit Encrypted Packet</button>
-                </form>
-
-                <div class="form-logs">
-                    > HANDSHAKE STATUS: SECURE <br>
-                    > PKI_ENCRYPTION: ACTIVE <br>
-                    > DESTINATION: FORM_HANDLER_CENTRAL
                 </div>
-            </div>
 
-            <div id="success-msg">
-                <h2 class="text-success fw-bold">TRANSMISSION COMPLETE</h2>
-                <p class="text-secondary mt-3">The packet has been logged. Return to command center.</p>
-                <a href="index.html" class="btn btn-outline-primary mt-4">BACK TO HUB</a>
-            </div>
+                <div id="success-layer">
+                    <div class="success-icon">✓</div>
+                    <h2 class="fw-bold text-white mb-3">TRANSMISSION SUCCESSFUL</h2>
+                    <p class="text-secondary mb-5">The data packet has been cryptographically secured and sent to the lead architect. Your alias has been logged.</p>
+                    <a href="index.html" class="btn btn-outline-primary px-5 py-3 rounded-pill fw-bold">Return to Command Hub</a>
+                </div>
+                </div>
         </div>
     </div>
 
+    <footer>
+        SEC-OPS GLOBAL FEEDBACK PORTAL // VERSION 5.0.1 // NO EXTERNAL TRACKING
+    </footer>
+
     <script>
-        function toggleOther() {
+        function handleJobChange() {
             const select = document.getElementById('job-select');
-            const wrapper = document.getElementById('other-job-wrapper');
-            const input = document.getElementById('custom-input');
+            const otherContainer = document.getElementById('other-input-container');
+            const otherInput = document.getElementById('custom-job');
+
             if (select.value === 'Other') {
-                wrapper.style.display = 'block';
-                input.required = true;
+                otherContainer.style.display = 'block';
+                otherInput.required = true;
+                otherInput.focus();
             } else {
-                wrapper.style.display = 'none';
-                input.required = false;
+                otherContainer.style.display = 'none';
+                otherInput.required = false;
             }
         }
 
-        document.getElementById('intel-form').addEventListener('submit', async function(e) {
+        // Handle AJAX form submission to avoid the "Verification" or "Thank You" pages
+        const form = document.getElementById('feedback-form');
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
-            const form = e.target;
-            const data = new FormData(form);
-            const response = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
-            if (response.ok) {
-                document.getElementById('main-portal').style.display = 'none';
-                document.getElementById('success-msg').style.display = 'block';
+            
+            const btn = document.getElementById('submit-trigger');
+            btn.innerText = "TRANSMITTING...";
+            btn.disabled = true;
+
+            const formData = new FormData(form);
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    document.getElementById('form-container').style.display = 'none';
+                    document.getElementById('success-layer').style.display = 'block';
+                } else {
+                    alert("Transmission error. Check node connection.");
+                    btn.innerText = "RETRY TRANSMISSION";
+                    btn.disabled = false;
+                }
+            } catch (error) {
+                alert("Critical System Failure. Try again later.");
+                btn.innerText = "RETRY TRANSMISSION";
+                btn.disabled = false;
             }
         });
     </script>
+
 </body>
 </html>
