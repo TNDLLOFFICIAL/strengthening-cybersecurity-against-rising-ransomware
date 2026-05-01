@@ -5,18 +5,18 @@
     <title>SEC-OPS | Threats</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; }
+        body { background-color: #0d1117; color: #c9d1d9; }
         .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; padding: 1rem; }
-        .nav-link { color: #8b949e !important; margin: 0 10px; }
+        .nav-link { color: #8b949e !important; }
         .active { color: #f85149 !important; font-weight: bold; border-bottom: 2px solid #f85149; }
-        .threat-alert { background: #1c2128; border-left: 5px solid #f85149; padding: 30px; border-radius: 10px; margin-bottom: 30px; }
+        .threat-box { background: #1c2128; border: 1px solid #444; padding: 25px; border-radius: 12px; margin-bottom: 25px; }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">SEC-OPS</a>
-            <div class="navbar-nav ms-auto d-flex flex-row">
+            <div class="navbar-nav ms-auto d-flex flex-row gap-3">
                 <a class="nav-link" href="index.html">Home</a>
                 <a class="nav-link active" href="threats.html">Threats</a>
                 <a class="nav-link" href="science.html">Science</a>
@@ -28,18 +28,11 @@
     </nav>
 
     <div class="container my-5 text-center">
-        <h1 class="text-white fw-bold mb-4">Understanding Digital Threats</h1>
-        <img src="https://source.unsplash.com/600x400/?hacker,security" alt="Cyber Threats" style="max-width: 500px; border-radius: 15px; margin-bottom: 40px; box-shadow: 0 0 20px rgba(248, 81, 73, 0.2);">
-
-        <div class="text-start">
-            <div class="threat-alert">
-                <h3>Social Engineering (The Human Hack)</h3>
-                <p>This is the most common way people get hacked. Instead of using fancy code, hackers use <strong>Psychology</strong>. They send emails or DMs pretending to be a friend, a teacher, or a company like Instagram. They create a "fake emergency" to trick you into clicking a link and typing your password. Remember: If an email sounds scary and asks you to log in immediately, it's probably a trap.</p>
-            </div>
-            <div class="threat-alert">
-                <h3>Ransomware (The Digital Kidnapping)</h3>
-                <p>Ransomware is a type of virus that locks all the files on your computer. You can't see your photos or schoolwork anymore. The hackers then display a message saying you have to pay them hundreds of dollars in Bitcoin to get your files back. This happens most often when people download "cracked" games or suspicious attachments.</p>
-            </div>
+        <h1 class="text-white fw-bold">Common Threats</h1>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/17427111359552499413_0" alt="Cyber Threats" style="max-width: 500px; border-radius: 15px; margin: 30px 0;">
+        <div class="threat-box text-start">
+            <h3 style="color: #f85149;">Phishing (The Trick)</h3>
+            <p>This is when hackers send fake emails pretending to be Instagram or Netflix. They want you to click a link and type your password so they can steal it. Always check the sender's email address!</p>
         </div>
     </div>
 </body>
