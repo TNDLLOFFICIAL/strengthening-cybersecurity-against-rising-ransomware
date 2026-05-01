@@ -2,28 +2,69 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Solutions | SEC-OPS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEC-OPS | Solutions</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; padding-top: 60px; }
-        .step-card { background: #161b22; padding: 30px; border-radius: 12px; margin-bottom: 20px; }
+        body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; }
+        .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; padding: 1rem; }
+        .nav-link { color: #8b949e !important; }
+        .active { color: #238636 !important; border-bottom: 2px solid #238636; }
+        .solution-card { background: #161b22; padding: 40px; border-radius: 15px; border: 1px solid #30363d; margin-bottom: 30px; }
+        .icon-box { color: #238636; font-size: 2rem; margin-bottom: 15px; }
+        footer { padding: 40px; text-align: center; color: #8b949e; border-top: 1px solid #30363d; margin-top: 50px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="text-white fw-bold mb-4">How We Solve It</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">SEC-OPS</a>
+            <div class="navbar-nav ms-auto d-flex flex-row gap-3">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="threats.html">Threats</a>
+                <a class="nav-link" href="science.html">Science</a>
+                <a class="nav-link active" href="solutions.html">Solutions</a>
+                <a class="nav-link" href="impact.html">Impact</a>
+                <a class="nav-link" href="feedback.html">Feedback</a>
+            </div>
+        </div>
+    </nav>
 
-        <div class="step-card">
-            <h3 class="text-primary">Firewalls</h3>
-            <p>A firewall is like a digital wall around your computer. It checks every piece of information trying to get in. If it looks suspicious or comes from a known "bad" source, the firewall blocks it immediately.</p>
+    <div class="container my-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold text-white">Our Digital Solutions</h1>
+            <p class="lead">Hacking is a problem, but it has a solution. Here is how we stay protected.</p>
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/16086238476594437508_0" alt="Security Solutions" style="max-width: 500px; border-radius: 15px; margin-top: 20px;">
         </div>
 
-        <div class="step-card">
-            <h3 class="text-primary">Two-Factor Authentication (2FA)</h3>
-            <p>This is the best way to stay safe. Even if a hacker steals your password, they can't get in because the app will send a special code to your phone. Unless they have your physical phone, they are stuck outside.</p>
-        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="solution-card">
+                    <div class="icon-box">🛡️ Firewalls</div>
+                    <h3>The Security Guard of the Internet</h3>
+                    <p>Think of a firewall like a security guard standing at the entrance of a VIP club. Every piece of data trying to enter your computer has to show its "ID." If the data looks suspicious or comes from a known hacker's address, the firewall blocks it immediately.</p>
+                    <p>Without a firewall, your computer would be open to the entire internet, allowing anyone to try and get into your private files. It is the most basic and important rule of staying safe.</p>
+                </div>
+            </div>
 
-        <a href="index.html" class="btn btn-primary mt-4">Return Home</a>
+            <div class="col-lg-6">
+                <div class="solution-card">
+                    <div class="icon-box">🔑 Multi-Factor Authentication</div>
+                    <h3>The Double-Lock System</h3>
+                    <p>You probably know this as 2FA. It's when an app asks for your password AND sends a code to your phone. This is the ultimate solution. Even if a hacker steals your password, they can't get into your account because they don't have your physical phone. It's like having two different keys for one door.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="solution-card">
+                    <div class="icon-box">🚦 Protocols (HTTPS)</div>
+                    <h3>The Rules of Communication</h3>
+                    <p>When you see the "S" in HTTPS, it stands for Secure. This is a protocol—a rule that says "all data on this site must be scrambled so no one can read it." If you are on a site that only says HTTP, anyone on the same Wi-Fi as you can see exactly what you are typing.</p>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <footer>&copy; 2026 SEC-OPS Solutions // Build. Protect. Secure.</footer>
 </body>
 </html>
