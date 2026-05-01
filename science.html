@@ -2,33 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>The Science | SEC-OPS</title>
+    <title>Science | SEC-OPS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; padding-top: 60px; }
-        .explain-section { background: #161b22; padding: 30px; border-radius: 10px; margin-bottom: 25px; border-left: 5px solid #58a6ff; }
+        body { background-color: #0d1117; color: #c9d1d9; }
+        .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; padding: 1rem; }
+        .nav-link { color: #8b949e !important; }
+        .active { color: #58a6ff !important; }
+        .content-section { background: #161b22; padding: 40px; border-radius: 15px; margin-top: 40px; border-left: 5px solid #58a6ff; }
+        footer { padding: 40px; text-align: center; color: #8b949e; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="text-white fw-bold mb-4">The Science of Secret Codes</h1>
-
-        <div class="explain-section">
-            <h3>What is Cryptography?</h3>
-            <p>It’s the way computers lock up your information. When you type a password, the computer turns it into a secret code that looks like random gibberish. This way, even if a hacker steals the file, they can't read what's inside without the "Key."</p>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">SEC-OPS</a>
+            <div class="navbar-nav ms-auto d-flex flex-row gap-3">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="threats.html">Threats</a>
+                <a class="nav-link active" href="science.html">Science</a>
+                <a class="nav-link" href="solutions.html">Solutions</a>
+                <a class="nav-link" href="impact.html">Impact</a>
+                <a class="nav-link" href="feedback.html">Feedback</a>
+            </div>
         </div>
+    </nav>
 
+    <div class="container my-5 text-center">
+        <h1 class="text-white fw-bold">The Science of Secret Codes</h1>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/7727681023783983043_0" alt="Cryptography" style="max-width: 500px; border-radius: 15px; margin: 30px 0;">
         
-
-[Image of symmetric vs asymmetric encryption diagram]
-
-
-        <div class="explain-section">
-            <h3>Why do we use it?</h3>
-            <p>Every time you buy something online or send a private text, you are using cryptography. It is the only thing keeping the internet from being a place where everyone can see everyone else's private business.</p>
+        <div class="content-section text-start">
+            <h3>Cryptography: The Digital Lock</h3>
+            <p><strong>What is it?</strong> Cryptography is just a fancy word for "Secret Codes." Imagine you want to send a note to your friend, but you don't want anyone else to read it. You scramble the letters so they look like nonsense. Your friend is the only one who knows the "Key" to unscramble them.</p>
+            <p><strong>Why does it matter?</strong> Every time you buy something on Amazon or log into TikTok, your password and credit card info are turned into these secret codes. Even if a hacker steals the data, they can't read it because it's scrambled.</p>
         </div>
-
-        <a href="index.html" class="btn btn-outline-primary mt-3">Back to Home</a>
     </div>
+    <footer>SEC-OPS Science Hub // 2026</footer>
 </body>
 </html>
