@@ -3,69 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEC-OPS | PROTOCOLS</title>
+    <title>SEC-OPS | DEFENSE PROTOCOLS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono&display=swap');
-        :root { --bg: #010409; --card: #0d1117; --accent: #3fb950; --border: #30363d; --text: #c9d1d9; }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; padding-top: 150px; }
-        .navbar { background: rgba(13, 17, 23, 0.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
-        .nav-link { color: #8b949e !important; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin: 0 15px; }
-        h1 { font-size: 4rem; font-weight: 900; color: #fff; margin-bottom: 60px; letter-spacing: -2px; }
-        .protocol-card { background: var(--card); border: 1px solid var(--border); border-left: 8px solid var(--accent); padding: 50px; margin-bottom: 40px; border-radius: 12px; }
-        h3 { color: var(--accent); font-weight: 700; margin-bottom: 25px; text-transform: uppercase; }
-        .tag-list { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-        .p-tag { background: rgba(63, 185, 80, 0.1); border: 1px solid var(--accent); color: var(--accent); font-size: 0.75rem; padding: 4px 12px; border-radius: 50px; font-weight: 700; font-family: 'JetBrains Mono'; }
-        footer { padding: 100px 0; border-top: 1px solid var(--border); text-align: center; margin-top: 100px; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono&display=swap');
+        
+        :root {
+            --bg: #010409;
+            --card: #0d1117;
+            --accent: #3fb950;
+            --border: #30363d;
+            --text: #c9d1d9;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            padding-top: 140px;
+            line-height: 1.8;
+        }
+
+        .navbar { background: rgba(13, 17, 23, 0.95); border-bottom: 1px solid var(--border); padding: 1.2rem 0; }
+        .nav-link { color: #8b949e !important; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin: 0 15px; }
+
+        .solution-header { margin-bottom: 60px; }
+        .solution-header h1 { font-size: 3.5rem; font-weight: 800; color: #fff; letter-spacing: -2px; }
+
+        /* PROTOCOL CARD ARCHITECTURE */
+        .protocol-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 50px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .protocol-card:hover { border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+
+        .protocol-banner {
+            background: rgba(63, 185, 80, 0.1);
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .protocol-id { font-family: 'JetBrains Mono'; color: var(--accent); font-weight: 700; }
+        .protocol-body { padding: 50px; }
+        .protocol-title { font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 20px; }
+
+        /* CHECKLIST STYLING */
+        .step-list { list-style: none; padding: 0; margin: 30px 0; }
+        .step-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #21262d;
+            display: flex;
+            gap: 20px;
+        }
+        .step-number {
+            font-family: 'JetBrains Mono';
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        .tech-note {
+            background: #161b22;
+            padding: 25px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            border-left: 4px solid var(--accent);
+            margin-top: 20px;
+        }
+
+        .status-badge {
+            background: var(--accent);
+            color: #000;
+            font-size: 0.65rem;
+            font-weight: 900;
+            padding: 4px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        footer { padding: 80px 0; border-top: 1px solid var(--border); text-align: center; color: #8b949e; }
     </style>
 </head>
 <body>
+
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand text-white fw-bold" href="index.html">SEC-OPS</a>
             <div class="navbar-nav ms-auto flex-row">
+                <a class="nav-link" href="index.html">Command</a>
                 <a class="nav-link" href="threats.html">Intelligence</a>
                 <a class="nav-link" href="science.html">Cryptography</a>
-                <a class="nav-link" href="solutions.html">Protocols</a>
+                <a class="nav-link active" href="solutions.html">Protocols</a>
                 <a class="nav-link" href="impact.html">Assessment</a>
+                <a class="nav-link" href="feedback.html">Feedback</a>
             </div>
         </div>
     </nav>
 
     <div class="container">
-        <h1>Mitigation Protocols</h1>
+        <header class="solution-header">
+            <h1>Defense Blueprints</h1>
+            <p class="lead text-secondary">Operational guidelines for neutralizing agentic ransomware threats.</p>
+        </header>
 
-        <div class="protocol-card">
-            <div class="tag-list">
-                <span class="p-tag">ZERO TRUST</span><span class="p-tag">MFA-HARDENED</span><span class="p-tag">AD-SYNC</span>
+        <section class="protocol-card">
+            <div class="protocol-banner">
+                <span class="protocol-id">PROTOCOL // ZERO-TRUST-MESH</span>
+                <span class="status-badge">Verified</span>
             </div>
-            <h3>01. Zero Trust Architecture (ZTA)</h3>
-            <p>ZTA removes the concept of "implicit trust." Traditionally, if you were inside the office Wi-Fi, you were trusted. ZTA assumes the network is *already* compromised. Every request—whether for a file, an app, or a database—is re-authenticated, re-authorized, and encrypted before access is granted.</p>
-            <p>By implementing micro-segmentation, we create "digital rooms" within the network. If an attacker breaches one room, they are trapped there and cannot move laterally to the rest of the company.</p>
-        </div>
+            <div class="protocol-body">
+                <h2 class="protocol-title">Dynamic Perimeter Micro-Segmentation</h2>
+                <p>Traditional firewalls are obsolete. We implement a "hotel-room" architecture where every node requires independent cryptographic authorization for every packet sent.</p>
+                
+                <div class="step-list">
+                    <div class="step-item">
+                        <span class="step-number">01</span>
+                        <div><strong>Identity-Based Routing:</strong> All internal traffic is routed based on MTLS (Mutual TLS) certificates tied to hardware IDs.</div>
+                    </div>
+                    <div class="step-item">
+                        <span class="step-number">02</span>
+                        <div><strong>Just-In-Time Access:</strong> Admin privileges are granted for specific 15-minute windows and automatically revoked.</div>
+                    </div>
+                    <div class="step-item">
+                        <span class="step-number">03</span>
+                        <div><strong>Heuristic Quarantine:</strong> If a node's CPU entropy spikes (indicating encryption), the mesh automatically severs all physical links.</div>
+                    </div>
+                </div>
 
-        <div class="protocol-card">
-            <div class="tag-list">
-                <span class="p-tag">WORM STORAGE</span><span class="p-tag">AIR-GAP</span><span class="p-tag">DR-PLAN</span>
+                <div class="tech-note">
+                    <strong>Lead Architect Note:</strong> Implementation requires Node.js v24+ and a distributed hardware security module (HSM). Do not deploy on legacy virtualized kernels.
+                </div>
             </div>
-            <h3>02. Immutable Infrastructure</h3>
-            <p>Backup engineering has changed. Attackers now target backups first to ensure the victim has no choice but to pay. The protocol for 2026 is Immutable Storage—Write-Once-Read-Many (WORM). Once a backup is saved, the hardware physically prevents it from being deleted or edited for a set period, even by the highest-level administrator.</p>
-            <p>Air-gapping—physically disconnecting a backup drive from the internet—remains the only 100% effective defense against remote encryption.</p>
-        </div>
+        </section>
 
-        <div class="protocol-card">
-            <h3>03. Behavioral XDR Protocols</h3>
-            <p>Extended Detection and Response (XDR) uses machine learning to establish a "Baseline of Normalcy." If a user typically downloads 20MB of data a day and suddenly tries to download 50GB at 3 AM, the protocol automatically kills the session and locks the account in 0.5 seconds.</p>
-        </div>
+        <section class="protocol-card">
+            <div class="protocol-banner">
+                <span class="protocol-id">PROTOCOL // IMMUTABLE-UPLINK</span>
+                <span class="status-badge">Verified</span>
+            </div>
+            <div class="protocol-body">
+                <h2 class="protocol-title">WORM-State Data Redundancy</h2>
+                <p>To defeat double-extortion, data must be stored in a Write-Once-Read-Many (WORM) state. This ensures that even with admin access, an attacker cannot delete or encrypt the source files.</p>
+                
+                <div class="step-list">
+                    <div class="step-item">
+                        <span class="step-number">04</span>
+                        <div><strong>Air-Gapped Vaulting:</strong> Synchronization occurs via unidirectional optical fiber (Data Diode).</div>
+                    </div>
+                    <div class="step-item">
+                        <span class="step-number">05</span>
+                        <div><strong>Temporal Versioning:</strong> Every file change creates a new immutable block; the system stores 1,000+ versions.</div>
+                    </div>
+                </div>
+                <p class="mt-4">This solution effectively reduces the "recovery time objective" (RTO) from days to minutes, as a simple head-pointer roll-back restores the entire database to a pre-attack state.</p>
+            </div>
+        </section>
 
-        <div class="protocol-card">
-            <h3>04. The 3-2-1-1 Rule</h3>
-            <p>Engineering resilience requires <strong>3</strong> copies of data, on <strong>2</strong> different types of media, with <strong>1</strong> copy off-site, and <strong>1</strong> copy being completely offline and immutable. This redundancy ensures survival against even the most aggressive agentic threats.</p>
-        </div>
+        <section class="protocol-card" style="border-left: 10px solid #d29922;">
+            <div class="protocol-banner" style="background: rgba(210, 153, 34, 0.1);">
+                <span class="protocol-id" style="color: #d29922;">PROTOCOL // AI-COUNTER-AGENT</span>
+                <span class="status-badge" style="background: #d29922;">Experimental</span>
+            </div>
+            <div class="protocol-body">
+                <h2 class="protocol-title">Deceptive Honey-Pots</h2>
+                <p>We deploy millions of "dummy" files that look like sensitive data. When an autonomous ransomware agent touches these files, it triggers a trap that feeds the malware "infinite data" to process, slowing the attack to a crawl while defense teams triangulate the source.</p>
+            </div>
+        </section>
     </div>
 
     <footer>
-        <span class="text-secondary small fw-bold">INTERNAL USE ONLY // SEC-OPS 2026</span>
+        SEC-OPS SOLUTIONS // VERSION 4.2.1 // BUILD 2026-04
     </footer>
+
 </body>
 </html>
