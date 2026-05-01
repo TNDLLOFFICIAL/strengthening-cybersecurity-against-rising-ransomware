@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Threats | SEC-OPS</title>
+    <title>SEC-OPS | Threats</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; }
+        body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; }
         .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; padding: 1rem; }
-        .nav-link { color: #8b949e !important; }
-        .active { color: #f85149 !important; font-weight: bold; }
-        .threat-box { background: #1c2128; border: 1px solid #444; padding: 25px; border-radius: 12px; margin-bottom: 25px; }
+        .nav-link { color: #8b949e !important; margin: 0 10px; }
+        .active { color: #f85149 !important; font-weight: bold; border-bottom: 2px solid #f85149; }
+        .threat-alert { background: #1c2128; border-left: 5px solid #f85149; padding: 30px; border-radius: 10px; margin-bottom: 30px; }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">SEC-OPS</a>
-            <div class="navbar-nav ms-auto d-flex flex-row gap-3">
+            <div class="navbar-nav ms-auto d-flex flex-row">
                 <a class="nav-link" href="index.html">Home</a>
                 <a class="nav-link active" href="threats.html">Threats</a>
                 <a class="nav-link" href="science.html">Science</a>
@@ -28,19 +28,17 @@
     </nav>
 
     <div class="container my-5 text-center">
-        <h1 class="text-white fw-bold">Common Digital Threats</h1>
-        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80" alt="Cyber Threats" style="max-width: 500px; border-radius: 15px; margin: 30px 0;">
+        <h1 class="text-white fw-bold mb-4">Understanding Digital Threats</h1>
+        <img src="https://source.unsplash.com/600x400/?hacker,security" alt="Cyber Threats" style="max-width: 500px; border-radius: 15px; margin-bottom: 40px; box-shadow: 0 0 20px rgba(248, 81, 73, 0.2);">
 
-        <div class="row text-start">
-            <div class="col-md-12">
-                <div class="threat-box">
-                    <h3 style="color: #f85149;">Phishing (The Trick)</h3>
-                    <p>Phishing is when a hacker sends you a fake message that looks real. For example, you might get an email that looks exactly like it's from Instagram saying "Someone tried to log in, click here to change your password." When you click the link and type your password, the hacker steals it instantly. They use trickery instead of "hacking" to get what they want.</p>
-                </div>
-                <div class="threat-box">
-                    <h3 style="color: #f85149;">Malware (The Virus)</h3>
-                    <p>Malware stands for "Malicious Software." This is a bad app or file that gets onto your computer, usually when you download something "free" like a game mod or a movie. Once it's in, it can record your screen, steal your saved bank info, or even use your microphone to listen to you.</p>
-                </div>
+        <div class="text-start">
+            <div class="threat-alert">
+                <h3>Social Engineering (The Human Hack)</h3>
+                <p>This is the most common way people get hacked. Instead of using fancy code, hackers use <strong>Psychology</strong>. They send emails or DMs pretending to be a friend, a teacher, or a company like Instagram. They create a "fake emergency" to trick you into clicking a link and typing your password. Remember: If an email sounds scary and asks you to log in immediately, it's probably a trap.</p>
+            </div>
+            <div class="threat-alert">
+                <h3>Ransomware (The Digital Kidnapping)</h3>
+                <p>Ransomware is a type of virus that locks all the files on your computer. You can't see your photos or schoolwork anymore. The hackers then display a message saying you have to pay them hundreds of dollars in Bitcoin to get your files back. This happens most often when people download "cracked" games or suspicious attachments.</p>
             </div>
         </div>
     </div>
