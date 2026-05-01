@@ -2,17 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEC-OPS | Solutions</title>
+    <title>Solutions | SEC-OPS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; }
+        body { background-color: #0d1117; color: #c9d1d9; }
         .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; padding: 1rem; }
         .nav-link { color: #8b949e !important; }
-        .active { color: #238636 !important; border-bottom: 2px solid #238636; }
-        .solution-card { background: #161b22; padding: 40px; border-radius: 15px; border: 1px solid #30363d; margin-bottom: 30px; }
-        .icon-box { color: #238636; font-size: 2rem; margin-bottom: 15px; }
-        footer { padding: 40px; text-align: center; color: #8b949e; border-top: 1px solid #30363d; margin-top: 50px; }
+        .active { color: #2ea043 !important; font-weight: bold; }
+        .step-card { background: #161b22; padding: 30px; border-radius: 15px; border: 1px solid #30363d; margin-bottom: 25px; }
     </style>
 </head>
 <body>
@@ -30,41 +27,24 @@
         </div>
     </nav>
 
-    <div class="container my-5">
-        <div class="text-center mb-5">
-            <h1 class="display-4 fw-bold text-white">Our Digital Solutions</h1>
-            <p class="lead">Hacking is a problem, but it has a solution. Here is how we stay protected.</p>
-            <img src="http://googleusercontent.com/image_collection/image_retrieval/16086238476594437508_0" alt="Security Solutions" style="max-width: 500px; border-radius: 15px; margin-top: 20px;">
-        </div>
+    <div class="container my-5 text-center">
+        <h1 class="text-white fw-bold">How to Stay Safe</h1>
+        <img src="https://images.unsplash.com/photo-1562813733-2a60eaaafc6e?auto=format&fit=crop&w=600&q=80" alt="Security Solutions" style="max-width: 500px; border-radius: 15px; margin: 30px 0;">
 
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="solution-card">
-                    <div class="icon-box">🛡️ Firewalls</div>
-                    <h3>The Security Guard of the Internet</h3>
-                    <p>Think of a firewall like a security guard standing at the entrance of a VIP club. Every piece of data trying to enter your computer has to show its "ID." If the data looks suspicious or comes from a known hacker's address, the firewall blocks it immediately.</p>
-                    <p>Without a firewall, your computer would be open to the entire internet, allowing anyone to try and get into your private files. It is the most basic and important rule of staying safe.</p>
+        <div class="row text-start">
+            <div class="col-md-6">
+                <div class="step-card">
+                    <h3>1. Firewalls</h3>
+                    <p>A firewall is like a digital security guard for your network. It checks every piece of information trying to enter your computer. If the information comes from a dangerous place or looks like a virus, the firewall blocks it before it can do any damage.</p>
                 </div>
             </div>
-
-            <div class="col-lg-6">
-                <div class="solution-card">
-                    <div class="icon-box">🔑 Multi-Factor Authentication</div>
-                    <h3>The Double-Lock System</h3>
-                    <p>You probably know this as 2FA. It's when an app asks for your password AND sends a code to your phone. This is the ultimate solution. Even if a hacker steals your password, they can't get into your account because they don't have your physical phone. It's like having two different keys for one door.</p>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="solution-card">
-                    <div class="icon-box">🚦 Protocols (HTTPS)</div>
-                    <h3>The Rules of Communication</h3>
-                    <p>When you see the "S" in HTTPS, it stands for Secure. This is a protocol—a rule that says "all data on this site must be scrambled so no one can read it." If you are on a site that only says HTTP, anyone on the same Wi-Fi as you can see exactly what you are typing.</p>
+            <div class="col-md-6">
+                <div class="step-card">
+                    <h3>2. 2FA (Two-Factor)</h3>
+                    <p>This is the best tool we have. Even if a hacker steals your password, they can't get into your account because the app sends a special code to your phone. Unless they have your physical phone in their hand, they are stuck outside.</p>
                 </div>
             </div>
         </div>
     </div>
-
-    <footer>&copy; 2026 SEC-OPS Solutions // Build. Protect. Secure.</footer>
 </body>
 </html>
