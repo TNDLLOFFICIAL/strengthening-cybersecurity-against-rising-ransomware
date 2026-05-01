@@ -2,14 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Science | SEC-OPS</title>
+    <title>Science | SEC-OPS Research</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; padding-top: 80px; }
+        body { background-color: #0d1117; color: #c9d1d9; padding-top: 80px; line-height: 1.9; font-size: 1.1rem; }
         .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; }
         .nav-link { color: #8b949e !important; }
         .active { color: #58a6ff !important; font-weight: bold; border-bottom: 2px solid #58a6ff; }
-        .version-tag { position: fixed; bottom: 10px; right: 15px; background: rgba(22,27,34,0.9); color: #8b949e; padding: 4px 10px; border-radius: 5px; font-size: 11px; font-family: monospace; border: 1px solid #30363d; z-index: 10000; pointer-events: none; }
+        
+        .science-hero { 
+            background: linear-gradient(135deg, #1f6feb 0%, #0d1117 100%);
+            padding: 100px 0; border-bottom: 1px solid #30363d; margin-bottom: 60px;
+        }
+        
+        .research-paper { max-width: 900px; margin: auto; padding-bottom: 100px; }
+        
+        h1 { font-size: 3.8rem; font-weight: 800; color: white; letter-spacing: -1px; }
+        h2 { color: #58a6ff; font-weight: 800; margin-top: 70px; margin-bottom: 25px; border-bottom: 2px solid #30363d; padding-bottom: 15px; }
+        h3 { color: #79c0ff; font-weight: 700; margin-top: 40px; }
+
+        .logic-card { 
+            background: #161b22; border: 1px solid #30363d; border-radius: 20px; 
+            padding: 45px; margin: 40px 0; border-left: 10px solid #58a6ff;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+        
+        .formula-box { 
+            background: #010409; font-family: 'Consolas', 'Monaco', monospace; 
+            padding: 25px; border-radius: 12px; border: 1px solid #30363d; color: #a5d6ff;
+            margin: 25px 0; font-size: 1rem; position: relative;
+        }
+        .formula-box::after { content: "MATHEMATICAL PROOF"; position: absolute; top: 10px; right: 15px; font-size: 0.6rem; color: #8b949e; letter-spacing: 1px; }
+
+        .term-def { margin-bottom: 30px; }
+        .term-name { color: #ff7b72; font-weight: bold; font-size: 1.3rem; display: block; margin-bottom: 5px; }
+
+        .version-tag { 
+            position: fixed; bottom: 10px; right: 15px; background: rgba(22,27,34,0.9); 
+            color: #8b949e; padding: 4px 10px; border-radius: 5px; font-size: 11px; 
+            font-family: monospace; border: 1px solid #30363d; z-index: 10000; pointer-events: none; 
+        }
     </style>
 </head>
 <body>
@@ -26,10 +58,76 @@
             </div>
         </div>
     </nav>
-    <div class="container py-5 text-white">
-        <h2>Cryptography</h2>
-        <p>The mathematical foundation of digital privacy.</p>
+
+    <header class="science-hero text-center">
+        <div class="container">
+            <h1 class="text-white">Theoretical Foundations</h1>
+            <p class="lead text-light">Exploring the cryptographic algorithms and logical pillars of the digital age.</p>
+        </div>
+    </header>
+
+    <div class="research-paper px-3">
+        <section>
+            <h2>01. Cryptography: The Mathematics of Privacy</h2>
+            <p>At its core, cybersecurity is not a computer science problem; it is a mathematical one. Cryptography is the science of using complex algorithms to transform readable data (plaintext) into an unreadable format (ciphertext). The security of modern civilization depends on the "difficulty" of certain mathematical operations.</p>
+            
+            <div class="logic-card">
+                <h3>The RSA Algorithm & Prime Complexity</h3>
+                <p>RSA (Rivest–Shamir–Adleman) is the cornerstone of internet security. It relies on <strong>Modular Arithmetic</strong> and the <strong>Prime Factorization Problem</strong>. While multiplying two 500-digit prime numbers is trivial for a computer, reversing that process to find the original primes is a "computationally infeasible" task.</p>
+                
+                <div class="formula-box">
+                    1. Generate two large primes, p and q.<br>
+                    2. Compute n = p * q.<br>
+                    3. Public Key = (e, n) | Private Key = (d, n).<br>
+                    4. Ciphertext (c) = m^e mod n.<br>
+                    5. Only someone with 'd' can solve: m = c^d mod n.
+                </div>
+                <p>To break a 2048-bit RSA key, a modern supercomputer would need to run for longer than the current age of the universe. This ensures that even if an attacker intercepts your traffic, they see nothing but mathematical noise.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>02. Key Exchange: The Diffie-Hellman Protocol</h2>
+            <p>One of the greatest scientific challenges was the "Key Exchange Problem": How do two people share a secret password over an open, public internet without an attacker seeing it? The solution is the Diffie-Hellman protocol.</p>
+            <p>Think of it as <strong>mixing colors</strong>. Two people start with a common color. They each add their "secret" color and exchange the mixtures. Because you cannot easily "un-mix" paint to find the original secret colors, an eavesdropper cannot recreate the final combined secret color. In computers, we use <strong>Discrete Logarithms</strong> instead of paint.</p>
+        </section>
+
+        <section>
+            <h2>03. Integrity & One-Way Hashing</h2>
+            <p>While encryption protects <strong>Confidentiality</strong>, Hashing protects <strong>Integrity</strong>. A cryptographic hash function (like SHA-256) takes an input of any size and turns it into a fixed-length "digital fingerprint."</p>
+            
+            <div class="logic-card" style="border-left-color: #ff7b72;">
+                <h3>The Three Laws of Hashing</h3>
+                <div class="term-def">
+                    <span class="term-name">I. Deterministic</span>
+                    <p>The same input must ALWAYS produce the exact same hash output.</p>
+                </div>
+                <div class="term-def">
+                    <span class="term-name">II. Pre-image Resistance</span>
+                    <p>It must be impossible to take a hash and reverse-engineer it to find the original data.</p>
+                </div>
+                <div class="term-def">
+                    <span class="term-name">III. Collision Resistance</span>
+                    <p>No two different inputs should ever produce the same hash. If they do, the algorithm is considered "broken."</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>04. The CIA Triad: The Professional Standard</h2>
+            <p>Professional security engineers view all science through the lens of the CIA Triad. Every defense must address all three:</p>
+            <ul>
+                <li><strong>Confidentiality:</strong> Preventing unauthorized disclosure (Encryption).</li>
+                <li><strong>Integrity:</strong> Preventing unauthorized modification (Hashing/Digital Signatures).</li>
+                <li><strong>Availability:</strong> Ensuring reliable access to data (DDoS Mitigation/Redundancy).</li>
+            </ul>
+        </section>
+
+        <footer style="margin-top: 100px; text-align: center; border-top: 1px solid #30363d; padding-top: 40px; color: #8b949e; font-size: 0.9rem;">
+            SEC-OPS ARCHIVE | MATHEMATICAL LOGIC MODULE | v5.8.2.1
+        </footer>
     </div>
-    <div class="version-tag">v3.8.2.1</div>
+
+    <div class="version-tag">v5.8.2.1</div>
 </body>
 </html>
