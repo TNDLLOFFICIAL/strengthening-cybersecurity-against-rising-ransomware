@@ -5,53 +5,33 @@
     <title>SEC-OPS | Science</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; }
-        .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; padding: 1rem; }
-        .nav-link { color: #8b949e !important; margin: 0 10px; }
+        body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; padding-top: 70px; }
+        .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; }
+        .nav-link { color: #8b949e !important; }
         .active { color: #58a6ff !important; font-weight: bold; border-bottom: 2px solid #58a6ff; }
-        .content-box { background: #1c2128; padding: 40px; border-radius: 15px; border: 1px solid #30363d; margin-top: 30px; }
-        /* This creates a placeholder "box" in case the system still blocks the render */
-        .img-placeholder { 
-            background: #30363d; 
-            width: 100%; 
-            height: 300px; 
-            border-radius: 15px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            font-size: 50px;
-        }
+        .science-card { background: #161b22; padding: 40px; border-radius: 15px; border: 1px solid #30363d; }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">SEC-OPS</a>
-            <div class="navbar-nav ms-auto d-flex flex-row">
+            <div class="navbar-nav ms-auto d-flex flex-row gap-3">
                 <a class="nav-link" href="index.html">Home</a>
                 <a class="nav-link" href="threats.html">Threats</a>
                 <a class="nav-link active" href="science.html">Science</a>
                 <a class="nav-link" href="solutions.html">Solutions</a>
-                <a class="nav-link" href="impact.html">Impact</a>
                 <a class="nav-link" href="feedback.html">Feedback</a>
             </div>
         </div>
     </nav>
 
-    <div class="container my-5">
-        <div class="row align-items-center">
-            <div class="col-md-6 text-center">
-                <div class="img-placeholder">
-                    <span role="img" aria-label="lock">🔒</span>
-                </div>
-                <p class="mt-2"><i>Digital Encryption Symbol</i></p>
-            </div>
-            <div class="col-md-6">
-                <div class="content-box">
-                    <h2>The Science</h2>
-                    <p>Encryption uses complex math to turn your messages into a code that can't be cracked without a key. On old systems and new ones alike, this math is what keeps the internet running safely.</p>
-                </div>
-            </div>
+    <div class="container my-5 text-center">
+        <h1 class="text-white mb-4">The Science of Codes</h1>
+        <div style="font-size: 100px; margin-bottom: 30px;">🔐</div>
+        <div class="science-card text-start">
+            <h3>Cryptography</h3>
+            <p>This is the math behind your privacy. It takes your data and uses an <b>algorithm</b> to scramble it into gibberish. To unscramble it, you need a <b>Private Key</b>. Without that key, your data is just a bunch of random numbers and letters.</p>
         </div>
     </div>
 </body>
