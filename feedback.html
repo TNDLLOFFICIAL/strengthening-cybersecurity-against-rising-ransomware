@@ -3,30 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEC-OPS | Feedback</title>
+    <title>Feedback | SEC-OPS</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; }
-        .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; padding: 1rem; }
-        .nav-link { color: #8b949e !important; margin: 0 10px; }
-        .active { color: #58a6ff !important; font-weight: bold; border-bottom: 2px solid #58a6ff; }
-        .form-card { max-width: 600px; margin: 60px auto; background: #161b22; padding: 40px; border-radius: 15px; border: 1px solid #30363d; }
-        .form-control, .form-select { background-color: #0d1117 !important; border: 1px solid #30363d !important; color: white !important; }
-        #other-box { display: none; margin-top: 15px; }
-        .btn-submit { background-color: #238636; border: none; color: white; font-weight: bold; padding: 12px; width: 100%; border-radius: 5px; }
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: sans-serif;
+            padding-top: 80px;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #161b22;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: #ffffff !important;
+        }
+
+        .nav-link {
+            color: #8b949e !important;
+            margin: 0 10px;
+        }
+
+        .active {
+            color: #58a6ff !important;
+            font-weight: bold;
+            border-bottom: 2px solid #58a6ff;
+        }
+
+        /* Form Card */
+        .form-card {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #161b22;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #30363d;
+        }
+
+        h2 { color: #ffffff; margin-bottom: 20px; }
+
+        .form-label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .form-control, .form-select {
+            background-color: #010409 !important;
+            border: 1px solid #30363d !important;
+            color: #ffffff !important;
+            padding: 10px;
+        }
+
+        #other-box {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            border-left: 3px solid #58a6ff;
+            background-color: #0d1117;
+        }
+
+        .btn-submit {
+            background-color: #238636;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 6px;
+            font-weight: bold;
+            margin-top: 25px;
+        }
+
+        .btn-submit:hover { background-color: #2ea043; }
+
+        /* Success View */
+        #success-view {
+            display: none;
+            text-align: center;
+            padding: 30px;
+        }
         
-        /* SUCCESS STUFF */
-        #success-container { display: none; text-align: center; padding: 20px; }
-        .btn-hub { background-color: #58a6ff; color: white; text-decoration: none; padding: 12px 25px; border-radius: 5px; font-weight: bold; display: inline-block; margin-top: 20px; }
-        .btn-hub:hover { background-color: #4493f8; color: white; }
+        .btn-hub {
+            background-color: #58a6ff;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
         
-        footer { padding: 40px; text-align: center; color: #8b949e; border-top: 1px solid #30363d; margin-top: 50px; }
+        footer {
+            padding: 40px;
+            text-align: center;
+            color: #8b949e;
+            border-top: 1px solid #30363d;
+            margin-top: 50px;
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">SEC-OPS</a>
+            <a class="navbar-brand" href="index.html">SEC-OPS</a>
             <div class="navbar-nav ms-auto d-flex flex-row">
                 <a class="nav-link" href="index.html">Home</a>
                 <a class="nav-link" href="threats.html">Threats</a>
@@ -40,98 +128,87 @@
 
     <div class="container">
         <div class="form-card">
-            <form id="feedback-form">
-                <div id="form-content">
-                    <h2 class="text-white mb-4 text-center">Feedback Hub</h2>
+            
+            <div id="form-view">
+                <h2>Feedback Form</h2>
+                <form id="feedbackForm" action="https://formspree.io/f/mrejgobo" method="POST">
                     
-                    <div class="mb-3">
-                        <label class="form-label">Name</label>
-                        <input type="text" id="user-name" name="name" class="form-control" required>
-                    </div>
+                    <label class="form-label">Your Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
 
-                    <div class="mb-3">
-                        <label class="form-label">Role</label>
-                        <select id="job" name="job" class="form-select" onchange="toggleOther()" required>
-                            <option value="" disabled selected>Choose an option...</option>
-                            <option value="Student">Student</option>
-                            <option value="Teacher">Teacher</option>
-                            <option value="Engineer">Engineer</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
+                    <label class="form-label">Job Option</label>
+                    <select name="job" id="job-select" class="form-select" onchange="toggleOther()" required>
+                        <option value="" disabled selected>Select an option...</option>
+                        <option value="Student">Student</option>
+                        <option value="Doctor">Doctor</option>
+                        <option value="Police">Police</option>
+                        <option value="Engineer">Engineer</option>
+                        <option value="Other">Other</option>
+                    </select>
 
                     <div id="other-box">
-                        <label class="form-label">Specify Job:</label>
-                        <input type="text" id="other-input" name="custom_job" class="form-control">
+                        <label class="form-label">What is your job?</label>
+                        <input type="text" name="other_job_state" id="other-input" class="form-control" placeholder="Please state your job">
                     </div>
 
-                    <div class="mb-4 mt-3">
-                        <label class="form-label">Message</label>
-                        <textarea id="user-msg" name="message" class="form-control" rows="4" required></textarea>
-                    </div>
+                    <label class="form-label">Message</label>
+                    <textarea name="message" class="form-control" rows="4" placeholder="Your feedback..." required></textarea>
 
-                    <button type="submit" id="submit-btn" class="btn-submit">Submit Feedback</button>
-                </div>
+                    <button type="submit" class="btn-submit" id="submit-btn">Submit</button>
+                </form>
+            </div>
 
-                <div id="success-container">
-                    <h3 class="text-success">✔ Message Sent!</h3>
-                    <p>Thanks for helping us make SEC-OPS better.</p>
-                    <a href="index.html" class="btn-hub">Return to Home Hub</a>
-                </div>
-            </form>
+            <div id="success-view">
+                <h3 style="color: #3fb950;">✔ Sent!</h3>
+                <p>Thank you for your feedback. We've received your report.</p>
+                <a href="index.html" class="btn-hub">Return to Home Hub</a>
+            </div>
+
         </div>
     </div>
 
-    <footer>&copy; 2026 SEC-OPS Project</footer>
+    <footer>&copy; 2026 SEC-OPS Project | Digital Safety First</footer>
 
     <script>
         function toggleOther() {
-            const select = document.getElementById('job');
+            const select = document.getElementById('job-select');
             const otherBox = document.getElementById('other-box');
-            otherBox.style.display = (select.value === 'Other') ? 'block' : 'none';
+            const otherInput = document.getElementById('other-input');
+
+            if (select.value === 'Other') {
+                otherBox.style.display = 'block';
+                otherInput.required = true;
+            } else {
+                otherBox.style.display = 'none';
+                otherInput.required = false;
+            }
         }
 
-        const form = document.getElementById("feedback-form");
-        
-        form.addEventListener("submit", function(e) {
-            e.preventDefault(); // KILL THE REDIRECT IMMEDIATELY
+        const form = document.getElementById('feedbackForm');
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault(); // This stops the redirect!
+            const btn = document.getElementById('submit-btn');
+            btn.innerText = "Sending...";
+            btn.disabled = true;
 
-            const submitBtn = document.getElementById("submit-btn");
-            const formContent = document.getElementById("form-content");
-            const successContainer = document.getElementById("success-container");
-
-            submitBtn.innerHTML = "Sending...";
-            submitBtn.disabled = true;
-
-            // STEP 3: SEND DATA SECRETLY IN THE BACKGROUND
-            const formData = new FormData();
-            formData.append("name", document.getElementById("user-name").value);
-            formData.append("job", document.getElementById("job").value);
-            formData.append("other", document.getElementById("other-input").value);
-            formData.append("message", document.getElementById("user-msg").value);
-
-            fetch("https://formspree.io/f/mrejgobo", {
-                method: "POST",
-                body: formData,
+            const data = new FormData(form);
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: data,
                 headers: { 'Accept': 'application/json' }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // HIDE THE FORM, SHOW THE HUB BUTTON ON OUR PAGE
-                    formContent.style.display = "none";
-                    successContainer.style.display = "block";
-                } else {
-                    alert("Error sending. Please try again.");
-                    submitBtn.innerHTML = "Submit Feedback";
-                    submitBtn.disabled = false;
-                }
-            })
-            .catch(error => {
-                alert("Connection error. Try again later.");
-                submitBtn.innerHTML = "Submit Feedback";
-                submitBtn.disabled = false;
             });
+
+            if (response.ok) {
+                // Swap the form for the success message on the same page
+                document.getElementById('form-view').style.display = 'none';
+                document.getElementById('success-view').style.display = 'block';
+            } else {
+                alert("Error sending form. Please check your connection.");
+                btn.innerText = "Submit";
+                btn.disabled = false;
+            }
         });
     </script>
+
 </body>
 </html>
