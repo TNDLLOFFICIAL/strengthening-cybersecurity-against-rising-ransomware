@@ -2,157 +2,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback | SEC-OPS</title>
-    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
     <style>
-        /* Base Colors */
-        body {
-            background-color: #0d1117;
-            color: #c9d1d9;
-            font-family: sans-serif;
-            padding-top: 80px;
-        }
-
-        /* Navbar */
-        .navbar {
-            background-color: #161b22;
-            border-bottom: 1px solid #30363d;
-        }
-
-        .navbar-brand {
-            font-weight: bold;
-            color: #ffffff !important;
-        }
-
-        .nav-link {
-            color: #8b949e !important;
-        }
-
-        /* Form Card */
-        .form-card {
-            max-width: 600px;
-            margin: 40px auto;
-            background-color: #161b22;
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #30363d;
-        }
-
-        h2 {
-            color: #ffffff;
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: block;
-            margin-top: 15px;
-            font-weight: 600;
-        }
-
-        /* Inputs */
-        .form-control, .form-select {
-            background-color: #010409 !important;
-            border: 1px solid #30363d !important;
-            color: #ffffff !important;
-            padding: 10px;
-        }
-
-        /* Hidden "Other" Box */
-        #other-box {
-            display: none;
-            margin-top: 15px;
-            padding: 15px;
-            border-left: 3px solid #58a6ff;
-            background-color: #0d1117;
-        }
-
-        /* Submit Button */
-        .btn-submit {
-            background-color: #238636;
-            color: white;
-            border: none;
-            padding: 12px;
-            width: 100%;
-            border-radius: 6px;
-            font-weight: bold;
-            margin-top: 25px;
-        }
-
-        .btn-submit:hover {
-            background-color: #2ea043;
-        }
-
-        /* Success Message */
-        #success-view {
-            display: none;
-            text-align: center;
-            padding: 30px;
-        }
+        body { background-color: #0d1117; color: #c9d1d9; }
+        .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; padding: 1rem; }
+        .nav-link { color: #8b949e !important; }
+        .active { color: #58a6ff !important; }
+        .form-container { max-width: 600px; margin: 60px auto; background: #161b22; padding: 40px; border-radius: 15px; border: 1px solid #30363d; }
+        #other-box { display: none; margin-top: 15px; }
+        .form-control, .form-select { background-color: #0d1117 !important; border: 1px solid #30363d !important; color: white !important; }
     </style>
 </head>
 <body>
-
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html">SEC-OPS</a>
-            <div class="navbar-nav ms-auto">
+            <a class="navbar-brand fw-bold" href="index.html">SEC-OPS</a>
+            <div class="navbar-nav ms-auto d-flex flex-row gap-3">
                 <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="threats.html">Threats</a>
+                <a class="nav-link" href="science.html">Science</a>
+                <a class="nav-link" href="solutions.html">Solutions</a>
+                <a class="nav-link" href="impact.html">Impact</a>
                 <a class="nav-link active" href="feedback.html">Feedback</a>
             </div>
         </div>
     </nav>
 
     <div class="container">
-        <div class="form-card">
-            
-            <div id="form-view">
-                <h2>Feedback Form</h2>
-                <form id="feedbackForm" action="https://formspree.io/f/mrejgobo" method="POST">
-                    
-                    <label class="form-label">Your Name</label>
-                    <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
+        <div class="form-container">
+            <h2 class="text-white mb-4 text-center">Tell Us What You Think</h2>
+            <form id="fbForm" action="https://formspree.io/f/mrejgobo" method="POST">
+                <label class="form-label">Your Name</label>
+                <input type="text" name="name" class="form-control mb-3" required>
 
-                    <label class="form-label">Job Option</label>
-                    <select name="job" id="job-select" class="form-select" onchange="toggleOther()" required>
-                        <option value="" disabled selected>Select an option...</option>
-                        <option value="Student">Student</option>
-                        <option value="Doctor">Doctor</option>
-                        <option value="Police">Police</option>
-                        <option value="Engineer">Engineer</option>
-                        <option value="Other">Other</option>
-                    </select>
+                <label class="form-label">Your Job</label>
+                <select id="job" name="job" class="form-select mb-3" onchange="checkOther()" required>
+                    <option value="" disabled selected>Select one...</option>
+                    <option value="Student">Student</option>
+                    <option value="Teacher">Teacher</option>
+                    <option value="Engineer">Engineer</option>
+                    <option value="Other">Other</option>
+                </select>
 
-                    <div id="other-box">
-                        <label class="form-label">What is your job?</label>
-                        <input type="text" name="other_job_state" id="other-input" class="form-control" placeholder="Please state your job">
-                    </div>
+                <div id="other-box">
+                    <label class="form-label">Please state your job:</label>
+                    <input type="text" id="other-input" name="custom_job" class="form-control mb-3">
+                </div>
 
-                    <label class="form-label">Message</label>
-                    <textarea name="message" class="form-control" rows="4" placeholder="Your feedback..." required></textarea>
+                <label class="form-label">Message</label>
+                <textarea name="message" class="form-control mb-4" rows="4" required></textarea>
 
-                    <button type="submit" class="btn-submit" id="submit-btn">Submit</button>
-                </form>
-            </div>
-
-            <div id="success-view">
-                <h3 style="color: #3fb950;">✔ Sent!</h3>
-                <p>Thank you for your feedback.</p>
-                <a href="index.html" class="btn btn-primary">Go Home</a>
-            </div>
-
+                <button type="submit" class="btn btn-success w-100 fw-bold">Send Feedback</button>
+            </form>
         </div>
     </div>
 
     <script>
-        // Shows or hides the "Other" box based on choice
-        function toggleOther() {
-            const select = document.getElementById('job-select');
-            const otherBox = document.getElementById('other-box');
-            const otherInput = document.getElementById('other-input');
-
+        function checkOther() {
+            var select = document.getElementById('job');
+            var otherBox = document.getElementById('other-box');
+            var otherInput = document.getElementById('other-input');
             if (select.value === 'Other') {
                 otherBox.style.display = 'block';
                 otherInput.required = true;
@@ -161,32 +71,6 @@
                 otherInput.required = false;
             }
         }
-
-        // Handles submission without page refresh
-        const form = document.getElementById('feedbackForm');
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const btn = document.getElementById('submit-btn');
-            btn.innerText = "Sending...";
-            btn.disabled = true;
-
-            const data = new FormData(form);
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            });
-
-            if (response.ok) {
-                document.getElementById('form-view').style.display = 'none';
-                document.getElementById('success-view').style.display = 'block';
-            } else {
-                alert("Error sending form.");
-                btn.innerText = "Submit";
-                btn.disabled = false;
-            }
-        });
     </script>
-
 </body>
 </html>
