@@ -9,11 +9,11 @@
         .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; }
         .nav-link { color: #8b949e !important; }
         .active { color: #58a6ff !important; font-weight: bold; border-bottom: 2px solid #58a6ff; }
-        .form-card { max-width: 600px; margin: 40px auto; background: #161b22; padding: 30px; border-radius: 12px; border: 1px solid #30363d; }
+        .form-card { max-width: 600px; margin: 40px auto; background: #161b22; padding: 40px; border-radius: 12px; border: 1px solid #30363d; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .form-control, .form-select { background-color: #010409 !important; border: 1px solid #30363d !important; color: white !important; }
         #other-box { display: none; margin-top: 15px; }
-        .btn-submit { background-color: #238636; color: white; border: none; padding: 12px; width: 100%; border-radius: 6px; font-weight: bold; margin-top: 20px; }
-        #success-view { display: none; text-align: center; padding: 20px; }
+        .btn-submit { background-color: #238636; color: white; border: none; padding: 12px; width: 100%; border-radius: 6px; font-weight: bold; margin-top: 25px; }
+        #success-view { display: none; text-align: center; padding: 30px; }
     </style>
 </head>
 <body>
@@ -31,16 +31,18 @@
     </nav>
 
     <div class="container">
-        <div class="form-card">
+        <div class="form-card card-custom">
             <div id="form-view">
-                <h2 class="text-white mb-4">Feedback Form</h2>
+                <h2 class="text-white mb-4 text-center">Feedback Operation</h2>
+                <p class="text-center mb-4">Your report helps us improve the SEC-OPS hub. Please be detailed in your suggestions.</p>
+                
                 <form id="feedbackForm" action="https://formspree.io/f/mrejgobo" method="POST">
-                    <label class="form-label">Name</label>
-                    <input type="text" name="name" class="form-control" required>
+                    <label class="form-label">Operational Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
 
-                    <label class="form-label mt-3">Job</label>
+                    <label class="form-label mt-3">Job Option</label>
                     <select name="job" id="job-select" class="form-select" onchange="toggleOther()" required>
-                        <option value="" disabled selected>Choose an option...</option>
+                        <option value="" disabled selected>Select an option...</option>
                         <option value="Student">Student</option>
                         <option value="Teacher">Teacher</option>
                         <option value="Engineer">Engineer</option>
@@ -48,19 +50,20 @@
                     </select>
 
                     <div id="other-box">
-                        <input type="text" name="other_job" id="other-input" class="form-control" placeholder="Specify your job">
+                        <label class="form-label mt-3">Please specify your job title</label>
+                        <input type="text" name="other_job" id="other-input" class="form-control" placeholder="e.g. Graphic Designer, etc.">
                     </div>
 
-                    <label class="form-label mt-3">Message</label>
-                    <textarea name="message" class="form-control" rows="4" required></textarea>
+                    <label class="form-label mt-3">Detailed Message</label>
+                    <textarea name="message" class="form-control" rows="5" placeholder="Share your suggestions, feature requests, or report bugs." required></textarea>
 
-                    <button type="submit" class="btn-submit" id="submit-btn">Submit</button>
+                    <button type="submit" class="btn-submit" id="submit-btn">Submit Operational Report</button>
                 </form>
             </div>
 
             <div id="success-view">
-                <h3 style="color: #3fb950;">✔ Sent!</h3>
-                <p>Thank you. Your feedback stayed on this page.</p>
+                <h3 style="color: #3fb950;">✔ Report Confirmed</h3>
+                <p class="mt-3">Your feedback was sent successfully. We appreciate your contribution to the SEC-OPS mission.</p>
                 <a href="index.html" class="btn btn-primary w-100 mt-3">Return to Home Hub</a>
             </div>
         </div>
@@ -75,9 +78,9 @@
 
         const form = document.getElementById('feedbackForm');
         form.addEventListener('submit', async function(e) {
-            e.preventDefault();
+            e.preventDefault(); // Stop the redirect forever
             const btn = document.getElementById('submit-btn');
-            btn.innerText = "Sending...";
+            btn.innerText = "Sending Report...";
             btn.disabled = true;
 
             const data = new FormData(form);
@@ -88,11 +91,12 @@
             });
 
             if (response.ok) {
+                // Swap form for success box on the SAME page
                 document.getElementById('form-view').style.display = 'none';
                 document.getElementById('success-view').style.display = 'block';
             } else {
-                alert("Error sending. Check connection.");
-                btn.innerText = "Submit";
+                alert("Report failed to transmit. Check your connection.");
+                btn.innerText = "Submit Operational Report";
                 btn.disabled = false;
             }
         });
