@@ -2,24 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEC-OPS | Solutions</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; }
+        body { background-color: #0d1117; color: #c9d1d9; }
         .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; padding: 1rem; }
-        .nav-link { color: #8b949e !important; margin: 0 10px; }
+        .nav-link { color: #8b949e !important; }
         .active { color: #2ea043 !important; font-weight: bold; border-bottom: 2px solid #2ea043; }
-        .solution-card { background: #161b22; padding: 35px; border-radius: 15px; border: 1px solid #30363d; margin-bottom: 30px; height: 100%; }
-        .badge-step { background-color: #2ea043; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; margin-bottom: 15px; display: inline-block; }
-        footer { padding: 40px; text-align: center; color: #8b949e; border-top: 1px solid #30363d; margin-top: 50px; }
+        .step-card { background: #161b22; padding: 30px; border-radius: 15px; border: 1px solid #30363d; margin-bottom: 25px; }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">SEC-OPS</a>
-            <div class="navbar-nav ms-auto d-flex flex-row">
+            <div class="navbar-nav ms-auto d-flex flex-row gap-3">
                 <a class="nav-link" href="index.html">Home</a>
                 <a class="nav-link" href="threats.html">Threats</a>
                 <a class="nav-link" href="science.html">Science</a>
@@ -30,41 +27,13 @@
         </div>
     </nav>
 
-    <div class="container my-5">
-        <div class="text-center mb-5">
-            <h1 class="display-4 fw-bold text-white">Our Defense Solutions</h1>
-            <p class="lead">Hacking is a big problem, but these tools make you nearly un-hackable.</p>
-            <img src="https://images.unsplash.com/photo-1510511459019-5dee995d362c?auto=format&fit=crop&w=600&q=80" alt="Security Defense" style="max-width: 500px; border-radius: 15px; margin-top: 20px; border: 1px solid #30363d;">
-        </div>
-
-        <div class="row g-4">
-            <div class="col-md-6">
-                <div class="solution-card">
-                    <span class="badge-step">Solution #1</span>
-                    <h3>The Firewall Guard</h3>
-                    <p>A firewall is your first line of defense. Think of it as a security guard for your home Wi-Fi. It checks every piece of data trying to come in or leave your network. If the data looks like a virus or comes from a known hacker's computer, the firewall slams the door and blocks it immediately.</p>
-                    <p>Without this, your computer would be constantly bombarded by automated bots trying to find a way into your files.</p>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="solution-card">
-                    <span class="badge-step">Solution #2</span>
-                    <h3>Multi-Factor Auth (MFA)</h3>
-                    <p>Passwords are no longer enough. MFA is like having two different locks on your front door. Even if a hacker steals your password, they still need your physical phone to get the special login code. This one simple step stops 99% of bulk hacking attempts instantly.</p>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="solution-card">
-                    <span class="badge-step">Solution #3</span>
-                    <h3>Secure Protocols (HTTPS)</h3>
-                    <p>Always look for the little padlock in your browser's address bar. That padlock means the website is using <strong>HTTPS</strong>. This is a set of rules that forces the website to encrypt everything you type. If you are on a site that only uses "HTTP" (no S), hackers on the same Wi-Fi as you can see your password as you type it.</p>
-                </div>
-            </div>
+    <div class="container my-5 text-center">
+        <h1 class="text-white fw-bold">Defense Solutions</h1>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/8799605011151397087_0" alt="Firewall" style="max-width: 500px; border-radius: 15px; margin: 30px 0;">
+        <div class="step-card text-start">
+            <h3>Firewalls & 2FA</h3>
+            <p>A firewall is like a digital security guard for your Wi-Fi. 2FA (Two-Factor Authentication) is even better—it sends a code to your phone so hackers can't get in even if they have your password.</p>
         </div>
     </div>
-
-    <footer>&copy; 2026 SEC-OPS | Defense Strategy</footer>
 </body>
 </html>
