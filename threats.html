@@ -5,15 +5,15 @@
     <title>SEC-OPS | Threats</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; }
-        .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; padding: 1rem; }
+        body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; padding-top: 70px; }
+        .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; }
         .nav-link { color: #8b949e !important; }
         .active { color: #f85149 !important; font-weight: bold; border-bottom: 2px solid #f85149; }
-        .threat-box { background: #1c2128; border: 1px solid #444; padding: 25px; border-radius: 12px; margin-bottom: 25px; }
+        .threat-box { background: #1c2128; border-left: 5px solid #f85149; padding: 25px; border-radius: 10px; margin-bottom: 20px; }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">SEC-OPS</a>
             <div class="navbar-nav ms-auto d-flex flex-row gap-3">
@@ -21,18 +21,22 @@
                 <a class="nav-link active" href="threats.html">Threats</a>
                 <a class="nav-link" href="science.html">Science</a>
                 <a class="nav-link" href="solutions.html">Solutions</a>
-                <a class="nav-link" href="impact.html">Impact</a>
                 <a class="nav-link" href="feedback.html">Feedback</a>
             </div>
         </div>
     </nav>
 
-    <div class="container my-5 text-center">
-        <h1 class="text-white fw-bold">Common Threats</h1>
-        <img src="http://googleusercontent.com/image_collection/image_retrieval/17427111359552499413_0" alt="Cyber Threats" style="max-width: 500px; border-radius: 15px; margin: 30px 0;">
-        <div class="threat-box text-start">
-            <h3 style="color: #f85149;">Phishing (The Trick)</h3>
-            <p>This is when hackers send fake emails pretending to be Instagram or Netflix. They want you to click a link and type your password so they can steal it. Always check the sender's email address!</p>
+    <div class="container my-5">
+        <h1 class="text-white text-center mb-5">Digital Threats</h1>
+        <div class="text-center mb-5" style="font-size: 100px;">⚠️</div>
+        
+        <div class="threat-box">
+            <h3>Phishing Scams</h3>
+            <p>Hackers send fake emails to trick you into giving away your password. Always check the sender's address!</p>
+        </div>
+        <div class="threat-box">
+            <h3>Malware</h3>
+            <p>Software designed to damage or gain unauthorized access to your computer. Never download files from untrusted sites.</p>
         </div>
     </div>
 </body>
