@@ -28,7 +28,6 @@
         }
         .btn-submit:disabled { background: #21262d; color: #8b949e; cursor: not-allowed; }
 
-        /* CAPTCHA Modal Styling */
         #verify-modal { 
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(0,0,0,0.9); z-index: 20000; align-items: center; justify-content: center; 
@@ -58,6 +57,7 @@
                 <a class="nav-link" href="solutions.html">Solutions</a>
                 <a class="nav-link" href="impact.html">Impact</a>
                 <a class="nav-link active" href="feedback.html">Feedback</a>
+                <a class="nav-link" href="demo.html">Demo</a>
             </div>
         </div>
     </nav>
@@ -66,7 +66,7 @@
         <div class="secure-card">
             <div id="form-view">
                 <h2 class="text-white mb-4">Secure Communication</h2>
-                <p class="text-secondary mb-4">Submit your feedback or research inquiries to the SEC-OPS initiative. All transmissions are logged and analyzed.</p>
+                <p class="text-secondary mb-4">Submit your feedback to the SEC-OPS initiative.</p>
                 
                 <form id="feedbackForm" oninput="checkLock()">
                     <div class="mb-3">
@@ -84,7 +84,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label text-secondary small text-uppercase fw-bold">Data Payload</label>
-                        <textarea id="m-f" name="message" class="form-control" rows="5" placeholder="Enter your message..." required></textarea>
+                        <textarea id="m-f" name="message" class="form-control" rows="5" placeholder="Enter message..." required></textarea>
                     </div>
                     <button type="button" id="s-b" class="btn-submit" onclick="startCap()" disabled>Awaiting Data Input</button>
                 </form>
@@ -92,8 +92,7 @@
 
             <div id="success-view" style="display: none;" class="text-center py-5">
                 <h2 style="color: #3fb950;">✔ Transmission Successful</h2>
-                <p class="text-secondary mt-3">Your data has been encrypted and sent to the SEC-OPS mainframes.</p>
-                <a href="index.html" class="btn btn-outline-primary mt-4">Return to Command Center</a>
+                <a href="index.html" class="btn btn-outline-primary mt-4">Return to Home</a>
             </div>
         </div>
     </div>
@@ -122,18 +121,15 @@
 
         function startCap() {
             const d = document.getElementById('cd'); const i = document.getElementById('ci'); const a = document.getElementById('ca');
-            a.value = ""; d.style.color = "white"; const mode = Math.floor(Math.random() * 4);
+            a.value = ""; d.style.color = "white"; const mode = Math.floor(Math.random() * 3);
             
             if(mode === 0) { 
                 const n1 = Math.floor(Math.random()*90); const n2 = Math.floor(Math.random()*10);
-                i.innerText = "Solve Mathematical Proof"; d.innerText = n1 + " + " + n2; sol = (n1+n2).toString();
+                i.innerText = "Solve Math"; d.innerText = n1 + " + " + n2; sol = (n1+n2).toString();
             } else if(mode === 1) {
-                const colors = ["Cyan", "Green", "Orange", "Purple"]; const c = colors[Math.floor(Math.random()*4)];
-                i.innerText = "Identify Visual Hue"; d.innerText = "COLOR"; d.style.color = c.toLowerCase(); sol = c;
-            } else if(mode === 2) {
-                i.innerText = "Isolate Secret Key"; d.innerText = "SEC-?-OPS"; sol = "?";
+                i.innerText = "Case-Sensitive Match"; d.innerText = "SEC-OPS"; sol = "SEC-OPS";
             } else {
-                i.innerText = "Case-Sensitive Match"; d.innerText = "NetShield"; sol = "NetShield";
+                i.innerText = "Isolate Character"; d.innerText = "A B [X] D"; sol = "X";
             }
             document.getElementById('verify-modal').style.display = 'flex';
             a.focus();
@@ -141,21 +137,12 @@
 
         async function checkCap() {
             const v = document.getElementById('ca').value.trim();
-            const inst = document.getElementById('ci').innerText;
-            
-            let pass = (v.toLowerCase() === sol.toLowerCase());
-            if(inst.includes("Case-Sensitive") && v !== sol) pass = false;
-
-            if(pass) {
+            if(v === sol) {
                 document.getElementById('verify-modal').style.display = 'none';
-                const data = new FormData(document.getElementById('feedbackForm'));
-                await fetch("https://formspree.io/f/mrejgobo", { 
-                    method: 'POST', body: data, headers: {'Accept': 'application/json'}
-                });
                 document.getElementById('form-view').style.display = 'none';
                 document.getElementById('success-view').style.display = 'block';
             } else { 
-                alert("Authentication Failed. Initializing new challenge."); 
+                alert("Fail. Retry."); 
                 startCap(); 
             }
         }
