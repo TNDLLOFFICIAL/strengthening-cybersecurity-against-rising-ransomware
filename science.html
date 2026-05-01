@@ -3,68 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEC-OPS | CRYPTO</title>
+    <title>SEC-OPS | CRYPTO SCIENCE</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono&display=swap');
-        :root { --bg: #010409; --card: #0d1117; --accent: #d299ff; --border: #30363d; --text: #c9d1d9; }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; padding-top: 150px; }
-        .navbar { background: rgba(13, 17, 23, 0.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
-        .nav-link { color: #8b949e !important; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin: 0 15px; }
-        h1 { font-size: 4rem; font-weight: 900; color: #fff; margin-bottom: 60px; letter-spacing: -2px; }
-        .math-block { background: #000; border: 1px solid var(--border); border-left: 8px solid var(--accent); padding: 50px; margin-bottom: 40px; border-radius: 12px; }
-        h3 { color: var(--accent); font-weight: 700; margin-bottom: 25px; text-transform: uppercase; font-size: 1.4rem; }
-        .equation { font-family: 'JetBrains Mono'; background: #161b22; padding: 25px; border-radius: 8px; color: #fff; margin: 25px 0; border: 1px dashed var(--accent); }
-        footer { padding: 100px 0; border-top: 1px solid var(--border); text-align: center; margin-top: 100px; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono&display=swap');
+        
+        :root {
+            --bg: #010409;
+            --card: #0d1117;
+            --accent: #d299ff;
+            --border: #30363d;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: #c9d1d9;
+            font-family: 'Inter', sans-serif;
+            padding-top: 140px;
+        }
+
+        .navbar { background: rgba(13, 17, 23, 0.95); border-bottom: 1px solid var(--border); padding: 1.2rem 0; }
+        .nav-link { color: #8b949e !important; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin: 0 15px; }
+
+        .math-header h1 { font-size: 3.5rem; font-weight: 900; color: #fff; margin-bottom: 60px; }
+
+        .scientific-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 60px;
+            margin-bottom: 40px;
+        }
+
+        .scientific-card h2 { color: var(--accent); font-weight: 800; margin-bottom: 30px; }
+
+        .equation-box {
+            background: #000;
+            padding: 35px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono';
+            color: #fff;
+            border-left: 5px solid var(--accent);
+            margin: 30px 0;
+            font-size: 1.1rem;
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .concept-item h4 { color: #fff; margin-bottom: 15px; }
+        .concept-item p { color: #8b949e; font-size: 0.95rem; line-height: 1.7; }
+
+        footer { padding: 80px 0; border-top: 1px solid var(--border); text-align: center; color: #8b949e; font-size: 0.8rem; }
     </style>
 </head>
 <body>
+
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand text-white fw-bold" href="index.html">SEC-OPS</a>
             <div class="navbar-nav ms-auto flex-row">
+                <a class="nav-link" href="index.html">Command</a>
                 <a class="nav-link" href="threats.html">Intelligence</a>
-                <a class="nav-link" href="science.html">Cryptography</a>
+                <a class="nav-link active" href="science.html">Cryptography</a>
                 <a class="nav-link" href="solutions.html">Protocols</a>
                 <a class="nav-link" href="impact.html">Assessment</a>
+                <a class="nav-link" href="feedback.html">Feedback</a>
             </div>
         </div>
     </nav>
 
     <div class="container">
-        <h1>Cryptographic Analysis</h1>
+        <div class="math-header">
+            <h1>Cryptographic Physics</h1>
+            <p class="lead text-secondary">The mathematical barriers protecting—and threatening—the 2026 digital infrastructure.</p>
+        </div>
 
-        <div class="math-block">
-            <h3>01. Asymmetric Trapdoor Functions</h3>
-            <p>The science of ransomware is built on the "Trapdoor Function"—a mathematical operation that is easy to perform in one direction but virtually impossible to reverse without a specific piece of information (the private key).</p>
-            <p>RSA-4096 encryption relies on the Prime Factorization Problem. While multiplying two 2048-bit primes (P and Q) takes microseconds, factoring the resulting 4096-bit number (N) back into P and Q would take a classical computer millions of years.</p>
-            <div class="equation">
-                // RSA KEY GENERATION SCIENCE<br>
-                n = p * q | φ(n) = (p-1)(q-1)<br>
-                Public Key (e, n) | Private Key (d, n)<br>
-                Complexity: O(2^(n^(1/3) log n^(2/3)))
+        <section class="scientific-card">
+            <h2>Asymmetric Trapdoor Functions</h2>
+            <p>Modern defense hinges on the Prime Factorization Problem. While calculating the product of two 2048-bit primes is computationally trivial, reversing the process to find the factors remains impossible for classical architecture.</p>
+            <div class="equation-box">
+                n = p * q | φ(n) = (p-1)(q-1) <br>
+                e * d ≡ 1 (mod φ(n)) <br>
+                Ciphertext: C = m^e (mod n)
             </div>
-        </div>
+            <div class="concept-grid">
+                <div class="concept-item">
+                    <h4>Computational Complexity</h4>
+                    <p>The security of RSA-4096 is estimated at 2^128 bits of security, requiring more energy than the sun produces in its lifetime to crack via brute force.</p>
+                </div>
+                <div class="concept-item">
+                    <h4>The Quantum Threat</h4>
+                    <p>Shor's Algorithm allows a quantum computer to factor integers in polynomial time (O(log n)^3), rendering existing asymmetric encryption obsolete.</p>
+                </div>
+            </div>
+        </section>
 
-        <div class="math-block">
-            <h3>02. Symmetric AES-256 Saturation</h3>
-            <p>Attackers use a hybrid approach. RSA is too slow for large data. Instead, a unique AES-256 key is generated for every file. AES (Advanced Encryption Standard) uses "Substitution-Permutation Networks" (SPN) to scramble data through 14 rounds of mathematical chaos. The RSA key is then used only to "lock" the tiny AES key.</p>
-            <p>This hybrid science allows ransomware to lock 10GB of data in seconds, while remaining impossible to decrypt without the master RSA key.</p>
-        </div>
+        <section class="scientific-card">
+            <h2>Symmetric Block Chaos</h2>
+            <p>Advanced Encryption Standard (AES-256) utilizes Substitution-Permutation Networks to create "Confusion and Diffusion." The data is processed through 14 rounds of mathematical scrambling.</p>
+            <div class="equation-box">
+                Round(State, RoundKey): <br>
+                &nbsp;&nbsp;SubBytes(State) <br>
+                &nbsp;&nbsp;ShiftRows(State) <br>
+                &nbsp;&nbsp;MixColumns(State) <br>
+                &nbsp;&nbsp;AddRoundKey(State, RoundKey)
+            </div>
+            <p>Even with today's fastest supercomputers, a brute-force attack on AES-256 would take longer than the current age of the universe to succeed.</p>
+        </section>
 
-        <div class="math-block">
-            <h3>03. Behavioral Cognitive Science</h3>
-            <p>Cybersecurity is not just math; it is the science of human behavior. Attackers leverage "Cognitive Bias" and "Urgency Priming." By overwhelming a human administrator with 500 simultaneous technical alerts (Alert Fatigue), the brain’s executive function fails, leading the human to click "Allow" on a malicious connection just to clear the screen.</p>
-        </div>
-
-        <div class="math-block">
-            <h3>04. Post-Quantum Lattice Math</h3>
-            <p>We are currently entering the "Post-Quantum" era. Modern RSA and AES may be vulnerable to Shor's Algorithm running on a stable Quantum Computer. The next generation of defense science uses "Lattice-Based Cryptography," which involves finding the closest vector in a high-dimensional space—a problem that remains unsolved even by quantum processing.</p>
-        </div>
+        <section class="scientific-card">
+            <h2>Lattice-Based Post-Quantum Logic</h2>
+            <p>We are transitioning to "Lattice-Based" cryptography, which involves finding the Shortest Vector Problem (SVP) in a high-dimensional space. This problem is considered "Quantum Resistant."</p>
+            <p>By shifting the "hardness" of the math from prime numbers to spatial geometry, we ensure that the next generation of supercomputers cannot break the encryption foundations of SEC-OPS.</p>
+        </section>
     </div>
 
     <footer>
-        <span class="text-secondary small fw-bold">INTERNAL USE ONLY // SEC-OPS 2026</span>
+        SEC-OPS CRYPTO-LABS // 2026 // MATHEMATICAL VERIFICATION: SUCCESS
     </footer>
+
 </body>
 </html>
