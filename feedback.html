@@ -2,32 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Feedback Operation | SEC-OPS</title>
+    <title>Feedback | SEC-OPS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; padding-top: 70px; }
         .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; }
         .nav-link { color: #8b949e !important; }
         .active { color: #58a6ff !important; font-weight: bold; border-bottom: 2px solid #58a6ff; }
-        .form-card { max-width: 700px; margin: 40px auto; background: #161b22; padding: 40px; border-radius: 12px; border: 1px solid #30363d; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .form-control, .form-select { background-color: #010409 !important; border: 1px solid #30363d !important; color: white !important; padding: 12px; }
+        .form-card { max-width: 600px; margin: 40px auto; background: #161b22; padding: 30px; border-radius: 15px; border: 1px solid #30363d; }
+        .form-control, .form-select { background-color: #010409 !important; border: 1px solid #30363d !important; color: white !important; }
         
-        /* Verification Box Styling */
-        .verification-box { 
-            background: #0d1117; 
-            border: 1px solid #30363d; 
-            padding: 20px; 
-            border-radius: 8px; 
-            margin-top: 25px;
-            border-left: 4px solid #f1e05a;
+        /* Version Tag */
+        .version-tag { position: fixed; bottom: 10px; right: 15px; background: rgba(22,27,34,0.9); color: #8b949e; padding: 4px 10px; border-radius: 5px; font-size: 11px; font-family: monospace; border: 1px solid #30363d; }
+
+        /* Pop-up Verification Modal */
+        #verify-modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 10000; align-items: center; justify-content: center;
         }
+        .modal-box {
+            background: #1c2128; padding: 30px; border-radius: 15px; border: 2px solid #58a6ff;
+            max-width: 350px; text-align: center;
+        }
+        .btn-verify { background: #238636; color: white; border: none; padding: 10px; width: 100%; border-radius: 5px; margin-top: 15px; font-weight: bold; }
         
-        #other-box { display: none; margin-top: 15px; }
-        .btn-submit { background-color: #238636; color: white; border: none; padding: 15px; width: 100%; border-radius: 6px; font-weight: bold; margin-top: 25px; transition: 0.3s; }
-        .btn-submit:disabled { background-color: #161b22; color: #444; border: 1px solid #333; cursor: not-allowed; }
         #success-view { display: none; text-align: center; padding: 50px; }
-        
-        .instruction-text { font-size: 0.9rem; color: #8b949e; margin-bottom: 20px; }
     </style>
 </head>
 <body>
@@ -48,117 +47,90 @@
     <div class="container">
         <div class="form-card">
             <div id="form-view">
-                <h2 class="text-white mb-4">Operational Feedback Report</h2>
-                <p class="instruction-text">
-                    This form is used to collect data on the effectiveness of the SEC-OPS Digital Hub. By submitting this report, you are contributing to our global mission of democratizing cybersecurity knowledge. Please provide a detailed analysis of your experience with the hub so our team can implement necessary security patches and content updates.
-                </p>
+                <h2 class="text-white mb-3">Project Feedback</h2>
+                <p class="text-muted">Tell us what you think about the site! No email required.</p>
+                <hr border-color="#333">
                 
                 <form id="feedbackForm" action="https://formspree.io/f/mrejgobo" method="POST">
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Full Name / Agent Alias</label>
-                            <input type="text" name="name" class="form-control" placeholder="Identify yourself" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Email Address</label>
-                            <input type="email" name="email" class="form-control" placeholder="Contact link" required>
-                        </div>
-                    </div>
+                    <label class="form-label">Your Name</label>
+                    <input type="text" name="name" class="form-control mb-3" placeholder="Nickname or Name" required>
 
-                    <label class="form-label">Security Role / Job Title</label>
-                    <select name="job" id="job-select" class="form-select" onchange="toggleOther()" required>
-                        <option value="" disabled selected>Select your current status...</option>
-                        <option value="Student">Student (Academic Research)</option>
-                        <option value="Teacher">Educator (Content Distribution)</option>
-                        <option value="Engineer">Technical Specialist</option>
-                        <option value="Other">Other / Classified</option>
+                    <label class="form-label">I am a...</label>
+                    <select name="user_type" class="form-select mb-3" required>
+                        <option value="Student">Student</option>
+                        <option value="Teacher">Teacher</option>
+                        <option value="Guest">Guest</option>
                     </select>
 
-                    <div id="other-box">
-                        <label class="form-label mt-3">Specify Role</label>
-                        <input type="text" name="other_job" id="other-input" class="form-control" placeholder="Enter custom role">
-                    </div>
+                    <label class="form-label">What should we add next?</label>
+                    <textarea name="message" class="form-control mb-4" rows="4" placeholder="Type your ideas here..." required></textarea>
 
-                    <label class="form-label mt-4">Report Details</label>
-                    <textarea name="message" class="form-control" rows="6" placeholder="Provide a thorough description of your feedback, bugs found, or suggested tactical improvements..." required></textarea>
-
-                    <div class="verification-box">
-                        <h5 class="text-white mb-3">🛡️ Security Clearance Check</h5>
-                        <p class="small text-muted mb-3">To prevent automated DDoS submissions and bot spam, please solve the following logic gate:</p>
-                        
-                        <div class="d-flex align-items-center gap-3">
-                            <label class="fw-bold" id="captcha-question" style="color: #f1e05a;">What is 5 + 7?</label>
-                            <input type="number" id="captcha-answer" class="form-control w-25" placeholder="??">
-                        </div>
-                        <p id="captcha-error" class="text-danger small mt-2" style="display:none;">Verification failed. Incorrect response.</p>
-                    </div>
-
-                    <button type="submit" class="btn-submit" id="submit-btn" disabled>Verify and Submit Report</button>
-                    <p class="text-center mt-3 small text-muted">Submitting this form does not refresh the page.</p>
+                    <button type="button" class="btn btn-primary w-100 py-2 fw-bold" onclick="startVerify()">SUBMIT AND VERIFY</button>
                 </form>
             </div>
 
             <div id="success-view">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjM2ZiOTUwIiBkPSJNMjU2IDguNUMxMTkuNSA4LjUgOC41IDExOS41IDguNSAyNTZTMTE5LjUgNTAzLjUgMjU2IDUwMy41IDUwMy41IDM5Mi41IDUwMy41IDI1NkMzOTIuNSA4LjUgMjU2IDguNVptMTI4LjIgMTg4LjNMMjI5LjUgMzQxLjRjLTQuNyA0LjctMTIuMyA0LjctMTcgMGwtODQuOS04NC45Yy00LjctNC43LTQuNy0xMi4zIDAtMTdzMTIuMy00LjcgMTcgMGw3Ni40IDc2LjQgMTkxLjktMTkxLjljNC43LTQuNyAxMi4zLTQuNyAxNyAwczQuNyAxMi4zIDAgMTdaIi8+PC9zdmc+" alt="Success" style="width: 100px; margin-bottom: 20px;">
-                <h2 style="color: #3fb950;">Submission Confirmed</h2>
-                <p class="mt-3">Your operational report has been encrypted and transmitted to the SEC-OPS database. We thank you for your commitment to digital security.</p>
-                <hr style="border-color: #333;">
-                <a href="index.html" class="btn btn-primary btn-lg mt-3 w-100">Return to Operational Hub</a>
+                <h2 style="color: #3fb950;">Thanks for the feedback!</h2>
+                <p>Your response was verified and sent.</p>
+                <a href="index.html" class="btn btn-outline-primary mt-3">Back to Home</a>
             </div>
         </div>
     </div>
 
+    <div id="verify-modal">
+        <div class="modal-box">
+            <h4 class="text-white">Bot Check</h4>
+            <p class="text-muted small">Solve this to prove you're human:</p>
+            <h1 id="math-display" class="my-4 text-info"></h1>
+            <input type="number" id="math-input" class="form-control text-center fs-3" placeholder="?">
+            <button class="btn-verify" onclick="checkAnswer()">Confirm</button>
+            <button class="btn btn-link btn-sm mt-2 text-muted" onclick="closePop()">Cancel</button>
+        </div>
+    </div>
+
+    <div class="version-tag">SEC-OPS: v1.5.1</div>
+
     <script>
-        // Logic for the "Other" dropdown
-        function toggleOther() {
-            const select = document.getElementById('job-select');
-            const otherBox = document.getElementById('other-box');
-            otherBox.style.display = (select.value === 'Other') ? 'block' : 'none';
+        let answer = 0;
+
+        function startVerify() {
+            // Randomly picks addition, subtraction, or multiplication
+            const n1 = Math.floor(Math.random() * 20) + 1;
+            const n2 = Math.floor(Math.random() * 10) + 1;
+            const modes = ['+', '-', '*'];
+            const mode = modes[Math.floor(Math.random() * modes.length)];
+
+            if(mode === '+') { answer = n1 + n2; document.getElementById('math-display').innerText = n1 + " + " + n2; }
+            if(mode === '-') { answer = n1 - n2; document.getElementById('math-display').innerText = n1 + " - " + n2; }
+            if(mode === '*') { answer = n1 * n2; document.getElementById('math-display').innerText = n1 + " x " + n2; }
+
+            document.getElementById('verify-modal').style.display = 'flex';
         }
 
-        // CAPTCHA VERIFICATION LOGIC
-        const captchaAnswer = document.getElementById('captcha-answer');
-        const submitBtn = document.getElementById('submit-btn');
-        const errorText = document.getElementById('captcha-error');
+        function closePop() {
+            document.getElementById('verify-modal').style.display = 'none';
+        }
 
-        captchaAnswer.addEventListener('input', function() {
-            // Check if the answer is 12 (5+7)
-            if (this.value == "12") {
-                submitBtn.disabled = false;
-                errorText.style.display = 'none';
-                captchaAnswer.style.borderColor = "#238636";
-            } else {
+        async function checkAnswer() {
+            const userIn = document.getElementById('math-input').value;
+            if(userIn == answer) {
+                closePop();
+                const form = document.getElementById('feedbackForm');
+                const submitBtn = document.querySelector('button[onclick="startVerify()"]');
+                submitBtn.innerText = "Sending...";
                 submitBtn.disabled = true;
-                captchaAnswer.style.borderColor = "#f85149";
-                if(this.value.length > 1) errorText.style.display = 'block';
-            }
-        });
 
-        // FORM SUBMISSION (No Redirect)
-        const form = document.getElementById('feedbackForm');
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const btn = document.getElementById('submit-btn');
-            btn.innerText = "Transmitting...";
-            btn.disabled = true;
+                const data = new FormData(form);
+                await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
 
-            const data = new FormData(form);
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            });
-
-            if (response.ok) {
                 document.getElementById('form-view').style.display = 'none';
                 document.getElementById('success-view').style.display = 'block';
             } else {
-                alert("Transmission Error. Check network status.");
-                btn.innerText = "Verify and Submit Report";
-                btn.disabled = false;
+                alert("Wrong answer! Try a new one.");
+                startVerify(); // Get a new random problem
+                document.getElementById('math-input').value = "";
             }
-        });
+        }
     </script>
 </body>
 </html>
