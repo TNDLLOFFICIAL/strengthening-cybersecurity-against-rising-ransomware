@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEC-OPS | FEEDBACK</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono&display=swap');
+        :root { --bg: #010409; --card: #0d1117; --accent: #2f81f7; --border: #30363d; --text: #c9d1d9; --success: #3fb950; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; padding-top: 150px; }
+        .navbar { background: rgba(13, 17, 23, 0.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
+        .nav-link { color: #8b949e !important; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin: 0 15px; }
+        h1 { font-size: 3.5rem; font-weight: 900; color: #fff; margin-bottom: 40px; letter-spacing: -2px; }
+        
+        .feedback-container { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 60px; max-width: 800px; margin: 0 auto; position: relative; }
+        .form-label { font-family: 'JetBrains Mono'; font-size: 0.75rem; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+        .form-control { background: #000; border: 1px solid var(--border); color: #fff; padding: 15px; border-radius: 6px; margin-bottom: 25px; }
+        .form-control:focus { background: #000; border-color: var(--accent); color: #fff; box-shadow: none; }
+        
+        .btn-sec-ops { background: var(--accent); color: #fff; border: none; padding: 15px 40px; font-weight: 800; border-radius: 6px; text-transform: uppercase; letter-spacing: 1px; width: 100%; transition: 0.3s; }
+        .btn-sec-ops:hover { background: #1f6feb; transform: translateY(-2px); }
+        
+        .verify-box { display: none; background: #161b22; border: 1px dashed var(--success); padding: 30px; border-radius: 8px; margin-top: 20px; }
+        .status-msg { font-family: 'JetBrains Mono'; font-size: 0.8rem; color: #8b949e; margin-bottom: 30px; border-left: 3px solid var(--accent); padding-left: 15px; }
+        
+        footer { padding: 100px 0; border-top: 1px solid var(--border); text-align: center; margin-top: 100px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold" href="index.html">SEC-OPS</a>
+            <div class="navbar-nav ms-auto flex-row">
+                <a class="nav-link" href="threats.html">Intelligence</a>
+                <a class="nav-link" href="science.html">Cryptography</a>
+                <a class="nav-link" href="solutions.html">Protocols</a>
+                <a class="nav-link" href="impact.html">Assessment</a>
+                <a class="nav-link text-white" href="feedback.html">Feedback</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container text-center">
+        <h1>Secure Communications</h1>
+        <p class="text-secondary mb-5">Submit technical feedback or solution improvements to the lead intelligence officer.</p>
+
+        <div class="feedback-container text-start">
+            <div class="status-msg">
+                TARGET_INTEL: ahnafz2011@gmail.com<br>
+                STATUS: AWAITING_ENCRYPTED_INPUT
+            </div>
+
+            <form action="https://formspree.io/f/ahnafz2011@gmail.com" method="POST" id="feedbackForm">
+                
+                <label class="form-label">Identity (Your Email)</label>
+                <input type="email" name="email" id="userEmail" class="form-control" placeholder="user@domain.com" required>
+
+                <label class="form-label">Subject of Analysis</label>
+                <select name="subject" class="form-control">
+                    <option>Threat Intelligence Feedback</option>
+                    <option>Cryptographic Optimization</option>
+                    <option>Protocol Suggestion</option>
+                    <option>General System Feedback</option>
+                </select>
+
+                <label class="form-label">Encrypted Message</label>
+                <textarea name="message" class="form-control" rows="6" placeholder="Enter your detailed feedback here..." required></textarea>
+
+                <button type="button" onclick="initiateVerification()" class="btn-sec-ops" id="submitBtn">Initiate Verification</button>
+
+                <div id="verifyBox" class="verify-box">
+                    <label class="form-label" style="color: var(--success);">Verification Code Sent to Email</label>
+                    <p class="small text-secondary mb-3">Please enter the 6-digit code sent to your inbox to authorize this transmission.</p>
+                    <input type="text" class="form-control" placeholder="0 0 0 0 0 0" maxlength="6" style="text-align: center; letter-spacing: 10px; font-size: 1.5rem;">
+                    <button type="submit" class="btn-sec-ops" style="background: var(--success);">Authorize & Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function initiateVerification() {
+            const email = document.getElementById('userEmail').value;
+            if(email.includes('@')) {
+                document.getElementById('submitBtn').style.display = 'none';
+                document.getElementById('verifyBox').style.display = 'block';
+                alert("SEC-OPS: Verification code dispatched to " + email);
+            } else {
+                alert("Please enter a valid identity (email) first.");
+            }
+        }
+    </script>
+
+    <footer>
+        <span class="text-secondary small fw-bold">INTERNAL USE ONLY // SEC-OPS 2026 // NODE: AHNAFZ-COMM</span>
+    </footer>
+</body>
+</html>
