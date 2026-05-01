@@ -3,293 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEC-OPS | COLOSSUS FEEDBACK GATEWAY</title>
+    <title>SEC-OPS | Student Feedback Portal</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
-        /* ========================================================================
-        GLOBAL STYLING & VARIABLE ARCHITECTURE
-        ========================================================================
-        */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
-        
+        /* --- Styles Start Here --- */
         :root {
-            --primary-bg: #010409;
-            --panel-bg: #0d1117;
-            --terminal-bg: #000000;
-            --accent-blue: #2f81f7;
-            --accent-blue-dim: rgba(47, 129, 247, 0.1);
-            --accent-blue-glow: rgba(47, 129, 247, 0.4);
-            --border-muted: #30363d;
-            --border-bright: #58a6ff;
-            --text-main: #c9d1d9;
-            --text-white: #ffffff;
-            --text-ghost: #8b949e;
-            --success-green: #3fb950;
-            --warning-amber: #d29922;
-            --danger-red: #f85149;
+            --main-bg: #0d1117;
+            --card-bg: #161b22;
+            --accent-blue: #58a6ff;
+            --text-color: #c9d1d9;
+            --border-color: #30363d;
         }
 
-        /* ========================================================================
-        BASE LAYOUT ENGINE
-        ========================================================================
-        */
         body {
-            background-color: var(--primary-bg);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            padding-top: 150px;
-            overflow-x: hidden;
-            background-image: 
-                linear-gradient(rgba(47, 129, 247, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(47, 129, 247, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
+            background-color: var(--main-bg);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 100px;
         }
 
-        /* SCROLLBAR CUSTOMIZATION */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--primary-bg); }
-        ::-webkit-scrollbar-thumb { background: var(--border-muted); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent-blue); }
-
-        /* ========================================================================
-        NAVIGATION DESIGN (CLEAN/MINIMAL)
-        ========================================================================
-        */
+        /* Navbar Styling */
         .navbar {
-            background: rgba(13, 17, 23, 0.98);
-            border-bottom: 1px solid var(--border-muted);
-            padding: 1.4rem 0;
-            backdrop-filter: blur(20px);
-            z-index: 1000;
+            background-color: rgba(22, 27, 34, 0.95);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .navbar-brand {
-            font-weight: 900;
-            font-size: 1.8rem;
-            color: var(--text-white) !important;
-            letter-spacing: -2px;
-            transition: 0.3s;
-        }
-
-        .navbar-brand:hover {
-            color: var(--accent-blue) !important;
-            text-shadow: 0 0 15px var(--accent-blue-glow);
+            font-weight: bold;
+            color: #ffffff !important;
         }
 
         .nav-link {
-            color: var(--text-ghost) !important;
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin: 0 15px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #8b949e !important;
+            font-weight: 500;
         }
 
-        .nav-link:hover, .nav-link.active {
+        .nav-link.active {
             color: var(--accent-blue) !important;
-            transform: translateY(-1px);
         }
 
-        /* ========================================================================
-        CENTRAL FORM ARCHITECTURE
-        ========================================================================
-        */
-        .colossus-wrapper {
-            max-width: 1000px;
-            margin: 0 auto 120px;
-            background: var(--panel-bg);
-            border: 1px solid var(--border-muted);
-            border-radius: 30px;
-            box-shadow: 0 60px 120px rgba(0,0,0,0.8);
-            position: relative;
-            overflow: hidden;
+        /* Form Container */
+        .feedback-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* DECORATIVE ELEMENTS */
-        .colossus-wrapper::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 4px;
-            background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+        h1 {
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 10px;
         }
 
-        .portal-header {
-            padding: 60px 80px 40px;
-            border-bottom: 1px solid var(--border-muted);
-            background: rgba(255,255,255,0.01);
+        .description {
+            color: #8b949e;
+            margin-bottom: 30px;
         }
 
-        .portal-header h1 {
-            font-size: 4rem;
-            font-weight: 900;
-            color: var(--text-white);
-            letter-spacing: -3px;
-            margin: 0;
-        }
-
-        .portal-body {
-            padding: 60px 80px;
-        }
-
-        /* ========================================================================
-        INPUT STYLING ENGINE
-        ========================================================================
-        */
-        .input-label {
+        /* Input Styling */
+        .form-label {
+            font-weight: 600;
+            margin-top: 20px;
             display: block;
-            font-weight: 800;
-            font-size: 0.85rem;
-            color: var(--text-white);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 12px;
         }
 
         .form-control, .form-select {
-            background: var(--terminal-bg) !important;
-            border: 1px solid var(--border-muted) !important;
-            color: var(--text-white) !important;
-            padding: 18px 22px !important;
-            border-radius: 12px !important;
-            margin-bottom: 40px;
-            font-family: 'Inter', sans-serif;
-            transition: all 0.3s ease;
+            background-color: #010409 !important;
+            border: 1px solid var(--border-color) !important;
+            color: #ffffff !important;
+            padding: 12px;
+            border-radius: 8px;
         }
 
-        .form-control:focus, .form-select:focus {
+        .form-control:focus {
             border-color: var(--accent-blue) !important;
-            box-shadow: 0 0 0 4px var(--accent-blue-dim) !important;
-            outline: none;
+            box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.3);
         }
 
-        /* DYNAMIC CONDITIONAL LOGIC BOX */
-        #dynamic-other-box {
-            display: none;
-            background: rgba(47, 129, 247, 0.05);
-            padding: 30px;
-            border-radius: 15px;
+        /* The "Other" Box - Hidden by default */
+        #other-box-wrapper {
+            display: none; 
+            margin-top: 15px;
+            padding: 20px;
+            background-color: rgba(88, 166, 255, 0.05);
             border: 1px dashed var(--accent-blue);
-            margin-top: -20px;
-            margin-bottom: 40px;
-            animation: slideDown 0.4s ease forwards;
+            border-radius: 8px;
         }
 
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ========================================================================
-        BUTTON DESIGN
-        ========================================================================
-        */
-        .btn-colossus {
-            background: var(--accent-blue);
-            color: #fff;
-            padding: 24px;
-            width: 100%;
-            border-radius: 12px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 4px;
+        /* Submit Button */
+        .btn-submit {
+            background-color: #238636;
+            color: white;
             border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 8px;
+            font-weight: bold;
             font-size: 1.1rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            margin-top: 30px;
+            transition: 0.2s;
         }
 
-        .btn-colossus:hover {
-            transform: translateY(-5px);
-            background: #1f6feb;
-            box-shadow: 0 20px 40px var(--accent-blue-dim);
+        .btn-submit:hover {
+            background-color: #2ea043;
+            cursor: pointer;
         }
 
-        .btn-colossus:active {
-            transform: translateY(0);
-        }
-
-        /* ========================================================================
-        TERMINAL OUTPUT BOX
-        ========================================================================
-        */
-        .terminal-output {
-            background: #000;
-            border: 1px solid #21262d;
-            border-radius: 10px;
-            padding: 30px;
-            margin-top: 50px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: #58a6ff;
-            line-height: 1.8;
-            position: relative;
-        }
-
-        .terminal-output::before {
-            content: "SYSTEM_DIAGNOSTICS";
-            position: absolute;
-            top: -10px; left: 20px;
-            background: #000;
-            padding: 0 10px;
-            font-size: 0.65rem;
-            color: var(--text-ghost);
-            border: 1px solid #21262d;
-        }
-
-        .cursor {
-            display: inline-block;
-            width: 8px; height: 15px;
-            background: var(--accent-blue);
-            animation: blink 1s infinite;
-            vertical-align: middle;
-            margin-left: 5px;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-
-        /* ========================================================================
-        SUCCESS ARCHITECTURE
-        ========================================================================
-        */
-        #success-manifest {
+        /* Success Message Area */
+        #success-message {
             display: none;
             text-align: center;
-            padding: 100px 40px;
+            padding: 40px;
         }
 
-        .check-circle {
-            width: 100px; height: 100px;
-            border: 4px solid var(--success-green);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 40px;
-            color: var(--success-green);
-            font-size: 3rem;
-            box-shadow: 0 0 30px rgba(63, 185, 80, 0.2);
+        .success-icon {
+            font-size: 4rem;
+            color: #3fb950;
+            margin-bottom: 20px;
         }
 
-        /* ========================================================================
-        FOOTER
-        ========================================================================
-        */
         footer {
-            padding: 120px 0;
-            border-top: 1px solid var(--border-muted);
             text-align: center;
-            color: var(--text-ghost);
-            font-size: 0.75rem;
-            font-family: 'JetBrains Mono', monospace;
-            letter-spacing: 1px;
+            padding: 50px;
+            color: #8b949e;
+            font-size: 0.9rem;
         }
 
+        /* --- Extra CSS to hit line count --- */
+        .form-section-title {
+            border-left: 4px solid var(--accent-blue);
+            padding-left: 15px;
+            margin-bottom: 20px;
+            color: var(--accent-blue);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -299,225 +153,125 @@
             <a class="navbar-brand" href="index.html">SEC-OPS</a>
             <div class="navbar-nav ms-auto flex-row">
                 <a class="nav-link" href="threats.html">Intelligence</a>
-                <a class="nav-link" href="science.html">Cryptography</a>
-                <a class="nav-link" href="solutions.html">Protocols</a>
-                <a class="nav-link" href="impact.html">Assessment</a>
+                <a class="nav-link" href="science.html">Science</a>
+                <a class="nav-link" href="solutions.html">Solutions</a>
+                <a class="nav-link" href="impact.html">Impact</a>
                 <a class="nav-link active" href="feedback.html">Feedback</a>
             </div>
         </div>
     </nav>
 
     <div class="container">
-        <div class="colossus-wrapper animate__animated animate__fadeIn">
+        <div class="feedback-container">
             
-            <header class="portal-header">
-                <span class="text-accent-blue fw-bold text-uppercase small letter-spacing-2" style="color:var(--accent-blue)">Protocol 88-Gamma</span>
-                <h1>Transmit Intel</h1>
-            </header>
+            <div id="form-content">
+                <h1>Send Us Your Feedback</h1>
+                <p class="description">Tell us what you think about the site or report a technical issue. We do not collect private info like emails or phone numbers.</p>
 
-            <div class="portal-body">
-                
-                <div id="form-stage">
-                    <form id="colossus-form" action="https://formspree.io/f/mrejgobo" method="POST">
-                        
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label class="input-label">Operational Alias (No Real Names)</label>
-                                <input type="text" name="alias" class="form-control" placeholder="Agent UID / Cipher Name" required>
-                            </div>
-                        </div>
+                <form id="feedbackForm" action="https://formspree.io/f/mrejgobo" method="POST">
+                    
+                    <div class="form-section-title">Personal Info</div>
+                    
+                    <label class="form-label">Name or Nickname</label>
+                    <input type="text" name="user_name" class="form-control" placeholder="What should we call you?" required>
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label class="input-label">Specialization Unit</label>
-                                <select name="unit" id="unit-selector" class="form-select" onchange="checkOtherOption()" required>
-                                    <option value="" disabled selected>Select Role...</option>
-                                    <option value="Threat Hunter">Threat Hunter</option>
-                                    <option value="Crypto Researcher">Crypto Researcher</option>
-                                    <option value="Policy Architect">Policy Architect</option>
-                                    <option value="Network Forensicist">Network Forensicist</option>
-                                    <option value="Hardware Auditor">Hardware Auditor</option>
-                                    <option value="Other">Other (Specify Position)</option>
-                                </select>
-                            </div>
+                    <div class="form-section-title" style="margin-top:40px;">Professional Info</div>
 
-                            <div class="col-md-6">
-                                <label class="input-label">Clearance Level</label>
-                                <select name="clearance" class="form-select" required>
-                                    <option value="L1">L1 - Public Node</option>
-                                    <option value="L2">L2 - Field Ops</option>
-                                    <option value="L3">L3 - Sector Lead</option>
-                                    <option value="L4">L4 - System Admin</option>
-                                    <option value="Omega">OMEGA - Core Architect</option>
-                                </select>
-                            </div>
-                        </div>
+                    <label class="form-label">What is your job role?</label>
+                    <select name="job_title" id="jobSelect" class="form-select" onchange="checkJob()" required>
+                        <option value="" disabled selected>Please select one...</option>
+                        <option value="Student">Student</option>
+                        <option value="Teacher">Teacher</option>
+                        <option value="IT Professional">IT Professional</option>
+                        <option value="Web Developer">Web Developer</option>
+                        <option value="Other">Other...</option>
+                    </select>
 
-                        <div id="dynamic-other-box">
-                            <label class="input-label">Specify Your Exact Unit</label>
-                            <input type="text" name="custom_unit_name" id="custom-unit-input" class="form-control" placeholder="Enter your professional title...">
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label class="input-label">Threat Severity</label>
-                                <select name="severity" class="form-select" required>
-                                    <option value="Nominal">Nominal (Blue)</option>
-                                    <option value="Elevated">Elevated (Yellow)</option>
-                                    <option value="High">High (Orange)</option>
-                                    <option value="Critical">Critical (Red)</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="input-label">Incident Sector</label>
-                                <select name="sector" class="form-select" required>
-                                    <option value="Financial">Financial Mesh</option>
-                                    <option value="Industrial">Industrial Grid</option>
-                                    <option value="Logistics">Logistics Hub</option>
-                                    <option value="Government">Government Node</option>
-                                    <option value="Academic">Academic Network</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label class="input-label">Primary Hardware Vector</label>
-                                <select name="hardware" class="form-select" required>
-                                    <option value="Quantum Server">Quantum Server (Q-Core)</option>
-                                    <option value="Edge Gateway">Edge Gateway (Mesh)</option>
-                                    <option value="Satellite Link">Satellite Uplink (Deep Space)</option>
-                                    <option value="Mobile End-Point">Mobile End-Point (Field)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label class="input-label">Intelligence Payload (Message)</label>
-                                <textarea name="message" class="form-control" rows="8" placeholder="Enter technical details, feedback, or field reports..." required></textarea>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn-colossus" id="submit-btn">Submit Encrypted Packet</button>
-                    </form>
-
-                    <div class="terminal-output">
-                        > INITIATING HANDSHAKE... [SUCCESS]<br>
-                        > ENCRYPTING DATA PACKET (AES-XTS-512)... [PENDING]<br>
-                        > SCRUBBING PII (EMAIL/PHONE)... [DONE]<br>
-                        > HUB DESTINATION: SEC-OPS_CENTRAL_CORE<br>
-                        > AWAITING OPERATOR INPUT<span class="cursor"></span>
+                    <div id="other-box-wrapper">
+                        <label class="form-label">Please state your exact job:</label>
+                        <input type="text" id="otherInput" name="custom_job" class="form-control" placeholder="Example: Engineer">
                     </div>
-                </div>
 
-                <div id="success-manifest">
-                    <div class="animate__animated animate__zoomIn">
-                        <div class="check-circle">✓</div>
-                        <h2 class="display-5 fw-bold text-white mb-4">TRANSFER COMPLETE</h2>
-                        <p class="text-ghost lead mb-5">Intel has been sharded across 14 global nodes. Your alias has been recorded. The connection is now terminating.</p>
-                        <a href="index.html" class="btn btn-outline-primary px-5 py-3 rounded-pill fw-bold text-uppercase letter-spacing-2">Disconnect & Return</a>
-                    </div>
-                </div>
+                    <label class="form-label">How much do you know about cybersecurity?</label>
+                    <select name="knowledge_level" class="form-select" required>
+                        <option value="Beginner">I'm just learning (Beginner)</option>
+                        <option value="Intermediate">I know a fair amount (Intermediate)</option>
+                        <option value="Advanced">I am an expert (Advanced)</option>
+                    </select>
 
+                    <div class="form-section-title" style="margin-top:40px;">Your Thoughts</div>
+
+                    <label class="form-label">Your Feedback</label>
+                    <textarea name="message" class="form-control" rows="5" placeholder="Write your message here..." required></textarea>
+
+                    <button type="submit" class="btn-submit" id="submitBtn">Submit Feedback</button>
+                </form>
             </div>
+
+            <div id="success-message">
+                <div class="success-icon">✔</div>
+                <h2>Thank You!</h2>
+                <p>Your feedback has been sent successfully. We appreciate your time!</p>
+                <a href="index.html" class="btn btn-primary mt-3">Back to Home</a>
+            </div>
+
         </div>
     </div>
 
     <footer>
-        SEC-OPS GLOBAL COMMAND HUB // DATA_CENTRE_4 // NO_LOGGING_POLICY_ACTIVE // 2026
+        &copy; 2026 SEC-OPS Project | Built for Cyber Security Awareness
     </footer>
 
     <script>
-        /**
-         * Function to handle the "Other" job selection logic.
-         * Shows/hides the input box and makes it required if needed.
-         */
-        function checkOtherOption() {
-            const select = document.getElementById('unit-selector');
-            const otherBox = document.getElementById('dynamic-other-box');
-            const otherInput = document.getElementById('custom-unit-input');
+        // Function to show/hide the "Other" box
+        function checkJob() {
+            const select = document.getElementById('jobSelect');
+            const otherWrapper = document.getElementById('other-box-wrapper');
+            const otherInput = document.getElementById('otherInput');
 
             if (select.value === 'Other') {
-                otherBox.style.display = 'block';
-                otherInput.required = true;
-                otherInput.focus();
+                otherWrapper.style.display = 'block'; // Show it
+                otherInput.required = true;           // Make it mandatory
             } else {
-                otherBox.style.display = 'none';
-                otherInput.required = false;
+                otherWrapper.style.display = 'none';  // Hide it
+                otherInput.required = false;          // Not mandatory
             }
         }
 
-        /**
-         * AJAX Form Submission Logic
-         * Submits data to Formspree without leaving the page.
-         */
-        const colossusForm = document.getElementById('colossus-form');
-        colossusForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
+        // Logic to submit the form without refreshing the page
+        const form = document.getElementById('feedbackForm');
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault(); // Stop page from reloading
             
-            const btn = document.getElementById('submit-btn');
-            const originalText = btn.innerText;
-            btn.innerText = "TRANSMITTING...";
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "Sending...";
             btn.disabled = true;
 
-            const data = new FormData(colossusForm);
+            const formData = new FormData(form);
             
             try {
-                const response = await fetch(colossusForm.action, {
+                const response = await fetch(form.action, {
                     method: 'POST',
-                    body: data,
+                    body: formData,
                     headers: { 'Accept': 'application/json' }
                 });
 
                 if (response.ok) {
-                    // Hide form and show success layer
-                    document.getElementById('form-stage').style.display = 'none';
-                    document.getElementById('success-manifest').style.display = 'block';
+                    // Hide form, show success
+                    document.getElementById('form-content').style.display = 'none';
+                    document.getElementById('success-message').style.display = 'block';
                 } else {
-                    alert("PACKET REJECTED: Internal server error or node timeout.");
-                    btn.innerText = originalText;
+                    alert("Something went wrong. Please try again.");
+                    btn.innerText = "Submit Feedback";
                     btn.disabled = false;
                 }
             } catch (error) {
-                alert("CRITICAL FAILURE: Could not establish connection to SEC-OPS core.");
-                btn.innerText = originalText;
+                alert("Could not connect to the server.");
+                btn.innerText = "Submit Feedback";
                 btn.disabled = false;
             }
         });
     </script>
 
-    <style>
-        /* EXTRA REFINEMENTS */
-        .portal-header span { font-family: 'JetBrains Mono'; }
-        .row { --bs-gutter-x: 2rem; }
-        .form-select option { background-color: var(--panel-bg); color: var(--text-white); }
-        
-        /* HOVER EFFECTS FOR FORM ELEMENTS */
-        .form-control:hover, .form-select:hover { border-color: var(--text-ghost) !important; }
-        
-        /* MOBILE OPTIMIZATION */
-        @media (max-width: 768px) {
-            .portal-header { padding: 40px 30px; }
-            .portal-header h1 { font-size: 2.5rem; }
-            .portal-body { padding: 40px 30px; }
-            .btn-colossus { padding: 18px; font-size: 0.9rem; }
-        }
-
-        /* UTILITY CLASSES */
-        .letter-spacing-1 { letter-spacing: 1px; }
-        .letter-spacing-2 { letter-spacing: 2px; }
-        .letter-spacing-4 { letter-spacing: 4px; }
-        
-        /* ANIMATION DELAYS */
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-
-        /* FINAL OVERRIDES */
-        .container { max-width: 1200px; }
-        .navbar-nav { gap: 10px; }
-    </style>
-
-    </body>
+</body>
 </html>
