@@ -2,21 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Feedback | SEC-OPS</title>
+    <title>Feedback | SEC-OPS Secure Portal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; padding-top: 70px; }
+        body { background-color: #0d1117; color: #c9d1d9; padding-top: 80px; line-height: 1.8; }
         .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; }
         .nav-link { color: #8b949e !important; }
         .active { color: #58a6ff !important; font-weight: bold; border-bottom: 2px solid #58a6ff; }
-        .form-card { max-width: 600px; margin: 40px auto; background: #161b22; padding: 30px; border-radius: 15px; border: 1px solid #30363d; }
-        .form-control, .form-select { background-color: #010409 !important; border: 1px solid #30363d !important; color: white !important; }
-        .version-tag { position: fixed; bottom: 10px; right: 15px; background: rgba(22,27,34,0.9); color: #8b949e; padding: 4px 10px; border-radius: 5px; font-size: 11px; font-family: monospace; border: 1px solid #30363d; z-index: 10000; pointer-events: none; }
-        #verify-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 20000; align-items: center; justify-content: center; }
-        .modal-box { background: #1c2128; padding: 40px; border-radius: 15px; border: 2px solid #58a6ff; max-width: 420px; text-align: center; }
-        .btn-verify { background: #238636; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; margin-top: 15px; font-weight: bold; }
-        #success-view { display: none; text-align: center; padding: 50px; }
-        .instr-text { color: #58a6ff; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 10px; display: block; }
+        
+        .form-container { max-width: 700px; margin: 40px auto; }
+        .secure-card { 
+            background: #161b22; border: 1px solid #30363d; border-radius: 20px; 
+            padding: 50px; box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+        }
+
+        .form-control, .form-select { 
+            background-color: #010409 !important; border: 1px solid #30363d !important; 
+            color: white !important; padding: 12px; transition: 0.3s;
+        }
+        .form-control:focus { border-color: #58a6ff !important; box-shadow: 0 0 0 0.25rem rgba(88, 166, 255, 0.1); }
+
+        .btn-submit { 
+            background: #238636; color: white; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 1px; border: none; padding: 15px; width: 100%; border-radius: 10px;
+        }
+        .btn-submit:disabled { background: #21262d; color: #8b949e; cursor: not-allowed; }
+
+        /* CAPTCHA Modal Styling */
+        #verify-modal { 
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.9); z-index: 20000; align-items: center; justify-content: center; 
+        }
+        .modal-box { 
+            background: #1c2128; padding: 40px; border-radius: 20px; border: 2px solid #58a6ff; 
+            max-width: 400px; width: 90%; text-align: center;
+        }
+        #cd { font-size: 2.5rem; font-weight: 900; margin: 20px 0; font-family: monospace; }
+        .instr { color: #58a6ff; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; }
+
+        .version-tag { 
+            position: fixed; bottom: 10px; right: 15px; background: rgba(22,27,34,0.9); 
+            color: #8b949e; padding: 4px 10px; border-radius: 5px; font-size: 11px; 
+            font-family: monospace; border: 1px solid #30363d; z-index: 10000; pointer-events: none; 
+        }
     </style>
 </head>
 <body>
@@ -33,36 +61,54 @@
             </div>
         </div>
     </nav>
-    <div class="container">
-        <div class="form-card">
+
+    <div class="container form-container">
+        <div class="secure-card">
             <div id="form-view">
-                <h2 class="text-white mb-3">Feedback</h2>
+                <h2 class="text-white mb-4">Secure Communication</h2>
+                <p class="text-secondary mb-4">Submit your feedback or research inquiries to the SEC-OPS initiative. All transmissions are logged and analyzed.</p>
+                
                 <form id="feedbackForm" oninput="checkLock()">
-                    <input type="text" id="n-f" name="name" class="form-control mb-3" placeholder="Name" required>
-                    <select id="r-f" name="user_type" class="form-select mb-3" required>
-                        <option value="" disabled selected>Select Role</option>
-                        <option value="Student">Student</option>
-                        <option value="Teacher">Teacher</option>
-                    </select>
-                    <textarea id="m-f" name="message" class="form-control mb-4" rows="4" placeholder="Message" required></textarea>
-                    <button type="button" id="s-b" class="btn btn-primary w-100 py-3 fw-bold" onclick="startCap()" disabled>FILL ALL FIELDS</button>
+                    <div class="mb-3">
+                        <label class="form-label text-secondary small text-uppercase fw-bold">Identification</label>
+                        <input type="text" id="n-f" name="name" class="form-control" placeholder="Full Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-secondary small text-uppercase fw-bold">Classification</label>
+                        <select id="r-f" name="user_type" class="form-select" required>
+                            <option value="" disabled selected>Select Role</option>
+                            <option value="Student">Student / Researcher</option>
+                            <option value="Teacher">Academic / Educator</option>
+                            <option value="Pro">Security Professional</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-secondary small text-uppercase fw-bold">Data Payload</label>
+                        <textarea id="m-f" name="message" class="form-control" rows="5" placeholder="Enter your message..." required></textarea>
+                    </div>
+                    <button type="button" id="s-b" class="btn-submit" onclick="startCap()" disabled>Awaiting Data Input</button>
                 </form>
             </div>
-            <div id="success-view">
-                <h2 style="color: #3fb950;">✔ Sent</h2>
-                <a href="index.html" class="btn btn-outline-primary mt-3">Home</a>
+
+            <div id="success-view" style="display: none;" class="text-center py-5">
+                <h2 style="color: #3fb950;">✔ Transmission Successful</h2>
+                <p class="text-secondary mt-3">Your data has been encrypted and sent to the SEC-OPS mainframes.</p>
+                <a href="index.html" class="btn btn-outline-primary mt-4">Return to Command Center</a>
             </div>
         </div>
     </div>
+
     <div id="verify-modal">
         <div class="modal-box">
-            <span class="instr-text" id="ci"></span>
-            <h2 id="cd" class="mb-4 text-white"></h2>
-            <input type="text" id="ca" class="form-control text-center fs-4">
-            <button class="btn-verify" onclick="checkCap()">Verify</button>
+            <span class="instr" id="ci"></span>
+            <div id="cd"></div>
+            <input type="text" id="ca" class="form-control text-center fs-4 mb-3" autocomplete="off">
+            <button class="btn btn-primary w-100 fw-bold" onclick="checkCap()">AUTHENTICATE</button>
         </div>
     </div>
-    <div class="version-tag">v3.8.2.1</div>
+
+    <div class="version-tag">v5.8.2.1</div>
+
     <script>
         let sol = "";
         function checkLock() {
@@ -71,34 +117,47 @@
             const m = document.getElementById('m-f').value;
             const b = document.getElementById('s-b');
             if(n && r && m) { b.disabled = false; b.innerText = "VERIFY IDENTITY"; }
-            else { b.disabled = true; b.innerText = "FILL ALL FIELDS"; }
+            else { b.disabled = true; b.innerText = "AWAITING DATA INPUT"; }
         }
+
         function startCap() {
             const d = document.getElementById('cd'); const i = document.getElementById('ci'); const a = document.getElementById('ca');
             a.value = ""; d.style.color = "white"; const mode = Math.floor(Math.random() * 4);
+            
             if(mode === 0) { 
-                const n1 = Math.floor(Math.random()*50); const n2 = Math.floor(Math.random()*20);
-                i.innerText = "Solve Math"; d.innerText = n1 + " + " + n2; sol = (n1+n2).toString();
+                const n1 = Math.floor(Math.random()*90); const n2 = Math.floor(Math.random()*10);
+                i.innerText = "Solve Mathematical Proof"; d.innerText = n1 + " + " + n2; sol = (n1+n2).toString();
             } else if(mode === 1) {
-                const cols = ["Red", "Blue", "Green", "Yellow"]; const v = cols[Math.floor(Math.random()*4)];
-                i.innerText = "Type Color You See"; d.innerText = "TEXT"; d.style.color = v.toLowerCase(); sol = v;
+                const colors = ["Cyan", "Green", "Orange", "Purple"]; const c = colors[Math.floor(Math.random()*4)];
+                i.innerText = "Identify Visual Hue"; d.innerText = "COLOR"; d.style.color = c.toLowerCase(); sol = c;
             } else if(mode === 2) {
-                i.innerText = "Type Symbol"; d.innerText = "XXXX?XXXX"; sol = "?";
+                i.innerText = "Isolate Secret Key"; d.innerText = "SEC-?-OPS"; sol = "?";
             } else {
-                i.innerText = "Match Case"; d.innerText = "SecureNet"; sol = "SecureNet";
+                i.innerText = "Case-Sensitive Match"; d.innerText = "NetShield"; sol = "NetShield";
             }
             document.getElementById('verify-modal').style.display = 'flex';
+            a.focus();
         }
+
         async function checkCap() {
             const v = document.getElementById('ca').value.trim();
-            if(v.toLowerCase() === sol.toLowerCase()) {
-                if(document.getElementById('ci').innerText.includes("Match Case") && v !== sol) { alert("Wrong case"); return; }
+            const inst = document.getElementById('ci').innerText;
+            
+            let pass = (v.toLowerCase() === sol.toLowerCase());
+            if(inst.includes("Case-Sensitive") && v !== sol) pass = false;
+
+            if(pass) {
                 document.getElementById('verify-modal').style.display = 'none';
                 const data = new FormData(document.getElementById('feedbackForm'));
-                await fetch("https://formspree.io/f/mrejgobo", { method: 'POST', body: data, headers: {'Accept': 'application/json'}});
+                await fetch("https://formspree.io/f/mrejgobo", { 
+                    method: 'POST', body: data, headers: {'Accept': 'application/json'}
+                });
                 document.getElementById('form-view').style.display = 'none';
                 document.getElementById('success-view').style.display = 'block';
-            } else { alert("Retry"); startCap(); }
+            } else { 
+                alert("Authentication Failed. Initializing new challenge."); 
+                startCap(); 
+            }
         }
     </script>
 </body>
