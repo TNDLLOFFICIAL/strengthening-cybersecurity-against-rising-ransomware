@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SEC-OPS | Threats</title>
+    <title>Threat Center | SEC-OPS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; padding-top: 70px; }
         .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; }
         .nav-link { color: #8b949e !important; }
         .active { color: #f85149 !important; font-weight: bold; border-bottom: 2px solid #f85149; }
-        .threat-box { background: #1c2128; border-left: 5px solid #f85149; padding: 25px; border-radius: 10px; margin-bottom: 20px; }
+        .threat-header { padding: 80px 0; background: radial-gradient(circle at top, #301010, #0d1117); text-align: center; border-bottom: 1px solid #444; }
+        .threat-box { background: #1c2128; border-left: 5px solid #f85149; padding: 40px; border-radius: 10px; margin-bottom: 30px; border: 1px solid #30363d; border-left: 5px solid #f85149; }
     </style>
 </head>
 <body>
@@ -26,17 +27,30 @@
         </div>
     </nav>
 
+    <header class="threat-header mb-5">
+        <div class="container">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZjg1MTQ5IiBkPSJNMjU2IDguNUMxMTkuNSA4LjUgOC41IDExOS41IDguNSAyNTZTMTE5LjUgNTAzLjUgMjU2IDUwMy41IDUwMy41IDM5Mi41IDUwMy41IDI1NkMzOTIuNSA4LjUgMjU2IDguNVptMCA0NDQuNUMxNTguNiA0NTMuOCA4LjUgMzA0LjEgOC41IDE5Ni41IDguNSAxNDkuNCA1MyA4LjUgMTI4IDguNWMyNS44IDAgNTAuNiA5LjYgNzAuOSA5LjYgMjAuNCAwIDM5LjggOS42IDU3LjIgOS42IDE3LjQgMCAzMy41IDkuNiA0OC45IDkuNiAzMC4zIDAgNTcuNyA5LjYgODcuMiA5LjZ6TTQ4MC41IDEyOEMzOTIgMTI4IDMzMi41IDE3OC4yIDMzMi41IDIzMS41YzAgNTMuMyA2MCA4MC41IDE0OCA4MC41IDg4IDAgMTQ4IDI3LjIgMTQ4IDgwLjVzLTYwIDEwMy41LTE0OCAxMDMuNUMzNjYuNSA0OTUgMzA3IDQ0NC44IDMwNyAzOTEuNWMwLTUzLjMgNjEtMTAzLjUgMTQ4LTEwMy41IDg4IDAgMTQ4LTUwLjIgMTQ4LTEwMy41UzM5MiAxMjggMjU2IDEyOHpNMjU2IDcxLjVjLTU5LjUgMC0xMDcuOCA0OC4zLTEwNy44IDEwNy44UzE5Ni41IDE4Ny4zIDI1NiAxODcuM1MzNjMuOCAxMzkuMyAzNjMuOCA4MC41IDI1NiA3MS41WiIvPjwvc3ZnPg==" alt="Threat Icon" style="width: 120px; margin-bottom: 20px;">
+            <h1 class="display-3 fw-bold text-white">Digital Threats</h1>
+            <p class="lead mx-auto" style="max-width: 700px;">Hacking is not magic; it is exploitation. Hackers rarely create complicated code from scratch; instead, they find weak points in technology or psychology and use automated tools to exploit them.</p>
+        </div>
+    </header>
+
     <div class="container my-5">
-        <h1 class="text-white text-center mb-5">Digital Threats</h1>
-        <div class="text-center mb-5" style="font-size: 100px;">⚠️</div>
+        <div class="threat-box">
+            <h3>Social Engineering & Phishing: The Human Vulnerability</h3>
+            <p><strong>What it is:</strong> Phishing is the art of digital trickery. Hackers know that the weakest link in any security system is not the software, but the human user. They createconvincing, fraudulent messages designed to create a sense of urgency, fear, or curiosity.</p>
+            <p><strong>Detailed Example:</strong> You might receive a message in your Discord or Instagram DM that looks exactly like it’s from the platform's support team. It might say, *"Suspicious login activity detected on your account. Click here to verify your identity, or your account will be deleted within 24 hours."* The link takes you to a fake login page (called a "mirror site") that looks identical to the real one. When you type your username and password, you aren't logging in; you are sending your credentials directly to the hacker, who now owns your account. They use this method because it requires almost no technical skill—only the ability to create a fake email and a fake website.</p>
+        </div>
         
         <div class="threat-box">
-            <h3>Phishing Scams</h3>
-            <p>Hackers send fake emails to trick you into giving away your password. Always check the sender's address!</p>
+            <h3>Malware and Ransomware: The Digital Hostage</h3>
+            <p><strong>What it is:</strong> Malware (Malicious Software) is a broad term for any code designed to harm your system. It includes viruses, spyware, and keyloggers. Keyloggers are particularly scary because they record every letter you type on your keyboard, including passwords and credit card numbers, and send them to the attacker in real-time.</p>
+            <p><strong>Detailed Example:</strong> You find a website offering a "free crack" or a "mod menu" for a popular game like GTA V or Minecraft. When you download and run the `.exe` file, it might seem like nothing happens, or the game mods work. But in the background, a type of malware called <strong>Ransomware</strong> is activating. It immediately begins encrypting all your important files (photos, homework documents, save files). Once complete, a window pops up demanding $500 in Bitcoin to get the "Private Key" to unlock them. Hackers love ransomware because it has a high payout and is very difficult to reverse without paying the ransom.</p>
         </div>
-        <div class="threat-box">
-            <h3>Malware</h3>
-            <p>Software designed to damage or gain unauthorized access to your computer. Never download files from untrusted sites.</p>
+        
+        <div class="text-center mt-5 mb-5 card-custom">
+            <h2 class="text-white">Threat Awareness is Step One</h2>
+            <p class="mx-auto" style="max-width: 600px; color: #8b949e;">Recognizing these threats is the beginning of your defense strategy. If you know how the trick is performed, you won’t fall for it. Check out the Solutions page to learn how to deploy technological countermeasures.</p>
         </div>
     </div>
 </body>
