@@ -4,201 +4,394 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEC-OPS | COMMAND CENTER</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
     <style>
+        /* ========================================================================
+        GLOBAL STYLING & ROOT VARIABLES
+        ========================================================================
+        */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
         
         :root {
-            --bg: #010409;
-            --card: #0d1117;
-            --accent: #2f81f7;
-            --border: #30363d;
-            --success: #3fb950;
-            --danger: #f85149;
-            --warning: #d29922;
-            --text-main: #c9d1d9;
-            --text-dim: #8b949e;
+            --bg-deep: #010409;
+            --bg-card: #0d1117;
+            --bg-nav: rgba(13, 17, 23, 0.95);
+            --accent-blue: #2f81f7;
+            --accent-glow: rgba(47, 129, 247, 0.4);
+            --border-main: #30363d;
+            --border-hover: #484f58;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --text-white: #ffffff;
+            --status-ok: #3fb950;
+            --status-alert: #d29922;
+            --status-critical: #f85149;
+            --transition-speed: 0.3s;
         }
 
-        /* GLOBAL STYLING & ANIMATIONS
-           Every element is optimized for a high-tech "Defense" aesthetic.
+        /* ========================================================================
+        CORE LAYOUT
+        ========================================================================
         */
         body {
-            background-color: var(--bg);
-            color: var(--text-main);
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             line-height: 1.8;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes scanline {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-        }
-
-        /* NAVIGATION ARCHITECTURE */
+        /* ========================================================================
+        NAVIGATION BAR (COMMAND BUTTON REMOVED)
+        ========================================================================
+        */
         .navbar {
-            background: rgba(13, 17, 23, 0.95);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border);
-            padding: 1.2rem 0;
-            z-index: 9999;
+            background: var(--bg-nav);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-main);
+            padding: 1.25rem 0;
+            z-index: 10000;
+            transition: all var(--transition-speed);
         }
 
         .navbar-brand {
             font-weight: 800;
-            letter-spacing: -1px;
-            font-size: 1.5rem;
-            color: #fff !important;
+            letter-spacing: -1.5px;
+            font-size: 1.6rem;
+            color: var(--text-white) !important;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .navbar-brand::before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            background: var(--accent-blue);
+            border-radius: 2px;
+            display: inline-block;
         }
 
         .nav-link {
-            color: var(--text-dim) !important;
-            font-size: 0.75rem;
+            color: var(--text-secondary) !important;
+            font-size: 0.78rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin: 0 15px;
-            transition: all 0.3s ease;
+            letter-spacing: 1.8px;
+            margin: 0 18px;
+            position: relative;
+            transition: color var(--transition-speed);
         }
 
         .nav-link:hover {
-            color: var(--accent) !important;
-            text-shadow: 0 0 10px rgba(47, 129, 247, 0.5);
+            color: var(--accent-blue) !important;
         }
 
-        /* HERO SECTION */
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-blue);
+            transition: width var(--transition-speed);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* ========================================================================
+        HERO SECTION ARCHITECTURE
+        ========================================================================
+        */
         .hero-header {
-            padding: 220px 0 100px;
-            background: radial-gradient(circle at 50% 0%, #161b22 0%, #010409 70%);
+            padding: 240px 0 120px;
+            background: radial-gradient(circle at 50% 0%, #161b22 0%, #010409 80%);
             position: relative;
-            animation: fadeIn 1s ease-out;
         }
 
-        .main-title {
-            font-size: 5rem;
-            font-weight: 800;
-            letter-spacing: -4px;
-            line-height: 0.9;
-            color: #fff;
-            margin-bottom: 30px;
+        .hero-header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+            opacity: 0.3;
         }
 
-        .glitch-text {
-            color: var(--accent);
+        .glitch-tag {
+            color: var(--accent-blue);
             font-family: 'JetBrains Mono';
-            font-size: 1rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 5px;
+            letter-spacing: 6px;
             display: block;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
+            font-weight: 700;
         }
 
-        /* CONSOLE BOX UI */
-        .terminal-window {
+        .hero-title {
+            font-size: 5.5rem;
+            font-weight: 800;
+            letter-spacing: -5px;
+            line-height: 0.85;
+            color: var(--text-white);
+            margin-bottom: 40px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+        }
+
+        .hero-description {
+            max-width: 600px;
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            margin-bottom: 50px;
+        }
+
+        /* ========================================================================
+        TERMINAL EMULATOR UI
+        ========================================================================
+        */
+        .terminal-container {
             background: #000;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 25px;
+            border: 1px solid var(--border-main);
+            border-radius: 12px;
+            padding: 30px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+            font-size: 0.82rem;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8), 0 0 0 1px var(--border-main);
             position: relative;
             overflow: hidden;
         }
 
-        .terminal-window::before {
+        .terminal-container::before {
             content: "";
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            background-size: 100% 2px, 3px 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1) 1px, transparent 1px, transparent 2px);
             pointer-events: none;
         }
 
-        .terminal-header {
+        .window-controls {
             display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 25px;
         }
 
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
-        .dot-red { background: var(--danger); }
-        .dot-yellow { background: var(--warning); }
-        .dot-green { background: var(--success); }
+        .control-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: var(--status-critical); }
+        .yellow { background: var(--status-alert); }
+        .green { background: var(--status-ok); }
 
-        /* BUTTONS */
-        .btn-primary-custom {
-            background: var(--accent);
-            color: #fff;
-            text-decoration: none;
-            padding: 18px 35px;
+        .terminal-line { margin-bottom: 8px; display: block; }
+        .terminal-ts { color: var(--text-secondary); margin-right: 12px; }
+        .terminal-success { color: var(--status-ok); }
+        .terminal-error { color: var(--status-critical); }
+        .terminal-warn { color: var(--status-alert); }
+        .terminal-info { color: var(--accent-blue); }
+
+        /* ========================================================================
+        BUTTON DESIGN SYSTEM (FUNCTIONAL LINKS)
+        ========================================================================
+        */
+        .btn-sec-ops {
+            padding: 18px 40px;
             border-radius: 8px;
             font-weight: 800;
-            transition: 0.3s;
-            display: inline-block;
-            border: 1px solid transparent;
-        }
-
-        .btn-outline-custom {
-            border: 1px solid var(--border);
-            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all var(--transition-speed);
             text-decoration: none;
-            padding: 18px 35px;
-            border-radius: 8px;
-            font-weight: 800;
-            transition: 0.3s;
             display: inline-block;
+            font-size: 0.9rem;
         }
 
-        .btn-primary-custom:hover { background: #1f6feb; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(47, 129, 247, 0.3); }
-        .btn-outline-custom:hover { background: #161b22; transform: translateY(-3px); }
+        .btn-primary-filled {
+            background: var(--accent-blue);
+            color: var(--text-white);
+            border: 1px solid var(--accent-blue);
+        }
 
-        /* DATA GRID */
-        .stats-grid { padding: 100px 0; background: #010409; }
+        .btn-primary-filled:hover {
+            background: #1a6edb;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px var(--accent-glow);
+            color: var(--text-white);
+        }
+
+        .btn-secondary-outline {
+            background: transparent;
+            color: var(--text-white);
+            border: 1px solid var(--border-main);
+            margin-left: 15px;
+        }
+
+        .btn-secondary-outline:hover {
+            background: var(--bg-card);
+            border-color: var(--text-secondary);
+            transform: translateY(-4px);
+            color: var(--text-white);
+        }
+
+        /* ========================================================================
+        STATISTICS GRID
+        ========================================================================
+        */
+        .stats-section { padding: 120px 0; background: var(--bg-deep); }
         .stat-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            padding: 40px;
-            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-main);
+            padding: 45px;
+            border-radius: 16px;
             height: 100%;
-            transition: 0.3s;
-        }
-
-        .stat-card:hover { border-color: var(--accent); background: #161b22; }
-
-        /* DATA TABLE */
-        .data-table-container {
-            margin-top: 80px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
+            transition: border var(--transition-speed), transform var(--transition-speed);
+            position: relative;
             overflow: hidden;
         }
 
-        .table { color: var(--text-main); margin-bottom: 0; border-color: var(--border); }
-        .table thead { background: #161b22; font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--accent); }
-        .table td, .table th { padding: 20px; border-bottom: 1px solid var(--border); }
-
-        /* FOOTER ARCHITECTURE */
-        footer {
-            padding: 120px 0 60px;
-            border-top: 1px solid var(--border);
-            background: #0d1117;
+        .stat-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-8px);
         }
 
-        .footer-brand { font-weight: 800; color: #fff; font-size: 1.5rem; display: block; margin-bottom: 20px; }
-        .footer-link { color: var(--text-dim); text-decoration: none; display: block; margin-bottom: 10px; font-size: 0.9rem; }
-        .footer-link:hover { color: var(--accent); }
+        .stat-card::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--accent-blue);
+            opacity: 0;
+            transition: opacity var(--transition-speed);
+        }
+
+        .stat-card:hover::after { opacity: 1; }
+
+        .stat-value {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--text-white);
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        .stat-label {
+            font-family: 'JetBrains Mono';
+            color: var(--accent-blue);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* ========================================================================
+        DATA TABLE ARCHITECTURE
+        ========================================================================
+        */
+        .table-wrapper {
+            margin-top: 100px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-main);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            color: var(--text-primary);
+        }
+
+        .custom-table th {
+            background: #161b22;
+            padding: 22px;
+            text-align: left;
+            font-family: 'JetBrains Mono';
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-main);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .custom-table td {
+            padding: 22px;
+            border-bottom: 1px solid var(--border-main);
+            font-size: 0.9rem;
+        }
+
+        .custom-table tr:last-child td { border-bottom: none; }
+        .custom-table tr:hover { background: rgba(255,255,255,0.02); }
+
+        /* ========================================================================
+        FOOTER ARCHITECTURE
+        ========================================================================
+        */
+        footer {
+            padding: 140px 0 60px;
+            border-top: 1px solid var(--border-main);
+            background: var(--bg-card);
+        }
+
+        .footer-logo {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--text-white);
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .footer-heading {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--text-white);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            transition: color var(--transition-speed);
+        }
+
+        .footer-link:hover {
+            color: var(--accent-blue);
+        }
+
+        .system-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(63, 185, 80, 0.1);
+            border: 1px solid var(--status-ok);
+            padding: 8px 16px;
+            border-radius: 50px;
+            color: var(--status-ok);
+            font-weight: 700;
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono';
+        }
     </style>
 </head>
 <body>
@@ -206,135 +399,168 @@
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">SEC-OPS</a>
-            <div class="navbar-nav ms-auto flex-row">
-                <a class="nav-link" href="threats.html">Intelligence</a>
-                <a class="nav-link" href="science.html">Cryptography</a>
-                <a class="nav-link" href="solutions.html">Protocols</a>
-                <a class="nav-link" href="impact.html">Assessment</a>
-                <a class="nav-link" href="feedback.html">Feedback</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#secOpsNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="secOpsNav">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link" href="threats.html">Intelligence</a>
+                    <a class="nav-link" href="science.html">Cryptography</a>
+                    <a class="nav-link" href="solutions.html">Protocols</a>
+                    <a class="nav-link" href="impact.html">Assessment</a>
+                    <a class="nav-link" href="feedback.html">Feedback</a>
+                </div>
             </div>
         </div>
     </nav>
-
     <header class="hero-header">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-7">
-                    <span class="glitch-text">Security Protocol 4.0</span>
-                    <h1 class="main-title">Global Threat<br>Containment</h1>
-                    <p class="lead text-secondary fs-4 mb-5">Deploying autonomous defense layers to neutralize next-generation ransomware and agentic encryption vectors across decentralized network meshes.</p>
-                    <div class="d-flex gap-3">
-                        <a href="solutions.html" class="btn-primary-custom">INITIALIZE DEFENSE</a>
-                        <a href="threats.html" class="btn-outline-custom">VIEW ARCHIVE</a>
+                <div class="col-lg-7 animate__animated animate__fadeInLeft">
+                    <span class="glitch-tag">Operational Status: Active</span>
+                    <h1 class="hero-title">Global Threat<br>Containment</h1>
+                    <p class="hero-description lead">
+                        Architecting decentralized defense infrastructures to neutralize hyper-velocity ransomware agents and sovereign cyber-threats in real-time.
+                    </p>
+                    <div class="hero-actions mt-5">
+                        <a href="solutions.html" class="btn-sec-ops btn-primary-filled">Initialize Defense</a>
+                        <a href="threats.html" class="btn-sec-ops btn-secondary-outline">View Threat Archive</a>
                     </div>
                 </div>
-                <div class="col-lg-5">
-                    <div class="terminal-window">
-                        <div class="terminal-header">
-                            <div class="dot dot-red"></div>
-                            <div class="dot dot-yellow"></div>
-                            <div class="dot dot-green"></div>
+                
+                <div class="col-lg-5 mt-5 mt-lg-0 animate__animated animate__fadeInRight">
+                    <div class="terminal-container">
+                        <div class="window-controls">
+                            <div class="control-dot red"></div>
+                            <div class="control-dot yellow"></div>
+                            <div class="control-dot green"></div>
                         </div>
-                        <div class="text-secondary">[0.421] Establishing handshake...</div>
-                        <div class="text-secondary">[0.552] Loading cryptographic modules...</div>
-                        <div class="text-secondary">[0.710] Authenticating system_admin...</div>
-                        <div class="text-success">[0.882] Secure socket active.</div>
-                        <div class="text-info">[1.204] Fetching global_threat_v2.db</div>
-                        <div class="text-warning">[1.559] Alert: Unusual traffic in US-EAST-2</div>
-                        <div class="text-danger">[1.902] Rapid encryption attempt detected!</div>
-                        <div class="text-danger">[1.905] Isolating compromised node SO-ALPHA-01...</div>
-                        <div class="text-success">[2.110] Threat neutralized via Agentic Lockdown.</div>
-                        <div class="text-white mt-4 fw-bold">> SYSTEM READY _</div>
+                        <div class="terminal-content">
+                            <span class="terminal-line"><span class="terminal-ts">[14:02:11]</span> <span class="terminal-info">SEC-OPS Boot Sequence 4.0...</span></span>
+                            <span class="terminal-line"><span class="terminal-ts">[14:02:12]</span> <span class="terminal-info">Mounting encrypted node-mesh...</span></span>
+                            <span class="terminal-line"><span class="terminal-ts">[14:02:14]</span> <span class="terminal-success">Connection established (SO-ALPHA-01)</span></span>
+                            <span class="terminal-line"><span class="terminal-ts">[14:02:15]</span> <span class="terminal-info">Loading cryptographic libraries...</span></span>
+                            <span class="terminal-line"><span class="terminal-ts">[14:02:18]</span> <span class="terminal-warn">Handshake warning: High entropy detected.</span></span>
+                            <span class="terminal-line"><span class="terminal-ts">[14:02:19]</span> <span class="terminal-info">Scanning local VPC subnets...</span></span>
+                            <span class="terminal-line"><span class="terminal-ts">[14:02:22]</span> <span class="terminal-error">Alert: Unauthorized encryption attempt.</span></span>
+                            <span class="terminal-line"><span class="terminal-ts">[14:02:23]</span> <span class="terminal-error">Isolating target node 0x882...</span></span>
+                            <span class="terminal-line"><span class="terminal-ts">[14:02:25]</span> <span class="terminal-success">Threat neutralized. Protocol: 0-TRUST.</span></span>
+                            <span class="terminal-line"><span class="terminal-ts">[14:02:26]</span> <span class="terminal-info">Logs uploaded to archive. Ready for input.</span></span>
+                            <span class="terminal-line mt-3 text-white fw-bold">> SYSTEM_READY_</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </header>
-
-    <section class="stats-grid">
+    <section class="stats-section">
         <div class="container">
-            <div class="row g-4">
+            <div class="row g-4 mb-5">
                 <div class="col-md-4">
                     <div class="stat-card">
-                        <div class="text-accent small fw-bold mb-2" style="color: var(--accent); font-family: 'JetBrains Mono';">DAILY_BLOCKS</div>
-                        <div class="display-4 fw-bold text-white mb-2">14,802</div>
-                        <p class="text-secondary small">Unauthorized encryption attempts identified and blocked in the current 24-hour cycle by autonomous defense agents.</p>
+                        <span class="stat-label">DAILY_ATTACKS_BLOCKED</span>
+                        <div class="stat-value">14,802</div>
+                        <p class="text-secondary small mt-3">Advanced Persistent Threats (APTs) successfully identified and neutralized across the global node network in the last 24-hour cycle.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="stat-card">
-                        <div class="text-accent small fw-bold mb-2" style="color: var(--accent); font-family: 'JetBrains Mono';">AVG_RESPONSE</div>
-                        <div class="display-4 fw-bold text-white mb-2">0.42s</div>
-                        <p class="text-secondary small">Average time elapsed from threat identification to full node isolation across the global decentralized mesh network.</p>
+                        <span class="stat-label">MEAN_RESPONSE_TIME</span>
+                        <div class="stat-value">0.42s</div>
+                        <p class="text-secondary small mt-3">The average time from initial threat detection to complete node isolation using autonomous heuristic agents.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="stat-card">
-                        <div class="text-accent small fw-bold mb-2" style="color: var(--accent); font-family: 'JetBrains Mono';">ACTIVE_NODES</div>
-                        <div class="display-4 fw-bold text-white mb-2">912</div>
-                        <p class="text-secondary small">Secure command units currently operational and monitoring perimeter health in high-risk zones across 14 countries.</p>
+                        <span class="stat-label">OPERATIONAL_NODES</span>
+                        <div class="stat-value">912</div>
+                        <p class="text-secondary small mt-3">Encrypted command and control units actively monitoring critical infrastructure in 48 sovereign territories.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="data-table-container">
-                <table class="table">
+            <div class="table-wrapper animate__animated animate__fadeInUp">
+                <table class="custom-table">
                     <thead>
                         <tr>
-                            <th>NODE_ID</th>
-                            <th>LOCATION</th>
-                            <th>STATUS</th>
-                            <th>LATENCY</th>
-                            <th>UPTIME</th>
+                            <th>NODE_IDENTIFIER</th>
+                            <th>GEOGRAPHIC_ZONE</th>
+                            <th>HEALTH_STATUS</th>
+                            <th>NET_LATENCY</th>
+                            <th>RECOVERY_INDEX</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>SO-ALPHA-01</td><td>Frankfurt, DE</td><td><span class="text-success">● OPERATIONAL</span></td><td>12ms</td><td>99.98%</td></tr>
-                        <tr><td>SO-BETA-09</td><td>Singapore, SG</td><td><span class="text-success">● OPERATIONAL</span></td><td>44ms</td><td>99.92%</td></tr>
-                        <tr><td>SO-GAMMA-42</td><td>New York, US</td><td><span class="text-warning">● HIGH LOAD</span></td><td>18ms</td><td>98.50%</td></tr>
-                        <tr><td>SO-DELTA-11</td><td>Tokyo, JP</td><td><span class="text-success">● OPERATIONAL</span></td><td>31ms</td><td>100.0%</td></tr>
-                        <tr><td>SO-EPSILON-05</td><td>London, UK</td><td><span class="text-success">● OPERATIONAL</span></td><td>08ms</td><td>99.99%</td></tr>
-                        <tr><td>SO-ZETA-88</td><td>Sydney, AU</td><td><span class="text-danger">● UNDER ATTACK</span></td><td>112ms</td><td>94.20%</td></tr>
-                        <tr><td>SO-ETA-22</td><td>Mumbai, IN</td><td><span class="text-success">● OPERATIONAL</span></td><td>38ms</td><td>99.91%</td></tr>
-                        <tr><td>SO-THETA-04</td><td>Sao Paulo, BR</td><td><span class="text-success">● OPERATIONAL</span></td><td>56ms</td><td>99.88%</td></tr>
+                        <tr><td>SO-ALPHA-01</td><td>Frankfurt, DE</td><td><span class="text-success fw-bold">OPERATIONAL</span></td><td>12ms</td><td>99.98%</td></tr>
+                        <tr><td>SO-BETA-09</td><td>Singapore, SG</td><td><span class="text-success fw-bold">OPERATIONAL</span></td><td>44ms</td><td>99.92%</td></tr>
+                        <tr><td>SO-GAMMA-42</td><td>New York, US</td><td><span class="text-warning fw-bold">HIGH LOAD</span></td><td>18ms</td><td>98.50%</td></tr>
+                        <tr><td>SO-DELTA-11</td><td>Tokyo, JP</td><td><span class="text-success fw-bold">OPERATIONAL</span></td><td>31ms</td><td>100.0%</td></tr>
+                        <tr><td>SO-EPSILON-05</td><td>London, UK</td><td><span class="text-success fw-bold">OPERATIONAL</span></td><td>08ms</td><td>99.99%</td></tr>
+                        <tr><td>SO-ZETA-88</td><td>Sydney, AU</td><td><span class="text-danger fw-bold">UNDER ATTACK</span></td><td>112ms</td><td>94.20%</td></tr>
+                        <tr><td>SO-THETA-04</td><td>Sao Paulo, BR</td><td><span class="text-success fw-bold">OPERATIONAL</span></td><td>56ms</td><td>99.88%</td></tr>
+                        <tr><td>SO-KAPPA-19</td><td>Toronto, CA</td><td><span class="text-success fw-bold">OPERATIONAL</span></td><td>22ms</td><td>99.95%</td></tr>
+                        <tr><td>SO-IOTA-07</td><td>Paris, FR</td><td><span class="text-success fw-bold">OPERATIONAL</span></td><td>14ms</td><td>99.97%</td></tr>
+                        <tr><td>SO-SIGMA-66</td><td>Seoul, KR</td><td><span class="text-success fw-bold">OPERATIONAL</span></td><td>29ms</td><td>100.0%</td></tr>
+                        <tr><td>SO-OMEGA-99</td><td>Global Core</td><td><span class="text-info fw-bold">ENCRYPTING</span></td><td>01ms</td><td>100.0%</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </section>
-
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
-                    <span class="footer-brand">SEC-OPS</span>
-                    <p class="text-secondary pe-lg-5">SEC-OPS is the global standard in proactive digital defense. We monitor the perimeter so you don't have to. Built on zero-trust architecture.</p>
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <span class="footer-logo">SEC-OPS</span>
+                    <p class="text-secondary pe-lg-5 mb-4">
+                        The global standard in proactive digital defense. We architect the walls that protect sovereign data from autonomous threats. Built by experts, for a post-quantum world.
+                    </p>
+                    <div class="system-status-pill">
+                        <span class="dot green"></span>
+                        SYSTEMS STATUS: NOMINAL
+                    </div>
                 </div>
-                <div class="col-lg-2">
-                    <h6 class="text-white fw-bold mb-4">RESOURCES</h6>
+                
+                <div class="col-lg-2 col-md-4">
+                    <h6 class="footer-heading">Architecture</h6>
                     <a href="threats.html" class="footer-link">Threat Intel</a>
-                    <a href="science.html" class="footer-link">Crypto-Lab</a>
-                    <a href="solutions.html" class="footer-link">Protocol Docs</a>
+                    <a href="science.html" class="footer-link">Cryptography</a>
+                    <a href="solutions.html" class="footer-link">Protocols</a>
+                    <a href="impact.html" class="footer-link">Assessment</a>
                 </div>
-                <div class="col-lg-2">
-                    <h6 class="text-white fw-bold mb-4">COMPANY</h6>
-                    <a href="#" class="footer-link">About Us</a>
-                    <a href="#" class="footer-link">Team</a>
-                    <a href="#" class="footer-link">Contact</a>
+
+                <div class="col-lg-2 col-md-4">
+                    <h6 class="footer-heading">Company</h6>
+                    <a href="#" class="footer-link">Legal Archive</a>
+                    <a href="#" class="footer-link">Node Registry</a>
+                    <a href="#" class="footer-link">Team Dossier</a>
+                    <a href="#" class="footer-link">Whitepaper</a>
                 </div>
-                <div class="col-lg-4 text-lg-end">
-                    <h6 class="text-white fw-bold mb-4">SYSTEM STATUS</h6>
-                    <div class="d-flex justify-content-lg-end gap-2 align-items-center">
-                        <span class="dot dot-green"></span>
-                        <span class="text-success fw-bold small">ALL SYSTEMS NOMINAL</span>
+
+                <div class="col-lg-4 col-md-4">
+                    <h6 class="footer-heading">Encryption Key</h6>
+                    <p class="text-secondary small font-monospace">
+                        PGP Fingerprint: <br>
+                        88F2 B1A1 0029 FFC1 9922<br>
+                        A221 0042 F851 4930 363D
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-5 pt-5 border-top border-secondary opacity-25">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="small text-secondary">© 2026 SEC-OPS GLOBAL SYSTEMS INC. ALL RIGHTS RESERVED.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <p class="small text-secondary font-monospace">PROTOCOL: DEFENSE-SPEC-V4</p>
                     </div>
                 </div>
             </div>
-            <div class="mt-5 pt-5 border-top border-secondary opacity-25">
-                <p class="small text-secondary">© 2026 SEC-OPS GLOBAL SYSTEMS INC. LICENSED UNDER DEFENSE-SPEC 4.0. ALL RIGHTS RESERVED.</p>
-            </div>
         </div>
     </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
