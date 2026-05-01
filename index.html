@@ -3,41 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEC-OPS | Digital Safety Hub</title>
+    <title>SEC-OPS | Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; }
-        .hero { padding: 100px 0; text-align: center; background: #161b22; border-bottom: 1px solid #30363d; }
-        .btn-main { background-color: #238636; color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block; }
-        .info-card { background: #161b22; padding: 30px; border-radius: 12px; border: 1px solid #30363d; margin-top: 40px; }
+        .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; padding: 1rem; }
+        .nav-link { color: #8b949e !important; font-weight: 500; }
+        .nav-link:hover, .active { color: #58a6ff !important; }
+        .hero { padding: 100px 0; text-align: center; background: radial-gradient(circle at top, #1c2128, #0d1117); }
+        .info-card { background: #161b22; padding: 40px; border-radius: 15px; border: 1px solid #30363d; height: 100%; }
+        footer { padding: 40px; border-top: 1px solid #30363d; text-align: center; color: #8b949e; margin-top: 50px; }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark p-3">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">SEC-OPS</a>
-            <div class="navbar-nav d-flex flex-row gap-3">
-                <a class="nav-link text-white" href="threats.html">Threats</a>
-                <a class="nav-link text-white" href="science.html">Science</a>
-                <a class="nav-link text-white" href="solutions.html">Solutions</a>
-                <a class="nav-link text-white" href="feedback.html">Feedback</a>
+            <div class="navbar-nav ms-auto d-flex flex-row gap-3">
+                <a class="nav-link active" href="index.html">Home</a>
+                <a class="nav-link" href="threats.html">Threats</a>
+                <a class="nav-link" href="science.html">Science</a>
+                <a class="nav-link" href="solutions.html">Solutions</a>
+                <a class="nav-link" href="impact.html">Impact</a>
+                <a class="nav-link" href="feedback.html">Feedback</a>
             </div>
         </div>
     </nav>
 
     <header class="hero">
         <div class="container">
-            <h1 class="display-3 fw-bold text-white">Cybersecurity Made Simple.</h1>
-            <p class="lead mt-3">The internet is a big place, and it isn't always safe. <br> <strong>SEC-OPS</strong> helps you understand how to protect your data and stay safe online.</p>
-            <a href="threats.html" class="btn-main mt-4">Start Learning</a>
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/17046998120636285765_0" alt="Cybersecurity" style="max-width: 400px; margin-bottom: 20px;">
+            <h1 class="display-3 fw-bold text-white">Digital Safety for Everyone.</h1>
+            <p class="lead mx-auto" style="max-width: 700px;">We take the scary, complicated parts of the internet and explain them in a way that makes sense. Learn how to protect your passwords, your photos, and your privacy.</p>
         </div>
     </header>
 
-    <section class="container my-5">
-        <div class="info-card text-center">
-            <h3>Why does this site exist?</h3>
-            <p>Hackers use complicated tricks to steal passwords and money. Most people don't understand how it works because the explanations are too difficult. We created this hub to break down tech safety into simple steps that anyone can follow.</p>
+    <div class="container my-5">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="info-card">
+                    <h3>Why SEC-OPS?</h3>
+                    <p>Most websites about hacking use words that are too hard to understand. SEC-OPS was built for students and regular people. We believe that if you understand how a lock works, you'll be much better at keeping your own "Digital House" safe.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info-card">
+                    <h3>What You'll Find Here</h3>
+                    <p>On this site, we show you the most common ways hackers try to trick you, the science of how secret codes keep your data private, and simple solutions you can use today to make your phone and computer un-hackable.</p>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
+
+    <footer>&copy; 2026 SEC-OPS Project | 9th Grade Cybersecurity Initiative</footer>
 </body>
 </html>
