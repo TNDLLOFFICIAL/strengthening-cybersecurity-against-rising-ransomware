@@ -12,8 +12,6 @@
         .form-card { max-width: 600px; margin: 40px auto; background: #161b22; padding: 30px; border-radius: 15px; border: 1px solid #30363d; }
         .form-control, .form-select { background-color: #010409 !important; border: 1px solid #30363d !important; color: white !important; }
         .version-tag { position: fixed; bottom: 10px; right: 15px; background: rgba(22,27,34,0.9); color: #8b949e; padding: 4px 10px; border-radius: 5px; font-size: 11px; font-family: monospace; border: 1px solid #30363d; z-index: 10000; pointer-events: none; }
-        
-        /* Modal Style */
         #verify-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 20000; align-items: center; justify-content: center; }
         .modal-box { background: #1c2128; padding: 40px; border-radius: 15px; border: 2px solid #58a6ff; max-width: 420px; text-align: center; }
         .btn-verify { background: #238636; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; margin-top: 15px; font-weight: bold; }
@@ -35,98 +33,72 @@
             </div>
         </div>
     </nav>
-
     <div class="container">
         <div class="form-card">
             <div id="form-view">
-                <h2 class="text-white mb-3">Project Feedback</h2>
+                <h2 class="text-white mb-3">Feedback</h2>
                 <form id="feedbackForm" oninput="checkLock()">
-                    <label class="form-label">Name</label>
-                    <input type="text" id="name-field" name="name" class="form-control mb-3" required>
-                    
-                    <label class="form-label">Role</label>
-                    <select id="role-field" name="user_type" class="form-select mb-3" required>
-                        <option value="" disabled selected>-- Select --</option>
+                    <input type="text" id="n-f" name="name" class="form-control mb-3" placeholder="Name" required>
+                    <select id="r-f" name="user_type" class="form-select mb-3" required>
+                        <option value="" disabled selected>Select Role</option>
                         <option value="Student">Student</option>
                         <option value="Teacher">Teacher</option>
                     </select>
-
-                    <label class="form-label">Message</label>
-                    <textarea id="msg-field" name="message" class="form-control mb-4" rows="4" required></textarea>
-
-                    <button type="button" id="submit-btn" class="btn btn-primary w-100 py-3 fw-bold" onclick="startCaptcha()" disabled>COMPLETE ALL FIELDS</button>
+                    <textarea id="m-f" name="message" class="form-control mb-4" rows="4" placeholder="Message" required></textarea>
+                    <button type="button" id="s-b" class="btn btn-primary w-100 py-3 fw-bold" onclick="startCap()" disabled>FILL ALL FIELDS</button>
                 </form>
             </div>
             <div id="success-view">
-                <h2 style="color: #3fb950;">✔ Sent!</h2>
-                <p>Identity verified. Data transmitted.</p>
+                <h2 style="color: #3fb950;">✔ Sent</h2>
                 <a href="index.html" class="btn btn-outline-primary mt-3">Home</a>
             </div>
         </div>
     </div>
-
     <div id="verify-modal">
         <div class="modal-box">
-            <span class="instr-text" id="c-instr"></span>
-            <h2 id="c-display" class="mb-4 text-white"></h2>
-            <input type="text" id="c-input" class="form-control text-center fs-4" placeholder="Answer...">
-            <button class="btn-verify" onclick="checkCaptcha()">Verify Identity</button>
+            <span class="instr-text" id="ci"></span>
+            <h2 id="cd" class="mb-4 text-white"></h2>
+            <input type="text" id="ca" class="form-control text-center fs-4">
+            <button class="btn-verify" onclick="checkCap()">Verify</button>
         </div>
     </div>
-
-    <div class="version-tag">SEC-OPS: v3.8.1.6</div>
-
+    <div class="version-tag">v3.8.2.1</div>
     <script>
-        let correct = "";
+        let sol = "";
         function checkLock() {
-            const n = document.getElementById('name-field').value;
-            const r = document.getElementById('role-field').value;
-            const m = document.getElementById('msg-field').value;
-            const b = document.getElementById('submit-btn');
-            if(n && r && m) { b.disabled = false; b.innerText = "SUBMIT AND VERIFY"; }
-            else { b.disabled = true; b.innerText = "COMPLETE ALL FIELDS"; }
+            const n = document.getElementById('n-f').value;
+            const r = document.getElementById('r-f').value;
+            const m = document.getElementById('m-f').value;
+            const b = document.getElementById('s-b');
+            if(n && r && m) { b.disabled = false; b.innerText = "VERIFY IDENTITY"; }
+            else { b.disabled = true; b.innerText = "FILL ALL FIELDS"; }
         }
-
-        function startCaptcha() {
-            const display = document.getElementById('c-display');
-            const instr = document.getElementById('c-instr');
-            const input = document.getElementById('c-input');
-            input.value = ""; display.style.color = "white";
-            const mode = Math.floor(Math.random() * 4);
-
-            if(mode === 0) { // Math
-                const n1 = Math.floor(Math.random() * 50); const n2 = Math.floor(Math.random() * 20);
-                instr.innerText = "Instruction: Solve this math";
-                display.innerText = n1 + " + " + n2; correct = (n1+n2).toString();
-            } else if(mode === 1) { // Color
-                const colors = ["Red", "Blue", "Green", "Yellow", "Purple"];
-                const visual = colors[Math.floor(Math.random()*5)];
-                instr.innerText = "Instruction: Type the color you SEE";
-                display.innerText = "WORD"; display.style.color = visual.toLowerCase();
-                correct = visual;
-            } else if(mode === 2) { // Logic
-                const chars = "AAAAA?AAAA"; instr.innerText = "Instruction: Type the symbol";
-                display.innerText = chars; correct = "?";
-            } else { // Case
-                const word = "CyberSecurity"; instr.innerText = "Instruction: Match Case Exactly";
-                display.innerText = word; correct = word;
+        function startCap() {
+            const d = document.getElementById('cd'); const i = document.getElementById('ci'); const a = document.getElementById('ca');
+            a.value = ""; d.style.color = "white"; const mode = Math.floor(Math.random() * 4);
+            if(mode === 0) { 
+                const n1 = Math.floor(Math.random()*50); const n2 = Math.floor(Math.random()*20);
+                i.innerText = "Solve Math"; d.innerText = n1 + " + " + n2; sol = (n1+n2).toString();
+            } else if(mode === 1) {
+                const cols = ["Red", "Blue", "Green", "Yellow"]; const v = cols[Math.floor(Math.random()*4)];
+                i.innerText = "Type Color You See"; d.innerText = "TEXT"; d.style.color = v.toLowerCase(); sol = v;
+            } else if(mode === 2) {
+                i.innerText = "Type Symbol"; d.innerText = "XXXX?XXXX"; sol = "?";
+            } else {
+                i.innerText = "Match Case"; d.innerText = "SecureNet"; sol = "SecureNet";
             }
             document.getElementById('verify-modal').style.display = 'flex';
         }
-
-        async function checkCaptcha() {
-            const val = document.getElementById('c-input').value.trim();
-            if(val.toLowerCase() === correct.toLowerCase()) {
-                if(document.getElementById('c-instr').innerText.includes("Match Case") && val !== correct) {
-                    alert("Wrong case! Try again."); return;
-                }
+        async function checkCap() {
+            const v = document.getElementById('ca').value.trim();
+            if(v.toLowerCase() === sol.toLowerCase()) {
+                if(document.getElementById('ci').innerText.includes("Match Case") && v !== sol) { alert("Wrong case"); return; }
                 document.getElementById('verify-modal').style.display = 'none';
-                // Formspree Send
                 const data = new FormData(document.getElementById('feedbackForm'));
                 await fetch("https://formspree.io/f/mrejgobo", { method: 'POST', body: data, headers: {'Accept': 'application/json'}});
                 document.getElementById('form-view').style.display = 'none';
                 document.getElementById('success-view').style.display = 'block';
-            } else { alert("Failed. Try again."); startCaptcha(); }
+            } else { alert("Retry"); startCap(); }
         }
     </script>
 </body>
