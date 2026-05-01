@@ -2,178 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEC-OPS | DEFENSE PROTOCOLS</title>
+    <title>Solutions | SEC-OPS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* ========================================================================
-        DYNAMIC LAYOUT ENGINE
-        ========================================================================
-        */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
-        
-        :root {
-            --bg: #010409;
-            --card-surface: #0d1117;
-            --accent-green: #3fb950;
-            --border-muted: #30363d;
-            --text-main: #c9d1d9;
-            --text-white: #ffffff;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            padding-top: 150px;
-        }
-
-        /* CLEAN NAVBAR */
-        .navbar { background: rgba(13,17,23,0.96); border-bottom: 1px solid var(--border-muted); padding: 1.25rem 0; }
-        .navbar-brand { font-weight: 800; font-size: 1.5rem; color: #fff !important; }
-        .nav-link { color: #8b949e !important; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin: 0 15px; }
-        .nav-link:hover { color: var(--accent-green) !important; }
-
-        .header-content h1 { font-size: 4rem; font-weight: 900; color: #fff; margin-bottom: 50px; }
-
-        /* PROTOCOL BOXES */
-        .protocol-box {
-            background: var(--card-surface);
-            border: 1px solid var(--border-muted);
-            border-radius: 12px;
-            margin-bottom: 50px;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .protocol-box:hover { border-color: var(--accent-green); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-
-        .protocol-header {
-            background: rgba(63, 185, 80, 0.1);
-            padding: 25px 40px;
-            border-bottom: 1px solid var(--border-muted);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .protocol-tag { font-family: 'JetBrains Mono'; color: var(--accent-green); font-weight: 700; font-size: 0.8rem; }
-        .protocol-body { padding: 50px; }
-        .protocol-title { font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 30px; }
-
-        /* MULTI-STEP PROCESS */
-        .step-container { margin-top: 40px; border-left: 2px solid var(--border-muted); padding-left: 30px; }
-        .step-block { margin-bottom: 40px; position: relative; }
-        .step-block::before {
-            content: ""; position: absolute; left: -36px; top: 0; width: 10px; height: 10px; 
-            background: var(--accent-green); border-radius: 50%;
-        }
-
-        .step-title { font-weight: 800; color: #fff; margin-bottom: 10px; font-size: 1.1rem; }
-        .step-text { font-size: 0.95rem; color: #8b949e; }
-
-        .tech-specification {
-            background: #000;
-            padding: 30px;
-            border-radius: 8px;
-            margin-top: 30px;
-            font-family: 'JetBrains Mono';
-            font-size: 0.85rem;
-            color: #58a6ff;
-        }
-
-        footer { padding: 100px 0; border-top: 1px solid var(--border-muted); text-align: center; font-size: 0.8rem; opacity: 0.6; }
+        body { background-color: #0d1117; color: #c9d1d9; padding-top: 60px; }
+        .step-card { background: #161b22; padding: 30px; border-radius: 12px; margin-bottom: 20px; }
     </style>
 </head>
 <body>
-
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">SEC-OPS</a>
-            <div class="navbar-nav ms-auto flex-row">
-                <a class="nav-link" href="threats.html">Intelligence</a>
-                <a class="nav-link" href="science.html">Cryptography</a>
-                <a class="nav-link active" href="solutions.html">Protocols</a>
-                <a class="nav-link" href="impact.html">Assessment</a>
-                <a class="nav-link" href="feedback.html">Feedback</a>
-            </div>
-        </div>
-    </nav>
-
     <div class="container">
-        <header class="header-content">
-            <h1 class="animate__animated animate__fadeInDown">Defense Blueprints</h1>
-            <p class="lead text-secondary w-75">Operational execution layers designed to mitigate autonomous ransomware propagation across decentralized enterprise meshes.</p>
-        </header>
+        <h1 class="text-white fw-bold mb-4">How We Solve It</h1>
 
-        <section class="protocol-box">
-            <div class="protocol-header">
-                <span class="protocol-tag">ID: ZERO_TRUST_MESH_V4</span>
-                <span class="badge bg-success">STABLE</span>
-            </div>
-            <div class="protocol-body">
-                <h2 class="protocol-title">Perimeter Micro-Segmentation</h2>
-                <p>Modern defense rejects the "Flat Network" model. We implement hardware-validated isolation for every individual compute node, ensuring that a breach in one zone remains strictly lateral-locked.</p>
-                
-                <div class="step-container">
-                    <div class="step-block">
-                        <div class="step-title">01. Hardware Identity Binding</div>
-                        <div class="step-text">Every node must authenticate using a physical TPM (Trusted Platform Module) before accessing the local VPC mesh.</div>
-                    </div>
-                    <div class="step-block">
-                        <div class="step-title">02. Ephemeral Access Tokens</div>
-                        <div class="step-text">Internal API calls expire every 300 seconds, requiring re-validation through our centralized crypto-authority.</div>
-                    </div>
-                    <div class="step-block">
-                        <div class="step-title">03. Heuristic Quarantine</div>
-                        <div class="step-text">Real-time monitoring of I/O entropy. If massive file modification begins, the node is physically disconnected from the mesh.</div>
-                    </div>
-                </div>
-
-                <div class="tech-specification">
-                    > CONFIG_LOAD: mesh_segmentation_rules.yaml <br>
-                    > LATENCY_ALLOWANCE: 12ms <br>
-                    > AUTH_METHOD: RSA-4096-PSS <br>
-                    > ENFORCEMENT: Kernel-Level Ring 0
-                </div>
-            </div>
-        </section>
-
-        <section class="protocol-box">
-            <div class="protocol-header">
-                <span class="protocol-tag">ID: WORM_IMMUTABLE_SYNC</span>
-                <span class="badge bg-primary">ENFORCED</span>
-            </div>
-            <div class="protocol-body">
-                <h2 class="protocol-title">Immutable Data Vaulting</h2>
-                <p>Ransomware is neutralized if the data cannot be modified. We utilize WORM (Write-Once-Read-Many) storage layers synced via a one-way data diode to air-gapped locations.</p>
-                
-                <div class="step-container">
-                    <div class="step-block">
-                        <div class="step-title">Automatic Snapshot Inversion</div>
-                        <div class="step-text">Snapshots are taken every 15 minutes and cryptographically signed to prevent retrospective modification.</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="p-5 bg-dark border border-secondary rounded mt-5">
-            <h4 class="text-white mb-4">Implementation Checklist (v4.0.1)</h4>
-            <ul class="text-secondary small line-height-lg">
-                <li class="mb-2">Ensure all SO-ALPHA nodes are running Kernel 6.8 or higher.</li>
-                <li class="mb-2">Verify Data Diode optical integrity between Site-A and Site-B.</li>
-                <li class="mb-2">Run `sec-ops --verify-lattice` on all edge gateways.</li>
-                <li class="mb-2">Rotate administrative PGP keys every 30 calendar days.</li>
-                <li class="mb-2">Audit all S3 buckets for public-read leaks via Heuristic Scan.</li>
-                <li class="mb-2">Confirm air-gap physical locking mechanism is engaged for cold storage.</li>
-                <li class="mb-2">Check entropy levels on centralized QES (Quantum Entropy Source).</li>
-            </ul>
+        <div class="step-card">
+            <h3 class="text-primary">Firewalls</h3>
+            <p>A firewall is like a digital wall around your computer. It checks every piece of information trying to get in. If it looks suspicious or comes from a known "bad" source, the firewall blocks it immediately.</p>
         </div>
+
+        <div class="step-card">
+            <h3 class="text-primary">Two-Factor Authentication (2FA)</h3>
+            <p>This is the best way to stay safe. Even if a hacker steals your password, they can't get in because the app will send a special code to your phone. Unless they have your physical phone, they are stuck outside.</p>
+        </div>
+
+        <a href="index.html" class="btn btn-primary mt-4">Return Home</a>
     </div>
-
-    <footer>
-        SEC-OPS // PROTOCOL_LEVEL_10 // AUTHORIZED_ACCESS_ONLY
-    </footer>
-
 </body>
 </html>
