@@ -3,103 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEC-OPS | TRANSMIT INTEL</title>
+    <title>SEC-OPS | COLOSSUS FEEDBACK GATEWAY</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
         /* ========================================================================
-        UI DESIGN SYSTEM & THEME ENGINE
+        GLOBAL STYLING & VARIABLE ARCHITECTURE
         ========================================================================
         */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
         
         :root {
-            --bg-deep: #010409;
-            --bg-panel: #0d1117;
-            --bg-terminal: #000000;
+            --primary-bg: #010409;
+            --panel-bg: #0d1117;
+            --terminal-bg: #000000;
             --accent-blue: #2f81f7;
-            --accent-glow: rgba(47, 129, 247, 0.3);
-            --border-main: #30363d;
-            --text-primary: #c9d1d9;
+            --accent-blue-dim: rgba(47, 129, 247, 0.1);
+            --accent-blue-glow: rgba(47, 129, 247, 0.4);
+            --border-muted: #30363d;
+            --border-bright: #58a6ff;
+            --text-main: #c9d1d9;
             --text-white: #ffffff;
-            --text-dim: #8b949e;
+            --text-ghost: #8b949e;
+            --success-green: #3fb950;
+            --warning-amber: #d29922;
+            --danger-red: #f85149;
         }
 
+        /* ========================================================================
+        BASE LAYOUT ENGINE
+        ========================================================================
+        */
         body {
-            background-color: var(--bg-deep);
-            color: var(--text-primary);
+            background-color: var(--primary-bg);
+            color: var(--text-main);
             font-family: 'Inter', sans-serif;
-            padding-top: 140px;
+            padding-top: 150px;
+            overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 2px 2px, rgba(47,129,247,0.1) 1px, transparent 0);
-            background-size: 40px 40px;
+                linear-gradient(rgba(47, 129, 247, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(47, 129, 247, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
         }
 
-        /* NAVIGATION COMPONENT */
+        /* SCROLLBAR CUSTOMIZATION */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--primary-bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border-muted); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-blue); }
+
+        /* ========================================================================
+        NAVIGATION DESIGN (CLEAN/MINIMAL)
+        ========================================================================
+        */
         .navbar {
             background: rgba(13, 17, 23, 0.98);
-            border-bottom: 1px solid var(--border-main);
-            padding: 1.25rem 0;
-            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-muted);
+            padding: 1.4rem 0;
+            backdrop-filter: blur(20px);
+            z-index: 1000;
         }
 
         .navbar-brand {
             font-weight: 900;
-            font-size: 1.7rem;
+            font-size: 1.8rem;
             color: var(--text-white) !important;
             letter-spacing: -2px;
+            transition: 0.3s;
+        }
+
+        .navbar-brand:hover {
+            color: var(--accent-blue) !important;
+            text-shadow: 0 0 15px var(--accent-blue-glow);
         }
 
         .nav-link {
-            color: var(--text-dim) !important;
+            color: var(--text-ghost) !important;
             font-size: 0.75rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin: 0 15px;
-            transition: 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .nav-link:hover, .nav-link.active {
             color: var(--accent-blue) !important;
+            transform: translateY(-1px);
         }
 
-        /* FORM ARCHITECTURE */
-        .portal-card {
-            max-width: 900px;
-            margin: 0 auto 100px;
-            background: var(--bg-panel);
-            border: 1px solid var(--border-main);
-            border-radius: 20px;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+        /* ========================================================================
+        CENTRAL FORM ARCHITECTURE
+        ========================================================================
+        */
+        .colossus-wrapper {
+            max-width: 1000px;
+            margin: 0 auto 120px;
+            background: var(--panel-bg);
+            border: 1px solid var(--border-muted);
+            border-radius: 30px;
+            box-shadow: 0 60px 120px rgba(0,0,0,0.8);
+            position: relative;
             overflow: hidden;
         }
 
-        .portal-header {
-            background: #161b22;
-            padding: 50px 70px;
-            border-bottom: 1px solid var(--border-main);
+        /* DECORATIVE ELEMENTS */
+        .colossus-wrapper::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
         }
 
-        .portal-title {
-            font-size: 3rem;
+        .portal-header {
+            padding: 60px 80px 40px;
+            border-bottom: 1px solid var(--border-muted);
+            background: rgba(255,255,255,0.01);
+        }
+
+        .portal-header h1 {
+            font-size: 4rem;
             font-weight: 900;
             color: var(--text-white);
-            letter-spacing: -2px;
+            letter-spacing: -3px;
             margin: 0;
-            text-transform: uppercase;
         }
 
         .portal-body {
-            padding: 60px 70px;
+            padding: 60px 80px;
         }
 
-        /* FORM ELEMENTS */
-        .form-label {
+        /* ========================================================================
+        INPUT STYLING ENGINE
+        ========================================================================
+        */
+        .input-label {
             display: block;
             font-weight: 800;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-white);
             text-transform: uppercase;
             letter-spacing: 1.5px;
@@ -107,91 +150,146 @@
         }
 
         .form-control, .form-select {
-            background: var(--bg-terminal) !important;
-            border: 1px solid var(--border-main) !important;
+            background: var(--terminal-bg) !important;
+            border: 1px solid var(--border-muted) !important;
             color: var(--text-white) !important;
-            padding: 18px 20px !important;
-            border-radius: 10px !important;
-            margin-bottom: 35px;
-            transition: 0.3s ease;
+            padding: 18px 22px !important;
+            border-radius: 12px !important;
+            margin-bottom: 40px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
         }
 
         .form-control:focus, .form-select:focus {
             border-color: var(--accent-blue) !important;
-            box-shadow: 0 0 0 4px var(--accent-glow) !important;
+            box-shadow: 0 0 0 4px var(--accent-blue-dim) !important;
             outline: none;
         }
 
-        /* DYNAMIC "OTHER" WRAPPER */
-        #other-job-wrapper {
+        /* DYNAMIC CONDITIONAL LOGIC BOX */
+        #dynamic-other-box {
             display: none;
             background: rgba(47, 129, 247, 0.05);
-            padding: 25px;
-            border-radius: 12px;
+            padding: 30px;
+            border-radius: 15px;
             border: 1px dashed var(--accent-blue);
             margin-top: -20px;
-            margin-bottom: 35px;
-            animation: fadeIn 0.4s ease;
+            margin-bottom: 40px;
+            animation: slideDown 0.4s ease forwards;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* TERMINAL LOGS BOX */
-        .terminal-logs {
+        /* ========================================================================
+        BUTTON DESIGN
+        ========================================================================
+        */
+        .btn-colossus {
+            background: var(--accent-blue);
+            color: #fff;
+            padding: 24px;
+            width: 100%;
+            border-radius: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            border: none;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-colossus:hover {
+            transform: translateY(-5px);
+            background: #1f6feb;
+            box-shadow: 0 20px 40px var(--accent-blue-dim);
+        }
+
+        .btn-colossus:active {
+            transform: translateY(0);
+        }
+
+        /* ========================================================================
+        TERMINAL OUTPUT BOX
+        ========================================================================
+        */
+        .terminal-output {
             background: #000;
-            border-radius: 8px;
-            padding: 25px;
+            border: 1px solid #21262d;
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 50px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.8rem;
             color: #58a6ff;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .terminal-output::before {
+            content: "SYSTEM_DIAGNOSTICS";
+            position: absolute;
+            top: -10px; left: 20px;
+            background: #000;
+            padding: 0 10px;
+            font-size: 0.65rem;
+            color: var(--text-ghost);
             border: 1px solid #21262d;
-            margin-top: 40px;
-            line-height: 1.6;
         }
 
-        .btn-submit {
+        .cursor {
+            display: inline-block;
+            width: 8px; height: 15px;
             background: var(--accent-blue);
-            color: #fff;
-            padding: 22px;
-            width: 100%;
-            border-radius: 10px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            border: none;
-            transition: 0.4s;
-            margin-top: 10px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+            margin-left: 5px;
         }
 
-        .btn-submit:hover {
-            background: #1f6feb;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px var(--accent-glow);
+        @keyframes blink {
+            50% { opacity: 0; }
         }
 
-        /* SUCCESS STATE */
-        #success-state {
+        /* ========================================================================
+        SUCCESS ARCHITECTURE
+        ========================================================================
+        */
+        #success-manifest {
             display: none;
             text-align: center;
-            padding: 80px 40px;
+            padding: 100px 40px;
         }
 
-        .success-check {
-            font-size: 5rem;
-            color: #3fb950;
-            margin-bottom: 20px;
+        .check-circle {
+            width: 100px; height: 100px;
+            border: 4px solid var(--success-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 40px;
+            color: var(--success-green);
+            font-size: 3rem;
+            box-shadow: 0 0 30px rgba(63, 185, 80, 0.2);
         }
 
+        /* ========================================================================
+        FOOTER
+        ========================================================================
+        */
         footer {
-            padding: 100px 0;
-            border-top: 1px solid var(--border-main);
+            padding: 120px 0;
+            border-top: 1px solid var(--border-muted);
             text-align: center;
-            opacity: 0.5;
-            font-size: 0.8rem;
+            color: var(--text-ghost);
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 1px;
         }
+
     </style>
 </head>
 <body>
@@ -210,81 +308,116 @@
     </nav>
 
     <div class="container">
-        <div class="portal-card">
+        <div class="colossus-wrapper animate__animated animate__fadeIn">
             
             <header class="portal-header">
-                <h1 class="portal-title">Transmit Intel</h1>
+                <span class="text-accent-blue fw-bold text-uppercase small letter-spacing-2" style="color:var(--accent-blue)">Protocol 88-Gamma</span>
+                <h1>Transmit Intel</h1>
             </header>
 
             <div class="portal-body">
                 
-                <div id="form-ui">
-                    <form id="intel-submission-form" action="https://formspree.io/f/mrejgobo" method="POST">
+                <div id="form-stage">
+                    <form id="colossus-form" action="https://formspree.io/f/mrejgobo" method="POST">
                         
-                        <label class="form-label">Operational Alias</label>
-                        <input type="text" name="alias" class="form-control" placeholder="Agent ID / Code Name" required>
-
-                        <label class="form-label">Specialization Unit</label>
-                        <select name="unit" id="unit-select" class="form-select" onchange="toggleOtherBox()" required>
-                            <option value="" disabled selected>Select Role...</option>
-                            <option value="Threat Hunter">Threat Hunter</option>
-                            <option value="Crypto Researcher">Crypto Researcher</option>
-                            <option value="Policy Architect">Policy Architect</option>
-                            <option value="Network Forensicist">Network Forensicist</option>
-                            <option value="Node Auditor">Node Auditor</option>
-                            <option value="Other">Other (Manual Entry)</option>
-                        </select>
-
-                        <div id="other-job-wrapper">
-                            <label class="form-label">Specify Your Unit</label>
-                            <input type="text" name="custom_unit" id="custom-unit-input" class="form-control" placeholder="What is your job?">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="input-label">Operational Alias (No Real Names)</label>
+                                <input type="text" name="alias" class="form-control" placeholder="Agent UID / Cipher Name" required>
+                            </div>
                         </div>
 
-                        <label class="form-label">Security Clearance Level</label>
-                        <select name="clearance" class="form-select" required>
-                            <option value="Level 1">Level 1 - Public Observer</option>
-                            <option value="Level 2">Level 2 - Field Operative</option>
-                            <option value="Level 3">Level 3 - System Architect</option>
-                            <option value="Level 4">Level 4 - Regional Director</option>
-                            <option value="Level 5">Level 5 - OMEGA Access</option>
-                        </select>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="input-label">Specialization Unit</label>
+                                <select name="unit" id="unit-selector" class="form-select" onchange="checkOtherOption()" required>
+                                    <option value="" disabled selected>Select Role...</option>
+                                    <option value="Threat Hunter">Threat Hunter</option>
+                                    <option value="Crypto Researcher">Crypto Researcher</option>
+                                    <option value="Policy Architect">Policy Architect</option>
+                                    <option value="Network Forensicist">Network Forensicist</option>
+                                    <option value="Hardware Auditor">Hardware Auditor</option>
+                                    <option value="Other">Other (Specify Position)</option>
+                                </select>
+                            </div>
 
-                        <label class="form-label">Primary Incident Type</label>
-                        <select name="incident_type" class="form-select" required>
-                            <option value="Ransomware Vector">Ransomware Vector</option>
-                            <option value="Protocol Breach">Protocol Breach</option>
-                            <option value="MFA Hijack">MFA Hijack</option>
-                            <option value="Latice Collision">Lattice Collision</option>
-                            <option value="General Feedback">General System Feedback</option>
-                        </select>
+                            <div class="col-md-6">
+                                <label class="input-label">Clearance Level</label>
+                                <select name="clearance" class="form-select" required>
+                                    <option value="L1">L1 - Public Node</option>
+                                    <option value="L2">L2 - Field Ops</option>
+                                    <option value="L3">L3 - Sector Lead</option>
+                                    <option value="L4">L4 - System Admin</option>
+                                    <option value="Omega">OMEGA - Core Architect</option>
+                                </select>
+                            </div>
+                        </div>
 
-                        <label class="form-label">Tactical Sector</label>
-                        <select name="sector" class="form-select" required>
-                            <option value="North America">Sector-01 (North America)</option>
-                            <option value="EMEA">Sector-02 (EMEA)</option>
-                            <option value="APAC">Sector-03 (APAC)</option>
-                            <option value="Global Core">Sector-00 (Global Core)</option>
-                        </select>
+                        <div id="dynamic-other-box">
+                            <label class="input-label">Specify Your Exact Unit</label>
+                            <input type="text" name="custom_unit_name" id="custom-unit-input" class="form-control" placeholder="Enter your professional title...">
+                        </div>
 
-                        <label class="form-label">Intelligence Payload (Message)</label>
-                        <textarea name="payload" class="form-control" rows="6" placeholder="Enter encrypted data or feedback packet..." required></textarea>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="input-label">Threat Severity</label>
+                                <select name="severity" class="form-select" required>
+                                    <option value="Nominal">Nominal (Blue)</option>
+                                    <option value="Elevated">Elevated (Yellow)</option>
+                                    <option value="High">High (Orange)</option>
+                                    <option value="Critical">Critical (Red)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="input-label">Incident Sector</label>
+                                <select name="sector" class="form-select" required>
+                                    <option value="Financial">Financial Mesh</option>
+                                    <option value="Industrial">Industrial Grid</option>
+                                    <option value="Logistics">Logistics Hub</option>
+                                    <option value="Government">Government Node</option>
+                                    <option value="Academic">Academic Network</option>
+                                </select>
+                            </div>
+                        </div>
 
-                        <button type="submit" class="btn-submit" id="submit-trigger">Submit Encrypted Packet</button>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="input-label">Primary Hardware Vector</label>
+                                <select name="hardware" class="form-select" required>
+                                    <option value="Quantum Server">Quantum Server (Q-Core)</option>
+                                    <option value="Edge Gateway">Edge Gateway (Mesh)</option>
+                                    <option value="Satellite Link">Satellite Uplink (Deep Space)</option>
+                                    <option value="Mobile End-Point">Mobile End-Point (Field)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="input-label">Intelligence Payload (Message)</label>
+                                <textarea name="message" class="form-control" rows="8" placeholder="Enter technical details, feedback, or field reports..." required></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-colossus" id="submit-btn">Submit Encrypted Packet</button>
                     </form>
 
-                    <div class="terminal-logs">
-                        > HANDSHAKE STATUS: <span style="color: #3fb950;">SECURE</span><br>
-                        > PKI_ENCRYPTION: <span style="color: #3fb950;">ACTIVE (AES-512)</span><br>
-                        > ZERO_PII_FILTER: <span style="color: #3fb950;">ENFORCED</span><br>
-                        > DESTINATION: FORM_HANDLER_CENTRAL
+                    <div class="terminal-output">
+                        > INITIATING HANDSHAKE... [SUCCESS]<br>
+                        > ENCRYPTING DATA PACKET (AES-XTS-512)... [PENDING]<br>
+                        > SCRUBBING PII (EMAIL/PHONE)... [DONE]<br>
+                        > HUB DESTINATION: SEC-OPS_CENTRAL_CORE<br>
+                        > AWAITING OPERATOR INPUT<span class="cursor"></span>
                     </div>
                 </div>
 
-                <div id="success-state">
-                    <div class="success-check">✓</div>
-                    <h2 class="text-white fw-bold mb-3">TRANSMISSION COMPLETE</h2>
-                    <p class="text-secondary mb-5">Your intelligence packet has been sharded and uploaded to the SEC-OPS core. No tracking data was retained.</p>
-                    <a href="index.html" class="btn btn-outline-primary px-5 py-3 rounded-pill fw-bold">Return to Hub</a>
+                <div id="success-manifest">
+                    <div class="animate__animated animate__zoomIn">
+                        <div class="check-circle">✓</div>
+                        <h2 class="display-5 fw-bold text-white mb-4">TRANSFER COMPLETE</h2>
+                        <p class="text-ghost lead mb-5">Intel has been sharded across 14 global nodes. Your alias has been recorded. The connection is now terminating.</p>
+                        <a href="index.html" class="btn btn-outline-primary px-5 py-3 rounded-pill fw-bold text-uppercase letter-spacing-2">Disconnect & Return</a>
+                    </div>
                 </div>
 
             </div>
@@ -292,63 +425,99 @@
     </div>
 
     <footer>
-        SEC-OPS GLOBAL TRANSMISSION LAYER // 2026 // CLASSIFIED ACCESS ONLY
+        SEC-OPS GLOBAL COMMAND HUB // DATA_CENTRE_4 // NO_LOGGING_POLICY_ACTIVE // 2026
     </footer>
 
     <script>
         /**
-         * Toggles the "Other" text box based on dropdown selection
+         * Function to handle the "Other" job selection logic.
+         * Shows/hides the input box and makes it required if needed.
          */
-        function toggleOtherBox() {
-            const select = document.getElementById('unit-select');
-            const wrapper = document.getElementById('other-job-wrapper');
-            const input = document.getElementById('custom-unit-input');
+        function checkOtherOption() {
+            const select = document.getElementById('unit-selector');
+            const otherBox = document.getElementById('dynamic-other-box');
+            const otherInput = document.getElementById('custom-unit-input');
 
             if (select.value === 'Other') {
-                wrapper.style.display = 'block';
-                input.required = true;
-                input.focus();
+                otherBox.style.display = 'block';
+                otherInput.required = true;
+                otherInput.focus();
             } else {
-                wrapper.style.display = 'none';
-                input.required = false;
+                otherBox.style.display = 'none';
+                otherInput.required = false;
             }
         }
 
         /**
-         * Handles AJAX submission to stay on the same page and show success
+         * AJAX Form Submission Logic
+         * Submits data to Formspree without leaving the page.
          */
-        const form = document.getElementById('intel-submission-form');
-        form.addEventListener('submit', async function(e) {
+        const colossusForm = document.getElementById('colossus-form');
+        colossusForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const btn = document.getElementById('submit-trigger');
-            btn.innerText = "UPLOADING PACKET...";
+            const btn = document.getElementById('submit-btn');
+            const originalText = btn.innerText;
+            btn.innerText = "TRANSMITTING...";
             btn.disabled = true;
 
-            const data = new FormData(form);
+            const data = new FormData(colossusForm);
             
             try {
-                const response = await fetch(form.action, {
+                const response = await fetch(colossusForm.action, {
                     method: 'POST',
                     body: data,
                     headers: { 'Accept': 'application/json' }
                 });
 
                 if (response.ok) {
-                    document.getElementById('form-ui').style.display = 'none';
-                    document.getElementById('success-state').style.display = 'block';
+                    // Hide form and show success layer
+                    document.getElementById('form-stage').style.display = 'none';
+                    document.getElementById('success-manifest').style.display = 'block';
                 } else {
-                    alert("Transmission Error: Node rejected the packet.");
-                    btn.innerText = "RETRY SUBMISSION";
+                    alert("PACKET REJECTED: Internal server error or node timeout.");
+                    btn.innerText = originalText;
                     btn.disabled = false;
                 }
-            } catch (err) {
-                alert("Critical failure reaching Formspree server.");
-                btn.innerText = "RETRY SUBMISSION";
+            } catch (error) {
+                alert("CRITICAL FAILURE: Could not establish connection to SEC-OPS core.");
+                btn.innerText = originalText;
                 btn.disabled = false;
             }
         });
     </script>
 
-</body>
+    <style>
+        /* EXTRA REFINEMENTS */
+        .portal-header span { font-family: 'JetBrains Mono'; }
+        .row { --bs-gutter-x: 2rem; }
+        .form-select option { background-color: var(--panel-bg); color: var(--text-white); }
+        
+        /* HOVER EFFECTS FOR FORM ELEMENTS */
+        .form-control:hover, .form-select:hover { border-color: var(--text-ghost) !important; }
+        
+        /* MOBILE OPTIMIZATION */
+        @media (max-width: 768px) {
+            .portal-header { padding: 40px 30px; }
+            .portal-header h1 { font-size: 2.5rem; }
+            .portal-body { padding: 40px 30px; }
+            .btn-colossus { padding: 18px; font-size: 0.9rem; }
+        }
+
+        /* UTILITY CLASSES */
+        .letter-spacing-1 { letter-spacing: 1px; }
+        .letter-spacing-2 { letter-spacing: 2px; }
+        .letter-spacing-4 { letter-spacing: 4px; }
+        
+        /* ANIMATION DELAYS */
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+
+        /* FINAL OVERRIDES */
+        .container { max-width: 1200px; }
+        .navbar-nav { gap: 10px; }
+    </style>
+
+    </body>
 </html>
