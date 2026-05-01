@@ -8,10 +8,10 @@
         body { background-color: #0d1117; color: #c9d1d9; }
         .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; padding: 1rem; }
         .nav-link { color: #8b949e !important; }
-        .active { color: #58a6ff !important; }
-        .form-container { max-width: 600px; margin: 60px auto; background: #161b22; padding: 40px; border-radius: 15px; border: 1px solid #30363d; }
-        #other-box { display: none; margin-top: 15px; }
+        .active { color: #58a6ff !important; font-weight: bold; }
+        .form-card { max-width: 600px; margin: 60px auto; background: #161b22; padding: 40px; border-radius: 15px; border: 1px solid #30363d; }
         .form-control, .form-select { background-color: #0d1117 !important; border: 1px solid #30363d !important; color: white !important; }
+        #other-box { display: none; margin-top: 15px; }
     </style>
 </head>
 <body>
@@ -30,14 +30,14 @@
     </nav>
 
     <div class="container">
-        <div class="form-container">
-            <h2 class="text-white mb-4 text-center">Tell Us What You Think</h2>
-            <form id="fbForm" action="https://formspree.io/f/mrejgobo" method="POST">
-                <label class="form-label">Your Name</label>
+        <div class="form-card">
+            <h2 class="text-white mb-4 text-center">Tell Us Your Thoughts</h2>
+            <form id="feedbackForm" action="https://formspree.io/f/mrejgobo" method="POST">
+                <label class="form-label">Name or Nickname</label>
                 <input type="text" name="name" class="form-control mb-3" required>
 
-                <label class="form-label">Your Job</label>
-                <select id="job" name="job" class="form-select mb-3" onchange="checkOther()" required>
+                <label class="form-label">Job Option</label>
+                <select id="job" name="job" class="form-select mb-3" onchange="toggleOther()" required>
                     <option value="" disabled selected>Select one...</option>
                     <option value="Student">Student</option>
                     <option value="Teacher">Teacher</option>
@@ -46,20 +46,20 @@
                 </select>
 
                 <div id="other-box">
-                    <label class="form-label">Please state your job:</label>
-                    <input type="text" id="other-input" name="custom_job" class="form-control mb-3">
+                    <label class="form-label">What is your job?</label>
+                    <input type="text" id="other-input" name="other_job" class="form-control mb-3">
                 </div>
 
                 <label class="form-label">Message</label>
                 <textarea name="message" class="form-control mb-4" rows="4" required></textarea>
 
-                <button type="submit" class="btn btn-success w-100 fw-bold">Send Feedback</button>
+                <button type="submit" class="btn btn-success w-100 fw-bold">Send Report</button>
             </form>
         </div>
     </div>
 
     <script>
-        function checkOther() {
+        function toggleOther() {
             var select = document.getElementById('job');
             var otherBox = document.getElementById('other-box');
             var otherInput = document.getElementById('other-input');
