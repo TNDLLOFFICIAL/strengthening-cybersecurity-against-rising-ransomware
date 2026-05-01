@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo | SEC-OPS Virtual Lab</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #0d1117; color: #c9d1d9; padding-top: 80px; line-height: 1.8; }
+        .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; }
+        .nav-link { color: #8b949e !important; }
+        .active { color: #58a6ff !important; font-weight: bold; border-bottom: 2px solid #58a6ff; }
+        
+        .demo-hero { 
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1000&q=80');
+            background-size: cover; padding: 80px 0; border-bottom: 1px solid #30363d; text-align: center;
+        }
+
+        .lab-container { max-width: 1000px; margin: auto; padding: 60px 20px; }
+        
+        .simulator-card { 
+            background: #161b22; border: 1px solid #30363d; border-radius: 15px; 
+            padding: 40px; margin-bottom: 50px; border-top: 4px solid #58a6ff;
+        }
+
+        .terminal { 
+            background: #010409; color: #3fb950; font-family: 'Courier New', Courier, monospace;
+            padding: 20px; border-radius: 10px; border: 1px solid #30363d; margin-top: 20px;
+            min-height: 150px; overflow-y: auto;
+        }
+
+        .btn-action { 
+            background: #21262d; color: #c9d1d9; border: 1px solid #30363d; 
+            padding: 10px 20px; border-radius: 6px; font-weight: bold; transition: 0.2s;
+        }
+        .btn-action:hover { background: #30363d; border-color: #8b949e; }
+        .btn-primary-ops { background: #238636; color: white; border: none; }
+
+        .status-badge { padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
+        .status-active { background: rgba(63, 185, 80, 0.1); color: #3fb950; border: 1px solid #3fb950; }
+
+        .version-tag { 
+            position: fixed; bottom: 10px; right: 15px; background: rgba(22,27,34,0.9); 
+            color: #8b949e; padding: 4px 10px; border-radius: 5px; font-size: 11px; 
+            font-family: monospace; border: 1px solid #30363d; z-index: 10000; pointer-events: none; 
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">SEC-OPS</a>
+            <div class="navbar-nav ms-auto d-flex flex-row gap-3">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="threats.html">Threats</a>
+                <a class="nav-link" href="science.html">Science</a>
+                <a class="nav-link" href="solutions.html">Solutions</a>
+                <a class="nav-link" href="impact.html">Impact</a>
+                <a class="nav-link" href="feedback.html">Feedback</a>
+                <a class="nav-link active" href="demo.html">Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="demo-hero">
+        <div class="container">
+            <h1>Virtual Defense Lab</h1>
+            <p class="lead text-secondary">Interactive simulations of our core security protocols.</p>
+        </div>
+    </header>
+
+    <div class="lab-container">
+        
+        <div class="simulator-card">
+            <span class="status-badge status-active mb-3">MODULE: INTEGRITY_CHECK</span>
+            <h2>01. Password Hashing Simulation</h2>
+            <p>Experience how our <strong>SHA-256 Hashing Engine</strong> protects your credentials. Type a password below to see how the system turns your text into a one-way mathematical fingerprint.</p>
+            
+            <div class="row g-3 mt-2">
+                <div class="col-md-8">
+                    <input type="text" id="pass-input" class="form-control" placeholder="Type a password..." oninput="simulateHash()">
+                </div>
+            </div>
+            <div class="terminal" id="hash-output">
+                [SYSTEM] Awaiting input...
+            </div>
+        </div>
+
+        <div class="simulator-card">
+            <span class="status-badge status-active mb-3">MODULE: NETWORK_SHIELD</span>
+            <h2>02. Packet Inspection Demo</h2>
+            <p>Our <strong>Deep Packet Inspection (DPI)</strong> logic filters out malicious traffic before it hits the internal network. Click "Analyze Traffic" to simulate an incoming network stream.</p>
+            
+            <button class="btn-action btn-primary-ops mt-2" onclick="runFirewall()">Analyze Traffic Stream</button>
+            <div class="terminal" id="firewall-output">
+                [FW] Shield Status: ACTIVE
+            </div>
+        </div>
+
+        <div class="simulator-card">
+            <span class="status-badge status-active mb-3">MODULE: ENCRYPTION_TUNNEL</span>
+            <h2>03. End-to-End Encryption (E2EE)</h2>
+            <p>Send a "Secret Message" across our encrypted tunnel. You will see how the data looks to an attacker (intercepted) versus how it looks to the recipient.</p>
+            
+            <input type="text" id="msg-input" class="form-control mb-3" placeholder="Secret message...">
+            <button class="btn-action" onclick="runEncryption()">Initialize Secure Tunnel</button>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <label class="small text-danger fw-bold">INTERCEPTED BY ATTACKER</label>
+                    <div class="terminal" id="enc-attacker" style="color: #f85149; min-height: 80px;">---</div>
+                </div>
+                <div class="col-md-6">
+                    <label class="small text-success fw-bold">RECEIVED BY RECIPIENT</label>
+                    <div class="terminal" id="enc-recipient" style="color: #3fb950; min-height: 80px;">---</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="version-tag">v5.8.2.1</div>
+
+    <script>
+        // Module 1 Logic: Fake Hashing (Visual Demo)
+        function simulateHash() {
+            const input = document.getElementById('pass-input').value;
+            const output = document.getElementById('hash-output');
+            if(!input) { output.innerText = "[SYSTEM] Awaiting input..."; return; }
+            
+            // Simple visual "hash" generator for demo purposes
+            let mockHash = btoa(input + "SEC-OPS-SALT").substring(0, 32) + "..." + btoa(input).substring(0, 8);
+            output.innerHTML = `<span style="color: #8b949e;">INPUT: ${input}</span><br>[SHA-256 HASH]: ${mockHash.toLowerCase()}`;
+        }
+
+        // Module 2 Logic: Firewall
+        function runFirewall() {
+            const out = document.getElementById('firewall-output');
+            out.innerHTML = "[FW] Scanning incoming packets...<br>";
+            const packets = [
+                {ip: "192.168.1.1", status: "ALLOWED", type: "HTTP_GET"},
+                {ip: "10.0.0.45", status: "ALLOWED", type: "TCP_SYN"},
+                {ip: "172.54.1.9", status: "BLOCKED", type: "SQL_INJECTION_DETECTED"},
+                {ip: "192.168.1.14", status: "ALLOWED", type: "DNS_QUERY"}
+            ];
+            
+            let i = 0;
+            const interval = setInterval(() => {
+                if(i < packets.length) {
+                    const p = packets[i];
+                    const color = p.status === "ALLOWED" ? "#3fb950" : "#f85149";
+                    out.innerHTML += `[PACKET] SRC: ${p.ip} | <span style="color: ${color}">${p.status}</span> (${p.type})<br>`;
+                    i++;
+                } else {
+                    clearInterval(interval);
+                    out.innerHTML += "[FW] Scan Complete. Threats Neutralized.";
+                }
+            }, 600);
+        }
+
+        // Module 3 Logic: Encryption
+        function runEncryption() {
+            const msg = document.getElementById('msg-input').value;
+            if(!msg) return;
+            const att = document.getElementById('enc-attacker');
+            const rec = document.getElementById('enc-recipient');
+            
+            att.innerText = "ENCRYPTING...";
+            rec.innerText = "ENCRYPTING...";
+            
+            setTimeout(() => {
+                att.innerText = btoa(msg + "REALLY-SECURE-KEY-123").substring(0, 24);
+                rec.innerText = msg;
+            }, 800);
+        }
+    </script>
+</body>
+</html>
