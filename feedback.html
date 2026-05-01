@@ -7,273 +7,96 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono&display=swap');
-        
-        :root {
-            --bg: #010409;
-            --card: #0d1117;
-            --accent: #2f81f7;
-            --border: #30363d;
-            --success: #3fb950;
-            --danger: #f85149;
-            --text-main: #c9d1d9;
-            --text-dim: #8b949e;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.7;
-            padding-top: 140px;
-        }
-
-        /* NAVIGATION */
-        .navbar {
-            background: rgba(13, 17, 23, 0.98);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            padding: 1.5rem 0;
-        }
-
-        .navbar-brand { font-weight: 800; color: #fff !important; font-size: 1.5rem; }
-        .nav-link { color: var(--text-dim) !important; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin: 0 15px; }
-
-        /* FORM CONTAINER */
-        .portal-wrapper {
-            max-width: 900px;
-            margin: 0 auto;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
-        }
-
-        .portal-header {
-            background: #161b22;
-            padding: 40px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .portal-body { padding: 60px; }
-
-        .terminal-text {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--accent);
-            margin-bottom: 30px;
-            border-left: 3px solid var(--accent);
-            padding-left: 20px;
-        }
-
-        /* INPUT STYLING */
-        .form-label {
-            font-family: 'JetBrains Mono';
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--text-dim);
-            margin-bottom: 10px;
-        }
-
-        .form-control {
-            background: #000;
-            border: 1px solid var(--border);
-            color: #fff;
-            padding: 18px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            transition: 0.3s;
-        }
-
-        .form-control:focus {
-            background: #000;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 4px rgba(47, 129, 247, 0.15);
-            color: #fff;
-        }
-
-        /* BUTTONS */
-        .btn-action {
-            background: var(--accent);
-            color: #fff;
-            border: none;
-            padding: 20px;
-            border-radius: 8px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            width: 100%;
-            transition: 0.4s;
-        }
-
-        .btn-action:hover {
-            background: #1f6feb;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-
-        /* VERIFICATION OVERLAY */
-        #verification-step {
-            display: none;
-            text-align: center;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .code-input {
-            font-size: 2rem !important;
-            text-align: center;
-            letter-spacing: 15px;
-            font-weight: 800;
-            color: var(--success) !important;
-            border-color: var(--success) !important;
-        }
-
-        /* FOOTER */
-        footer {
-            margin-top: 100px;
-            padding: 60px 0;
-            border-top: 1px solid var(--border);
-            text-align: center;
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            letter-spacing: 1px;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
+        :root { --bg: #010409; --card: #0d1117; --accent: #2f81f7; --border: #30363d; --success: #3fb950; --text: #c9d1d9; --text-dim: #8b949e; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; padding-top: 140px; min-height: 100vh; }
+        .navbar { background: rgba(13, 17, 23, 0.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
+        .nav-link { color: var(--text-dim) !important; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin: 0 15px; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { color: #fff !important; }
+        .portal-wrapper { max-width: 800px; margin: 0 auto; background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.5); }
+        .portal-header { background: #161b22; padding: 40px; border-bottom: 1px solid var(--border); text-align: center; }
+        .portal-body { padding: 50px; }
+        .terminal-text { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--accent); margin-bottom: 30px; border-left: 3px solid var(--accent); padding-left: 20px; }
+        .form-label { font-family: 'JetBrains Mono'; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; display: block; }
+        .form-control { background: #000; border: 1px solid var(--border); color: #fff; padding: 15px; border-radius: 8px; margin-bottom: 25px; transition: 0.3s; }
+        .form-control:focus { background: #000; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(47, 129, 247, 0.1); color: #fff; outline: none; }
+        .btn-action { background: var(--accent); color: #fff; border: none; padding: 18px; border-radius: 8px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; width: 100%; transition: 0.4s; }
+        .btn-action:hover { background: #1f6feb; transform: translateY(-2px); }
+        #verification-step { display: none; text-align: center; }
         .success-screen { display: none; text-align: center; padding: 40px; }
-        .success-icon { font-size: 4rem; color: var(--success); margin-bottom: 20px; }
-
+        footer { margin-top: 100px; padding: 40px; text-align: center; font-size: 0.7rem; color: var(--text-dim); border-top: 1px solid var(--border); }
     </style>
 </head>
 <body>
-
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html">SEC-OPS</a>
+            <a class="navbar-brand text-white fw-bold" href="index.html">SEC-OPS</a>
             <div class="navbar-nav ms-auto flex-row">
                 <a class="nav-link" href="threats.html">Intelligence</a>
                 <a class="nav-link" href="science.html">Cryptography</a>
                 <a class="nav-link" href="solutions.html">Protocols</a>
                 <a class="nav-link" href="impact.html">Assessment</a>
-                <a class="nav-link text-white" href="feedback.html">Feedback</a>
+                <a class="nav-link active" href="feedback.html">Feedback</a>
             </div>
         </div>
     </nav>
 
     <div class="container">
         <div class="portal-wrapper">
-            <div class="portal-header text-center">
-                <h2 class="text-white fw-bold mb-2">Secure Communications Portal</h2>
-                <p class="text-secondary mb-0">Direct Uplink to Lead Architect: <strong>ahnafz2011@gmail.com</strong></p>
+            <div class="portal-header">
+                <h2 class="text-white fw-bold">Feedback Uplink</h2>
+                <p class="text-secondary small">SECURE CHANNEL: AHNAFZ-COMM-ALPHA</p>
             </div>
-
             <div class="portal-body">
                 <div id="form-container">
-                    <div class="terminal-text">
-                        > STATUS: ENCRYPTION_ACTIVE<br>
-                        > NODE: AHNAFZ-INTEL-HUB<br>
-                        > AWAITING CREDENTIALS...
-                    </div>
-
+                    <div class="terminal-text">> READY_FOR_INPUT...<br>> DESTINATION: ahnafz2011@gmail.com</div>
+                    
                     <form id="feedback-form" action="https://formspree.io/f/mrejgobo" method="POST">
-                        
                         <div id="initial-step">
-                            <label class="form-label">Authenticated Identity (Email)</label>
-                            <input type="email" name="email" id="email-input" class="form-control" placeholder="agent@sec-ops.org" required>
-
-                            <label class="form-label">Subject Analysis</label>
-                            <select name="subject" class="form-control">
-                                <option value="Technical Feedback">Technical Feedback</option>
-                                <option value="Security Flaw Report">Security Flaw Report</option>
-                                <option value="Project Expansion Idea">Project Expansion Idea</option>
-                                <option value="General Inquiry">General Inquiry</option>
-                            </select>
-
-                            <label class="form-label">Intelligence Report (Message)</label>
-                            <textarea name="message" class="form-control" rows="5" placeholder="Describe your findings or feedback..." required></textarea>
-
-                            <button type="button" onclick="showVerification()" class="btn-action">Verify Connection</button>
+                            <label class="form-label">Agent Email</label>
+                            <input type="email" name="email" id="email-input" class="form-control" required>
+                            
+                            <label class="form-label">Message Content</label>
+                            <textarea name="message" class="form-control" rows="5" required></textarea>
+                            
+                            <button type="button" onclick="showVerification()" class="btn-action">Proceed to Verification</button>
                         </div>
 
                         <div id="verification-step">
-                            <div class="terminal-text" style="color: var(--success); border-color: var(--success);">
-                                > VERIFICATION CODE DISPATCHED<br>
-                                > CHECKING INBOX FOR SYNC CODE...
-                            </div>
-                            
-                            <label class="form-label" style="color: var(--success);">Enter 6-Digit Verification Token</label>
-                            <input type="text" id="v-code" class="form-control code-input" placeholder="000000" maxlength="6">
-                            
-                            <button type="submit" id="submit-button" class="btn-action" style="background: var(--success);">Authorize Transmission</button>
-                            <p class="mt-4 small text-secondary">Encryption will begin immediately upon authorization.</p>
+                            <label class="form-label">Verification Token</label>
+                            <input type="text" class="form-control" placeholder="6-Digit Code" maxlength="6" style="text-align: center; font-size: 1.5rem; letter-spacing: 5px;">
+                            <button type="submit" class="btn-action" style="background: var(--success);">Authorize Transmission</button>
                         </div>
                     </form>
                 </div>
 
                 <div id="success-screen" class="success-screen">
-                    <div class="success-icon">✓</div>
-                    <h2 class="text-white">Transmission Successful</h2>
-                    <p class="text-secondary">Your feedback has been encrypted and routed to the lead intelligence officer.</p>
-                    <a href="index.html" class="btn-action d-inline-block mt-4" style="width: auto; padding: 15px 40px;">Return to Dashboard</a>
+                    <h2 class="text-success fw-bold">✓ SENT</h2>
+                    <p class="text-secondary">Transmission encrypted and delivered.</p>
+                    <a href="index.html" class="btn-action d-inline-block mt-3" style="width: auto; padding: 10px 30px;">Home</a>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        var form = document.getElementById("feedback-form");
-        
+        const form = document.getElementById("feedback-form");
         function showVerification() {
             const email = document.getElementById("email-input").value;
-            if(email && email.includes('@')) {
+            if(email.includes('@')) {
                 document.getElementById("initial-step").style.display = "none";
                 document.getElementById("verification-step").style.display = "block";
-                // Real professional feel: alert simulates the backend dispatch
-                alert("SEC-OPS ALERT: Encrypted verification token sent to " + email);
-            } else {
-                alert("ERROR: Valid agent identity required.");
-            }
+            } else { alert("Error: Invalid Email"); }
         }
 
-        async function handleSubmit(event) {
-            event.preventDefault();
-            var status = document.getElementById("success-screen");
-            var formContent = document.getElementById("form-container");
-            var data = new FormData(event.target);
-            
-            // Professional AJAX Submission
-            fetch(event.target.action, {
-                method: form.method,
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    formContent.style.display = "none";
-                    status.style.display = "block";
-                    form.reset();
-                } else {
-                    response.json().then(data => {
-                        if (Object.hasOwn(data, 'errors')) {
-                            alert(data["errors"].map(error => error["message"]).join(", "));
-                        } else {
-                            alert("CRITICAL ERROR: Transmission failed. Check network protocols.");
-                        }
-                    })
-                }
-            }).catch(error => {
-                alert("CRITICAL ERROR: Signal lost. Manual override required.");
-            });
-        }
-        form.addEventListener("submit", handleSubmit)
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const data = new FormData(form);
+            const response = await fetch(form.action, { method: "POST", body: data, headers: { 'Accept': 'application/json' } });
+            if (response.ok) {
+                document.getElementById("form-container").style.display = "none";
+                document.getElementById("success-screen").style.display = "block";
+            } else { alert("Transmission Failure."); }
+        });
     </script>
-
-    <footer>
-        SEC-OPS GLOBAL COMMAND // NODE: 74-AHNAFZ-2026 // CLASSIFIED TRANSMISSION
-    </footer>
-
 </body>
 </html>
