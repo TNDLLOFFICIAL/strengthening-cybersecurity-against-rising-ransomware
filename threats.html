@@ -25,11 +25,6 @@
             background: #161b22; border: 1px solid #30363d; border-radius: 15px; 
             padding: 40px; margin-bottom: 30px; position: relative; overflow: hidden;
         }
-        .intel-card::before {
-            content: "TOP SECRET"; position: absolute; top: 15px; right: -30px;
-            background: #f85149; color: white; padding: 5px 40px; font-size: 0.7rem;
-            font-weight: bold; transform: rotate(45deg);
-        }
 
         .alert-box { 
             background: rgba(248, 81, 73, 0.1); border-left: 5px solid #f85149; 
@@ -59,168 +54,48 @@
                 <a class="nav-link" href="solutions.html">Solutions</a>
                 <a class="nav-link" href="impact.html">Impact</a>
                 <a class="nav-link" href="feedback.html">Feedback</a>
+                <a class="nav-link" href="demo.html">Demo</a>
             </div>
         </div>
     </nav>
 
     <header class="threat-header">
         <div class="container">
-            <span class="text-danger fw-bold text-uppercase tracking-widest">Global Intelligence Report</span>
+            <span class="text-danger fw-bold text-uppercase">Intelligence Report</span>
             <h1>Threat Matrix</h1>
-            <p class="lead text-secondary">Analyzing the world's most dangerous digital attack vectors.</p>
         </div>
     </header>
 
     <div class="container-main">
-        <section id="social-engineering">
-            <h2>01. Social Engineering & Manipulation</h2>
-            <p>While most people think of hacking as "typing code into a green screen," the vast majority of successful breaches start with human error. Social engineering is the tactical manipulation of human psychology to bypass technical security controls.</p>
+        <section>
+            <h2>01. Advanced Persistent Threats (APT)</h2>
+            <p>APTs are stealthy threat actors, typically nation-states or state-sponsored groups, which gain unauthorized access to a network and remain undetected for an extended period. Unlike "smash and grab" hackers, APTs focus on high-value espionage and data theft over years.</p>
             
             <div class="intel-card">
-                <h3>The Spear Phishing Methodology</h3>
-                <p>Unlike generic spam, <strong>Spear Phishing</strong> is a targeted operation. An attacker will spend weeks researching a target on LinkedIn, Twitter, and company websites to craft an email that is indistinguishable from a legitimate internal communication.</p>
-                <ul>
-                    <li><strong>Pretexting:</strong> The attacker creates a false scenario (e.g., "The IT department needs to verify your credentials for a mandatory system update").</li>
-                    <li><strong>Baiting:</strong> Leaving a malware-infected USB drive in a company parking lot, labeled "Q4 Executive Bonuses."</li>
-                    <li><strong>Quid Pro Quo:</strong> Calling an employee pretending to be technical support, offering a "fix" that actually installs a backdoor.</li>
-                </ul>
+                <h3>Ransomware: The Double Extortion Model</h3>
+                <p>Cybercriminals have moved to a "Double Extortion" strategy. They don't just lock your data; they steal a copy first. If you refuse to pay for the decryption key, they threaten to leak your most private documents to the public internet, destroying your reputation forever.</p>
             </div>
-        </section>
 
-        <section id="malware">
-            <h2>02. Advanced Malware Ecosystems</h2>
-            <p>Malicious software has evolved from simple annoyances into polymorphic engines capable of self-replication and modular task execution.</p>
-            
             <div class="alert-box">
-                <strong>CRITICAL ALERT:</strong> Ransomware-as-a-Service (RaaS) has lowered the barrier to entry, allowing criminal affiliates to lease high-end malware and share profits with the original developers.
+                <strong>WARNING:</strong> Zero-day exploits are increasing. These are flaws that have no patch and no defense because the software creators don't even know they exist yet.
             </div>
 
-            <h3>Ransomware: Double Extortion Architecture</h3>
-            <p>Modern Ransomware groups (like LockBit or BlackCat) no longer just encrypt data. They follow a three-stage attack pattern:</p>
-            <div class="tech-specs mb-4">
-                1. INFILTRATION: Initial access via compromised RDP or Phishing.<br>
-                2. EXFILTRATION: Sensitive files are stolen and uploaded to a private "leak site."<br>
-                3. ENCRYPTION: The local system is locked with AES-256 encryption.<br>
-                4. EXTORTION: The victim must pay to decrypt, AND pay to prevent the stolen data from being leaked to the public.
-            </div>
-        </section>
-
-        <section id="infrastructure">
-            <h2>03. Infrastructure & Network Warfare</h2>
-            <p>Large-scale attacks target the fundamental protocols of the internet, aiming to disable entire regions or corporate networks.</p>
-            
-            <h3>The Botnet Menace</h3>
-            <p>A Botnet is a network of hijacked computers, IoT devices (smart cameras, fridges), and servers controlled by a "Command and Control" (C2) server. These are used to launch Distributed Denial of Service (DDoS) attacks, capable of hitting targets with over 2 Terabits of traffic per second.</p>
-            
-            <div class="intel-card">
-                <h3>Zero-Day Exploits</h3>
-                <p>A Zero-Day is a vulnerability in software (like Windows, Chrome, or iOS) that the manufacturer is not aware of. These are the "Holy Grail" for hackers. Governments and criminal organizations spend millions of dollars to acquire these exploits because they work on any patched system instantly.</p>
+            <h3>Technical Analysis of Infiltration</h3>
+            <div class="tech-specs">
+                [LOG]: Connection established from 185.x.x.x<br>
+                [LOG]: Escalating privileges to ROOT...<br>
+                [LOG]: Deploying lateral movement scripts...<br>
+                [LOG]: Data exfiltration initiated to secondary C2 server.
             </div>
         </section>
 
-        <section id="supply-chain">
-            <h2>04. Supply Chain Compromise</h2>
-            <p>Instead of attacking a well-defended fortress directly, hackers poison the food supply. By compromising a trusted software vendor, attackers can distribute their malware to thousands of companies through a legitimate "Software Update." The SolarWinds and Kaseya incidents are prime examples of how one single breach can paralyze the global economy.</p>
+        <section class="mt-5">
+            <h2>02. The Supply Chain Trap</h2>
+            <p>Hackers now target software updates. By poisoning a legitimate update (like the SolarWinds attack), they can infect thousands of government and corporate systems in a single day without ever having to break through their firewalls directly.</p>
         </section>
 
-        <footer style="margin-top: 80px; text-align: center; border-top: 1px solid #30363d; padding-top: 30px; color: #8b949e; font-size: 0.9rem;">
-            SEC-OPS INTEL REPORT | DOCUMENT ID: #SO-992-TX | CLASSIFIED
-        </footer>
-    </div>
-
-    <div class="version-tag">v5.8.2.1</div>
-</body>
-</html>        }
-
-        .tech-specs { 
-            background: #010409; border: 1px solid #30363d; padding: 25px; 
-            border-radius: 10px; font-family: 'Courier New', Courier, monospace; font-size: 0.95rem;
-        }
-
-        .version-tag { 
-            position: fixed; bottom: 10px; right: 15px; background: rgba(22,27,34,0.9); 
-            color: #8b949e; padding: 4px 10px; border-radius: 5px; font-size: 11px; 
-            font-family: monospace; border: 1px solid #30363d; z-index: 10000; pointer-events: none; 
-        }
-    </style>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">SEC-OPS</a>
-            <div class="navbar-nav ms-auto d-flex flex-row gap-3">
-                <a class="nav-link" href="index.html">Home</a>
-                <a class="nav-link active" href="threats.html">Threats</a>
-                <a class="nav-link" href="science.html">Science</a>
-                <a class="nav-link" href="solutions.html">Solutions</a>
-                <a class="nav-link" href="impact.html">Impact</a>
-                <a class="nav-link" href="feedback.html">Feedback</a>
-            </div>
-        </div>
-    </nav>
-
-    <header class="threat-header">
-        <div class="container">
-            <span class="text-danger fw-bold text-uppercase tracking-widest">Global Intelligence Report</span>
-            <h1>Threat Matrix</h1>
-            <p class="lead text-secondary">Analyzing the world's most dangerous digital attack vectors.</p>
-        </div>
-    </header>
-
-    <div class="container-main">
-        <section id="social-engineering">
-            <h2>01. Social Engineering & Manipulation</h2>
-            <p>While most people think of hacking as "typing code into a green screen," the vast majority of successful breaches start with human error. Social engineering is the tactical manipulation of human psychology to bypass technical security controls.</p>
-            
-            <div class="intel-card">
-                <h3>The Spear Phishing Methodology</h3>
-                <p>Unlike generic spam, <strong>Spear Phishing</strong> is a targeted operation. An attacker will spend weeks researching a target on LinkedIn, Twitter, and company websites to craft an email that is indistinguishable from a legitimate internal communication.</p>
-                <ul>
-                    <li><strong>Pretexting:</strong> The attacker creates a false scenario (e.g., "The IT department needs to verify your credentials for a mandatory system update").</li>
-                    <li><strong>Baiting:</strong> Leaving a malware-infected USB drive in a company parking lot, labeled "Q4 Executive Bonuses."</li>
-                    <li><strong>Quid Pro Quo:</strong> Calling an employee pretending to be technical support, offering a "fix" that actually installs a backdoor.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="malware">
-            <h2>02. Advanced Malware Ecosystems</h2>
-            <p>Malicious software has evolved from simple annoyances into polymorphic engines capable of self-replication and modular task execution.</p>
-            
-            <div class="alert-box">
-                <strong>CRITICAL ALERT:</strong> Ransomware-as-a-Service (RaaS) has lowered the barrier to entry, allowing criminal affiliates to lease high-end malware and share profits with the original developers.
-            </div>
-
-            <h3>Ransomware: Double Extortion Architecture</h3>
-            <p>Modern Ransomware groups (like LockBit or BlackCat) no longer just encrypt data. They follow a three-stage attack pattern:</p>
-            <div class="tech-specs mb-4">
-                1. INFILTRATION: Initial access via compromised RDP or Phishing.<br>
-                2. EXFILTRATION: Sensitive files are stolen and uploaded to a private "leak site."<br>
-                3. ENCRYPTION: The local system is locked with AES-256 encryption.<br>
-                4. EXTORTION: The victim must pay to decrypt, AND pay to prevent the stolen data from being leaked to the public.
-            </div>
-        </section>
-
-        <section id="infrastructure">
-            <h2>03. Infrastructure & Network Warfare</h2>
-            <p>Large-scale attacks target the fundamental protocols of the internet, aiming to disable entire regions or corporate networks.</p>
-            
-            <h3>The Botnet Menace</h3>
-            <p>A Botnet is a network of hijacked computers, IoT devices (smart cameras, fridges), and servers controlled by a "Command and Control" (C2) server. These are used to launch Distributed Denial of Service (DDoS) attacks, capable of hitting targets with over 2 Terabits of traffic per second.</p>
-            
-            <div class="intel-card">
-                <h3>Zero-Day Exploits</h3>
-                <p>A Zero-Day is a vulnerability in software (like Windows, Chrome, or iOS) that the manufacturer is not aware of. These are the "Holy Grail" for hackers. Governments and criminal organizations spend millions of dollars to acquire these exploits because they work on any patched system instantly.</p>
-            </div>
-        </section>
-
-        <section id="supply-chain">
-            <h2>04. Supply Chain Compromise</h2>
-            <p>Instead of attacking a well-defended fortress directly, hackers poison the food supply. By compromising a trusted software vendor, attackers can distribute their malware to thousands of companies through a legitimate "Software Update." The SolarWinds and Kaseya incidents are prime examples of how one single breach can paralyze the global economy.</p>
-        </section>
-
-        <footer style="margin-top: 80px; text-align: center; border-top: 1px solid #30363d; padding-top: 30px; color: #8b949e; font-size: 0.9rem;">
-            SEC-OPS INTEL REPORT | DOCUMENT ID: #SO-992-TX | CLASSIFIED
+        <footer style="margin-top: 100px; text-align: center; border-top: 1px solid #30363d; padding-top: 30px; color: #8b949e;">
+            SEC-OPS INTEL | v5.8.2.1 | Document Classified
         </footer>
     </div>
 
