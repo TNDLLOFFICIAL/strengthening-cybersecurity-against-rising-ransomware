@@ -3,219 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEC-OPS | INTEL FEEDBACK</title>
+    <title>SEC-OPS | TRANSMIT INTEL</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
         /* ========================================================================
         UI DESIGN SYSTEM & THEME ENGINE
         ========================================================================
         */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
         
         :root {
-            --bg-base: #010409;
-            --bg-card: #0d1117;
-            --bg-input: #000000;
-            --accent-primary: #2f81f7;
-            --accent-glow: rgba(47, 129, 247, 0.2);
-            --border-dim: #30363d;
-            --border-focus: #58a6ff;
-            --text-main: #c9d1d9;
-            --text-bright: #ffffff;
+            --bg-deep: #010409;
+            --bg-panel: #0d1117;
+            --bg-terminal: #000000;
+            --accent-blue: #2f81f7;
+            --accent-glow: rgba(47, 129, 247, 0.3);
+            --border-main: #30363d;
+            --text-primary: #c9d1d9;
+            --text-white: #ffffff;
             --text-dim: #8b949e;
-            --status-green: #3fb950;
         }
 
         body {
-            background-color: var(--bg-base);
-            color: var(--text-main);
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             padding-top: 140px;
-            background-image: linear-gradient(rgba(47, 129, 247, 0.05) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(47, 129, 247, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
+            background-image: 
+                radial-gradient(circle at 2px 2px, rgba(47,129,247,0.1) 1px, transparent 0);
+            background-size: 40px 40px;
         }
 
-        /* NAVIGATION BAR */
+        /* NAVIGATION COMPONENT */
         .navbar {
             background: rgba(13, 17, 23, 0.98);
-            border-bottom: 1px solid var(--border-dim);
-            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-main);
+            padding: 1.25rem 0;
             backdrop-filter: blur(15px);
         }
 
         .navbar-brand {
-            font-weight: 800;
-            font-size: 1.8rem;
-            color: var(--text-bright) !important;
+            font-weight: 900;
+            font-size: 1.7rem;
+            color: var(--text-white) !important;
             letter-spacing: -2px;
         }
 
         .nav-link {
             color: var(--text-dim) !important;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin: 0 15px;
-            transition: 0.3s ease;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            color: var(--accent-primary) !important;
-            text-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        /* FORM ARCHITECTURE */
-        .form-master-container {
-            max-width: 950px;
-            margin: 0 auto 150px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-dim);
-            border-radius: 30px;
-            box-shadow: 0 50px 100px rgba(0,0,0,0.9);
-            overflow: hidden;
-        }
-
-        .form-header {
-            background: #161b22;
-            padding: 50px 80px;
-            border-bottom: 1px solid var(--border-dim);
-        }
-
-        .form-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: var(--text-bright);
-            letter-spacing: -3px;
-            margin-bottom: 0;
-        }
-
-        .form-body {
-            padding: 60px 80px;
-        }
-
-        /* SELECTION COMPONENTS */
-        .input-group-label {
-            display: block;
-            font-weight: 800;
-            font-size: 0.85rem;
-            color: var(--text-bright);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 15px;
-        }
-
-        .form-control, .form-select {
-            background: var(--bg-input) !important;
-            border: 1px solid var(--border-dim) !important;
-            color: var(--text-bright) !important;
-            padding: 18px 25px !important;
-            border-radius: 14px !important;
             transition: 0.3s;
         }
 
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-blue) !important;
+        }
+
+        /* FORM ARCHITECTURE */
+        .portal-card {
+            max-width: 900px;
+            margin: 0 auto 100px;
+            background: var(--bg-panel);
+            border: 1px solid var(--border-main);
+            border-radius: 20px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+            overflow: hidden;
+        }
+
+        .portal-header {
+            background: #161b22;
+            padding: 50px 70px;
+            border-bottom: 1px solid var(--border-main);
+        }
+
+        .portal-title {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--text-white);
+            letter-spacing: -2px;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .portal-body {
+            padding: 60px 70px;
+        }
+
+        /* FORM ELEMENTS */
+        .form-label {
+            display: block;
+            font-weight: 800;
+            font-size: 0.8rem;
+            color: var(--text-white);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .form-control, .form-select {
+            background: var(--bg-terminal) !important;
+            border: 1px solid var(--border-main) !important;
+            color: var(--text-white) !important;
+            padding: 18px 20px !important;
+            border-radius: 10px !important;
+            margin-bottom: 35px;
+            transition: 0.3s ease;
+        }
+
         .form-control:focus, .form-select:focus {
-            border-color: var(--accent-primary) !important;
-            box-shadow: 0 0 0 5px var(--accent-glow) !important;
+            border-color: var(--accent-blue) !important;
+            box-shadow: 0 0 0 4px var(--accent-glow) !important;
+            outline: none;
         }
 
-        /* RADIO & CHECKBOX CUSTOMIZATION */
-        .custom-radio-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .radio-box {
-            background: var(--bg-input);
-            border: 1px solid var(--border-dim);
-            padding: 15px 20px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .radio-box:hover {
-            border-color: var(--text-dim);
-        }
-
-        .radio-box input[type="radio"] {
-            accent-color: var(--accent-primary);
-            width: 18px; height: 18px;
-        }
-
-        /* CONDITIONAL "OTHER" BOX */
+        /* DYNAMIC "OTHER" WRAPPER */
         #other-job-wrapper {
             display: none;
-            margin-top: -15px;
-            margin-bottom: 35px;
-            padding: 25px;
             background: rgba(47, 129, 247, 0.05);
-            border: 1px dashed var(--accent-primary);
-            border-radius: 14px;
-            animation: fadeInDown 0.4s ease;
-        }
-
-        /* SUBMISSION ASSETS */
-        .btn-transmit {
-            background: var(--accent-primary);
-            color: #fff;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 3px;
             padding: 25px;
-            width: 100%;
-            border: none;
-            border-radius: 14px;
-            font-size: 1.1rem;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            margin-top: 30px;
-        }
-
-        .btn-transmit:hover {
-            transform: translateY(-5px) scale(1.02);
-            background: #1f6feb;
-            box-shadow: 0 20px 40px rgba(47, 129, 247, 0.3);
-        }
-
-        /* SUCCESS STATE */
-        #submission-success {
-            display: none;
-            text-align: center;
-            padding: 100px 50px;
-        }
-
-        /* SYSTEM LOGS DECORATION */
-        .terminal-block {
-            background: #000;
-            padding: 30px;
             border-radius: 12px;
+            border: 1px dashed var(--accent-blue);
+            margin-top: -20px;
+            margin-bottom: 35px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* TERMINAL LOGS BOX */
+        .terminal-logs {
+            background: #000;
+            border-radius: 8px;
+            padding: 25px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.8rem;
             color: #58a6ff;
-            margin-top: 60px;
             border: 1px solid #21262d;
+            margin-top: 40px;
+            line-height: 1.6;
+        }
+
+        .btn-submit {
+            background: var(--accent-blue);
+            color: #fff;
+            padding: 22px;
+            width: 100%;
+            border-radius: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border: none;
+            transition: 0.4s;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background: #1f6feb;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px var(--accent-glow);
+        }
+
+        /* SUCCESS STATE */
+        #success-state {
+            display: none;
+            text-align: center;
+            padding: 80px 40px;
+        }
+
+        .success-check {
+            font-size: 5rem;
+            color: #3fb950;
+            margin-bottom: 20px;
         }
 
         footer {
             padding: 100px 0;
-            border-top: 1px solid var(--border-dim);
+            border-top: 1px solid var(--border-main);
             text-align: center;
             opacity: 0.5;
             font-size: 0.8rem;
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -224,155 +199,130 @@
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">SEC-OPS</a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <div class="navbar-nav ms-auto">
-                    <a class="nav-link" href="threats.html">Intelligence</a>
-                    <a class="nav-link" href="science.html">Cryptography</a>
-                    <a class="nav-link" href="solutions.html">Protocols</a>
-                    <a class="nav-link" href="impact.html">Assessment</a>
-                    <a class="nav-link active" href="feedback.html">Feedback</a>
-                </div>
+            <div class="navbar-nav ms-auto flex-row">
+                <a class="nav-link" href="threats.html">Intelligence</a>
+                <a class="nav-link" href="science.html">Cryptography</a>
+                <a class="nav-link" href="solutions.html">Protocols</a>
+                <a class="nav-link" href="impact.html">Assessment</a>
+                <a class="nav-link active" href="feedback.html">Feedback</a>
             </div>
         </div>
     </nav>
+
     <div class="container">
-        <div class="form-master-container animate__animated animate__fadeInUp">
+        <div class="portal-card">
             
-            <header class="form-header">
-                <h1 class="form-title">Submit Intel</h1>
-                <p class="text-secondary mb-0 mt-2 text-uppercase fw-bold letter-spacing-1">Secure node transmission protocol active.</p>
+            <header class="portal-header">
+                <h1 class="portal-title">Transmit Intel</h1>
             </header>
 
-            <div class="form-body">
+            <div class="portal-body">
                 
                 <div id="form-ui">
-                    <form id="secops-feedback-form" action="https://formspree.io/f/mrejgobo" method="POST">
+                    <form id="intel-submission-form" action="https://formspree.io/f/mrejgobo" method="POST">
                         
-                        <div class="mb-5">
-                            <label class="input-group-label">Agent Operational Alias</label>
-                            <input type="text" name="alias" class="form-control" placeholder="Enter ID or Full Name" required>
-                        </div>
+                        <label class="form-label">Operational Alias</label>
+                        <input type="text" name="alias" class="form-control" placeholder="Agent ID / Code Name" required>
 
-                        <div class="mb-5">
-                            <label class="input-group-label">Assigned Tactical Role</label>
-                            <select name="job_role" id="job-role-dropdown" class="form-select" onchange="toggleOtherJob()" required>
-                                <option value="" disabled selected>Select position...</option>
-                                <option value="Encryption Specialist">Encryption Specialist</option>
-                                <option value="Frontline Defender">Frontline Defender</option>
-                                <option value="Network Forensicist">Network Forensicist</option>
-                                <option value="Policy Architect">Policy Architect</option>
-                                <option value="Other">Other (Manual Entry)</option>
-                            </select>
-                        </div>
+                        <label class="form-label">Specialization Unit</label>
+                        <select name="unit" id="unit-select" class="form-select" onchange="toggleOtherBox()" required>
+                            <option value="" disabled selected>Select Role...</option>
+                            <option value="Threat Hunter">Threat Hunter</option>
+                            <option value="Crypto Researcher">Crypto Researcher</option>
+                            <option value="Policy Architect">Policy Architect</option>
+                            <option value="Network Forensicist">Network Forensicist</option>
+                            <option value="Node Auditor">Node Auditor</option>
+                            <option value="Other">Other (Manual Entry)</option>
+                        </select>
 
                         <div id="other-job-wrapper">
-                            <label class="input-group-label">Specify Your Exact Profession</label>
-                            <input type="text" name="custom_job_description" id="other-job-input" class="form-control" placeholder="e.g. Quantum Physics Lead">
+                            <label class="form-label">Specify Your Unit</label>
+                            <input type="text" name="custom_unit" id="custom-unit-input" class="form-control" placeholder="What is your job?">
                         </div>
 
-                        <div class="mb-5">
-                            <label class="input-group-label">Assigned Department</label>
-                            <div class="custom-radio-group">
-                                <label class="radio-box">
-                                    <input type="radio" name="dept" value="Ops" required> Operations Wing
-                                </label>
-                                <label class="radio-box">
-                                    <input type="radio" name="dept" value="Labs"> Research Labs
-                                </label>
-                                <label class="radio-box">
-                                    <input type="radio" name="dept" value="Intel"> Global Intel
-                                </label>
-                            </div>
-                        </div>
+                        <label class="form-label">Security Clearance Level</label>
+                        <select name="clearance" class="form-select" required>
+                            <option value="Level 1">Level 1 - Public Observer</option>
+                            <option value="Level 2">Level 2 - Field Operative</option>
+                            <option value="Level 3">Level 3 - System Architect</option>
+                            <option value="Level 4">Level 4 - Regional Director</option>
+                            <option value="Level 5">Level 5 - OMEGA Access</option>
+                        </select>
 
-                        <div class="mb-5">
-                            <label class="input-group-label">Security Clearance Level</label>
-                            <div class="custom-radio-group">
-                                <label class="radio-box">
-                                    <input type="radio" name="clearance" value="L1" required> Level 1 (Public)
-                                </label>
-                                <label class="radio-box">
-                                    <input type="radio" name="clearance" value="L5"> Level 5 (Classified)
-                                </label>
-                                <label class="radio-box">
-                                    <input type="radio" name="clearance" value="Omega"> OMEGA (Deep Access)
-                                </label>
-                            </div>
-                        </div>
+                        <label class="form-label">Primary Incident Type</label>
+                        <select name="incident_type" class="form-select" required>
+                            <option value="Ransomware Vector">Ransomware Vector</option>
+                            <option value="Protocol Breach">Protocol Breach</option>
+                            <option value="MFA Hijack">MFA Hijack</option>
+                            <option value="Latice Collision">Lattice Collision</option>
+                            <option value="General Feedback">General System Feedback</option>
+                        </select>
 
-                        <div class="mb-5">
-                            <label class="input-group-label">Localized Threat Intensity</label>
-                            <select name="threat_level" class="form-select" required>
-                                <option value="low">Low (Nominal Operations)</option>
-                                <option value="moderate">Moderate (Detection Frequency High)</option>
-                                <option value="high">High (Active Counter-Measures Engaged)</option>
-                                <option value="critical">Critical (Immediate Evacuation Required)</option>
-                            </select>
-                        </div>
+                        <label class="form-label">Tactical Sector</label>
+                        <select name="sector" class="form-select" required>
+                            <option value="North America">Sector-01 (North America)</option>
+                            <option value="EMEA">Sector-02 (EMEA)</option>
+                            <option value="APAC">Sector-03 (APAC)</option>
+                            <option value="Global Core">Sector-00 (Global Core)</option>
+                        </select>
 
-                        <div class="mb-5">
-                            <label class="input-group-label">Intel Payload / Message</label>
-                            <textarea name="payload" class="form-control" rows="8" placeholder="Enter detailed operational notes or general feedback..." required></textarea>
-                        </div>
+                        <label class="form-label">Intelligence Payload (Message)</label>
+                        <textarea name="payload" class="form-control" rows="6" placeholder="Enter encrypted data or feedback packet..." required></textarea>
 
-                        <button type="submit" class="btn-transmit" id="submit-btn">Transmit Packet</button>
+                        <button type="submit" class="btn-submit" id="submit-trigger">Submit Encrypted Packet</button>
                     </form>
 
-                    <div class="terminal-block">
-                        <span class="d-block">> HANDSHAKE: INITIATED...</span>
-                        <span class="d-block">> SCRUBBING_PII_DATA: COMPLETE</span>
-                        <span class="d-block">> ENCRYPTION_LAYER: AES-XTS-512</span>
-                        <span class="d-block">> STATUS: READY_FOR_TRANSFER</span>
+                    <div class="terminal-logs">
+                        > HANDSHAKE STATUS: <span style="color: #3fb950;">SECURE</span><br>
+                        > PKI_ENCRYPTION: <span style="color: #3fb950;">ACTIVE (AES-512)</span><br>
+                        > ZERO_PII_FILTER: <span style="color: #3fb950;">ENFORCED</span><br>
+                        > DESTINATION: FORM_HANDLER_CENTRAL
                     </div>
                 </div>
 
-                <div id="submission-success">
-                    <div class="animate__animated animate__zoomIn">
-                        <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-4">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                        </svg>
-                        <h2 class="text-white fw-bold display-5 mb-3">TRANSFER COMPLETE</h2>
-                        <p class="text-secondary lead mb-5">Your intelligence packet has been uploaded to the centralized vault. Your identity remains anonymous through local sharding.</p>
-                        <a href="index.html" class="btn btn-outline-primary px-5 py-3 rounded-pill fw-bold">BACK TO COMMAND HUB</a>
-                    </div>
+                <div id="success-state">
+                    <div class="success-check">✓</div>
+                    <h2 class="text-white fw-bold mb-3">TRANSMISSION COMPLETE</h2>
+                    <p class="text-secondary mb-5">Your intelligence packet has been sharded and uploaded to the SEC-OPS core. No tracking data was retained.</p>
+                    <a href="index.html" class="btn btn-outline-primary px-5 py-3 rounded-pill fw-bold">Return to Hub</a>
                 </div>
-                </div>
+
+            </div>
         </div>
     </div>
 
     <footer>
-        SEC-OPS GLOBAL COMMUNICATIONS LAYER // 2026 // NODE: 0x88F2B1A1
+        SEC-OPS GLOBAL TRANSMISSION LAYER // 2026 // CLASSIFIED ACCESS ONLY
     </footer>
 
     <script>
         /**
-         * Logic for the "Other" job role pop-up
+         * Toggles the "Other" text box based on dropdown selection
          */
-        function toggleOtherJob() {
-            const dropdown = document.getElementById('job-role-dropdown');
-            const otherWrapper = document.getElementById('other-job-wrapper');
-            const otherInput = document.getElementById('other-job-input');
+        function toggleOtherBox() {
+            const select = document.getElementById('unit-select');
+            const wrapper = document.getElementById('other-job-wrapper');
+            const input = document.getElementById('custom-unit-input');
 
-            if (dropdown.value === 'Other') {
-                otherWrapper.style.display = 'block';
-                otherInput.required = true;
-                otherInput.focus();
+            if (select.value === 'Other') {
+                wrapper.style.display = 'block';
+                input.required = true;
+                input.focus();
             } else {
-                otherWrapper.style.display = 'none';
-                otherInput.required = false;
+                wrapper.style.display = 'none';
+                input.required = false;
             }
         }
 
         /**
-         * AJAX Submission Logic to prevent verification page
+         * Handles AJAX submission to stay on the same page and show success
          */
-        const form = document.getElementById('secops-feedback-form');
-        form.addEventListener('submit', async function(event) {
-            event.preventDefault(); // Prevent page refresh
+        const form = document.getElementById('intel-submission-form');
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
             
-            const btn = document.getElementById('submit-btn');
-            btn.innerText = "TRANSMITTING...";
+            const btn = document.getElementById('submit-trigger');
+            btn.innerText = "UPLOADING PACKET...";
             btn.disabled = true;
 
             const data = new FormData(form);
@@ -385,20 +335,20 @@
                 });
 
                 if (response.ok) {
-                    // Hide the form and show the success message
                     document.getElementById('form-ui').style.display = 'none';
-                    document.getElementById('submission-success').style.display = 'block';
+                    document.getElementById('success-state').style.display = 'block';
                 } else {
-                    alert("System error: Transmission rejected by server.");
-                    btn.innerText = "RETRY PACKET";
+                    alert("Transmission Error: Node rejected the packet.");
+                    btn.innerText = "RETRY SUBMISSION";
                     btn.disabled = false;
                 }
             } catch (err) {
-                alert("Critical network failure. Could not reach hub.");
-                btn.innerText = "RETRY PACKET";
+                alert("Critical failure reaching Formspree server.");
+                btn.innerText = "RETRY SUBMISSION";
                 btn.disabled = false;
             }
         });
     </script>
+
 </body>
 </html>
