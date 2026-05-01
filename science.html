@@ -2,223 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEC-OPS | CRYPTO SCIENCE</title>
+    <title>The Science of Secret Codes | SEC-OPS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* ========================================================================
-        EXTENDED CSS ARCHITECTURE - CRYPTO THEME
-        ========================================================================
-        */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
-        
-        :root {
-            --bg-dark: #010409;
-            --card-bg: #0d1117;
-            --accent-purple: #d299ff;
-            --accent-glow: rgba(210, 153, 255, 0.2);
-            --border-color: #30363d;
-            --text-white: #ffffff;
-            --text-gray: #8b949e;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-white);
-            font-family: 'Inter', sans-serif;
-            padding-top: 150px;
-            line-height: 1.9;
-        }
-
-        /* NAVIGATION - NO COMMAND LINK */
-        .navbar {
-            background: rgba(13, 17, 23, 0.98);
-            border-bottom: 1px solid var(--border-color);
-            padding: 1.3rem 0;
-            backdrop-filter: blur(20px);
-        }
-
-        .navbar-brand { font-weight: 800; font-size: 1.6rem; letter-spacing: -1px; }
-        .nav-link { 
-            color: var(--text-gray) !important; 
-            font-size: 0.75rem; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            margin: 0 18px; 
-            letter-spacing: 1.5px;
-        }
-        .nav-link:hover, .nav-link.active { color: var(--accent-purple) !important; }
-
-        /* HERO HEADER */
-        .science-hero { margin-bottom: 100px; border-bottom: 1px solid var(--border-color); padding-bottom: 60px; }
-        .science-hero h1 { font-size: 4.5rem; font-weight: 900; letter-spacing: -3px; }
-
-        /* SCIENTIFIC MODULE CARDS */
-        .module-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 60px;
-            margin-bottom: 60px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .module-card::before {
-            content: "SEC-OPS // CRYPTO";
-            position: absolute;
-            top: 20px;
-            right: -30px;
-            font-family: 'JetBrains Mono';
-            font-size: 0.7rem;
-            color: var(--accent-purple);
-            opacity: 0.3;
-            transform: rotate(45deg);
-        }
-
-        .module-card h2 { 
-            color: var(--accent-purple); 
-            font-weight: 800; 
-            margin-bottom: 35px; 
-            font-size: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        /* FORMULA BOXES */
-        .formula-container {
-            background: #000;
-            padding: 40px;
-            border-radius: 12px;
-            font-family: 'JetBrains Mono';
-            color: #fff;
-            border-left: 6px solid var(--accent-purple);
-            margin: 40px 0;
-            font-size: 1.05rem;
-            line-height: 2.2;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
-        }
-
-        .math-comment { color: #58a6ff; font-style: italic; display: block; margin-bottom: 10px; }
-
-        /* DATA GRID */
-        .data-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .data-item {
-            background: rgba(255,255,255,0.02);
-            padding: 30px;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-        }
-
-        .data-item h4 { font-weight: 800; font-size: 1.1rem; margin-bottom: 15px; color: #fff; }
-        .data-item p { font-size: 0.9rem; color: var(--text-gray); }
-
-        /* ANIMATED DECORATION */
-        .pulse-dot {
-            height: 10px; width: 10px; background: var(--accent-purple); border-radius: 50%;
-            display: inline-block; box-shadow: 0 0 15px var(--accent-purple);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(0.9); opacity: 0.7; }
-            50% { transform: scale(1.2); opacity: 1; }
-            100% { transform: scale(0.9); opacity: 0.7; }
-        }
-
-        footer { padding: 100px 0; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-gray); font-family: 'JetBrains Mono'; font-size: 0.8rem; }
+        body { background-color: #0d1117; color: #c9d1d9; padding-top: 50px; }
+        .topic-header { border-left: 5px solid #58a6ff; padding-left: 20px; margin-bottom: 40px; }
+        .explainer { background: #161b22; padding: 25px; border-radius: 10px; margin-bottom: 20px; }
     </style>
 </head>
 <body>
-
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand text-white" href="index.html">SEC-OPS</a>
-            <div class="navbar-nav ms-auto flex-row">
-                <a class="nav-link" href="threats.html">Intelligence</a>
-                <a class="nav-link active" href="science.html">Cryptography</a>
-                <a class="nav-link" href="solutions.html">Protocols</a>
-                <a class="nav-link" href="impact.html">Assessment</a>
-                <a class="nav-link" href="feedback.html">Feedback</a>
-            </div>
-        </div>
-    </nav>
-
     <div class="container">
-        <header class="science-hero">
-            <span class="text-uppercase fw-bold text-secondary mb-3 d-block letter-spacing-2">Research Paper 88-ALPHA</span>
-            <h1>Cryptographic Physics</h1>
-            <p class="lead text-secondary w-75">Analyzing the collapse of traditional RSA-based perimeters and the mathematical migration toward Post-Quantum (PQ) Lattice resistance.</p>
-        </header>
-
-        <section class="module-card">
-            <h2><span class="pulse-dot"></span> 01. Prime Factorization Limitations</h2>
-            <p>The security of modern finance is built upon the assumption that factoring the product of two massive primes is computationally infeasible. However, as compute density increases, the "Trapdoor Function" of RSA-2048 is becoming vulnerable to distributed heuristic brute-forcing.</p>
-            
-            <div class="formula-container">
-                <span class="math-comment">// RSA Key Generation Logic</span>
-                n = p * q <br>
-                φ(n) = (p - 1)(q - 1) <br>
-                Select e such that 1 < e < φ(n) and gcd(e, φ(n)) = 1 <br>
-                d = e⁻¹ (mod φ(n)) <br>
-                <span class="math-comment">// Encryption Curve</span>
-                C = m^e (mod n)
-            </div>
-
-            <div class="data-grid">
-                <div class="data-item">
-                    <h4>The RSA-4096 Standard</h4>
-                    <p>Current SEC-OPS requirement for all static cold-storage data. Estimated time to crack: 4,000+ years using current super-clusters.</p>
-                </div>
-                <div class="data-item">
-                    <h4>Entropy Injection</h4>
-                    <p>Using atmospheric noise to seed random number generators, ensuring primes are truly non-deterministic.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="module-card">
-            <h2><span class="pulse-dot"></span> 02. AES-XTS-512 Block Cipher</h2>
-            <p>Advanced Encryption Standard with 512-bit key lengths represents the current "Hard Shell" for operational databases. Our systems utilize 14 rounds of substitution and permutation to ensure zero data pattern leakage.</p>
-            
-            <div class="formula-container">
-                <span class="math-comment">// AES Round Transformation (Simplified)</span>
-                SubBytes(state) <br>
-                ShiftRows(state) <br>
-                MixColumns(state) <br>
-                AddRoundKey(state, key[i]) <br>
-                <span class="math-comment">// Diffusion Ratio: 99.999%</span>
-            </div>
-        </section>
-
-        <section class="module-card">
-            <h2><span class="pulse-dot"></span> 03. Lattice Geometry & Shor's Resistance</h2>
-            <p>Quantum computers threaten the foundation of asymmetric math through Shor's Algorithm. To counter this, SEC-OPS leverages "Learning with Errors" (LWE) logic within high-dimensional lattices. Decryption requires finding the closest vector in a space with 1,000+ dimensions—a task resistant to quantum superposition.</p>
-        </section>
-
-        <div class="mt-5 p-5 border border-secondary rounded opacity-50">
-            <h5 class="text-white mb-4">APPENDIX: SUPPLEMENTAL LOGS</h5>
-            <p class="small text-secondary font-monospace">
-                [01] SHA-3 Hashing collision resistance verified via SO-LAB-01.<br>
-                [02] Elliptic Curve (Curve25519) implemented for mobile-mesh handshake protocols.<br>
-                [03] Zero-Knowledge Proofs (ZKP) integrated into User feedback portal for identity verification without data storage.<br>
-                [04] Differential Cryptanalysis audit completed: 0 vulnerabilities found in AES-GCM-256 implementation.<br>
-                [05] Quantum Entropy Source (QES) synced with London and Singapore nodes.<br>
-                [06] Lattice vector reduction (BKZ) attack simulations show 2^256 security margin.
-            </p>
+        <div class="topic-header">
+            <h1 class="text-white fw-bold">The Science: Cryptography</h1>
+            <p class="lead">How we use "Secret Codes" to protect your messages.</p>
         </div>
+
+        <div class="explainer">
+            <h3>1. What is Cryptography?</h3>
+            <p>Think of it like a <strong>Digital Vault</strong>. If you send a text, you don't want a hacker to read it. Cryptography turns your "Hello" into a bunch of random gibberish like "xY9!pQ". Only the person you sent it to has the "Key" to turn it back into "Hello."</p>
+        </div>
+
+        
+
+        <div class="explainer">
+            <h3>2. Why does this matter to the Sharks?</h3>
+            <p>Every bank, app, and government in the world uses this. Without these secret codes, your credit card numbers would be visible to everyone on the internet. We teach the math that keeps the world's money safe.</p>
+        </div>
+        
+        <a href="index.html" class="btn btn-outline-primary">Back to Home</a>
     </div>
-
-    <footer>
-        SEC-OPS CRYPTO_RESEARCH_DIVISION // 2026.04.30 // NODE: LAB-G-44
-    </footer>
-
 </body>
 </html>
