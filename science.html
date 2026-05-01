@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SEC-OPS | Science</title>
+    <title>The Science | SEC-OPS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; padding-top: 70px; }
         .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; }
         .nav-link { color: #8b949e !important; }
         .active { color: #58a6ff !important; font-weight: bold; border-bottom: 2px solid #58a6ff; }
-        .science-card { background: #161b22; padding: 40px; border-radius: 15px; border: 1px solid #30363d; }
+        .science-card { background: #161b22; padding: 50px; border-radius: 15px; border: 1px solid #30363d; margin-bottom: 40px; }
+        .highlight { color: #58a6ff; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -27,11 +28,34 @@
     </nav>
 
     <div class="container my-5 text-center">
-        <h1 class="text-white mb-4">The Science of Codes</h1>
-        <div style="font-size: 100px; margin-bottom: 30px;">🔐</div>
-        <div class="science-card text-start">
-            <h3>Cryptography</h3>
-            <p>This is the math behind your privacy. It takes your data and uses an <b>algorithm</b> to scramble it into gibberish. To unscramble it, you need a <b>Private Key</b>. Without that key, your data is just a bunch of random numbers and letters.</p>
+        <h1 class="text-white fw-bold mb-4">The Science of Codes: Cryptography</h1>
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjNThhNmZmIiBkPSJNMjU2IDguNUMxMTkuNSA4LjUgOC41IDExOS41IDguNSAyNTZTMTE5LjUgNTAzLjUgMjU2IDUwMy41IDUwMy41IDM5Mi41IDUwMy41IDI1NkMzOTIuNSA4LjUgMjU2IDguNVptMCA0NDQuNUMxNTguNiA0NTMuOCA4LjUgMzA0LjEgOC41IDE5Ni41IDguNSAxNDkuNCA1MyA4LjUgMTI4IDguNWMyNS44IDAgNTAuNiA5LjYgNzAuOSA5LjYgMjAuNCAwIDM5LjggOS42IDU3LjIgOS42IDE3LjQgMCAzMy41IDkuNiA0OC45IDkuNiAzMC4zIDAgNTcuNyA5LjYgODcuMiA5LjZ6TTQ4MC41IDEyOEMzOTIgMTI4IDMzMi41IDE3OC4yIDMzMi41IDIzMS41YyAwIDUzLjMgNjAgODAuNSAxNDggODAuNSA4OCAwIDE0OCAyNy4yIDE0OCA4MC41czYwIDEwMy41LTE0OCAxMDMuNUMzNjYuNSA0OTUgMzA3IDQ0NC44IDMwNyAzOTEuNWMwLTUzLjMgNjEtMTAzLjUgMTQ4LTE0My41IDg4IDAgMTQ4LTUwLjIgMTQ4LTEwMy41UzM5MiAxMjggMjU2IDEyOHpNMjU2IDcxLjVjLTU5LjUgMC0xMDcuOCA0OC4zLTEwNy44IDEwNy44UzE5Ni41IDE4Ny4zIDI1NiAxODcuM1MzNjMuOCAxMzkuMyAzNjMuOCA4MC41IDI1NiA3MS41WiIvPjwvc3ZnPg==" alt="Cryptography Icon" style="width: 150px; margin-bottom: 40px; border-radius: 20px; padding: 20px; background: rgba(88,166,255,0.05);">
+        
+        <div class="science-card text-start card-custom">
+            <h2><span class="highlight">Cryptography:</span> Turning Data into Secrets</h2>
+            <p>At its heart, cybersecurity is based on a branch of mathematics called Cryptography. It is the science of secure communication. Every time you send a text on Snapchat, purchase a game mod, or log into your email, your data travels across the internet as a secret code.</p>
+            
+            <p>Imagine your data is a piece of text (called <span class="highlight">Plaintext</span>) that says "HELLO." Before it is sent, your computer uses a math formula called a <span class="highlight">Cipher</span> to scramble that "Plaintext" into a total mess (called <span class="highlight">Ciphertext</span>), like "X8#qL." This Ciphertext is what travels across public Wi-Fi networks.</p>
+            
+            <p>If a hacker intercepts it, they have no idea what "X8#qL" means. They can’t read your message without the specific <strong>Mathematical Key</strong> that locks and unlocks that code. This whole system is what allows us to have privacy and security online.</p>
+        </div>
+
+        <div class="row text-start mt-5 mb-5">
+            <div class="col-md-6">
+                <div class="science-card">
+                    <h3>1. Symmetric Encryption: The Simple Lock</h3>
+                    <p>Symmetric Encryption is like a standard padlock. Both you and the recipient have the <strong>exact same digital key</strong>. You use the key to lock the message, and they use the exact same key to unlock it.</p>
+                    <p><strong>The problem:</strong> This system is very strong, but it has a massive weakness: How do you send the key to the other person without a hacker stealing it? If you send the key over the internet, a hacker can copy it and use it to unlock all your future messages. This is the "Key Exchange Problem."</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="science-card">
+                    <h3>2. Asymmetric Encryption: The Secure Solution</h3>
+                    <p>This is the system that runs the entire internet today. Instead of one key, it uses two different keys that work together: a <span class="highlight">Public Key</span> and a <span class="highlight">Private Key</span>.</p>
+                    <p><strong>How it works:</strong> A company like Amazon creates a "Public Key" that is shared freely with everyone. Anyone can use that Public Key to *lock* a message (like your credit card info). But Amazon is the only one who has the corresponding "Private Key" that can *unlock* that message.</p>
+                    <p>This completely solves the Key Exchange Problem and makes modern e-commerce possible.</p>
+                </div>
+            </div>
         </div>
     </div>
 </body>
