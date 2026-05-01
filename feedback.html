@@ -10,12 +10,11 @@
         .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; padding: 1rem; }
         .nav-link { color: #8b949e !important; margin: 0 10px; }
         .active { color: #58a6ff !important; font-weight: bold; border-bottom: 2px solid #58a6ff; }
-        .form-card { max-width: 600px; margin: 60px auto; background: #161b22; padding: 40px; border-radius: 15px; border: 1px solid #30363d; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .form-card { max-width: 600px; margin: 60px auto; background: #161b22; padding: 40px; border-radius: 15px; border: 1px solid #30363d; }
         .form-control, .form-select { background-color: #0d1117 !important; border: 1px solid #30363d !important; color: white !important; }
-        .form-control:focus, .form-select:focus { border-color: #58a6ff !important; box-shadow: none !important; }
         #other-box { display: none; margin-top: 15px; }
-        .btn-submit { background-color: #238636; border: none; color: white; font-weight: bold; padding: 12px; transition: 0.3s; }
-        .btn-submit:hover { background-color: #2ea043; }
+        .btn-submit { background-color: #238636; border: none; color: white; font-weight: bold; padding: 12px; width: 100%; border-radius: 5px; }
+        #status-message { display: none; margin-top: 20px; padding: 15px; border-radius: 5px; text-align: center; }
         footer { padding: 40px; text-align: center; color: #8b949e; border-top: 1px solid #30363d; }
     </style>
 </head>
@@ -36,19 +35,18 @@
 
     <div class="container">
         <div class="form-card">
-            <h2 class="text-white mb-4 text-center">Tell Us What You Think</h2>
-            <p class="text-center mb-4">Your feedback helps us make the internet a safer place for everyone. Please fill out the form below.</p>
+            <h2 class="text-white mb-4 text-center">Feedback Hub</h2>
             
-            <form id="fbForm" action="https://formspree.io/f/mrejgobo" method="POST">
+            <form id="my-form" action="https://formspree.io/f/mrejgobo" method="POST">
                 <div class="mb-3">
-                    <label class="form-label">Your Name</label>
-                    <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
+                    <label class="form-label">Name</label>
+                    <input type="text" name="name" class="form-control" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">What is your job?</label>
+                    <label class="form-label">Role</label>
                     <select id="job" name="job" class="form-select" onchange="toggleOther()" required>
-                        <option value="" disabled selected>Select an option...</option>
+                        <option value="" disabled selected>Choose an option...</option>
                         <option value="Student">Student</option>
                         <option value="Teacher">Teacher</option>
                         <option value="Engineer">Engineer</option>
@@ -57,28 +55,30 @@
                 </div>
 
                 <div id="other-box">
-                    <label class="form-label">Please type your job title:</label>
-                    <input type="text" id="other-input" name="custom_job" class="form-control" placeholder="Writer, Designer, etc.">
+                    <label class="form-label">Please specify:</label>
+                    <input type="text" id="other-input" name="custom_job" class="form-control">
                 </div>
 
                 <div class="mb-4 mt-3">
-                    <label class="form-label">Message / Suggestions</label>
-                    <textarea name="message" class="form-control" rows="4" placeholder="How can we improve SEC-OPS?" required></textarea>
+                    <label class="form-label">Message</label>
+                    <textarea name="message" class="form-control" rows="4" required></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-submit w-100">Send Feedback</button>
+                <button id="my-form-button" class="btn-submit">Submit Feedback</button>
+                
+                <div id="status-message"></div>
             </form>
         </div>
     </div>
 
-    <footer>&copy; 2026 SEC-OPS Project | 9th Grade Cybersecurity Hub</footer>
+    <footer>&copy; 2026 SEC-OPS Project</footer>
 
     <script>
+        // HANDLE THE OTHER BOX
         function toggleOther() {
             var select = document.getElementById('job');
             var otherBox = document.getElementById('other-box');
             var otherInput = document.getElementById('other-input');
-            
             if (select.value === 'Other') {
                 otherBox.style.display = 'block';
                 otherInput.required = true;
@@ -87,6 +87,39 @@
                 otherInput.required = false;
             }
         }
+
+        // HANDLE THE "BIG NONO" REDIRECT (AJAX)
+        var form = document.getElementById("my-form");
+        
+        async function handleSubmit(event) {
+          event.preventDefault();
+          var status = document.getElementById("status-message");
+          var data = new FormData(event.target);
+          
+          fetch(event.target.action, {
+            method: form.method,
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          }).then(response => {
+            if (response.ok) {
+              status.innerHTML = "Thanks! Your feedback was sent successfully.";
+              status.style.display = "block";
+              status.style.backgroundColor = "#238636";
+              status.style.color = "white";
+              form.reset();
+              document.getElementById('other-box').style.display = 'none';
+            } else {
+              status.innerHTML = "Oops! There was a problem submitting your form.";
+              status.style.display = "block";
+              status.style.backgroundColor = "#f85149";
+            }
+          }).catch(error => {
+            status.innerHTML = "Oops! There was a problem submitting your form.";
+            status.style.display = "block";
+            status.style.backgroundColor = "#f85149";
+          });
+        }
+        form.addEventListener("submit", handleSubmit)
     </script>
 </body>
 </html>
