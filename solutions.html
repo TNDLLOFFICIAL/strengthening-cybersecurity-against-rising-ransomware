@@ -2,14 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Solutions | SEC-OPS</title>
+    <title>Solutions | SEC-OPS Defense</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; padding-top: 80px; }
+        body { background-color: #0d1117; color: #c9d1d9; padding-top: 80px; line-height: 1.8; }
         .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; }
         .nav-link { color: #8b949e !important; }
         .active { color: #58a6ff !important; font-weight: bold; border-bottom: 2px solid #58a6ff; }
-        .version-tag { position: fixed; bottom: 10px; right: 15px; background: rgba(22,27,34,0.9); color: #8b949e; padding: 4px 10px; border-radius: 5px; font-size: 11px; font-family: monospace; border: 1px solid #30363d; z-index: 10000; pointer-events: none; }
+        
+        .sol-header { 
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1558494949-ef010cbdcc91?auto=format&fit=crop&w=1000&q=80');
+            background-size: cover; background-position: center; padding: 100px 0; border-bottom: 1px solid #30363d;
+        }
+        
+        .main-content { max-width: 950px; margin: auto; padding: 60px 20px; }
+        
+        h1 { font-size: 3.5rem; font-weight: 900; color: white; margin-bottom: 15px; }
+        h2 { color: #58a6ff; font-weight: 800; margin-top: 60px; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
+        
+        .defense-card { 
+            background: #161b22; border: 1px solid #30363d; border-radius: 15px; 
+            padding: 40px; margin: 30px 0; transition: transform 0.3s ease;
+        }
+        .defense-card:hover { border-color: #3fb950; transform: translateY(-5px); }
+
+        .protocol-box { 
+            background: #010409; border: 1px solid #30363d; padding: 25px; 
+            border-radius: 10px; margin-top: 20px;
+        }
+        .step-label { color: #3fb950; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; }
+
+        .pill { 
+            display: inline-block; padding: 2px 12px; border-radius: 20px; 
+            background: rgba(88, 166, 255, 0.1); color: #58a6ff; border: 1px solid #58a6ff;
+            font-size: 0.8rem; margin-bottom: 10px;
+        }
+
+        .version-tag { 
+            position: fixed; bottom: 10px; right: 15px; background: rgba(22,27,34,0.9); 
+            color: #8b949e; padding: 4px 10px; border-radius: 5px; font-size: 11px; 
+            font-family: monospace; border: 1px solid #30363d; z-index: 10000; pointer-events: none; 
+        }
     </style>
 </head>
 <body>
@@ -26,10 +59,77 @@
             </div>
         </div>
     </nav>
-    <div class="container py-5 text-white">
-        <h2>Security Solutions</h2>
-        <p>Proactive measures for data protection.</p>
+
+    <header class="sol-header text-center">
+        <div class="container">
+            <span class="pill">Defense Operations</span>
+            <h1>Strategic Solutions</h1>
+            <p class="lead text-secondary">Implementing enterprise-grade countermeasures and resilient frameworks.</p>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <section>
+            <h2>01. The Zero Trust Architecture (ZTA)</h2>
+            <p>Traditional security relied on the "Castle and Moat" strategy—once you were inside the network, you were trusted. Modern security has moved to <strong>Zero Trust</strong>. The core philosophy is: "Never Trust, Always Verify." Every request, whether it comes from inside or outside the network, must be fully authenticated, authorized, and encrypted before access is granted.</p>
+            
+            <div class="defense-card">
+                <h3>The Three Pillars of Zero Trust</h3>
+                <div class="protocol-box">
+                    <span class="step-label">I. Identity Verification</span>
+                    <p>Moving beyond passwords to biometric and hardware-based Multi-Factor Authentication (MFA). If the identity cannot be proven with 100% certainty, access is denied.</p>
+                </div>
+                <div class="protocol-box">
+                    <span class="step-label">II. Least Privilege Access</span>
+                    <p>Users are given only the minimum level of access required to do their jobs. This prevents "lateral movement" by hackers—if one account is compromised, they can't jump to the rest of the system.</p>
+                </div>
+                <div class="protocol-box">
+                    <span class="step-label">III. Micro-Segmentation</span>
+                    <p>Breaking the network into small, isolated zones. If an attack occurs in one zone, it is "contained" and cannot spread to the rest of the infrastructure.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>02. Advanced Network Hardening</h2>
+            <p>Hardening is the process of securing a system by reducing its surface of vulnerability. Every open port or unnecessary service is a potential door for an attacker.</p>
+            
+            <h3>End-to-End Encryption (E2EE)</h3>
+            <p>Encryption shouldn't just happen at rest; it must happen in transit. By implementing <strong>TLS 1.3</strong> and E2EE, we ensure that even if a "Man-in-the-Middle" (MitM) attack intercepts the data packets, they remain mathematically impossible to read without the private keys stored on the end-user devices.</p>
+
+            <div class="defense-card">
+                <h3>Air-Gapping & Cold Storage</h3>
+                <p>For the most sensitive data (like encryption master keys or critical backups), SEC-OPS recommends <strong>Air-Gapping</strong>. This involves keeping the hardware physically disconnected from any network, including the internet. It is the only 100% effective defense against remote exploitation.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>03. Incident Response & Recovery</h2>
+            <p>Security is not just about stopping attacks; it is about how you respond when one succeeds. A robust <strong>Incident Response (IR)</strong> plan can be the difference between a minor glitch and a company-ending disaster.</p>
+            
+            <div class="tech-specs mt-4" style="background: #161b22; border-color: #3fb950; font-family: inherit;">
+                <h4 style="color: #3fb950;">The IR Lifecycle:</h4>
+                <ol>
+                    <li><strong>Preparation:</strong> Training staff and deploying monitoring tools (SIEM/EDR).</li>
+                    <li><strong>Detection:</strong> Identifying a breach through anomaly detection.</li>
+                    <li><strong>Containment:</strong> Shutting down affected servers to stop the spread.</li>
+                    <li><strong>Eradication:</strong> Removing the malware and closing the vulnerability.</li>
+                    <li><strong>Recovery:</strong> Restoring systems from clean, verified backups.</li>
+                    <li><strong>Lessons Learned:</strong> Analyzing the attack to prevent future occurrences.</li>
+                </ol>
+            </div>
+        </section>
+
+        <section>
+            <h2>04. The Human Firewall</h2>
+            <p>Since 95% of breaches involve human error, the final solution is <strong>Continuous Training</strong>. Security is not a product you buy; it is a mindset you build. Through phishing simulations and security awareness campaigns, we turn employees from targets into the first line of defense.</p>
+        </section>
+
+        <footer style="margin-top: 80px; text-align: center; border-top: 1px solid #30363d; padding-top: 30px; color: #8b949e; font-size: 0.9rem;">
+            SEC-OPS DEFENSE PROTOCOL | v5.8.2.1 | STATUS: PROTECTED
+        </footer>
     </div>
-    <div class="version-tag">v3.8.2.1</div>
+
+    <div class="version-tag">v5.8.2.1</div>
 </body>
 </html>
