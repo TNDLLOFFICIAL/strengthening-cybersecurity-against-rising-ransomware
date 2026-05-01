@@ -6,98 +6,91 @@
     <title>SEC-OPS | DEFENSE PROTOCOLS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono&display=swap');
+        /* ========================================================================
+        DYNAMIC LAYOUT ENGINE
+        ========================================================================
+        */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
         
         :root {
             --bg: #010409;
-            --card: #0d1117;
-            --accent: #3fb950;
-            --border: #30363d;
-            --text: #c9d1d9;
+            --card-surface: #0d1117;
+            --accent-green: #3fb950;
+            --border-muted: #30363d;
+            --text-main: #c9d1d9;
+            --text-white: #ffffff;
         }
 
         body {
             background-color: var(--bg);
-            color: var(--text);
+            color: var(--text-main);
             font-family: 'Inter', sans-serif;
-            padding-top: 140px;
-            line-height: 1.8;
+            padding-top: 150px;
         }
 
-        .navbar { background: rgba(13, 17, 23, 0.95); border-bottom: 1px solid var(--border); padding: 1.2rem 0; }
+        /* CLEAN NAVBAR */
+        .navbar { background: rgba(13,17,23,0.96); border-bottom: 1px solid var(--border-muted); padding: 1.25rem 0; }
+        .navbar-brand { font-weight: 800; font-size: 1.5rem; color: #fff !important; }
         .nav-link { color: #8b949e !important; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin: 0 15px; }
+        .nav-link:hover { color: var(--accent-green) !important; }
 
-        .solution-header { margin-bottom: 60px; }
-        .solution-header h1 { font-size: 3.5rem; font-weight: 800; color: #fff; letter-spacing: -2px; }
+        .header-content h1 { font-size: 4rem; font-weight: 900; color: #fff; margin-bottom: 50px; }
 
-        /* PROTOCOL CARD ARCHITECTURE */
-        .protocol-card {
-            background: var(--card);
-            border: 1px solid var(--border);
+        /* PROTOCOL BOXES */
+        .protocol-box {
+            background: var(--card-surface);
+            border: 1px solid var(--border-muted);
             border-radius: 12px;
             margin-bottom: 50px;
             overflow: hidden;
-            transition: 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .protocol-card:hover { border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .protocol-box:hover { border-color: var(--accent-green); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
 
-        .protocol-banner {
+        .protocol-header {
             background: rgba(63, 185, 80, 0.1);
-            padding: 20px 40px;
-            border-bottom: 1px solid var(--border);
+            padding: 25px 40px;
+            border-bottom: 1px solid var(--border-muted);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .protocol-id { font-family: 'JetBrains Mono'; color: var(--accent); font-weight: 700; }
+        .protocol-tag { font-family: 'JetBrains Mono'; color: var(--accent-green); font-weight: 700; font-size: 0.8rem; }
         .protocol-body { padding: 50px; }
-        .protocol-title { font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 20px; }
+        .protocol-title { font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 30px; }
 
-        /* CHECKLIST STYLING */
-        .step-list { list-style: none; padding: 0; margin: 30px 0; }
-        .step-item {
-            padding: 15px 0;
-            border-bottom: 1px solid #21262d;
-            display: flex;
-            gap: 20px;
-        }
-        .step-number {
-            font-family: 'JetBrains Mono';
-            color: var(--accent);
-            font-weight: 800;
+        /* MULTI-STEP PROCESS */
+        .step-container { margin-top: 40px; border-left: 2px solid var(--border-muted); padding-left: 30px; }
+        .step-block { margin-bottom: 40px; position: relative; }
+        .step-block::before {
+            content: ""; position: absolute; left: -36px; top: 0; width: 10px; height: 10px; 
+            background: var(--accent-green); border-radius: 50%;
         }
 
-        .tech-note {
-            background: #161b22;
-            padding: 25px;
+        .step-title { font-weight: 800; color: #fff; margin-bottom: 10px; font-size: 1.1rem; }
+        .step-text { font-size: 0.95rem; color: #8b949e; }
+
+        .tech-specification {
+            background: #000;
+            padding: 30px;
             border-radius: 8px;
-            font-size: 0.9rem;
-            border-left: 4px solid var(--accent);
-            margin-top: 20px;
+            margin-top: 30px;
+            font-family: 'JetBrains Mono';
+            font-size: 0.85rem;
+            color: #58a6ff;
         }
 
-        .status-badge {
-            background: var(--accent);
-            color: #000;
-            font-size: 0.65rem;
-            font-weight: 900;
-            padding: 4px 10px;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-
-        footer { padding: 80px 0; border-top: 1px solid var(--border); text-align: center; color: #8b949e; }
+        footer { padding: 100px 0; border-top: 1px solid var(--border-muted); text-align: center; font-size: 0.8rem; opacity: 0.6; }
     </style>
 </head>
 <body>
 
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand text-white fw-bold" href="index.html">SEC-OPS</a>
+            <a class="navbar-brand" href="index.html">SEC-OPS</a>
             <div class="navbar-nav ms-auto flex-row">
-                <a class="nav-link" href="index.html">Command</a>
                 <a class="nav-link" href="threats.html">Intelligence</a>
                 <a class="nav-link" href="science.html">Cryptography</a>
                 <a class="nav-link active" href="solutions.html">Protocols</a>
@@ -108,78 +101,78 @@
     </nav>
 
     <div class="container">
-        <header class="solution-header">
-            <h1>Defense Blueprints</h1>
-            <p class="lead text-secondary">Operational guidelines for neutralizing agentic ransomware threats.</p>
+        <header class="header-content">
+            <h1 class="animate__animated animate__fadeInDown">Defense Blueprints</h1>
+            <p class="lead text-secondary w-75">Operational execution layers designed to mitigate autonomous ransomware propagation across decentralized enterprise meshes.</p>
         </header>
 
-        <section class="protocol-card">
-            <div class="protocol-banner">
-                <span class="protocol-id">PROTOCOL // ZERO-TRUST-MESH</span>
-                <span class="status-badge">Verified</span>
+        <section class="protocol-box">
+            <div class="protocol-header">
+                <span class="protocol-tag">ID: ZERO_TRUST_MESH_V4</span>
+                <span class="badge bg-success">STABLE</span>
             </div>
             <div class="protocol-body">
-                <h2 class="protocol-title">Dynamic Perimeter Micro-Segmentation</h2>
-                <p>Traditional firewalls are obsolete. We implement a "hotel-room" architecture where every node requires independent cryptographic authorization for every packet sent.</p>
+                <h2 class="protocol-title">Perimeter Micro-Segmentation</h2>
+                <p>Modern defense rejects the "Flat Network" model. We implement hardware-validated isolation for every individual compute node, ensuring that a breach in one zone remains strictly lateral-locked.</p>
                 
-                <div class="step-list">
-                    <div class="step-item">
-                        <span class="step-number">01</span>
-                        <div><strong>Identity-Based Routing:</strong> All internal traffic is routed based on MTLS (Mutual TLS) certificates tied to hardware IDs.</div>
+                <div class="step-container">
+                    <div class="step-block">
+                        <div class="step-title">01. Hardware Identity Binding</div>
+                        <div class="step-text">Every node must authenticate using a physical TPM (Trusted Platform Module) before accessing the local VPC mesh.</div>
                     </div>
-                    <div class="step-item">
-                        <span class="step-number">02</span>
-                        <div><strong>Just-In-Time Access:</strong> Admin privileges are granted for specific 15-minute windows and automatically revoked.</div>
+                    <div class="step-block">
+                        <div class="step-title">02. Ephemeral Access Tokens</div>
+                        <div class="step-text">Internal API calls expire every 300 seconds, requiring re-validation through our centralized crypto-authority.</div>
                     </div>
-                    <div class="step-item">
-                        <span class="step-number">03</span>
-                        <div><strong>Heuristic Quarantine:</strong> If a node's CPU entropy spikes (indicating encryption), the mesh automatically severs all physical links.</div>
+                    <div class="step-block">
+                        <div class="step-title">03. Heuristic Quarantine</div>
+                        <div class="step-text">Real-time monitoring of I/O entropy. If massive file modification begins, the node is physically disconnected from the mesh.</div>
                     </div>
                 </div>
 
-                <div class="tech-note">
-                    <strong>Lead Architect Note:</strong> Implementation requires Node.js v24+ and a distributed hardware security module (HSM). Do not deploy on legacy virtualized kernels.
+                <div class="tech-specification">
+                    > CONFIG_LOAD: mesh_segmentation_rules.yaml <br>
+                    > LATENCY_ALLOWANCE: 12ms <br>
+                    > AUTH_METHOD: RSA-4096-PSS <br>
+                    > ENFORCEMENT: Kernel-Level Ring 0
                 </div>
             </div>
         </section>
 
-        <section class="protocol-card">
-            <div class="protocol-banner">
-                <span class="protocol-id">PROTOCOL // IMMUTABLE-UPLINK</span>
-                <span class="status-badge">Verified</span>
+        <section class="protocol-box">
+            <div class="protocol-header">
+                <span class="protocol-tag">ID: WORM_IMMUTABLE_SYNC</span>
+                <span class="badge bg-primary">ENFORCED</span>
             </div>
             <div class="protocol-body">
-                <h2 class="protocol-title">WORM-State Data Redundancy</h2>
-                <p>To defeat double-extortion, data must be stored in a Write-Once-Read-Many (WORM) state. This ensures that even with admin access, an attacker cannot delete or encrypt the source files.</p>
+                <h2 class="protocol-title">Immutable Data Vaulting</h2>
+                <p>Ransomware is neutralized if the data cannot be modified. We utilize WORM (Write-Once-Read-Many) storage layers synced via a one-way data diode to air-gapped locations.</p>
                 
-                <div class="step-list">
-                    <div class="step-item">
-                        <span class="step-number">04</span>
-                        <div><strong>Air-Gapped Vaulting:</strong> Synchronization occurs via unidirectional optical fiber (Data Diode).</div>
-                    </div>
-                    <div class="step-item">
-                        <span class="step-number">05</span>
-                        <div><strong>Temporal Versioning:</strong> Every file change creates a new immutable block; the system stores 1,000+ versions.</div>
+                <div class="step-container">
+                    <div class="step-block">
+                        <div class="step-title">Automatic Snapshot Inversion</div>
+                        <div class="step-text">Snapshots are taken every 15 minutes and cryptographically signed to prevent retrospective modification.</div>
                     </div>
                 </div>
-                <p class="mt-4">This solution effectively reduces the "recovery time objective" (RTO) from days to minutes, as a simple head-pointer roll-back restores the entire database to a pre-attack state.</p>
             </div>
         </section>
 
-        <section class="protocol-card" style="border-left: 10px solid #d29922;">
-            <div class="protocol-banner" style="background: rgba(210, 153, 34, 0.1);">
-                <span class="protocol-id" style="color: #d29922;">PROTOCOL // AI-COUNTER-AGENT</span>
-                <span class="status-badge" style="background: #d29922;">Experimental</span>
-            </div>
-            <div class="protocol-body">
-                <h2 class="protocol-title">Deceptive Honey-Pots</h2>
-                <p>We deploy millions of "dummy" files that look like sensitive data. When an autonomous ransomware agent touches these files, it triggers a trap that feeds the malware "infinite data" to process, slowing the attack to a crawl while defense teams triangulate the source.</p>
-            </div>
-        </section>
+        <div class="p-5 bg-dark border border-secondary rounded mt-5">
+            <h4 class="text-white mb-4">Implementation Checklist (v4.0.1)</h4>
+            <ul class="text-secondary small line-height-lg">
+                <li class="mb-2">Ensure all SO-ALPHA nodes are running Kernel 6.8 or higher.</li>
+                <li class="mb-2">Verify Data Diode optical integrity between Site-A and Site-B.</li>
+                <li class="mb-2">Run `sec-ops --verify-lattice` on all edge gateways.</li>
+                <li class="mb-2">Rotate administrative PGP keys every 30 calendar days.</li>
+                <li class="mb-2">Audit all S3 buckets for public-read leaks via Heuristic Scan.</li>
+                <li class="mb-2">Confirm air-gap physical locking mechanism is engaged for cold storage.</li>
+                <li class="mb-2">Check entropy levels on centralized QES (Quantum Entropy Source).</li>
+            </ul>
+        </div>
     </div>
 
     <footer>
-        SEC-OPS SOLUTIONS // VERSION 4.2.1 // BUILD 2026-04
+        SEC-OPS // PROTOCOL_LEVEL_10 // AUTHORIZED_ACCESS_ONLY
     </footer>
 
 </body>
