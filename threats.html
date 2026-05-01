@@ -2,222 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEC-OPS | THREAT INTEL</title>
+    <title>Current Threats | SEC-OPS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
-        
-        :root {
-            --bg: #010409;
-            --card: #0d1117;
-            --accent-red: #f85149;
-            --accent-glow: rgba(248, 81, 73, 0.2);
-            --border: #30363d;
-            --text-main: #c9d1d9;
-            --text-dim: #8b949e;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            padding-top: 140px;
-            line-height: 1.8;
-        }
-
-        /* NAVIGATION ARCHITECTURE */
-        .navbar {
-            background: rgba(13, 17, 23, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            padding: 1.2rem 0;
-        }
-
-        .navbar-brand { font-weight: 800; color: #fff !important; text-decoration: none; font-size: 1.5rem; }
-        .nav-link { color: var(--text-dim) !important; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin: 0 15px; letter-spacing: 1.5px; }
-        .nav-link:hover, .nav-link.active { color: var(--accent-red) !important; }
-
-        /* CONTENT STYLING */
-        .page-header { margin-bottom: 80px; }
-        .page-header h1 { font-size: 4rem; font-weight: 900; color: #fff; letter-spacing: -2px; }
-
-        .report-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 50px;
-            margin-bottom: 40px;
-            position: relative;
-            transition: 0.3s;
-            border-left: 6px solid var(--accent-red);
-        }
-
-        .report-card:hover {
-            transform: translateX(10px);
-            background: #161b22;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .report-meta {
-            font-family: 'JetBrains Mono';
-            color: var(--accent-red);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            display: block;
-        }
-
-        .report-title { font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 25px; }
-        .report-desc { font-size: 1.1rem; color: var(--text-dim); margin-bottom: 35px; }
-
-        .analysis-log {
-            background: #000;
-            border: 1px solid #21262d;
-            border-radius: 8px;
-            padding: 30px;
-            font-family: 'JetBrains Mono';
-            font-size: 0.85rem;
-        }
-
-        .log-entry { display: block; margin-bottom: 6px; }
-        .ts { color: #58a6ff; margin-right: 15px; }
-        .critical { color: var(--accent-red); font-weight: 700; }
-
-        .threat-tag {
-            background: rgba(248, 81, 73, 0.1);
-            color: var(--accent-red);
-            border: 1px solid var(--accent-red);
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            margin-left: 20px;
-        }
-
-        /* ========================================================================
-        EXPANDED ANALYSIS SECTION (THE "MEAT" OF THE FILE)
-        ========================================================================
-        */
-        .threat-actor-list { margin-top: 100px; padding: 80px 0; border-top: 1px solid var(--border); }
-        .actor-box {
-            background: #161b22;
-            padding: 30px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            height: 100%;
-        }
-
-        .actor-id { color: #fff; font-weight: 800; margin-bottom: 15px; display: block; }
-        .actor-p { font-size: 0.9rem; color: var(--text-dim); }
-
-        footer { padding: 100px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim); font-size: 0.8rem; }
+        body { background-color: #0d1117; color: #c9d1d9; padding-top: 50px; }
+        .threat-card { background: #1c2128; border: 1px solid #f85149; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
     </style>
 </head>
 <body>
-
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">SEC-OPS</a>
-            <div class="navbar-nav ms-auto flex-row">
-                <a class="nav-link active" href="threats.html">Intelligence</a>
-                <a class="nav-link" href="science.html">Cryptography</a>
-                <a class="nav-link" href="solutions.html">Protocols</a>
-                <a class="nav-link" href="impact.html">Assessment</a>
-                <a class="nav-link" href="feedback.html">Feedback</a>
-            </div>
-        </div>
-    </nav>
-
     <div class="container">
-        <header class="page-header">
-            <span class="report-meta">> ACTIVE_THREAT_MONITOR</span>
-            <h1>Intelligence Archive</h1>
-            <p class="lead text-secondary">Comprehensive forensic documentation of next-generation ransomware vectors and APT actor profiles.</p>
-        </header>
+        <h1 class="text-white fw-bold mb-4">Threat Intelligence</h1>
+        
+        <div class="alert alert-danger">
+            <strong>The Topic: Digital Scouting</strong><br>
+            Intelligence means knowing what the bad guys are doing before they do it. We track hackers so you don't get caught by surprise.
+        </div>
 
-        <article class="report-card">
-            <span class="report-meta">VECTOR: AP-4022-GAMMA</span>
-            <div class="d-flex align-items-center mb-4">
-                <h2 class="report-title m-0">Hyper-Velocity Encryption Agents</h2>
-                <span class="threat-tag">CRITICAL</span>
-            </div>
-            <p class="report-desc">
-                Gamma-class agents represent a fundamental shift in malicious payload design. Utilizing local machine learning, these autonomous binary packages identify and prioritize high-value data structures (SQL databases, cold-storage configs) before initiating low-entropy encryption streams to evade heuristic detection.
-            </p>
-            <div class="analysis-log">
-                <span class="log-entry"><span class="ts">[04:12:01]</span> System: Forensic scan initiated on target SO-ALPHA-01.</span>
-                <span class="log-entry"><span class="ts">[04:12:02]</span> System: Binary signature detected (MD5: 88F2...FFC1).</span>
-                <span class="log-entry"><span class="ts">[04:12:04]</span> <span class="critical">ALERT: Executing AES-XTS-512 stream on /srv/production/.</span></span>
-                <span class="log-entry"><span class="ts">[04:12:05]</span> System: Distributed key-sharding detected via P2P relay.</span>
-                <span class="log-entry"><span class="ts">[04:12:06]</span> System: Payload self-termination initiated. Cleanup success.</span>
-            </div>
-        </article>
+        <div class="threat-card">
+            <h4 style="color: #f85149;">Phishing Scams</h4>
+            <p>This is when a hacker sends you a fake email (like from "Instagram") asking you to log in. They aren't actually Instagram—they are just trying to steal your password.</p>
+        </div>
 
-        <article class="report-card" style="border-left-color: #d29922;">
-            <span class="report-meta" style="color: #d29922;">VECTOR: AP-9108-BETA</span>
-            <div class="d-flex align-items-center mb-4">
-                <h2 class="report-title m-0">Identity Synthesis Hijacking</h2>
-                <span class="threat-tag" style="color:#d29922; border-color:#d29922; background:rgba(210,153,34,0.1)">HIGH</span>
-            </div>
-            <p class="report-desc">
-                By synthesizing high-fidelity generative audio/video of executive leadership in real-time, attackers bypass biometric MFA. This vector targets IT administrators to authorize manual session overrides in secure VPCs.
-            </p>
-        </article>
+        <div class="threat-card">
+            <h4 style="color: #f85149;">Malware (Viruses)</h4>
+            <p>These are "Bad Apps" that spy on your computer. They can record your screen or even lock your files until you pay the hacker money.</p>
+        </div>
 
-        <article class="report-card">
-            <span class="report-meta">VECTOR: AP-007-OMEGA</span>
-            <div class="d-flex align-items-center mb-4">
-                <h2 class="report-title m-0">Quantum-Resistant Ransomware</h2>
-                <span class="threat-tag">EXPERIMENTAL</span>
-            </div>
-            <p class="report-desc">
-                Emergent payloads utilizing lattice-based cryptography for internal key exchange. These files are mathematically impossible to decrypt, even with the projected compute power of a 10,000-qubit quantum array. 
-            </p>
-        </article>
-
-        <article class="report-card" style="border-left-color: #58a6ff;">
-            <span class="report-meta" style="color: #58a6ff;">VECTOR: AP-2211-DELTA</span>
-            <div class="d-flex align-items-center mb-4">
-                <h2 class="report-title m-0">Dormant Supply Chain Injections</h2>
-                <span class="threat-tag" style="color:#58a6ff; border-color:#58a6ff; background:rgba(88,166,255,0.1)">MODERATE</span>
-            </div>
-            <p class="report-desc">
-                Malicious code injection within open-source Node.js libraries. These payloads remain inactive for 180+ days to pass audit thresholds, only triggering when environment variables match a "Production" cloud profile.
-            </p>
-        </article>
-
-        <section class="threat-actor-list">
-            <h2 class="text-white fw-bold mb-5">Known APT Actor Profiles</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="actor-box">
-                        <span class="actor-id">SILENT_PHANTOM_GRP</span>
-                        <p class="actor-p">Specializes in financial exfiltration and SWIFT-level protocol manipulation. Operational since 2021.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="actor-box">
-                        <span class="actor-id">CRYPTO_LOGIC_UNIT</span>
-                        <p class="actor-p">Focuses on high-stakes ransomware targeting municipal utility grids and medical records.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="actor-box">
-                        <span class="actor-id">NODE_KILLER_77</span>
-                        <p class="actor-p">Known for destructive payloads that wipe MBR (Master Boot Record) sectors after encryption.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        <a href="index.html" class="btn btn-outline-secondary">Return Home</a>
     </div>
-
-    <footer>
-        SEC-OPS INTEL DIVISION // DATA_SOURCE: 10.0.8.22 // BUILD_2026_04_12 // ARCHIVE_STATUS: SEALED
-    </footer>
-
 </body>
 </html>
