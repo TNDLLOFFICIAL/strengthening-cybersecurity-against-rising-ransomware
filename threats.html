@@ -3,76 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEC-OPS | INTEL</title>
+    <title>SEC-OPS | THREAT INTEL</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono&display=swap');
-        :root { --bg: #010409; --card: #0d1117; --accent: #f85149; --border: #30363d; --text: #c9d1d9; }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; padding-top: 150px; }
-        .navbar { background: rgba(13, 17, 23, 0.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
-        .nav-link { color: #8b949e !important; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin: 0 15px; }
-        .container { max-width: 1000px; }
-        h1 { font-size: 4rem; font-weight: 900; color: #fff; margin-bottom: 60px; letter-spacing: -2px; }
-        .report-block { background: var(--card); border: 1px solid var(--border); border-left: 8px solid var(--accent); padding: 60px; margin-bottom: 50px; border-radius: 12px; }
-        h3 { color: var(--accent); font-weight: 700; margin-bottom: 25px; text-transform: uppercase; font-size: 1.5rem; }
-        p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 25px; color: #8b949e; }
-        .internal-memo { background: #000; border: 1px solid #21262d; border-radius: 6px; padding: 30px; font-family: 'JetBrains Mono'; font-size: 0.85rem; margin-top: 30px; }
-        .memo-tag { color: var(--accent); font-weight: bold; margin-bottom: 10px; display: block; }
-        footer { padding: 100px 0; border-top: 1px solid var(--border); text-align: center; margin-top: 100px; }
+        
+        :root {
+            --bg: #010409;
+            --card: #0d1117;
+            --accent: #f85149;
+            --border: #30363d;
+            --text: #c9d1d9;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            padding-top: 140px;
+        }
+
+        .navbar { background: rgba(13, 17, 23, 0.95); border-bottom: 1px solid var(--border); padding: 1.2rem 0; }
+        .nav-link { color: #8b949e !important; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin: 0 15px; }
+
+        .intel-header { margin-bottom: 80px; }
+        .intel-header h1 { font-size: 4rem; font-weight: 900; letter-spacing: -2px; color: #fff; }
+
+        .report-section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 40px;
+            padding: 50px;
+            border-left: 8px solid var(--accent);
+        }
+
+        .report-meta {
+            font-family: 'JetBrains Mono';
+            font-size: 0.8rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .threat-title { font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 25px; }
+        .threat-desc { font-size: 1.1rem; line-height: 1.8; color: #8b949e; margin-bottom: 30px; }
+
+        .log-box {
+            background: #000;
+            padding: 30px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono';
+            font-size: 0.85rem;
+            border: 1px solid #21262d;
+        }
+
+        .log-header {
+            color: #fff;
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .severity-pill {
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            background: rgba(248, 81, 73, 0.1);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+        }
+
+        footer { padding: 100px 0; border-top: 1px solid var(--border); text-align: center; }
     </style>
 </head>
 <body>
+
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand text-white fw-bold" href="index.html">SEC-OPS</a>
             <div class="navbar-nav ms-auto flex-row">
-                <a class="nav-link" href="threats.html">Intelligence</a>
+                <a class="nav-link" href="index.html">Command</a>
+                <a class="nav-link active" href="threats.html">Intelligence</a>
                 <a class="nav-link" href="science.html">Cryptography</a>
                 <a class="nav-link" href="solutions.html">Protocols</a>
                 <a class="nav-link" href="impact.html">Assessment</a>
+                <a class="nav-link" href="feedback.html">Feedback</a>
             </div>
         </div>
     </nav>
 
     <div class="container">
-        <h1>Advanced Persistent Threats</h1>
+        <div class="intel-header">
+            <h1>Active Threat Database</h1>
+            <p class="lead text-secondary">Real-time analysis of Advanced Persistent Threats (APTs) and Ransomware-as-a-Service (RaaS) groups.</p>
+        </div>
 
-        <div class="report-block">
-            <h3>01. Agentic Social Engineering</h3>
-            <p>Attackers no longer rely on broad phishing campaigns. They deploy Large Language Models (LLMs) tuned specifically for social engineering. These agents analyze target employees across public social media, corporate directories, and stolen communication logs to craft 100% personalized infiltration narratives.</p>
-            <p>Once a target responds, the AI handles the conversation in real-time, simulating human empathy and urgency to harvest session cookies and bypass multi-factor authentication (MFA) via token theft.</p>
-            <div class="internal-memo">
-                <span class="memo-tag">[INCIDENT LOG #882-B]</span>
-                LOCATION: Munich Data Center<br>
-                VECTOR: AI-Generated Deepfake Audio (CEO Voice Clone)<br>
-                OUTCOME: Unauthorized wire transfer and credential harvesting. Detection lag: 14 hours.
+        <article class="report-section">
+            <span class="report-meta">VECTOR: AP-4022-GAMMA</span>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="threat-title m-0">Hyper-Velocity Encryption Agents</h2>
+                <span class="severity-pill">CRITICAL</span>
             </div>
-        </div>
-
-        <div class="report-block">
-            <h3>02. Metamorphic Payload Delivery</h3>
-            <p>Traditional antivirus relies on "signatures"—a digital fingerprint of known malware. In 2026, ransomware is metamorphic. The software rewrites its own binary code during the infection process. To an EDR (Endpoint Detection Response) scanner, the file appears different on every single computer it touches, rendering static defenses useless.</p>
-            <p>Behavioral heuristics—watching what a program *does* rather than what it *is*—is the only remaining viable defense strategy for metamorphic threats.</p>
-        </div>
-
-        <div class="report-block">
-            <h3>03. Supply Chain Infiltration</h3>
-            <p>Modern ransomware groups are targeting the soft underbelly of technology: the supply chain. By compromising a single dev-ops tool or an open-source library used by thousands of companies, attackers gain "Day Zero" access to millions of endpoints without ever having to break through a firewall.</p>
-            <div class="internal-memo">
-                <span class="memo-tag">[INTEL BRIEF]</span>
-                Watchlist: "Shadow-Update" variants targeting cloud infrastructure management tools. These variants remain dormant for 90 days before initiating exfiltration.
+            <p class="threat-desc">A new class of autonomous malware that utilizes agentic decision-making to identify and prioritize high-value file directories before initiating the encryption sequence. Unlike traditional ransomware, Gamma-class agents do not wait for commands from a C2 server, making them immune to network isolation.</p>
+            <div class="log-box">
+                <span class="log-header">FORENSIC_SNAPSHOT_01.LOG</span>
+                <div class="text-secondary">[04:12:01] Scanning /srv/database/customer_records...</div>
+                <div class="text-secondary">[04:12:02] Entropy analysis: 98.4% (Plaintext detected)</div>
+                <div class="text-danger">[04:12:04] Initiating AES-XTS-512 stream encryption...</div>
+                <div class="text-danger">[04:12:05] Key shards distributed to 8 decentralized nodes.</div>
             </div>
-        </div>
+        </article>
 
-        <div class="report-block">
-            <h3>04. Ransomware-as-a-Service (RaaS)</h3>
-            <p>The barrier to entry for cybercrime has collapsed. Elite developer groups now license their high-speed encryption tools to "affiliates" in exchange for a 20% cut of the ransom. This specialization allows developers to focus on breaking new encryption methods while thousands of affiliates focus on mass distribution.</p>
-            <p>This industrialization of cybercrime has led to a 400% increase in attack volume compared to the previous decade.</p>
-        </div>
+        <article class="report-section" style="border-left-color: #d29922;">
+            <span class="report-meta" style="color: #d29922;">VECTOR: AP-9108-BETA</span>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="threat-title m-0">Identity Synthesis Hijacking</h2>
+                <span class="severity-pill" style="border-color: #d29922; color: #d29922; background: rgba(210, 153, 34, 0.1);">MODERATE</span>
+            </div>
+            <p class="threat-desc">This vector targets the human element. By synthesizing high-fidelity audio of executive leadership, attackers bypass multi-factor authentication (MFA) requirements by convincing junior IT admins to authorize session overrides. The speed of the AI synthesis allows for real-time interaction during support calls.</p>
+            <div class="log-box">
+                <span class="log-header">VOICE_PATTERN_RECOGNITION.ANALYSIS</span>
+                <div class="text-secondary">Source Audio: Inbound VoIP (+1-800-ADMIN)</div>
+                <div class="text-warning">Confidence Score: 92% (Synthetic Alert)</div>
+                <div class="text-secondary">Artifact detected: Recurrent Neural Network jitter in frequency range 4kHz-6kHz.</div>
+            </div>
+        </article>
+
+        <article class="report-section">
+            <span class="report-meta">VECTOR: AP-2211-DELTA</span>
+            <h2 class="threat-title">Supply Chain Dormant Payloads</h2>
+            <p class="threat-desc">Attackers are increasingly injecting malicious code into open-source libraries that handle cloud infrastructure management. These payloads remain dormant for up to 180 days, allowing them to bypass initial security audits before activating simultaneous exfiltration across thousands of target organizations.</p>
+        </article>
+
+        <article class="report-section">
+            <span class="report-meta">VECTOR: AP-007-OMEGA</span>
+            <h2 class="threat-title">Quantum-Resistant Ransomware</h2>
+            <p class="threat-desc">Experimental strains of ransomware have been observed utilizing lattice-based cryptography for key exchange. This ensures that even if the victim has access to post-quantum computing resources in the future, the encrypted data remains locked indefinitely. Current recovery efforts are mathematically non-viable.</p>
+        </article>
     </div>
 
     <footer>
-        <span class="text-secondary small fw-bold">INTERNAL USE ONLY // SEC-OPS 2026</span>
+        <div class="container text-secondary small">
+            SEC-OPS INTEL DIVISION // DATA REFRESH: 0.8s // NODE: 74-GAMMA
+        </div>
     </footer>
+
 </body>
 </html>
