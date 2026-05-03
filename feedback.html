@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Feedback | SEC-OPS Secure Portal</title>
+    <title>Feedback | SEC-OPS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { background-color: #0d1117; color: #c9d1d9; padding-top: 80px; line-height: 1.8; }
@@ -25,7 +25,9 @@
         .btn-submit { 
             background: #238636; color: white; font-weight: 800; text-transform: uppercase;
             letter-spacing: 1px; border: none; padding: 15px; width: 100%; border-radius: 10px;
+            transition: 0.3s;
         }
+        .btn-submit:hover { background: #2ea043; }
         .btn-submit:disabled { background: #21262d; color: #8b949e; cursor: not-allowed; }
 
         #verify-modal { 
@@ -65,35 +67,36 @@
     <div class="container form-container">
         <div class="secure-card">
             <div id="form-view">
-                <h2 class="text-white mb-4">Secure Communication</h2>
-                <p class="text-secondary mb-4">Submit your feedback to the SEC-OPS initiative.</p>
+                <h2 class="text-white mb-4">Share Your Thoughts</h2>
+                <p class="text-secondary mb-4">We'd love to hear your feedback on the SEC-OPS project.</p>
                 
                 <form id="feedbackForm" action="https://formspree.io/f/mrejgobo" method="POST" oninput="checkLock()">
                     <div class="mb-3">
-                        <label class="form-label text-secondary small text-uppercase fw-bold">Identification</label>
-                        <input type="text" id="n-f" name="name" class="form-control" placeholder="Full Name" required>
+                        <label class="form-label text-secondary small text-uppercase fw-bold">Full Name</label>
+                        <input type="text" id="n-f" name="name" class="form-control" placeholder="What is your name?" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label text-secondary small text-uppercase fw-bold">Classification</label>
+                        <label class="form-label text-secondary small text-uppercase fw-bold">Who are you?</label>
                         <select id="r-f" name="user_type" class="form-select" required>
-                            <option value="" disabled selected>Select Role</option>
-                            <option value="Student">Student / Researcher</option>
-                            <option value="Teacher">Academic / Educator</option>
-                            <option value="Pro">Security Professional</option>
+                            <option value="" disabled selected>Choose an option</option>
+                            <option value="Student">I am a Student</option>
+                            <option value="Teacher">I am a Teacher</option>
+                            <option value="Expert">I work in Tech/Security</option>
+                            <option value="Guest">Just visiting!</option>
                         </select>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label text-secondary small text-uppercase fw-bold">Data Payload</label>
-                        <textarea id="m-f" name="message" class="form-control" rows="5" placeholder="Enter message..." required></textarea>
+                        <label class="form-label text-secondary small text-uppercase fw-bold">Your Message</label>
+                        <textarea id="m-f" name="message" class="form-control" rows="5" placeholder="Write your feedback here..." required></textarea>
                     </div>
-                    <button type="button" id="s-b" class="btn-submit" onclick="startCap()" disabled>Awaiting Data Input</button>
+                    <button type="button" id="s-b" class="btn-submit" onclick="startCap()" disabled>Please fill out the form</button>
                 </form>
             </div>
 
             <div id="success-view" style="display: none;" class="text-center py-5">
-                <h2 style="color: #3fb950;">✔ Transmission Successful</h2>
-                <p>Your data has been logged into the secure SEC-OPS database.</p>
-                <a href="index.html" class="btn btn-outline-primary mt-4">Return to Home</a>
+                <h2 style="color: #3fb950;">✔ Message Sent!</h2>
+                <p>Thanks for the feedback, Ahnaf will read it soon.</p>
+                <a href="index.html" class="btn btn-outline-primary mt-4">Back to Home</a>
             </div>
         </div>
     </div>
@@ -102,8 +105,8 @@
         <div class="modal-box">
             <span class="instr" id="ci"></span>
             <div id="cd"></div>
-            <input type="text" id="ca" class="form-control text-center fs-4 mb-3" autocomplete="off">
-            <button class="btn btn-primary w-100 fw-bold" onclick="checkCap()">AUTHENTICATE</button>
+            <input type="text" id="ca" class="form-control text-center fs-4 mb-3" autocomplete="off" placeholder="Type here...">
+            <button class="btn btn-primary w-100 fw-bold" onclick="checkCap()">SEND MESSAGE</button>
         </div>
     </div>
 
@@ -116,8 +119,8 @@
             const r = document.getElementById('r-f').value;
             const m = document.getElementById('m-f').value;
             const b = document.getElementById('s-b');
-            if(n && r && m) { b.disabled = false; b.innerText = "VERIFY IDENTITY"; }
-            else { b.disabled = true; b.innerText = "AWAITING DATA INPUT"; }
+            if(n && r && m) { b.disabled = false; b.innerText = "SEND FEEDBACK"; }
+            else { b.disabled = true; b.innerText = "Please fill out the form"; }
         }
 
         function startCap() {
@@ -125,12 +128,12 @@
             a.value = ""; d.style.color = "white"; const mode = Math.floor(Math.random() * 3);
             
             if(mode === 0) { 
-                const n1 = Math.floor(Math.random()*90); const n2 = Math.floor(Math.random()*10);
-                i.innerText = "Solve Math"; d.innerText = n1 + " + " + n2; sol = (n1+n2).toString();
+                const n1 = Math.floor(Math.random()*20); const n2 = Math.floor(Math.random()*10);
+                i.innerText = "Quick Math Check"; d.innerText = n1 + " + " + n2; sol = (n1+n2).toString();
             } else if(mode === 1) {
-                i.innerText = "Case-Sensitive Match"; d.innerText = "SEC-OPS"; sol = "SEC-OPS";
+                i.innerText = "Type this word"; d.innerText = "SECURE"; sol = "SECURE";
             } else {
-                i.innerText = "Isolate Character"; d.innerText = "A B [X] D"; sol = "X";
+                i.innerText = "Final Character"; d.innerText = "1 2 [3] 4"; sol = "3";
             }
             document.getElementById('verify-modal').style.display = 'flex';
             a.focus();
@@ -140,11 +143,9 @@
             const v = document.getElementById('ca').value.trim();
             const form = document.getElementById('feedbackForm');
 
-            if(v === sol) {
-                // HIDE MODAL
+            if(v.toUpperCase() === sol.toUpperCase()) {
                 document.getElementById('verify-modal').style.display = 'none';
 
-                // AJAX SUBMISSION TO FORMSPREE
                 const data = new FormData(form);
                 fetch(form.action, {
                     method: form.method,
@@ -155,14 +156,14 @@
                         document.getElementById('form-view').style.display = 'none';
                         document.getElementById('success-view').style.display = 'block';
                     } else {
-                        alert("Submission Error. Try again.");
+                        alert("Oops! Something went wrong. Try again.");
                     }
                 }).catch(error => {
-                    alert("Network Error. Check your connection.");
+                    alert("Network error. Please check your internet.");
                 });
 
             } else { 
-                alert("Fail. Retry."); 
+                alert("That didn't match. Try one more time!"); 
                 startCap(); 
             }
         }
