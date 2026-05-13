@@ -3,190 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEC-OPS | Subscription Tiers</title>
+    <title>SEC-OPS | Digital Shield Tiers</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --bg: #0a0e14;
-            --card-bg: #111827;
+            --bg: #05070a;
+            --card: #0f172a;
             --accent: #00f2ff;
-            --success: #00ff9d;
-            --text: #94a3b8;
-            --white: #ffffff;
+            --success: #22c55e;
+            --text: #cbd5e1;
+            --gold: #fbbf24;
         }
 
         body {
             background-color: var(--bg);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: var(--text);
+            font-family: 'Inter', sans-serif;
+            padding: 60px 20px;
             margin: 0;
-            padding: 50px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
+        .header { text-align: center; margin-bottom: 50px; }
+        .header h1 { color: #fff; font-size: 2.5rem; margin-bottom: 10px; }
+        .header p { color: var(--accent); font-weight: 500; }
 
-        .header h1 {
-            color: var(--white);
-            font-size: 3rem;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
-        }
-
-        .header p {
-            font-size: 1.2rem;
-            color: var(--accent);
-        }
-
-        .pricing-container {
+        .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
             width: 100%;
         }
 
-        .price-card {
-            background: var(--card-bg);
-            border: 1px solid #1f2937;
-            border-radius: 16px;
-            padding: 40px;
-            text-align: center;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+        .tier-card {
+            background: var(--card);
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
         }
 
-        .price-card.featured {
+        .tier-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .tier-card.pro {
             border: 2px solid var(--accent);
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(0, 242, 255, 0.15);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.1);
         }
 
-        .badge {
-            background: var(--accent);
-            color: var(--bg);
-            font-weight: bold;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
+        .tier-name { color: #fff; font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+        .price { font-size: 2.2rem; color: #fff; font-weight: 800; margin: 15px 0; }
+        .price span { font-size: 0.9rem; color: #64748b; }
 
-        .price-card h3 {
-            color: var(--white);
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-
-        .price {
-            font-size: 2.5rem;
-            color: var(--white);
-            font-weight: bold;
-            margin: 20px 0;
-        }
-
-        .price span {
-            font-size: 1rem;
-            color: var(--text);
-        }
-
-        .features-list {
+        .feature-list {
             list-style: none;
             padding: 0;
-            margin: 30px 0;
+            margin: 20px 0;
+            flex-grow: 1;
+            font-size: 0.85rem;
             text-align: left;
         }
 
-        .features-list li {
-            margin-bottom: 15px;
+        .feature-list li {
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            font-size: 0.95rem;
+            gap: 10px;
         }
 
-        .features-list i {
-            color: var(--success);
-            margin-right: 12px;
-        }
+        .feature-list i { color: var(--success); font-size: 0.9rem; }
+        .feature-list i.fa-times { color: #ef4444; }
 
-        .cta-button {
-            display: block;
-            width: 100%;
-            padding: 15px;
+        .btn {
             background: transparent;
-            color: var(--white);
+            color: #fff;
             border: 1px solid var(--accent);
-            border-radius: 8px;
+            padding: 12px;
+            border-radius: 6px;
             text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s ease;
+            font-weight: 600;
+            text-align: center;
+            transition: 0.3s;
         }
 
-        .price-card.featured .cta-button {
-            background: var(--accent);
-            color: var(--bg);
-        }
+        .tier-card.pro .btn { background: var(--accent); color: #000; }
+        .btn:hover { background: var(--accent); color: #000; }
 
-        .cta-button:hover {
+        .badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
             background: var(--accent);
-            color: var(--bg);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 800;
         }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1>Deploy Your Shield</h1>
-        <p>Choose the level of protection your infrastructure requires.</p>
+        <h1>SEC-OPS Tiered Defense</h1>
+        <p>Enterprise-grade security, priced for the new digital economy.</p>
     </div>
 
-    <div class="pricing-container">
-        <div class="price-card">
-            <h3>The Scout</h3>
-            <div class="price">$0<span>/mo</span></div>
-            <p>Ideal for students and individuals learning the basics.</p>
-            <ul class="features-list">
-                <li><i class="fas fa-check"></i> Limited SEC-OPS Lab Access</li>
-                <li><i class="fas fa-check"></i> Basic Packet Analysis</li>
-                <li><i class="fas fa-check"></i> Community Support</li>
-                <li><i class="fas fa-times" style="color: #ef4444;"></i> No AI Autonomous Shield</li>
+    <div class="pricing-grid">
+        <div class="tier-card">
+            <div class="tier-name">Scout</div>
+            <div class="price">$0<span>/forever</span></div>
+            <ul class="feature-list">
+                <li><i class="fas fa-check"></i> Basic Lab Access</li>
+                <li><i class="fas fa-check"></i> Community Forums</li>
+                <li><i class="fas fa-times"></i> No AI Shielding</li>
+                <li><i class="fas fa-times"></i> Manual Verification</li>
             </ul>
-            <a href="#" class="cta-button">Get Started</a>
+            <a href="#" class="btn">Sign Up</a>
         </div>
 
-        <div class="price-card featured">
-            <div class="badge">MOST POPULAR</div>
-            <h3>The Fortress</h3>
-            <div class="price">$499<span>/mo</span></div>
-            <p>For small to mid-sized businesses needing active defense.</p>
-            <ul class="features-list">
-                <li><i class="fas fa-check"></i> Full AI Autonomous Shielding</li>
-                <li><i class="fas fa-check"></i> Zero Trust Architecture</li>
-                <li><i class="fas fa-check"></i> Up to 50 Server Nodes</li>
-                <li><i class="fas fa-check"></i> 24/7 Incident Response</li>
+        <div class="tier-card">
+            <div class="tier-name">Sentinel</div>
+            <div class="price">$9<span>/mo</span></div>
+            <ul class="feature-list">
+                <li><i class="fas fa-check"></i> Advanced Lab Sims</li>
+                <li><i class="fas fa-check"></i> 1 Active Device Shield</li>
+                <li><i class="fas fa-check"></i> Weekly Threat Audits</li>
+                <li><i class="fas fa-times"></i> Zero Trust Logic</li>
             </ul>
-            <a href="#" class="cta-button">Start Free Trial</a>
+            <a href="#" class="btn">Get Started</a>
         </div>
 
-        <div class="price-card">
-            <h3>Enterprise</h3>
+        <div class="tier-card pro">
+            <div class="badge">BEST VALUE</div>
+            <div class="tier-name">Fortress</div>
+            <div class="price">$29<span>/mo</span></div>
+            <ul class="feature-list">
+                <li><i class="fas fa-check"></i> 5 Active Device Shields</li>
+                <li><i class="fas fa-check"></i> <strong>Autonomous AI Blocking</strong></li>
+                <li><i class="fas fa-check"></i> Basic Zero Trust</li>
+                <li><i class="fas fa-check"></i> Priority Email Support</li>
+            </ul>
+            <a href="#" class="btn">Protect Now</a>
+        </div>
+
+        <div class="tier-card">
+            <div class="tier-name">Titan</div>
+            <div class="price">$89<span>/mo</span></div>
+            <ul class="feature-list">
+                <li><i class="fas fa-check"></i> 25 Device Support</li>
+                <li><i class="fas fa-check"></i> <strong>Full Zero Trust Ops</strong></li>
+                <li><i class="fas fa-check"></i> Data Leak Monitoring</li>
+                <li><i class="fas fa-check"></i> 1-Hour Response Time</li>
+            </ul>
+            <a href="#" class="btn">Go Titan</a>
+        </div>
+
+        <div class="tier-card">
+            <div class="tier-name">Elite</div>
             <div class="price">Custom</div>
-            <p>For government, hospitals, and critical infrastructure.</p>
-            <ul class="features-list">
-                <li><i class="fas fa-check"></i> Self-Healing Network Hardware</li>
-                <li><i class="fas fa-check"></i> Unlimited Server Nodes</li>
-                <li><i class="fas fa-check"></i> Dedicated Cyber-Sentry Team</li>
-                <li><i class="fas fa-check"></i> Custom RSA Key Lengths</li>
+            <ul class="feature-list">
+                <li><i class="fas fa-check"></i> Unlimited Nodes</li>
+                <li><i class="fas fa-check"></i> Self-Healing HW</li>
+                <li><i class="fas fa-check"></i> Dedicated Engineer</li>
+                <li><i class="fas fa-check"></i> White-Glove Setup</li>
             </ul>
-            <a href="#" class="cta-button">Contact Sales</a>
+            <a href="#" class="btn">Contact Us</a>
         </div>
     </div>
 
