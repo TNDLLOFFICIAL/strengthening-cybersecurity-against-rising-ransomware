@@ -3,388 +3,349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEC-OPS | Global Operations & Feedback Portal</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
+    <title>SEC-OPS | User Feedback & Security Reporting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@100;300;400;600;800&display=swap');
+
         :root {
-            --bg-base: #05070a;
-            --bg-surface: #0d1117;
-            --bg-card: #161b22;
-            --accent-ops: #5de2f2;
-            --accent-border: #30363d;
-            --text-main: #f0f6fc;
-            --text-muted: #8b949e;
-            --nav-height: 80px;
-            --success-green: #3fb950;
+            --primary: #00f2ff;
+            --secondary: #7000ff;
+            --bg-dark: #050505;
+            --card-bg: #0a0a0a;
         }
 
-        body { 
-            background-color: var(--bg-base); 
-            color: var(--text-main); 
-            font-family: 'Inter', sans-serif;
-            margin: 0; padding: 0;
-            line-height: 1.7;
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: white;
+            overflow-x: hidden;
         }
 
-        /* --- NAVIGATION --- */
-        .navbar { 
-            background-color: rgba(13, 17, 23, 0.98); 
-            border-bottom: 1px solid var(--accent-border);
-            min-height: var(--nav-height);
-            backdrop-filter: blur(10px);
-            z-index: 1050;
+        .cyber-grid {
+            background-image: 
+                linear-gradient(to right, rgba(0, 242, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
         }
 
-        .navbar-brand { font-family: 'JetBrains Mono', monospace; font-weight: 800; color: #fff !important; }
-        .navbar-brand span { color: var(--accent-ops); }
-
-        .nav-link { 
-            color: var(--text-muted) !important; 
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 10px 15px !important;
+        .glow-text {
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
         }
 
-        .nav-link:hover { color: var(--accent-ops) !important; }
-        .nav-link.active { color: var(--accent-ops) !important; border-bottom: 2px solid var(--accent-ops); }
-
-        /* --- HERO --- */
-        .ops-hero {
-            padding: 160px 0 80px 0;
-            background: radial-gradient(circle at 50% 0%, rgba(93, 226, 242, 0.08) 0%, transparent 70%);
-            text-align: center;
+        .glass-card {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 242, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .hero-tag {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--accent-ops);
-            font-size: 0.8rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            display: block;
+        .glass-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
+            transform: translateY(-5px);
         }
 
-        /* --- FEEDBACK SECTION --- */
-        .feedback-section { padding-bottom: 120px; }
-        
-        .ops-card {
-            background: var(--bg-card);
-            border: 1px solid var(--accent-border);
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.6);
-        }
-
-        .ops-header {
-            background: rgba(93, 226, 242, 0.03);
-            padding: 40px;
-            border-bottom: 1px solid var(--accent-border);
-        }
-
-        .ops-body { padding: 45px; }
-
-        /* --- FORM STYLING --- */
-        .form-label { 
-            font-weight: 700; 
-            color: var(--text-muted); 
-            font-size: 0.75rem; 
-            letter-spacing: 1.2px; 
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
-        
-        .form-control, .form-select {
-            background-color: var(--bg-base);
-            border: 1px solid var(--accent-border);
-            color: #fff;
-            padding: 16px;
+        .input-field {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
-            font-family: 'JetBrains Mono', monospace;
-            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: white;
+            transition: all 0.3s ease;
         }
 
-        .form-control:focus, .form-select:focus {
-            background-color: var(--bg-base);
-            border-color: var(--accent-ops);
-            box-shadow: 0 0 0 4px rgba(93, 226, 242, 0.1);
-            color: #fff;
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);
         }
 
-        /* --- VERIFICATION UI --- */
-        .verify-module {
-            border: 1px solid var(--accent-border);
-            background: var(--bg-base);
-            padding: 22px;
-            border-radius: 14px;
+        .btn-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transition: all 0.3s ease;
+        }
+
+        .btn-gradient:hover:not(:disabled) {
+            opacity: 0.9;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+            transform: scale(1.02);
+        }
+
+        .btn-gradient:disabled {
+            background: #222;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        /* Verification Box Styles */
+        .verify-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .verify-box:hover {
+            background: rgba(0, 242, 255, 0.05);
+            border-color: rgba(0, 242, 255, 0.3);
+        }
+
+        .verify-check {
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
             display: flex;
             align-items: center;
-            margin-top: 35px;
-            transition: 0.3s;
-            user-select: none;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
 
-        .module-checkbox {
-            width: 32px; height: 32px;
-            border: 2px solid var(--accent-border);
-            border-radius: 8px;
-            margin-right: 20px;
-            display: flex; align-items: center; justify-content: center;
-            position: relative;
+        .verify-box.verified .verify-check {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: black;
         }
 
-        .module-loader {
-            width: 20px; height: 20px;
-            border: 2.5px solid var(--text-muted);
-            border-bottom-color: transparent;
-            border-radius: 50%;
-            display: none;
-            animation: spin 0.8s linear infinite;
+        /* Success Animation */
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
-        .module-check { color: var(--success-green); font-size: 1.6rem; display: none; }
-
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        /* --- ACTION BUTTON --- */
-        .btn-ops-submit {
-            background: var(--accent-ops);
-            color: #000;
-            font-weight: 800;
-            padding: 20px;
-            border-radius: 14px;
-            width: 100%;
-            border: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            transition: 0.3s;
-            margin-top: 40px;
+        .success-banner {
+            animation: slideUp 0.5s ease forwards;
         }
-
-        .btn-ops-submit:hover:not(:disabled) { 
-            background: #fff; 
-            transform: translateY(-3px); 
-            box-shadow: 0 12px 35px rgba(93, 226, 242, 0.3);
-        }
-
-        .btn-ops-submit:disabled { opacity: 0.25; cursor: not-allowed; }
-
-        /* --- SUCCESS LAYOUT --- */
-        #success-interface {
-            display: none;
-            text-align: center;
-            padding: 100px 50px;
-        }
-
-        #success-interface i { font-size: 7rem; color: var(--success-green); margin-bottom: 40px; }
-        #success-interface h2 { font-weight: 800; margin-bottom: 20px; font-size: 2.5rem; }
-
-        /* --- FOOTER --- */
-        footer { padding: 80px 0 40px; border-top: 1px solid var(--accent-border); text-align: center; margin-top: 50px; }
-
-        .info-sidebar {
-            background: rgba(93, 226, 242, 0.02);
-            border-left: 2px solid var(--accent-ops);
-            padding: 30px;
-            border-radius: 0 16px 16px 0;
-            margin-bottom: 30px;
-        }
-
-        .info-sidebar h6 { font-weight: 800; color: #fff; margin-bottom: 15px; }
-
     </style>
 </head>
-<body>
+<body class="cyber-grid min-h-screen">
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">SEC<span>-</span>OPS</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Infrastructure</a></li>
-                    <li class="nav-item"><a class="nav-link" href="threats.html">Threats</a></li>
-                    <li class="nav-item"><a class="nav-link" href="science.html">Science</a></li>
-                    <li class="nav-item"><a class="nav-link" href="solutions.html">Solutions</a></li>
-                    <li class="nav-item"><a class="nav-link" href="impact.html">Impact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="demo.html">Neural Lab</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
-                    <li class="nav-item"><a class="nav-link" href="investment.html">Investment</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="feedback.html">Operations</a></li>
-                </ul>
+    <!-- Navigation -->
+    <nav class="p-6 flex justify-between items-center border-b border-white/5 relative z-10">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-[#00f2ff] to-[#7000ff] rounded-lg flex items-center justify-center">
+                <i class="fas fa-shield-halved text-white text-xl"></i>
             </div>
+            <span class="text-2xl font-bold tracking-tighter glow-text">SEC-OPS <span class="text-[#00f2ff]">FEEDBACK</span></span>
         </div>
+        <a href="index.html" class="px-5 py-2 glass-card rounded-full text-sm font-medium hover:text-[#00f2ff] transition-colors">
+            <i class="fas fa-arrow-left mr-2"></i> Back to Dashboard
+        </a>
     </nav>
 
-    <header class="ops-hero">
-        <div class="container">
-            <span class="hero-tag">System Optimization</span>
-            <h1 class="display-3 fw-bold text-white mb-4">Operational Feedback</h1>
-            <p class="text-muted mx-auto" style="max-width: 680px;">Collaborate with our engineering team to harden the global mesh. Report anomalies, request features, or provide deployment telemetry.</p>
+    <main class="max-w-4xl mx-auto px-6 py-12 relative z-10">
+        <!-- Header -->
+        <div class="mb-12 text-center">
+            <h1 class="text-5xl font-extrabold mb-4 font-['Space_Grotesk'] tracking-tight">
+                Help Us <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00f2ff] to-[#7000ff]">Evolve</span>
+            </h1>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+                Your feedback directly influences our Neural Mesh updates. Report bugs, suggest features, or share your security experience with Ahnaf and Ayaan.
+            </p>
         </div>
-    </header>
 
-    <section class="feedback-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-11">
-                    <div class="ops-card">
-                        
-                        <div id="ops-form-view">
-                            <div class="ops-header">
-                                <div class="row align-items-center">
-                                    <div class="col-md-7">
-                                        <h2 class="text-white fw-bold mb-0">Transmission Protocol</h2>
-                                        <p class="text-muted mb-0 small mt-2">Verified telemetry reports are prioritized by the Neural Triage Engine.</p>
-                                    </div>
-                                    <div class="col-md-5 text-md-end mt-4 mt-md-0">
-                                        <div class="d-inline-flex align-items-center px-4 py-2 bg-dark rounded-pill border border-accent-ops">
-                                            <div class="spinner-grow spinner-grow-sm text-info me-3"></div>
-                                            <span class="small font-monospace text-ops fw-bold">UPLINK_STABLE</span>
-                                        </div>
-                                    </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Contact Info -->
+            <div class="space-y-6">
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="w-12 h-12 bg-[#00f2ff]/10 rounded-xl flex items-center justify-center mb-4 border border-[#00f2ff]/20">
+                        <i class="fas fa-bug text-[#00f2ff]"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Bug Reporting</h3>
+                    <p class="text-sm text-gray-400">Found a glitch in the mesh? Let us know the technical details.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="w-12 h-12 bg-[#7000ff]/10 rounded-xl flex items-center justify-center mb-4 border border-[#7000ff]/20">
+                        <i class="fas fa-lightbulb text-[#7000ff]"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Feature Requests</h3>
+                    <p class="text-sm text-gray-400">What tools do you need to stay safe? We build for our users.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-4 border border-white/10">
+                        <i class="fas fa-envelope text-white"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Direct Line</h3>
+                    <p class="text-sm text-gray-400">For urgent security inquiries, our team monitors this feed 24/7.</p>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <div class="md:col-span-2">
+                <form action="https://formspree.io/f/mrejgobo" method="POST" class="glass-card p-8 rounded-3xl relative overflow-hidden" id="feedbackForm">
+                    <!-- Progress Bar -->
+                    <div class="absolute top-0 left-0 w-full h-1 bg-white/5">
+                        <div id="formProgress" class="h-full bg-[#00f2ff] w-0 transition-all duration-500"></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-6 mb-6">
+                        <div class="space-y-2">
+                            <label class="text-xs uppercase tracking-widest text-gray-500 font-bold ml-1">Full Name</label>
+                            <input type="text" name="name" required placeholder="John Doe" 
+                                   class="w-full p-4 input-field text-sm">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs uppercase tracking-widest text-gray-500 font-bold ml-1">Email Identity</label>
+                            <input type="email" name="email" required placeholder="john@company.com" 
+                                   class="w-full p-4 input-field text-sm">
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 mb-6">
+                        <label class="text-xs uppercase tracking-widest text-gray-500 font-bold ml-1">Subject of Transmission</label>
+                        <select name="subject" class="w-full p-4 input-field text-sm appearance-none">
+                            <option value="General Feedback">General Feedback</option>
+                            <option value="Security Vulnerability">Security Vulnerability Report</option>
+                            <option value="Feature Suggestion">Feature Suggestion</option>
+                            <option value="Technical Support">Technical Support</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-2 mb-8">
+                        <label class="text-xs uppercase tracking-widest text-gray-500 font-bold ml-1">Message Content</label>
+                        <textarea name="message" rows="5" required placeholder="Describe your findings or suggestions here..." 
+                                  class="w-full p-4 input-field text-sm"></textarea>
+                    </div>
+
+                    <!-- Human Verification Box -->
+                    <div class="mb-8">
+                        <div id="verificationBox" class="verify-box p-4 rounded-xl flex items-center justify-between group">
+                            <div class="flex items-center gap-4">
+                                <div id="checkIconContainer" class="verify-check">
+                                    <!-- Dynamic content here -->
                                 </div>
+                                <span id="verificationText" class="text-sm font-medium text-gray-400 group-hover:text-white transition-colors">
+                                    Verify you are human
+                                </span>
                             </div>
-                            
-                            <div class="ops-body">
-                                <div class="row g-5">
-                                    <div class="col-lg-5">
-                                        <div class="info-sidebar">
-                                            <h6><i class="fas fa-microchip me-3"></i> Triage Logic</h6>
-                                            <p class="small text-muted mb-0">Our support infrastructure utilizes the same Neural Shielding technology as our product. Every feedback packet is analyzed for sentiment, urgency, and technical relevance.</p>
-                                        </div>
-                                        <div class="mb-4">
-                                            <label class="form-label">OPERATOR FULL NAME</label>
-                                            <input type="text" class="form-control req-field" id="opName" placeholder="E.g. Richard Feynman">
-                                        </div>
-                                        <div class="mb-4">
-                                            <label class="form-label">AUTHORIZED GMAIL / YAHOO / OUTLOOK</label>
-                                            <input type="email" class="form-control req-field" id="opEmail" placeholder="operator@gmail.com">
-                                        </div>
-                                        <div class="mb-4">
-                                            <label class="form-label">CONTACT TELEMETRY (NUMBERS ONLY)</label>
-                                            <input type="text" class="form-control req-field" id="opPhone" maxlength="15" placeholder="15550001234">
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-lg-7">
-                                        <div class="mb-4">
-                                            <label class="form-label">FEEDBACK CLASSIFICATION</label>
-                                            <select class="form-select req-field" id="opCategory">
-                                                <option value="">Select report type...</option>
-                                                <option>Vulnerability Disclosure (Critical)</option>
-                                                <option>Anomalous Node Behavior</option>
-                                                <option>Feature & Logic Request</option>
-                                                <option>Technical Documentation Feedback</option>
-                                                <option>General Support Query</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-4">
-                                            <label class="form-label">OPERATIONAL LOG DATA / MESSAGE</label>
-                                            <textarea class="form-control req-field" id="opMessage" rows="8" placeholder="Provide detailed technical feedback or anomaly logs..."></textarea>
-                                        </div>
-                                        
-                                        <div class="verify-module" onclick="startModuleVerify()">
-                                            <div class="module-checkbox" id="mBox">
-                                                <div class="module-loader" id="mLoader"></div>
-                                                <i class="fas fa-check-double module-check" id="mCheck"></i>
-                                            </div>
-                                            <span id="mText" class="small fw-bold">Verify Signal Integrity</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <button class="btn-ops-submit" id="opsFinalBtn" disabled onclick="dispatchOpsReport()">Transmit Signal</button>
+                            <div class="flex flex-col items-end">
+                                <i class="fas fa-shield-halved text-[#00f2ff] text-xl opacity-40"></i>
+                                <span class="text-[8px] uppercase tracking-tighter text-gray-600 mt-1">SEC-OPS AUTH</span>
                             </div>
                         </div>
+                    </div>
 
-                        <div id="success-interface">
-                            <i class="fas fa-broadcast-tower"></i>
-                            <h2 class="text-white">Signal Dispatched</h2>
-                            <p class="text-muted mx-auto mb-5" style="max-width: 550px;">Your operational feedback has been encrypted and moved to the prioritization queue. A SEC-OPS engineer will monitor your provided Gmail channel for follow-up telemetry.</p>
-                            <a href="index.html" class="btn btn-ops-submit w-auto px-5">Back to Command Base</a>
+                    <button type="submit" id="submitBtn" disabled class="w-full py-4 rounded-xl btn-gradient font-bold text-lg flex items-center justify-center gap-3">
+                        <span>INITIATE TRANSMISSION</span>
+                        <i class="fas fa-paper-plane text-sm"></i>
+                    </button>
+
+                    <p class="text-center text-[10px] text-gray-600 mt-6 tracking-widest uppercase">
+                        Secure end-to-end encrypted submission channel
+                    </p>
+                </form>
+
+                <!-- Status Message (Hidden by default) -->
+                <div id="statusMessage" class="hidden mt-6 p-6 glass-card rounded-2xl border-[#00f2ff]/30 success-banner">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-[#00f2ff]/20 rounded-full flex items-center justify-center text-[#00f2ff]">
+                            <i class="fas fa-check-double animate-bounce"></i>
                         </div>
-
+                        <div>
+                            <h3 class="text-lg font-bold text-[#00f2ff]">Transmission Successful!</h3>
+                            <p class="text-sm text-gray-400">Ahnaf and Ayaan have received your data. Thank you for securing the future.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <footer>
-        <div class="container">
-            <a class="navbar-brand d-block mb-3" href="index.html">SEC<span>-</span>OPS</a>
-            <p class="small text-muted mb-0">© 2026 SEC-OPS Infrastructure Operations Division. Global Shield Active.</p>
-        </div>
-    </footer>
+        <!-- Footer -->
+        <footer class="mt-20 pt-8 border-t border-white/5 text-center">
+            <div class="flex justify-center gap-8 mb-4">
+                <a href="#" class="text-gray-500 hover:text-[#00f2ff] transition-colors"><i class="fab fa-github"></i></a>
+                <a href="#" class="text-gray-500 hover:text-[#00f2ff] transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-gray-500 hover:text-[#00f2ff] transition-colors"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p class="text-[10px] text-gray-600 tracking-[0.3em] uppercase">© 2024 SEC-OPS Neural Systems | Project Founders: Ahnaf & Ayaan</p>
+        </footer>
+    </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        let isVerifiedHuman = false;
+        const form = document.getElementById('feedbackForm');
+        const progressBar = document.getElementById('formProgress');
+        const inputs = form.querySelectorAll('input, textarea, select');
+        const submitBtn = document.getElementById('submitBtn');
+        const verificationBox = document.getElementById('verificationBox');
+        const checkIconContainer = document.getElementById('checkIconContainer');
+        const verificationText = document.getElementById('verificationText');
 
-        function validateOpEmail(email) {
-            return /^[^\s@]+@(gmail\.com|yahoo\.com|outlook\.com)$/.test(email.toLowerCase());
-        }
+        let isVerified = false;
 
-        // Phone Validation (Numbers only)
-        document.getElementById('opPhone').addEventListener('input', function(e) {
-            e.target.value = e.target.value.replace(/[^\d]/g, '');
-            checkForm();
+        // Progress bar logic
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                const filledFields = Array.from(inputs).filter(i => i.value.length > 0).length;
+                const percent = (filledFields / inputs.length) * 100;
+                progressBar.style.width = percent + '%';
+            });
         });
 
-        // Event Listeners for all fields
-        document.querySelectorAll('.req-field').forEach(input => {
-            input.addEventListener('input', checkForm);
-        });
+        // Verification Logic
+        verificationBox.addEventListener('click', function() {
+            if (isVerified) return;
 
-        function checkForm() {
-            const name = document.getElementById('opName').value;
-            const email = document.getElementById('opEmail').value;
-            const phone = document.getElementById('opPhone').value;
-            const category = document.getElementById('opCategory').value;
-            const message = document.getElementById('opMessage').value;
-
-            const isValidForm = (
-                name.length > 2 && 
-                validateOpEmail(email) && 
-                phone.length >= 8 && 
-                category !== "" && 
-                message.length >= 15
-            );
-
-            document.getElementById('opsFinalBtn').disabled = !(isValidForm && isVerifiedHuman);
-        }
-
-        function startModuleVerify() {
-            if (isVerifiedHuman) return;
+            // Start Loading
+            verificationText.innerText = "Analyzing neural patterns...";
+            checkIconContainer.innerHTML = '<i class="fas fa-circle-notch fa-spin text-[#00f2ff]"></i>';
             
-            const loader = document.getElementById('mLoader');
-            const text = document.getElementById('mText');
-            
-            loader.style.display = 'block';
-            text.innerText = "Encrypting Handshake...";
+            // Random delay between 2 and 3.5 seconds
+            const delay = 2000 + (Math.random() * 1500);
 
             setTimeout(() => {
-                loader.style.display = 'none';
-                document.getElementById('mCheck').style.display = 'block';
-                document.getElementById('mBox').style.borderColor = 'var(--success-green)';
-                text.innerText = "Integrity Confirmed";
-                isVerifiedHuman = true;
-                checkForm();
-            }, 2500);
-        }
+                isVerified = true;
+                verificationBox.classList.add('verified');
+                verificationText.innerText = "Human pattern verified";
+                verificationText.classList.replace('text-gray-400', 'text-[#00f2ff]');
+                checkIconContainer.innerHTML = '<i class="fas fa-check"></i>';
+                
+                // Enable Submit Button
+                submitBtn.disabled = false;
+            }, delay);
+        });
 
-        function dispatchOpsReport() {
-            document.getElementById('ops-form-view').style.display = 'none';
-            document.getElementById('success-interface').style.display = 'block';
-            window.scrollTo({ top: 100, behavior: 'smooth' });
-        }
+        // AJAX Form Submission
+        form.addEventListener("submit", async function(event) {
+            event.preventDefault();
+            if (!isVerified) return;
+
+            const status = document.getElementById("statusMessage");
+            const data = new FormData(event.target);
+            
+            const originalContent = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ENCRYPTING...';
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch(event.target.action, {
+                    method: form.method,
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    form.classList.add('opacity-50', 'pointer-events-none');
+                    status.classList.remove('hidden');
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> TRANSMITTED';
+                    form.reset();
+                    progressBar.style.width = '100%';
+                } else {
+                    const errorData = await response.json();
+                    throw new Error(errorData.errors ? errorData.errors.map(e => e.message).join(", ") : "Submission failed");
+                }
+            } catch (error) {
+                submitBtn.innerHTML = 'RETRY TRANSMISSION';
+                submitBtn.disabled = false;
+                submitBtn.classList.replace('btn-gradient', 'bg-red-500');
+                console.error(error);
+            }
+        });
     </script>
 </body>
 </html>
