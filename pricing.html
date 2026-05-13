@@ -92,7 +92,8 @@
 
         .feature-list { list-style: none; padding: 0; margin-bottom: 30px; flex-grow: 1; }
         .feature-list li { padding: 8px 0; color: var(--text-muted); font-size: 0.85rem; display: flex; align-items: center; gap: 10px; }
-        .feature-list li i { color: var(--accent-price); }
+        .feature-list li i { color: var(--accent-price); width: 15px; text-align: center; }
+        .feature-list li.disabled { opacity: 0.3; }
 
         .btn-price {
             width: 100%; padding: 12px; border-radius: 8px; font-weight: 700; text-transform: uppercase;
@@ -168,9 +169,9 @@
         @keyframes rotation { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
         /* --- SUCCESS LAYOUT --- */
-        #success-content { display: none; text-align: center; padding: 60px 30px; }
-        #success-content i { font-size: 5rem; color: var(--success-green); margin-bottom: 25px; }
-        #success-content h3 { font-weight: 800; margin-bottom: 15px; }
+        #success-view { display: none; text-align: center; padding: 60px 30px; }
+        #success-view i { font-size: 5rem; color: var(--success-green); margin-bottom: 25px; }
+        #success-view h3 { font-weight: 800; margin-bottom: 15px; }
 
         .footer-wrap { padding: 80px 0 40px; border-top: 1px solid var(--accent-border); margin-top: 100px; text-align: center; }
     </style>
@@ -210,6 +211,12 @@
                         <div class="tier-name">Community</div>
                         <div class="tier-price">$0<span>/forever</span></div>
                         <p class="tier-desc">Personal blog protection.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> 100GB Monthly Traffic</li>
+                            <li><i class="fas fa-check"></i> L3/L4 Mitigation</li>
+                            <li class="disabled"><i class="fas fa-times"></i> Neural Anomaly Detection</li>
+                            <li class="disabled"><i class="fas fa-times"></i> API Access</li>
+                        </ul>
                         <button class="btn-price" onclick="openModal('Community', false)">Get Started</button>
                     </div>
                 </div>
@@ -218,6 +225,12 @@
                         <div class="tier-name">Pro Sentry</div>
                         <div class="tier-price">$19<span>/mo</span></div>
                         <p class="tier-desc">Startup grade defense.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> 1TB Monthly Traffic</li>
+                            <li><i class="fas fa-check"></i> Advanced Layer 7 WAF</li>
+                            <li><i class="fas fa-check"></i> SSL/TLS Hardening</li>
+                            <li class="disabled"><i class="fas fa-times"></i> 1-Hour Key Rotation</li>
+                        </ul>
                         <button class="btn-price" onclick="openModal('Pro Sentry', true)">Upgrade Now</button>
                     </div>
                 </div>
@@ -227,6 +240,12 @@
                         <div class="tier-name">Neural Mesh</div>
                         <div class="tier-price">$49<span>/mo</span></div>
                         <p class="tier-desc">Autonomous threat hunt.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> 10TB Monthly Traffic</li>
+                            <li><i class="fas fa-check"></i> AI Intelligence Shield</li>
+                            <li><i class="fas fa-check"></i> 1-Hour Key Rotation</li>
+                            <li class="disabled"><i class="fas fa-times"></i> 24/7 Global Forensic Support</li>
+                        </ul>
                         <button class="btn-price" onclick="openModal('Neural Mesh', true)">Go Neural</button>
                     </div>
                 </div>
@@ -235,6 +254,12 @@
                         <div class="tier-name">Global Sovereign</div>
                         <div class="tier-price">$199<span>/mo</span></div>
                         <p class="tier-desc">Enterprise scale armor.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Unlimited Traffic</li>
+                            <li><i class="fas fa-check"></i> Custom Kernel Mapping</li>
+                            <li><i class="fas fa-check"></i> 24 Global Regions</li>
+                            <li><i class="fas fa-check"></i> 15min SLA Response</li>
+                        </ul>
                         <button class="btn-price" onclick="openModal('Global Sovereign', true)">Purchase Plan</button>
                     </div>
                 </div>
@@ -258,12 +283,12 @@
                                 <input type="text" class="form-control required-input" id="userName" placeholder="John Wick">
                             </div>
                             <div class="col-12">
-                                <label class="form-label text-muted">GMAIL ADDRESS</label>
+                                <label class="form-label text-muted">EMAIL ADDRESS (GMAIL/YAHOO)</label>
                                 <input type="email" class="form-control required-input" id="userEmail" placeholder="wick@gmail.com">
                             </div>
                             <div class="col-12">
-                                <label class="form-label text-muted">PHONE NUMBER</label>
-                                <input type="text" class="form-control required-input" id="userPhone" placeholder="+1 (000) 000-0000">
+                                <label class="form-label text-muted">PHONE NUMBER (NUMBERS ONLY)</label>
+                                <input type="text" class="form-control required-input" id="userPhone" maxlength="15" placeholder="15551234567">
                             </div>
                         </div>
 
@@ -302,7 +327,7 @@
 
                 <div id="success-view">
                     <i class="fas fa-check-circle"></i>
-                    <h3 class="text-white">Transaction Verified</h3>
+                    <h3 class="text-white">Verification Confirmed</h3>
                     <p class="text-muted mb-4" id="finalMessage"></p>
                     <a href="index.html" class="btn btn-price w-100">Return to Home Page</a>
                 </div>
@@ -328,7 +353,6 @@
             isPaidTier = paid;
             isVerified = false;
             
-            // UI Resets
             document.getElementById('checkout-form').style.display = 'block';
             document.getElementById('success-view').style.display = 'none';
             document.getElementById('tierLabel').innerText = tier + " Integration";
@@ -338,71 +362,74 @@
             document.getElementById('vText').innerText = "Verify you are human";
             document.getElementById('vRect').style.borderColor = 'var(--accent-border)';
             
-            // Clear inputs
             document.querySelectorAll('.required-input').forEach(input => input.value = "");
-            
             modalObj.show();
         }
 
-        // --- INPUT FORMATTING & LIMITS ---
+        // --- VALIDATION LOGIC ---
 
-        // Card Number: 2323 2323 2323 2323
+        // Gmail/Yahoo Check
+        function isValidEmail(email) {
+            const re = /^[^\s@]+@(gmail\.com|yahoo\.com|outlook\.com)$/;
+            return re.test(email.toLowerCase());
+        }
+
+        // Phone: Numbers Only
+        document.getElementById('userPhone').addEventListener('input', function (e) {
+            e.target.value = e.target.value.replace(/[^\d]/g, '');
+            checkFormValidity();
+        });
+
+        // Card Number Format
         document.getElementById('cardNumber').addEventListener('input', function (e) {
-            let target = e.target;
-            let position = target.selectionEnd;
-            let length = target.value.length;
-            
-            target.value = target.value.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim();
+            let val = e.target.value.replace(/[^\d]/g, '');
+            e.target.value = val.replace(/(.{4})/g, '$1 ').trim();
             checkFormValidity();
         });
 
-        // Expiry: MM/YY
+        // Expiry Format
         document.getElementById('cardExpiry').addEventListener('input', function (e) {
-            let target = e.target;
-            target.value = target.value.replace(/[^\d]/g, '').replace(/(.{2})/, '$1/').trim();
+            let val = e.target.value.replace(/[^\d]/g, '');
+            if(val.length >= 2) {
+                e.target.value = val.substring(0,2) + '/' + val.substring(2,4);
+            } else {
+                e.target.value = val;
+            }
             checkFormValidity();
         });
 
-        // CVC: 3 numbers only
+        // CVC Format
         document.getElementById('cardCvc').addEventListener('input', function (e) {
             e.target.value = e.target.value.replace(/[^\d]/g, '');
             checkFormValidity();
         });
 
-        // Generic Listener for all required fields
         document.querySelectorAll('.required-input').forEach(input => {
             input.addEventListener('input', checkFormValidity);
         });
 
         function checkFormValidity() {
-            let allFilled = true;
-            
-            // Check basic info
-            if(!document.getElementById('userName').value || 
-               !document.getElementById('userEmail').value || 
-               !document.getElementById('userPhone').value) {
-                allFilled = false;
-            }
+            const name = document.getElementById('userName').value;
+            const email = document.getElementById('userEmail').value;
+            const phone = document.getElementById('userPhone').value;
 
-            // Check card info if paid
+            let basicFilled = (name.length > 2 && isValidEmail(email) && phone.length >= 7);
+            let cardFilled = true;
+
             if(isPaidTier) {
-                if(document.getElementById('cardNumber').value.length < 19 || 
-                   document.getElementById('cardExpiry').value.length < 5 || 
-                   document.getElementById('cardCvc').value.length < 3) {
-                    allFilled = false;
-                }
+                const card = document.getElementById('cardNumber').value;
+                const exp = document.getElementById('cardExpiry').value;
+                const cvc = document.getElementById('cardCvc').value;
+                cardFilled = (card.length >= 19 && exp.length === 5 && cvc.length === 3);
             }
 
-            // Button only lights up if filled AND human verified
-            document.getElementById('submitBtn').disabled = !(allFilled && isVerified);
+            document.getElementById('submitBtn').disabled = !(basicFilled && cardFilled && isVerified);
         }
 
         function startVerification() {
             if (isVerified) return;
-            
             const loader = document.getElementById('vLoader');
             const text = document.getElementById('vText');
-            
             text.innerText = "Processing...";
             loader.style.display = "block";
 
@@ -421,8 +448,8 @@
             document.getElementById('success-view').style.display = 'block';
             
             const msg = isPaidTier 
-                ? "Thank you for your purchase! Your billing has been processed. SEC-OPS is now serving as your primary Cyber-Shield."
-                : "Welcome to the network! Your free community tier is now active. We are proud to be your chosen Cyber-Shield.";
+                ? "Thank you for your purchase! SEC-OPS is now serving as your primary Cyber-Shield. Check your gmail for the activation key."
+                : "Welcome to the community! Your SEC-OPS shield is now active. We are proud to protect your infrastructure.";
             
             document.getElementById('finalMessage').innerText = msg;
         }
