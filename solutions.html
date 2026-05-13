@@ -2,105 +2,316 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Solutions | SEC-OPS Defense</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEC-OPS | Deployment Solutions & Infrastructure Hardening</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; padding-top: 80px; line-height: 1.8; }
-        .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; }
-        .nav-link { color: #8b949e !important; }
-        .active { color: #58a6ff !important; font-weight: bold; border-bottom: 2px solid #58a6ff; }
-        
-        .sol-header { 
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1558494949-ef010cbdcc91?auto=format&fit=crop&w=1000&q=80');
-            background-size: cover; background-position: center; padding: 100px 0; border-bottom: 1px solid #30363d;
-        }
-        
-        .main-content { max-width: 950px; margin: auto; padding: 60px 20px; }
-        
-        h1 { font-size: 3.5rem; font-weight: 900; color: white; margin-bottom: 15px; }
-        h2 { color: #58a6ff; font-weight: 800; margin-top: 60px; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
-        
-        .defense-card { 
-            background: #161b22; border: 1px solid #30363d; border-radius: 15px; 
-            padding: 40px; margin: 30px 0; transition: transform 0.3s ease;
-        }
-        .defense-card:hover { border-color: #3fb950; transform: translateY(-5px); }
-
-        .protocol-box { 
-            background: #010409; border: 1px solid #30363d; padding: 25px; 
-            border-radius: 10px; margin-top: 20px;
-        }
-        .step-label { color: #3fb950; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; }
-
-        .pill { 
-            display: inline-block; padding: 2px 12px; border-radius: 20px; 
-            background: rgba(88, 166, 255, 0.1); color: #58a6ff; border: 1px solid #58a6ff;
-            font-size: 0.8rem; margin-bottom: 10px;
+        :root {
+            --bg-base: #05070a;
+            --bg-surface: #0d1117;
+            --bg-card: #161b22;
+            --accent-sol: #3fb950;
+            --accent-border: #30363d;
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+            --nav-height: 80px;
         }
 
-        .version-tag { 
-            position: fixed; bottom: 10px; right: 15px; background: rgba(22,27,34,0.9); 
-            color: #8b949e; padding: 4px 10px; border-radius: 5px; font-size: 11px; 
-            font-family: monospace; border: 1px solid #30363d; z-index: 10000; pointer-events: none; 
+        /* --- GLOBAL DARK THEME --- */
+        body { 
+            background-color: var(--bg-base); 
+            color: var(--text-main); 
+            font-family: 'Inter', sans-serif;
+            margin: 0; padding: 0;
+            line-height: 1.8;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-border); border-radius: 4px; }
+
+        /* --- NAVIGATION --- */
+        .navbar { 
+            background-color: rgba(13, 17, 23, 0.98); 
+            border-bottom: 1px solid var(--accent-border);
+            min-height: var(--nav-height);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            color: #fff !important;
+        }
+
+        .navbar-brand span { color: var(--accent-sol); }
+
+        .nav-link { 
+            color: var(--text-muted) !important; 
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px 15px !important;
+        }
+
+        .nav-link:hover { color: var(--accent-sol) !important; }
+        .nav-link.active { color: var(--accent-sol) !important; border-bottom: 2px solid var(--accent-sol); }
+
+        /* --- SOLUTIONS HERO --- */
+        .sol-hero {
+            padding: 160px 0 100px 0;
+            background: linear-gradient(180deg, rgba(63, 185, 80, 0.03) 0%, var(--bg-base) 100%);
+            border-bottom: 1px solid var(--accent-border);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+        }
+
+        /* --- SOLUTION CARDS --- */
+        .sol-section { padding: 100px 0; }
+
+        .sol-card {
+            background: var(--bg-card);
+            border: 1px solid var(--accent-border);
+            border-radius: 16px;
+            padding: 50px;
+            height: 100%;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .sol-card:hover {
+            border-color: var(--accent-sol);
+            background: #1c2128;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .sol-icon {
+            font-size: 2.5rem;
+            color: var(--accent-sol);
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .sol-card-title { font-size: 1.75rem; font-weight: 700; color: #fff; margin-bottom: 20px; }
+        .sol-card-text { color: var(--text-muted); font-size: 1rem; margin-bottom: 30px; }
+
+        .feature-list { list-style: none; padding: 0; margin: 0; }
+        .feature-list li {
+            padding: 12px 0;
+            border-top: 1px solid var(--accent-border);
+            font-size: 0.9rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .feature-list i { color: var(--accent-sol); font-size: 0.8rem; }
+
+        /* --- DEPLOYMENT STEPS --- */
+        .step-container { margin-top: 100px; }
+        
+        .step-box {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 50px;
+        }
+
+        .step-number {
+            position: absolute;
+            left: 0; top: 0;
+            width: 40px; height: 40px;
+            background: var(--accent-sol);
+            color: var(--bg-base);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* --- INTEGRATION TAB --- */
+        .code-window {
+            background: #010409;
+            border: 1px solid var(--accent-border);
+            border-radius: 12px;
+            padding: 30px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #d1d5da;
+            overflow-x: auto;
+        }
+
+        .code-comment { color: #8b949e; }
+        .code-keyword { color: #ff7b72; }
+        .code-func { color: #d2a8ff; }
+
+        /* --- FOOTER --- */
+        .footer-wrap {
+            padding: 100px 0 50px 0;
+            background: var(--bg-base);
+            border-top: 1px solid var(--accent-border);
+        }
+
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 12px; transition: 0.2s; }
+        .footer-link:hover { color: var(--accent-sol); }
+
+        @media (max-width: 991px) {
+            .hero-title { font-size: 2.8rem; }
+            .sol-card { padding: 30px; }
         }
     </style>
 </head>
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">SEC-OPS</a>
-            <div class="navbar-nav ms-auto d-flex flex-row gap-3">
-                <a class="nav-link" href="index.html">Home</a>
-                <a class="nav-link" href="threats.html">Threats</a>
-                <a class="nav-link" href="science.html">Science</a>
-                <a class="nav-link active" href="solutions.html">Solutions</a>
-                <a class="nav-link" href="impact.html">Impact</a>
-                <a class="nav-link" href="feedback.html">Feedback</a>
-                <a class="nav-link" href="demo.html">Demo</a>
+            <a class="navbar-brand" href="index.html">SEC<span>-</span>OPS</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Infrastructure</a></li>
+                    <li class="nav-item"><a class="nav-link" href="threats.html">Threats</a></li>
+                    <li class="nav-item"><a class="nav-link" href="science.html">Science</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="solutions.html">Solutions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="impact.html">Impact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="demo.html">Neural Lab</a></li>
+                    <li class="nav-item"><a class="nav-link" href="feedback.html">Operations</a></li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <header class="sol-header text-center">
+    <header class="sol-hero">
         <div class="container">
-            <span class="pill">Defense Operations</span>
-            <h1>Strategic Solutions</h1>
-            <p class="lead text-secondary">Implementing enterprise-grade countermeasures and resilient frameworks.</p>
+            <h1 class="hero-title">Infrastructure Hardening & <br>Deployment Architectures</h1>
+            <p class="text-muted fs-5 max-width-700">
+                SEC-OPS provides modular security solutions designed to integrate seamlessly into existing workflows. 
+                Our deployment strategies prioritize high availability, packet-level integrity, and cryptographic sovereignty.
+            </p>
         </div>
     </header>
 
-    <div class="main-content">
-        <section>
-            <h2>01. The Zero Trust Architecture (ZTA)</h2>
-            <p>Traditional security relied on the "Castle and Moat" strategy. Modern security has moved to <strong>Zero Trust</strong>. The core philosophy is: "Never Trust, Always Verify."</p>
-            
-            <div class="defense-card">
-                <h3>The Three Pillars of Zero Trust</h3>
-                <div class="protocol-box">
-                    <span class="step-label">I. Identity Verification</span>
-                    <p>Moving beyond passwords to biometric and hardware-based Multi-Factor Authentication (MFA).</p>
+    <section class="sol-section">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <div class="sol-card">
+                        <i class="fas fa-server sol-icon"></i>
+                        <h3 class="sol-card-title">Edge Node Security</h3>
+                        <p class="sol-card-text">Secure the entry point of your network with adaptive filtering. Our Edge solution neutralizes volumetric threats before they reach your internal core services.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Layer 7 Traffic Inspection</li>
+                            <li><i class="fas fa-check"></i> Automated Geolocation Fencing</li>
+                            <li><i class="fas fa-check"></i> SSL/TLS Termination Hardening</li>
+                            <li><i class="fas fa-check"></i> Real-time Latency Optimization</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="protocol-box">
-                    <span class="step-label">II. Least Privilege Access</span>
-                    <p>Users are given only the minimum level of access required to do their jobs.</p>
-                </div>
-                <div class="protocol-box">
-                    <span class="step-label">III. Micro-Segmentation</span>
-                    <p>Breaking the network into small, isolated zones to contain potential attacks.</p>
+
+                <div class="col-lg-6">
+                    <div class="sol-card">
+                        <i class="fas fa-database sol-icon"></i>
+                        <h3 class="sol-card-title">Data Integrity Vault</h3>
+                        <p class="sol-card-text">Protect sensitive datasets with recursive encryption. The Vault architecture ensures that even in the event of a breach, data remains unintelligible.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> AES-256 Bit Encryption at Rest</li>
+                            <li><i class="fas fa-check"></i> Polymorphic Key Rotation</li>
+                            <li><i class="fas fa-check"></i> Distributed Storage Redundancy</li>
+                            <li><i class="fas fa-check"></i> Unauthorized Access Auto-Purge</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </section>
 
-        <section>
-            <h2>02. Advanced Network Hardening</h2>
-            <p>Hardening is the process of securing a system by reducing its surface of vulnerability. This includes implementing End-to-End Encryption (E2EE) using TLS 1.3 protocols.</p>
-        </section>
+            <div class="step-container">
+                <div class="row">
+                    <div class="col-lg-12 mb-5">
+                        <h2 class="text-white fw-bold">Implementation Lifecycle</h2>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="step-box">
+                            <div class="step-number">01</div>
+                            <h5 class="text-white">Infrastructure Audit</h5>
+                            <p class="small text-muted">We perform a comprehensive scan of your current network topology to identify existing bottlenecks and weak points.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="step-box">
+                            <div class="step-number">02</div>
+                            <h5 class="text-white">Protocol Mapping</h5>
+                            <p class="small text-muted">SEC-OPS protocols are mapped to your specific service requirements, ensuring zero disruption to legitimate traffic.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="step-box">
+                            <div class="step-number">03</div>
+                            <h5 class="text-white">Active Hardening</h5>
+                            <p class="small text-muted">Deployment of edge nodes and internal vault systems with continuous monitoring enabled for 24/7 protection.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <footer style="margin-top: 80px; text-align: center; border-top: 1px solid #30363d; padding-top: 30px; color: #8b949e; font-size: 0.9rem;">
-            SEC-OPS DEFENSE PROTOCOL | v5.8.2.1 | STATUS: PROTECTED
-        </footer>
-    </div>
+            <div class="row mt-5">
+                <div class="col-lg-12">
+                    <h4 class="text-white mb-4">API Integration Interface</h4>
+                    <div class="code-window">
+                        <span class="code-comment">// SEC-OPS Integration Snippet</span><br>
+                        <span class="code-keyword">import</span> { SecOpsCore } <span class="code-keyword">from</span> <span class="code-func">'@sec-ops/infrastructure'</span>;<br><br>
+                        <span class="code-keyword">const</span> <span class="code-func">securityLayer</span> = <span class="code-keyword">new</span> <span class="code-func">SecOpsCore</span>({<br>
+                        &nbsp;&nbsp;nodeId: <span class="code-func">'NODE_0x82A1'</span>,<br>
+                        &nbsp;&nbsp;protectionLevel: <span class="code-func">'MAXIMUM'</span>,<br>
+                        &nbsp;&nbsp;encryption: <span class="code-func">'RSA_4096'</span><br>
+                        });<br><br>
+                        <span class="code-func">securityLayer</span>.<span class="code-func">initializePerimeter</span>();<br>
+                        <span class="code-comment">// Result: Infrastructure monitored. Status: Verified.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="version-tag">v5.8.2.1</div>
+    <footer class="footer-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <a class="navbar-brand d-block mb-4" href="index.html">SEC<span>-</span>OPS</a>
+                    <p class="small text-muted">Professional grade security solutions for modern enterprise infrastructure. Built for reliability and performance.</p>
+                </div>
+                <div class="col-6 col-lg-2 offset-lg-1">
+                    <h5 class="text-white mb-4">Solutions</h5>
+                    <a href="#" class="footer-link">Edge Nodes</a>
+                    <a href="#" class="footer-link">Data Vaults</a>
+                    <a href="#" class="footer-link">Custom Builds</a>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h5 class="text-white mb-4">Ecosystem</h5>
+                    <a href="science.html" class="footer-link">Scientific Basis</a>
+                    <a href="threats.html" class="footer-link">Threat Center</a>
+                    <a href="demo.html" class="footer-link">Lab Access</a>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="text-white mb-4">System Operations</h5>
+                    <p class="small text-muted">Uptime: 99.998%</p>
+                    <p class="small text-muted">Response: 14ms</p>
+                </div>
+            </div>
+            <div class="mt-5 pt-5 border-top border-accent-border text-center">
+                <p class="small text-muted mb-0">© 2026 SEC-OPS Global Solutions Division.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
