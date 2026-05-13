@@ -3,225 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEC-OPS | Threat Analysis & Vector Neutralization</title>
+    <title>SEC-OPS | Threat Analysis & Risk Vector Assessment</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-darkest: #010409;
-            --bg-main: #0d1117;
+            --bg-base: #05070a;
+            --bg-surface: #0d1117;
             --bg-card: #161b22;
-            --accent-primary: #58a6ff;
-            --danger-red: #f85149;
-            --danger-glow: rgba(248, 81, 73, 0.15);
-            --text-high-contrast: #f0f6fc;
-            --text-normal: #c9d1d9;
-            --text-dim: #8b949e;
+            --accent-danger: #f85149;
+            --accent-warning: #d29922;
+            --accent-info: #58a6ff;
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
             --border-standard: #30363d;
-            --nav-height: 85px;
+            --nav-height: 80px;
         }
 
-        html { scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-darkest); }
-        ::-webkit-scrollbar-thumb { background: var(--border-standard); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--danger-red); }
-
+        /* --- GLOBAL DARK THEME --- */
         body { 
-            background-color: var(--bg-main); 
-            color: var(--text-normal); 
-            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-base); 
+            color: var(--text-main); 
+            font-family: 'Inter', sans-serif;
             margin: 0; padding: 0;
             line-height: 1.8;
-            overflow-x: hidden;
         }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { background: var(--border-standard); border-radius: 4px; }
 
         /* --- NAVIGATION --- */
         .navbar { 
-            background-color: rgba(22, 27, 34, 0.9); 
+            background-color: rgba(13, 17, 23, 0.98); 
             border-bottom: 1px solid var(--border-standard);
             min-height: var(--nav-height);
-            backdrop-filter: blur(20px);
-            z-index: 10000;
+            backdrop-filter: blur(10px);
         }
 
         .navbar-brand {
             font-family: 'JetBrains Mono', monospace;
             font-weight: 800;
-            font-size: 1.6rem;
-            color: var(--text-high-contrast) !important;
-            letter-spacing: -1.5px;
+            color: #fff !important;
         }
 
-        .navbar-brand span { color: var(--danger-red); }
+        .navbar-brand span { color: var(--accent-danger); }
 
         .nav-link { 
-            color: var(--text-dim) !important; 
-            font-size: 0.8rem;
+            color: var(--text-muted) !important; 
+            font-size: 0.85rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1.2px;
-            padding: 10px 18px !important;
-            transition: 0.3s;
-            position: relative;
+            letter-spacing: 1px;
+            padding: 10px 15px !important;
         }
 
-        .nav-link:hover { color: var(--danger-red) !important; }
-        .nav-link.active { color: var(--danger-red) !important; }
-        .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 3px;
-            background: var(--danger-red);
-        }
+        .nav-link:hover { color: var(--accent-danger) !important; }
+        .nav-link.active { color: var(--accent-danger) !important; border-bottom: 2px solid var(--accent-danger); }
 
-        /* --- THREAT HEADER --- */
+        /* --- THREAT HERO --- */
         .threat-hero {
-            padding: 150px 0 80px 0;
-            background: linear-gradient(180deg, rgba(248, 81, 73, 0.05) 0%, transparent 100%);
+            padding: 160px 0 80px 0;
+            background: linear-gradient(180deg, rgba(248, 81, 73, 0.03) 0%, var(--bg-base) 100%);
             border-bottom: 1px solid var(--border-standard);
         }
 
-        .glitch-text {
-            font-size: clamp(3rem, 7vw, 5rem);
+        .threat-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 800;
-            color: var(--text-high-contrast);
             letter-spacing: -2px;
-            position: relative;
+            margin-bottom: 25px;
         }
 
-        .threat-sub {
-            font-size: 1.2rem;
-            color: var(--text-dim);
-            max-width: 800px;
-            border-left: 3px solid var(--danger-red);
-            padding-left: 25px;
-            margin-top: 30px;
+        .threat-lead {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 850px;
+            border-left: 4px solid var(--accent-danger);
+            padding-left: 30px;
         }
 
-        /* --- VECTOR GRID --- */
-        .vector-section { padding: 100px 0; }
+        /* --- ANALYSIS GRID --- */
+        .grid-section { padding: 100px 0; }
 
-        .vector-card {
+        .analysis-card {
             background: var(--bg-card);
             border: 1px solid var(--border-standard);
-            border-radius: 24px;
+            border-radius: 12px;
             padding: 45px;
             height: 100%;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative;
-            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
-        .vector-card:hover {
-            transform: scale(1.02);
-            border-color: var(--danger-red);
-            box-shadow: 0 20px 40px var(--danger-glow);
+        .analysis-card:hover {
+            border-color: var(--accent-danger);
+            transform: translateY(-5px);
+            background: #1c2128;
         }
 
-        .vector-index {
+        .risk-badge {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--danger-red);
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .vector-title {
-            font-size: 1.75rem;
+            font-size: 0.7rem;
+            padding: 5px 12px;
+            border-radius: 4px;
             font-weight: 700;
-            color: #fff;
-            margin-bottom: 20px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            display: inline-block;
         }
 
-        .severity-bar {
-            height: 4px;
+        .risk-critical { background: rgba(248, 81, 73, 0.1); color: var(--accent-danger); border: 1px solid var(--accent-danger); }
+        .risk-elevated { background: rgba(210, 153, 34, 0.1); color: var(--accent-warning); border: 1px solid var(--accent-warning); }
+
+        .vector-name { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 15px; }
+        .vector-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 30px; }
+
+        /* --- TECHNICAL DATA TABLE --- */
+        .data-table-wrap {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-standard);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+
+        .ops-table {
             width: 100%;
-            background: #30363d;
-            margin: 25px 0;
-            border-radius: 2px;
-            position: relative;
+            border-collapse: collapse;
+            color: var(--text-main);
         }
 
-        .severity-fill {
-            position: absolute;
-            top: 0; left: 0; height: 100%;
-            background: var(--danger-red);
-            box-shadow: 0 0 10px var(--danger-red);
+        .ops-table th {
+            background: #161b22;
+            padding: 20px;
+            text-align: left;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-standard);
         }
+
+        .ops-table td {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-standard);
+            font-size: 0.9rem;
+        }
+
+        .ops-table tr:last-child td { border-bottom: none; }
 
         /* --- RADAR COMPONENT --- */
-        .radar-box {
+        .radar-panel {
+            background: var(--bg-surface);
             border: 1px solid var(--border-standard);
-            border-radius: 30px;
-            background: #010409;
+            border-radius: 24px;
             padding: 60px;
             text-align: center;
-            position: relative;
-            margin-top: 50px;
         }
 
-        .radar-circle {
-            width: 300px;
-            height: 300px;
-            border: 1px solid rgba(248, 81, 73, 0.3);
+        .status-pulse {
+            width: 12px;
+            height: 12px;
+            background: var(--accent-danger);
             border-radius: 50%;
-            margin: 0 auto;
-            position: relative;
-            animation: pulse-radar 4s infinite;
+            display: inline-block;
+            margin-right: 10px;
+            box-shadow: 0 0 10px var(--accent-danger);
+            animation: pulse 2s infinite;
         }
 
-        @keyframes pulse-radar {
-            0% { transform: scale(0.95); opacity: 0.5; }
-            50% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(0.95); opacity: 0.5; }
-        }
-
-        .radar-sweep {
-            position: absolute;
-            top: 50%; left: 50%;
-            width: 150px; height: 150px;
-            background: conic-gradient(from 0deg, var(--danger-red), transparent);
-            transform-origin: top left;
-            animation: rotate-radar 3s linear infinite;
-            opacity: 0.2;
-        }
-
-        @keyframes rotate-radar {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+            100% { transform: scale(0.95); opacity: 1; }
         }
 
         /* --- FOOTER --- */
         .footer-wrap {
             padding: 100px 0 50px 0;
-            background: var(--bg-darkest);
+            background: var(--bg-base);
             border-top: 1px solid var(--border-standard);
         }
 
-        .footer-link {
-            color: var(--text-dim);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 12px;
-            transition: 0.3s;
-        }
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 12px; }
+        .footer-link:hover { color: var(--accent-danger); }
 
-        .footer-link:hover { color: var(--danger-red); padding-left: 5px; }
-
-        .status-tag {
-            position: fixed; bottom: 30px; right: 30px;
-            background: var(--bg-card);
-            border: 1px solid var(--danger-red);
-            color: var(--danger-red);
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            font-weight: 700;
-            z-index: 1000;
+        @media (max-width: 991px) {
+            .threat-title { font-size: 2.8rem; }
+            .analysis-card { padding: 30px; }
         }
     </style>
 </head>
@@ -231,149 +202,182 @@
         <div class="container">
             <a class="navbar-brand" href="index.html">SEC<span>-</span>OPS</a>
             <div class="collapse navbar-collapse">
-                <div class="navbar-nav ms-auto gap-2">
-                    <a class="nav-link" href="index.html">Core</a>
-                    <a class="nav-link active" href="threats.html">Threats</a>
-                    <a class="nav-link" href="science.html">Science</a>
-                    <a class="nav-link" href="solutions.html">Solutions</a>
-                    <a class="nav-link" href="demo.html">Neural Lab</a>
-                    <a class="nav-link" href="pricing.html">Licensing</a>
-                    <a class="nav-link" href="investment.html">Capital</a>
-                    <a class="nav-link" href="feedback.html">Feedback</a>
-                </div>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Infrastructure</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="threats.html">Threats</a></li>
+                    <li class="nav-item"><a class="nav-link" href="science.html">Science</a></li>
+                    <li class="nav-item"><a class="nav-link" href="solutions.html">Solutions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="impact.html">Impact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="demo.html">Neural Lab</a></li>
+                    <li class="nav-item"><a class="nav-link" href="feedback.html">Operations</a></li>
+                </ul>
             </div>
         </div>
     </nav>
 
     <header class="threat-hero">
         <div class="container">
-            <span class="text-danger fw-bold font-monospace mb-3 d-block">LATEST INTELLIGENCE REPORT</span>
-            <h1 class="glitch-text">Global Threat <br>Landscape 2026</h1>
-            <p class="threat-sub">The complexity of modern cyber-warfare has surpassed human reaction time. SEC-OPS maps these vectors in real-time to develop autonomous countermeasures against emerging exploits.</p>
+            <h1 class="threat-title">Network Vulnerability & <br>Risk Vector Analysis</h1>
+            <p class="threat-lead">
+                Understanding the landscape of modern digital threats is the first step toward building resilient infrastructure. 
+                SEC-OPS monitors emerging risk factors and identifies patterns of unauthorized network behavior in real-time.
+            </p>
         </div>
     </header>
 
-    <section class="vector-section">
+    <section class="grid-section">
         <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-7">
+                    <h2 class="fw-bold text-white mb-4">Primary Risk Classifications</h2>
+                    <p class="text-muted">We categorize infrastructure risks based on their potential impact on data integrity and system availability.</p>
+                </div>
+            </div>
+
             <div class="row g-4">
                 <div class="col-lg-6">
-                    <div class="vector-card">
-                        <span class="vector-index">VECTOR_ID: 0x001_DDoS</span>
-                        <h3 class="vector-title">Distributed Volumetric Assaults</h3>
-                        <p class="text-dim">Advanced botnets now leverage IoT vulnerabilities to generate traffic exceeding 2.5 Tbps. Traditional firewalls crumble under the sheer packet volume before they can filter the noise.</p>
-                        <div class="severity-bar"><div class="severity-fill" style="width: 95%;"></div></div>
-                        <div class="d-flex justify-content-between small text-uppercase">
-                            <span>Severity: Critical</span>
-                            <span>Target: Bandwidth Integrity</span>
+                    <div class="analysis-card">
+                        <span class="risk-badge risk-critical">Critical Severity</span>
+                        <h3 class="vector-name">Volumetric Traffic Saturation</h3>
+                        <p class="vector-desc">Attempts to overwhelm network gateways with high-frequency packet requests, aimed at degrading performance and causing widespread service denial for legitimate users.</p>
+                        <div class="pt-3 border-top border-standard">
+                            <span class="small text-muted font-monospace">MITIGATION: Adaptive Rate Limiting</span>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-lg-6">
-                    <div class="vector-card">
-                        <span class="vector-index">VECTOR_ID: 0x002_SQLi</span>
-                        <h3 class="vector-title">Polymorphic SQL Injection</h3>
-                        <p class="text-dim">AI-driven injection scripts mutate their payload structure with every attempt, bypassing static pattern matching and traditional Web Application Firewalls (WAF).</p>
-                        <div class="severity-bar"><div class="severity-fill" style="width: 80%;"></div></div>
-                        <div class="d-flex justify-content-between small text-uppercase">
-                            <span>Severity: High</span>
-                            <span>Target: Database Layer</span>
+                    <div class="analysis-card">
+                        <span class="risk-badge risk-critical">Critical Severity</span>
+                        <h3 class="vector-name">Cryptographic Interception</h3>
+                        <p class="vector-desc">Exploiting vulnerabilities in transit protocols to capture and decrypt data streams. This targeting focuses on legacy algorithms and unverified handshake sequences.</p>
+                        <div class="pt-3 border-top border-standard">
+                            <span class="small text-muted font-monospace">MITIGATION: Forced RSA-4096 Standards</span>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-lg-4">
-                    <div class="vector-card">
-                        <span class="vector-index">VECTOR_ID: 0x003_MITM</span>
-                        <h3 class="vector-title">Quantum Decryption</h3>
-                        <p class="text-dim">Man-in-the-Middle attacks utilizing early-stage quantum computing to crack legacy RSA keys in transit.</p>
-                        <div class="severity-bar"><div class="severity-fill" style="width: 65%;"></div></div>
-                        <div class="small text-uppercase">Target: Transport Layer</div>
+                    <div class="analysis-card">
+                        <span class="risk-badge risk-elevated">Elevated Awareness</span>
+                        <h3 class="vector-name">Identity Spoofing</h3>
+                        <p class="vector-desc">Malicious attempts to replicate device fingerprints or user credentials to gain unauthorized node access.</p>
                     </div>
                 </div>
+
                 <div class="col-lg-4">
-                    <div class="vector-card">
-                        <span class="vector-index">VECTOR_ID: 0x004_RANSOM</span>
-                        <h3 class="vector-title">Latent Ransomware</h3>
-                        <p class="text-dim">Encrypted payloads that sit dormant for months, bypassing behavioral analysis by mimicking system processes.</p>
-                        <div class="severity-bar"><div class="severity-fill" style="width: 88%;"></div></div>
-                        <div class="small text-uppercase">Target: File System</div>
+                    <div class="analysis-card">
+                        <span class="risk-badge risk-elevated">Elevated Awareness</span>
+                        <h3 class="vector-name">Lateral Escalation</h3>
+                        <p class="vector-desc">The process by which an unauthorized user attempts to move from a peripheral node to the core infrastructure.</p>
                     </div>
                 </div>
+
                 <div class="col-lg-4">
-                    <div class="vector-card">
-                        <span class="vector-index">VECTOR_ID: 0x005_SOCIAL</span>
-                        <h3 class="vector-title">Neural Phishing</h3>
-                        <p class="text-dim">Deep-fake audio and video used to manipulate C-suite executives into authorizing illegal capital transfers.</p>
-                        <div class="severity-bar"><div class="severity-fill" style="width: 75%;"></div></div>
-                        <div class="small text-uppercase">Target: Human Element</div>
+                    <div class="analysis-card">
+                        <span class="risk-badge risk-elevated">Elevated Awareness</span>
+                        <h3 class="vector-name">Logic Injections</h3>
+                        <p class="vector-desc">Inserting unauthorized instructions into application layers to manipulate or extract system-level data.</p>
                     </div>
                 </div>
+            </div>
+
+            <div class="data-table-wrap">
+                <table class="ops-table">
+                    <thead>
+                        <tr>
+                            <th>Threat Vector ID</th>
+                            <th>Detection Probability</th>
+                            <th>Mitigation Cycle</th>
+                            <th>Integrity Impact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-monospace">VEC-001_VOLUMETRIC</td>
+                            <td>99.2%</td>
+                            <td>&lt; 500ms</td>
+                            <td class="text-danger">Severe</td>
+                        </tr>
+                        <tr>
+                            <td class="font-monospace">VEC-002_HANDSHAKE</td>
+                            <td>94.8%</td>
+                            <td>Instantaneous</td>
+                            <td class="text-danger">Severe</td>
+                        </tr>
+                        <tr>
+                            <td class="font-monospace">VEC-003_CREDENTIAL</td>
+                            <td>88.5%</td>
+                            <td>2.5s Verification</td>
+                            <td class="text-warning">Significant</td>
+                        </tr>
+                        <tr>
+                            <td class="font-monospace">VEC-004_LATERAL</td>
+                            <td>91.0%</td>
+                            <td>Active Lockdown</td>
+                            <td class="text-warning">Moderate</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
 
-    <section class="py-5" style="background: rgba(248, 81, 73, 0.02);">
-        <div class="container">
+    <section class="py-5" style="background: var(--bg-surface); border-top: 1px solid var(--border-standard);">
+        <div class="container py-5">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <h2 class="display-5 fw-bold text-white mb-4">Active Scanning...</h2>
-                    <p class="text-dim mb-4">The SEC-OPS Global Radar monitors over 1.2 billion endpoints. We detect anomalies by comparing current network flows against the "Golden Baseline" established by our neural models.</p>
-                    <div class="p-3 border border-standard rounded-3 bg-dark">
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="small font-monospace">SCANNING_SUBNET: 192.168.0.x</span>
-                            <span class="text-danger small">ANOMALY DETECTED</span>
+                    <div class="radar-panel">
+                        <div class="mb-4">
+                            <span class="status-pulse"></span>
+                            <span class="font-monospace small text-danger">LIVE GLOBAL RISK FEED</span>
                         </div>
-                        <div class="progress bg-secondary" style="height: 5px;">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width: 75%;"></div>
-                        </div>
+                        <h4 class="text-white mb-3">Anomaly Detection: Active</h4>
+                        <p class="text-muted small">Our decentralized nodes are currently scanning 4.2 billion monthly connection requests for irregular patterns.</p>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="radar-box">
-                        <div class="radar-circle">
-                            <div class="radar-sweep"></div>
-                            <i class="fas fa-crosshairs text-danger" style="position:absolute; top:30%; left:40%; font-size:10px;"></i>
-                            <i class="fas fa-crosshairs text-danger" style="position:absolute; top:70%; left:60%; font-size:10px;"></i>
-                        </div>
-                        <p class="mt-4 font-monospace small text-danger">LIVE THREAT FEED: ACTIVE</p>
-                    </div>
+                <div class="col-lg-6 ps-lg-5 mt-5 mt-lg-0">
+                    <h2 class="text-white fw-bold">Dynamic Mitigation Protocols</h2>
+                    <p class="text-muted mt-4">Traditional security measures are often reactive. SEC-OPS employs proactive analysis to neutralize threats at the perimeter. By maintaining a constant state of verification, we ensure that infrastructure remains available and data remains sovereign.</p>
+                    <ul class="list-unstyled mt-4">
+                        <li class="mb-3"><i class="fas fa-check-circle text-danger me-2"></i> Real-time packet inspection</li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-danger me-2"></i> Automated source blacklisting</li>
+                        <li><i class="fas fa-check-circle text-danger me-2"></i> Encrypted session isolation</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
     <footer class="footer-wrap">
-        <div class="container text-center">
-            <h2 class="navbar-brand mb-5 d-block">SEC<span>-</span>OPS</h2>
-            <div class="row text-start g-4">
-                <div class="col-md-4">
-                    <h5 class="text-white mb-3">Intelligence Hub</h5>
-                    <p class="small text-dim">Providing data-driven security insights since 2024. All reports are cryptographically signed for authenticity.</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <a class="navbar-brand d-block mb-4" href="index.html">SEC<span>-</span>OPS</a>
+                    <p class="small text-muted">A dedicated framework for identifying, analyzing, and neutralizing risks in digital ecosystems.</p>
                 </div>
-                <div class="col-md-4">
-                    <h5 class="text-white mb-3">Navigation</h5>
-                    <div class="row">
-                        <div class="col-6">
-                            <a href="index.html" class="footer-link">Home</a>
-                            <a href="science.html" class="footer-link">Science</a>
-                            <a href="solutions.html" class="footer-link">Solutions</a>
-                        </div>
-                        <div class="col-6">
-                            <a href="demo.html" class="footer-link">Lab</a>
-                            <a href="feedback.html" class="footer-link">Feedback</a>
-                        </div>
-                    </div>
+                <div class="col-6 col-lg-2 offset-lg-1">
+                    <h5 class="text-white mb-4">Risk Center</h5>
+                    <a href="#" class="footer-link">Live Reports</a>
+                    <a href="#" class="footer-link">Mitigation Log</a>
+                    <a href="#" class="footer-link">Node Status</a>
                 </div>
-                <div class="col-md-4">
-                    <h5 class="text-white mb-3">Legal</h5>
-                    <a href="#" class="footer-link">Terms of Service</a>
-                    <a href="#" class="footer-link">Privacy Protocol</a>
+                <div class="col-6 col-lg-2">
+                    <h5 class="text-white mb-4">Framework</h5>
+                    <a href="science.html" class="footer-link">Scientific Basis</a>
+                    <a href="solutions.html" class="footer-link">Deployment</a>
+                    <a href="demo.html" class="footer-link">Lab Access</a>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="text-white mb-4">Legal & Privacy</h5>
+                    <p class="small text-muted">All analysis is performed under strict ethical guidelines. No PII is retained during anomaly detection.</p>
                 </div>
             </div>
-            <p class="mt-5 text-secondary small">© 2026 SEC-OPS. Threat Intelligence Division.</p>
+            <div class="mt-5 pt-5 border-top border-standard text-center">
+                <p class="small text-muted mb-0">© 2026 SEC-OPS Risk Division. Monitoring Active.</p>
+            </div>
         </div>
     </footer>
-
-    <div class="status-tag">THREAT_LEVEL: ELEVATED</div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
