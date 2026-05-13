@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEC-OPS | Scalable Protection Tiers & Enterprise Licensing</title>
+    <title>SEC-OPS | Transparent Protection Tiers</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -39,10 +39,22 @@
         .navbar-brand { font-family: 'JetBrains Mono', monospace; font-weight: 800; color: #fff !important; }
         .navbar-brand span { color: var(--accent-price); }
 
+        .nav-link { 
+            color: var(--text-muted) !important; 
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px 15px !important;
+        }
+
+        .nav-link:hover { color: var(--accent-price) !important; }
+        .nav-link.active { color: var(--accent-price) !important; border-bottom: 2px solid var(--accent-price); }
+
         /* --- PRICING HERO --- */
         .price-hero {
-            padding: 160px 0 80px 0;
-            background: linear-gradient(180deg, rgba(219, 97, 162, 0.05) 0%, var(--bg-base) 100%);
+            padding: 160px 0 60px 0;
+            background: radial-gradient(circle at 50% 0%, rgba(219, 97, 162, 0.1) 0%, transparent 70%);
             text-align: center;
         }
 
@@ -57,103 +69,93 @@
         }
 
         /* --- PRICING CARDS --- */
-        .pricing-section { padding: 60px 0 120px; }
+        .pricing-section { padding: 40px 0 100px; }
 
         .price-card {
             background: var(--bg-card);
             border: 1px solid var(--accent-border);
-            border-radius: 20px;
-            padding: 50px 40px;
+            border-radius: 16px;
+            padding: 40px 30px;
             height: 100%;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price-card:hover {
+            border-color: var(--accent-price);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .price-card.featured {
             border-color: var(--accent-price);
-            transform: scale(1.05);
-            z-index: 2;
             background: #1c2128;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            position: relative;
         }
 
-        .featured-label {
+        .popular-badge {
             position: absolute;
-            top: 20px;
-            right: -35px;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
             background: var(--accent-price);
             color: #fff;
-            padding: 5px 40px;
-            transform: rotate(45deg);
+            padding: 4px 12px;
+            border-radius: 20px;
             font-size: 0.7rem;
             font-weight: 800;
             text-transform: uppercase;
         }
 
-        .tier-name { font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
-        .tier-price { font-size: 3rem; font-weight: 800; color: #fff; margin-bottom: 25px; }
-        .tier-price span { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+        .tier-name { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 15px; }
+        .tier-price { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
+        .tier-price span { font-size: 0.9rem; color: var(--text-muted); font-weight: 400; }
+        .tier-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 25px; height: 40px; }
 
-        .feature-list { list-style: none; padding: 0; margin-bottom: 40px; }
+        .feature-list { list-style: none; padding: 0; margin-bottom: 30px; flex-grow: 1; }
         .feature-list li {
-            padding: 12px 0;
-            border-bottom: 1px solid var(--accent-border);
+            padding: 10px 0;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
-        .feature-list li i { color: var(--accent-price); font-size: 0.8rem; }
-        .feature-list li.disabled { opacity: 0.4; text-decoration: line-through; }
+        .feature-list li i { color: var(--accent-price); font-size: 0.75rem; }
+        .feature-list li.disabled { opacity: 0.3; }
 
         .btn-price {
             width: 100%;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 12px;
+            border-radius: 8px;
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
+            font-size: 0.8rem;
             transition: 0.3s;
             border: 1px solid var(--accent-price);
             background: transparent;
             color: var(--accent-price);
         }
 
-        .price-card.featured .btn-price {
+        .price-card.featured .btn-price, .btn-price:hover {
             background: var(--accent-price);
             color: #fff;
         }
-
-        .btn-price:hover {
-            background: var(--accent-price);
-            color: #fff;
-            box-shadow: 0 0 20px rgba(219, 97, 162, 0.4);
-        }
-
-        /* --- COMPARISON TABLE --- */
-        .compare-wrap { padding: 100px 0; background: var(--bg-surface); }
-        .compare-table { width: 100%; border-collapse: collapse; }
-        .compare-table th { padding: 25px; text-align: left; color: #fff; border-bottom: 1px solid var(--accent-border); }
-        .compare-table td { padding: 20px; color: var(--text-muted); border-bottom: 1px solid var(--accent-border); font-size: 0.9rem; }
-
-        /* --- FAQ --- */
-        .faq-section { padding: 100px 0; }
-        .faq-item { margin-bottom: 40px; }
-        .faq-item h5 { color: #fff; margin-bottom: 15px; }
 
         /* --- FOOTER --- */
         .footer-wrap {
-            padding: 100px 0 50px 0;
+            padding: 80px 0 40px 0;
             background: var(--bg-base);
             border-top: 1px solid var(--accent-border);
         }
 
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 10px; font-size: 0.9rem; }
+        .footer-link:hover { color: var(--accent-price); }
+
         @media (max-width: 991px) {
-            .price-card.featured { transform: scale(1); margin: 30px 0; }
+            .pricing-section .row > div { margin-bottom: 20px; }
         }
     </style>
 </head>
@@ -162,12 +164,19 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">SEC<span>-</span>OPS</a>
-            <div class="collapse navbar-collapse">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Infrastructure</a></li>
                     <li class="nav-item"><a class="nav-link" href="threats.html">Threats</a></li>
+                    <li class="nav-item"><a class="nav-link" href="science.html">Science</a></li>
+                    <li class="nav-item"><a class="nav-link" href="solutions.html">Solutions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="impact.html">Impact</a></li>
                     <li class="nav-item"><a class="nav-link" href="demo.html">Neural Lab</a></li>
                     <li class="nav-item"><a class="nav-link active" href="pricing.html">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="feedback.html">Operations</a></li>
                 </ul>
             </div>
         </div>
@@ -175,127 +184,77 @@
 
     <header class="price-hero">
         <div class="container">
-            <span class="hero-tag">Investment in Sovereignty</span>
-            <h1 class="display-3 fw-bold text-white mb-4">Transparent Pricing for <br>Inpenetrable Systems</h1>
-            <p class="text-muted mx-auto" style="max-width: 700px;">From individual edge nodes to global enterprise meshes, select the protection tier that aligns with your infrastructure requirements.</p>
+            <span class="hero-tag">Affordable Sovereignty</span>
+            <h1 class="display-4 fw-bold text-white mb-3">Enterprise Security for Everyone</h1>
+            <p class="text-muted mx-auto" style="max-width: 600px;">We believe high-end infrastructure protection shouldn't break the bank. Choose the plan that scales with your traffic.</p>
         </div>
     </header>
 
     <section class="pricing-section">
         <div class="container">
-            <div class="row g-4 align-items-stretch">
-                <div class="col-lg-4">
+            <div class="row g-4">
+                <div class="col-xl-3 col-md-6">
                     <div class="price-card">
-                        <div class="tier-name">Sentry Node</div>
-                        <div class="tier-price">$499<span>/mo</span></div>
+                        <div class="tier-name">Community</div>
+                        <div class="tier-price">$0<span>/forever</span></div>
+                        <p class="tier-desc">Perfect for personal projects and small blogs.</p>
                         <ul class="feature-list">
-                            <li><i class="fas fa-check"></i> 5 TB Filtered Traffic</li>
-                            <li><i class="fas fa-check"></i> Layer 7 DDoS Mitigation</li>
-                            <li><i class="fas fa-check"></i> Basic Threat Analytics</li>
-                            <li class="disabled"><i class="fas fa-times"></i> Custom RSA Key Rotation</li>
-                            <li class="disabled"><i class="fas fa-times"></i> 24/7 Forensic Support</li>
+                            <li><i class="fas fa-check"></i> 100GB Monthly Traffic</li>
+                            <li><i class="fas fa-check"></i> Basic L3/L4 Protection</li>
+                            <li><i class="fas fa-check"></i> Shared Edge Nodes</li>
+                            <li class="disabled"><i class="fas fa-times"></i> Neural Anomaly Detection</li>
+                            <li class="disabled"><i class="fas fa-times"></i> API Access</li>
                         </ul>
-                        <button class="btn-price">Deploy Node</button>
+                        <button class="btn-price">Get Started</button>
                     </div>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-xl-3 col-md-6">
+                    <div class="price-card">
+                        <div class="tier-name">Pro Sentry</div>
+                        <div class="tier-price">$19<span>/mo</span></div>
+                        <p class="tier-desc">Enhanced protection for growing startups.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> 1TB Monthly Traffic</li>
+                            <li><i class="fas fa-check"></i> Advanced Layer 7 WAF</li>
+                            <li><i class="fas fa-check"></i> SSL/TLS Hardening</li>
+                            <li><i class="fas fa-check"></i> Email Support</li>
+                            <li class="disabled"><i class="fas fa-times"></i> Auto Key Rotation</li>
+                        </ul>
+                        <button class="btn-price">Upgrade Now</button>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
                     <div class="price-card featured">
-                        <div class="featured-label">Recommended</div>
-                        <div class="tier-name">Core Mesh</div>
-                        <div class="tier-price">$1,299<span>/mo</span></div>
+                        <div class="popular-badge">Most Popular</div>
+                        <div class="tier-name">Neural Mesh</div>
+                        <div class="tier-price">$49<span>/mo</span></div>
+                        <p class="tier-desc">Full autonomous security for professional apps.</p>
                         <ul class="feature-list">
-                            <li><i class="fas fa-check"></i> 50 TB Filtered Traffic</li>
-                            <li><i class="fas fa-check"></i> Neural Anomaly Detection</li>
-                            <li><i class="fas fa-check"></i> Automated Key Rotation</li>
-                            <li><i class="fas fa-check"></i> Micro-segmentation API</li>
-                            <li class="disabled"><i class="fas fa-times"></i> Dedicated Ops Liaison</li>
+                            <li><i class="fas fa-check"></i> 10TB Monthly Traffic</li>
+                            <li><i class="fas fa-check"></i> Neural Intelligence Shield</li>
+                            <li><i class="fas fa-check"></i> 1-Hour RSA Key Rotation</li>
+                            <li><i class="fas fa-check"></i> Priority Ticket Support</li>
+                            <li><i class="fas fa-check"></i> 5 Global Regions</li>
                         </ul>
-                        <button class="btn-price">Initialize Mesh</button>
+                        <button class="btn-price">Go Neural</button>
                     </div>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-xl-3 col-md-6">
                     <div class="price-card">
-                        <div class="tier-name">Sovereign Entity</div>
-                        <div class="tier-price">Custom<span>/yr</span></div>
+                        <div class="tier-name">Global Sovereign</div>
+                        <div class="tier-price">$199<span>/mo</span></div>
+                        <p class="tier-desc">Maximum reliability for heavy enterprise loads.</p>
                         <ul class="feature-list">
-                            <li><i class="fas fa-check"></i> Unlimited Global Traffic</li>
-                            <li><i class="fas fa-check"></i> Full Zero-Day Protection</li>
-                            <li><i class="fas fa-check"></i> On-Premise Kernel Deploy</li>
-                            <li><i class="fas fa-check"></i> Hardware Security Modules</li>
-                            <li><i class="fas fa-check"></i> 15min SLA Response</li>
+                            <li><i class="fas fa-check"></i> Unlimited Traffic</li>
+                            <li><i class="fas fa-check"></i> Custom Kernel Integration</li>
+                            <li><i class="fas fa-check"></i> Zero-Day Threat Lab</li>
+                            <li><i class="fas fa-check"></i> Dedicated Slack Channel</li>
+                            <li><i class="fas fa-check"></i> All 24 Global Regions</li>
                         </ul>
-                        <button class="btn-price">Contact Sales</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="compare-wrap">
-        <div class="container">
-            <h2 class="text-white fw-bold mb-5">Technical Capability Matrix</h2>
-            <div class="table-responsive">
-                <table class="compare-table">
-                    <thead>
-                        <tr>
-                            <th>Protocol Feature</th>
-                            <th>Sentry</th>
-                            <th>Core</th>
-                            <th>Sovereign</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Encryption Standard</td>
-                            <td>AES-256</td>
-                            <td>RSA-4096 / ECC</td>
-                            <td>Quantum-Resistant</td>
-                        </tr>
-                        <tr>
-                            <td>Node Isolation</td>
-                            <td>Manual</td>
-                            <td>Autonomous</td>
-                            <td>Predictive</td>
-                        </tr>
-                        <tr>
-                            <td>Log Retention</td>
-                            <td>30 Days</td>
-                            <td>1 Year</td>
-                            <td>Indefinite (Encrypted)</td>
-                        </tr>
-                        <tr>
-                            <td>Global Propagation</td>
-                            <td>&lt; 500ms</td>
-                            <td>&lt; 50ms</td>
-                            <td>&lt; 10ms</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <section class="faq-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <h2 class="text-white fw-bold">Common Queries</h2>
-                    <p class="text-muted">Detailed insights into our billing and implementation cycles.</p>
-                </div>
-                <div class="col-lg-8">
-                    <div class="faq-item">
-                        <h5>Can I upgrade my tier during an active attack?</h5>
-                        <p class="text-muted">Yes. Our system allows for "Hot Swapping" protection tiers. If your Sentry node detects volumetric traffic exceeding its capacity, you can instantly scale to Core Mesh without dropping existing legitimate connections.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h5>What happens if I exceed my traffic limit?</h5>
-                        <p class="text-muted">We do not hard-cap security. In the event of a traffic surge, SEC-OPS continues protection at a metered rate of $0.05 per GB, ensuring your infrastructure stays online during critical growth periods.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h5>Is there a setup fee for Sovereign deployments?</h5>
-                        <p class="text-muted">Sovereign Tiers involve a one-time architecture audit and kernel mapping fee, which varies based on the complexity of your existing network topology.</p>
+                        <button class="btn-price">Contact Ops</button>
                     </div>
                 </div>
             </div>
@@ -303,11 +262,20 @@
     </section>
 
     <footer class="footer-wrap">
-        <div class="container text-center">
-            <a class="navbar-brand d-block mb-4" href="index.html">SEC<span>-</span>OPS</a>
-            <p class="small text-muted mb-5">Built for the architects of the future network.</p>
-            <div class="pt-5 border-top border-accent-border">
-                <p class="small text-muted">© 2026 SEC-OPS Global Licensing. All Prices in USD.</p>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-4 mb-md-0">
+                    <a class="navbar-brand" href="index.html">SEC<span>-</span>OPS</a>
+                    <p class="small text-muted mt-2 mb-0">Democratizing high-tier digital defense since 2024.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                        <a href="index.html" class="footer-link">Home</a>
+                        <a href="demo.html" class="footer-link">Neural Lab</a>
+                        <a href="feedback.html" class="footer-link">Operations</a>
+                    </div>
+                    <p class="small text-muted mt-3 mb-0">© 2026 SEC-OPS Global. All rights reserved.</p>
+                </div>
             </div>
         </div>
     </footer>
