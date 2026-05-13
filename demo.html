@@ -2,143 +2,310 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Demo | SEC-OPS Virtual Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEC-OPS | Neural Lab - Interactive Infrastructure Simulation</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; padding-top: 80px; line-height: 1.8; }
-        .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; }
-        .nav-link { color: #8b949e !important; }
-        .active { color: #58a6ff !important; font-weight: bold; border-bottom: 2px solid #58a6ff; }
-        
-        .demo-hero { 
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1000&q=80');
-            background-size: cover; padding: 80px 0; border-bottom: 1px solid #30363d; text-align: center;
+        :root {
+            --bg-base: #05070a;
+            --bg-surface: #0d1117;
+            --bg-card: #161b22;
+            --accent-demo: #00f2ff;
+            --accent-border: #30363d;
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+            --terminal-green: #3fb950;
+            --terminal-red: #f85149;
+            --nav-height: 80px;
         }
 
-        .lab-container { max-width: 1000px; margin: auto; padding: 60px 20px; }
-        
-        .simulator-card { 
-            background: #161b22; border: 1px solid #30363d; border-radius: 15px; 
-            padding: 40px; margin-bottom: 50px; border-top: 4px solid #58a6ff;
+        /* --- GLOBAL DARK THEME --- */
+        body { 
+            background-color: var(--bg-base); 
+            color: var(--text-main); 
+            font-family: 'Inter', sans-serif;
+            margin: 0; padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .terminal { 
-            background: #010409; color: #3fb950; font-family: 'Courier New', Courier, monospace;
-            padding: 20px; border-radius: 10px; border: 1px solid #30363d; margin-top: 20px;
-            min-height: 150px; overflow-y: auto;
+        /* --- NAVIGATION --- */
+        .navbar { 
+            background-color: rgba(13, 17, 23, 0.98); 
+            border-bottom: 1px solid var(--accent-border);
+            min-height: var(--nav-height);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
         }
 
-        .btn-action { 
-            background: #21262d; color: #c9d1d9; border: 1px solid #30363d; 
-            padding: 10px 20px; border-radius: 6px; font-weight: bold; transition: 0.2s;
+        .navbar-brand {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            color: #fff !important;
         }
-        .btn-action:hover { background: #30363d; border-color: #8b949e; }
-        .btn-primary-ops { background: #238636; color: white; border: none; }
 
-        .status-badge { padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
-        .status-active { background: rgba(63, 185, 80, 0.1); color: #3fb950; border: 1px solid #3fb950; }
+        .navbar-brand span { color: var(--accent-demo); }
 
-        .version-tag { 
-            position: fixed; bottom: 10px; right: 15px; background: rgba(22,27,34,0.9); 
-            color: #8b949e; padding: 4px 10px; border-radius: 5px; font-size: 11px; 
-            font-family: monospace; border: 1px solid #30363d; z-index: 10000; pointer-events: none; 
+        .nav-link { 
+            color: var(--text-muted) !important; 
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px 15px !important;
+        }
+
+        .nav-link:hover { color: var(--accent-demo) !important; }
+        .nav-link.active { color: var(--accent-demo) !important; border-bottom: 2px solid var(--accent-demo); }
+
+        /* --- LAB HEADER --- */
+        .lab-hero {
+            padding: 140px 0 60px 0;
+            background: linear-gradient(180deg, rgba(0, 242, 255, 0.05) 0%, var(--bg-base) 100%);
+            border-bottom: 1px solid var(--accent-border);
+        }
+
+        .lab-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        /* --- INTERACTIVE SIMULATOR --- */
+        .simulator-container {
+            background: var(--bg-surface);
+            border: 1px solid var(--accent-border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 40px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .sim-header {
+            background: #161b22;
+            padding: 15px 25px;
+            border-bottom: 1px solid var(--accent-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dot-group { display: flex; gap: 8px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot-r { background: #ff5f56; }
+        .dot-y { background: #ffbd2e; }
+        .dot-g { background: #27c93f; }
+
+        .sim-body {
+            padding: 40px;
+            min-height: 500px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* --- TERMINAL OUTPUT --- */
+        .terminal-line { margin-bottom: 10px; font-size: 0.9rem; }
+        .t-prompt { color: var(--accent-demo); margin-right: 10px; }
+        .t-success { color: var(--terminal-green); }
+        .t-danger { color: var(--terminal-red); }
+        .t-warning { color: #d29922; }
+
+        /* --- UI CONTROLS --- */
+        .control-panel {
+            background: var(--bg-card);
+            border-left: 1px solid var(--accent-border);
+            padding: 30px;
+        }
+
+        .control-btn {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid var(--accent-border);
+            background: #21262d;
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-align: left;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .control-btn:hover {
+            border-color: var(--accent-demo);
+            background: rgba(0, 242, 255, 0.05);
+        }
+
+        .control-btn i { color: var(--accent-demo); }
+
+        /* --- LONG DOCUMENTATION BLOCK --- */
+        .docs-section { padding: 100px 0; }
+        .docs-card {
+            background: var(--bg-card);
+            border: 1px solid var(--accent-border);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+        .docs-card h4 { color: #fff; margin-bottom: 20px; font-weight: 700; }
+        .docs-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; }
+
+        /* --- FOOTER --- */
+        .footer-wrap {
+            padding: 100px 0 50px 0;
+            background: var(--bg-base);
+            border-top: 1px solid var(--accent-border);
+        }
+
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 12px; transition: 0.2s; }
+        .footer-link:hover { color: var(--accent-demo); }
+
+        @media (max-width: 991px) {
+            .control-panel { border-left: none; border-top: 1px solid var(--accent-border); }
         }
     </style>
 </head>
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">SEC-OPS</a>
-            <div class="navbar-nav ms-auto d-flex flex-row gap-3">
-                <a class="nav-link" href="index.html">Home</a>
-                <a class="nav-link" href="threats.html">Threats</a>
-                <a class="nav-link" href="science.html">Science</a>
-                <a class="nav-link" href="solutions.html">Solutions</a>
-                <a class="nav-link" href="impact.html">Impact</a>
-                <a class="nav-link" href="feedback.html">Feedback</a>
-                <a class="nav-link active" href="demo.html">Demo</a>
+            <a class="navbar-brand" href="index.html">SEC<span>-</span>OPS</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Infrastructure</a></li>
+                    <li class="nav-item"><a class="nav-link" href="threats.html">Threats</a></li>
+                    <li class="nav-item"><a class="nav-link" href="science.html">Science</a></li>
+                    <li class="nav-item"><a class="nav-link" href="solutions.html">Solutions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="impact.html">Impact</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="demo.html">Neural Lab</a></li>
+                    <li class="nav-item"><a class="nav-link" href="feedback.html">Operations</a></li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <header class="demo-hero">
+    <header class="lab-hero">
         <div class="container">
-            <h1>Virtual Defense Lab</h1>
-            <p class="lead text-secondary">Experience our security protocols in a simulated environment.</p>
+            <h1 class="lab-title">Neural_Lab.v2</h1>
+            <p class="text-muted fs-6">
+                Interactive demonstration of the SEC-OPS kernel. Simulate infrastructure attacks and observe real-time autonomous mitigation protocols.
+            </p>
         </div>
     </header>
 
-    <div class="lab-container">
-        
-        <div class="simulator-card">
-            <span class="status-badge status-active mb-3">INTEGRITY_CHECK</span>
-            <h2>01. Password Hashing</h2>
-            <p>Type below to see how our system generates a unique SHA-256 digital fingerprint.</p>
-            <input type="text" id="pass-input" class="form-control" placeholder="Input string..." oninput="simulateHash()">
-            <div class="terminal" id="hash-output">[SYSTEM] Awaiting input...</div>
-        </div>
-
-        <div class="simulator-card">
-            <span class="status-badge status-active mb-3">NETWORK_SHIELD</span>
-            <h2>02. Packet Inspection</h2>
-            <p>Simulate a live network stream to identify and block malicious traffic.</p>
-            <button class="btn-action btn-primary-ops" onclick="runFirewall()">Scan Traffic</button>
-            <div class="terminal" id="firewall-output">[FW] Ready.</div>
-        </div>
-
-        <div class="simulator-card">
-            <span class="status-badge status-active mb-3">ENCRYPTION_TUNNEL</span>
-            <h2>03. Data Masking</h2>
-            <p>Witness how data is transformed during end-to-end encryption.</p>
-            <input type="text" id="msg-input" class="form-control mb-3" placeholder="Secret data...">
-            <button class="btn-action" onclick="runEncryption()">Execute Tunnel</button>
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <label class="small text-danger fw-bold">INTERCEPTED (CIPHER)</label>
-                    <div class="terminal" id="enc-attacker" style="color: #f85149; min-height: 80px;">---</div>
+    <section class="container pb-5">
+        <div class="simulator-container">
+            <div class="sim-header">
+                <div class="dot-group">
+                    <div class="dot dot-r"></div>
+                    <div class="dot dot-y"></div>
+                    <div class="dot dot-g"></div>
                 </div>
-                <div class="col-md-6">
-                    <label class="small text-success fw-bold">RECIPIENT (PLAIN)</label>
-                    <div class="terminal" id="enc-recipient" style="color: #3fb950; min-height: 80px;">---</div>
+                <div class="small text-muted font-monospace">SEC-OPS KERNEL STATUS: <span class="text-success">ACTIVE</span></div>
+            </div>
+            <div class="row g-0">
+                <div class="col-lg-8">
+                    <div class="sim-body">
+                        <div class="terminal-line"><span class="t-prompt">></span>Initializing SEC-OPS Neural Interface...</div>
+                        <div class="terminal-line"><span class="t-prompt">></span>Loading decentralized nodes... <span class="t-success">[DONE]</span></div>
+                        <div class="terminal-line"><span class="t-prompt">></span>Establishing RSA_4096 handshake... <span class="t-success">[VERIFIED]</span></div>
+                        <div class="terminal-line"><span class="t-prompt">></span>Awaiting operator command. Environment: PROD_SIM_01</div>
+                        <div class="terminal-line mt-4"><span class="t-prompt">_</span></div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="control-panel">
+                        <h6 class="text-muted small fw-bold mb-4">THREAT SIMULATION</h6>
+                        <button class="control-btn" onclick="alert('Simulating Volumetric Attack...')"><i class="fas fa-biohazard"></i> Volumetric Flood</button>
+                        <button class="control-btn" onclick="alert('Simulating Brute Force...')"><i class="fas fa-key"></i> Logic Injection</button>
+                        <button class="control-btn" onclick="alert('Simulating MITM...')"><i class="fas fa-network-wired"></i> Packet Intercept</button>
+                        
+                        <h6 class="text-muted small fw-bold mt-5 mb-4">SYSTEM RESPONSE</h6>
+                        <button class="control-btn"><i class="fas fa-shield-virus"></i> Flush Perimeter</button>
+                        <button class="control-btn"><i class="fas fa-sync"></i> Rotate Keys</button>
+                        <button class="control-btn text-danger"><i class="fas fa-power-off"></i> Emergency Lockdown</button>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
 
-    </div>
+    <section class="docs-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="text-white fw-bold mb-5">Lab Technical Specifications</h2>
+                </div>
+                <div class="col-lg-6">
+                    <div class="docs-card">
+                        <h4>Kernel Level Monitoring</h4>
+                        <p>
+                            The SEC-OPS kernel operates at a deep system level, monitoring every system call and network request. In this lab environment, you can observe how the kernel prioritizes packet inspection over standard IO processing during a simulated attack. This ensures that the defense system never starves for resources, maintaining a 99.9% uptime even under heavy volumetric stress.
+                        </p>
+                    </div>
+                    <div class="docs-card">
+                        <h4>Asymmetric Response Logic</h4>
+                        <p>
+                            When a threat is detected, SEC-OPS does not just block the IP. It utilizes asymmetric logic to feed the attacker randomized, low-value data. This "Sinkholing" technique exhausts the attacker's resources while providing our neural engine with more time to map the attack vector and fingerprint the source device.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="docs-card">
+                        <h4>Autonomous Key Management</h4>
+                        <p>
+                            During the "Rotate Keys" simulation, you are witnessing our polymorphic encryption engine. Keys are not just changed; the entire encryption algorithm can shift between protocols if the system detects a brute-force pattern targeting a specific cryptographic vulnerability.
+                        </p>
+                    </div>
+                    <div class="docs-card">
+                        <h4>Global Node Sync</h4>
+                        <p>
+                            Every action taken in this individual lab node is propagated across our global mesh network in less than 20ms. This ensures that a threat identified in one region of the infrastructure is neutralized across all other global regions before the attacker can attempt a lateral escalation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="version-tag">v5.8.2.1</div>
+    <footer class="footer-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <a class="navbar-brand d-block mb-4" href="index.html">SEC<span>-</span>OPS</a>
+                    <p class="small text-muted">A playground for infrastructure security professionals. Test the limits of modern digital defense.</p>
+                </div>
+                <div class="col-6 col-lg-2 offset-lg-1">
+                    <h5 class="text-white mb-4">Environment</h5>
+                    <a href="#" class="footer-link">Simulation Logs</a>
+                    <a href="#" class="footer-link">API Keys</a>
+                    <a href="#" class="footer-link">Beta Features</a>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h5 class="text-white mb-4">Framework</h5>
+                    <a href="science.html" class="footer-link">Scientific Basis</a>
+                    <a href="threats.html" class="footer-link">Threat Center</a>
+                    <a href="solutions.html" class="footer-link">Deployment</a>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="text-white mb-4">Lab Status</h5>
+                    <p class="small text-muted">Virtual Sandbox: Isolated</p>
+                    <p class="small text-muted">Uptime: 100%</p>
+                </div>
+            </div>
+            <div class="mt-5 pt-5 border-top border-accent-border text-center">
+                <p class="small text-muted mb-0">© 2026 SEC-OPS Research Lab. Unauthorized access is recorded.</p>
+            </div>
+        </div>
+    </footer>
 
-    <script>
-        function simulateHash() {
-            const input = document.getElementById('pass-input').value;
-            const output = document.getElementById('hash-output');
-            if(!input) { output.innerText = "[SYSTEM] Awaiting input..."; return; }
-            let mock = btoa(input + "SALT").substring(0, 32).toLowerCase();
-            output.innerHTML = `[SHA-256]: ${mock}`;
-        }
-
-        function runFirewall() {
-            const out = document.getElementById('firewall-output');
-            out.innerHTML = "[FW] Initializing scan...<br>";
-            const log = ["SRC: 192.168.1.5 | OK", "SRC: 10.0.0.12 | OK", "SRC: 172.16.0.4 | BLOCKED (XSS)", "SRC: 8.8.8.8 | OK"];
-            let i = 0;
-            const timer = setInterval(() => {
-                if(i < log.length) {
-                    out.innerHTML += log[i] + "<br>";
-                    i++;
-                } else {
-                    clearInterval(timer);
-                    out.innerHTML += "[FW] Scan Finished.";
-                }
-            }, 500);
-        }
-
-        function runEncryption() {
-            const msg = document.getElementById('msg-input').value;
-            if(!msg) return;
-            document.getElementById('enc-attacker').innerText = btoa(msg).substring(0, 15) + "...";
-            document.getElementById('enc-recipient').innerText = msg;
-        }
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
