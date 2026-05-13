@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEC-OPS | Transparent Protection Tiers</title>
+    <title>SEC-OPS | Digital Defense Tiers</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -19,6 +19,7 @@
             --text-muted: #8b949e;
             --nav-height: 80px;
             --success-green: #3fb950;
+            --error-red: #f85149;
         }
 
         body { 
@@ -60,7 +61,7 @@
             text-align: center;
         }
 
-        /* --- CARDS --- */
+        /* --- PRICING CARDS --- */
         .pricing-section { padding: 40px 0 100px; }
 
         .price-card {
@@ -85,6 +86,7 @@
             background: var(--accent-price); color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 800;
         }
 
+        .tier-name { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 15px; }
         .tier-price { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
         .tier-price span { font-size: 0.9rem; color: var(--text-muted); }
 
@@ -95,6 +97,7 @@
         .btn-price {
             width: 100%; padding: 12px; border-radius: 8px; font-weight: 700; text-transform: uppercase;
             font-size: 0.8rem; border: 1px solid var(--accent-price); background: transparent; color: var(--accent-price);
+            transition: 0.3s;
         }
 
         .btn-price:hover, .price-card.featured .btn-price { background: var(--accent-price); color: #fff; }
@@ -105,47 +108,54 @@
             border: 1px solid var(--accent-border);
             color: var(--text-main);
             border-radius: 16px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
         }
 
-        .modal-header { border-bottom: 1px solid var(--accent-border); }
-        .modal-footer { border-top: 1px solid var(--accent-border); }
+        .modal-header { border-bottom: 1px solid var(--accent-border); padding: 25px; }
+        .modal-body { padding: 30px; }
+        .modal-footer { border-top: 1px solid var(--accent-border); padding: 20px 30px; }
+
+        .form-label { font-weight: 600; margin-bottom: 8px; font-size: 0.8rem; letter-spacing: 0.5px; }
+        
         .form-control {
             background-color: var(--bg-base);
             border: 1px solid var(--accent-border);
             color: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
         }
+
         .form-control:focus {
             background-color: var(--bg-base);
             border-color: var(--accent-price);
             color: #fff;
-            box-shadow: none;
+            box-shadow: 0 0 0 2px rgba(219, 97, 162, 0.2);
         }
 
-        /* --- CUSTOM CAPTCHA VERIFICATION --- */
+        /* --- VERIFICATION UI --- */
         .verify-box {
             border: 1px solid var(--accent-border);
             background: var(--bg-base);
-            padding: 15px;
+            padding: 18px;
             border-radius: 8px;
             display: flex;
             align-items: center;
             cursor: pointer;
-            user-select: none;
             transition: 0.2s;
+            margin-top: 20px;
         }
-        .verify-box:hover { border-color: var(--text-muted); }
         
         .checkbox-rect {
-            width: 24px; height: 24px;
+            width: 26px; height: 26px;
             border: 2px solid var(--accent-border);
             border-radius: 4px;
             margin-right: 15px;
             display: flex; align-items: center; justify-content: center;
-            position: relative;
         }
 
         .loader {
-            width: 16px; height: 16px;
+            width: 18px; height: 18px;
             border: 2px solid var(--text-muted);
             border-bottom-color: transparent;
             border-radius: 50%;
@@ -153,20 +163,16 @@
             animation: rotation 1s linear infinite;
         }
 
-        .checkmark {
-            color: var(--success-green);
-            font-size: 1.2rem;
-            display: none;
-        }
+        .checkmark { color: var(--success-green); font-size: 1.3rem; display: none; }
 
-        @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes rotation { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        /* --- SUCCESS STATE --- */
-        #success-content { display: none; text-align: center; padding: 40px 20px; }
-        #success-content i { font-size: 4rem; color: var(--success-green); margin-bottom: 20px; }
+        /* --- SUCCESS LAYOUT --- */
+        #success-content { display: none; text-align: center; padding: 60px 30px; }
+        #success-content i { font-size: 5rem; color: var(--success-green); margin-bottom: 25px; }
+        #success-content h3 { font-weight: 800; margin-bottom: 15px; }
 
-        /* --- FOOTER --- */
-        .footer-wrap { padding: 60px 0; border-top: 1px solid var(--accent-border); margin-top: 100px; }
+        .footer-wrap { padding: 80px 0 40px; border-top: 1px solid var(--accent-border); margin-top: 100px; text-align: center; }
     </style>
 </head>
 <body>
@@ -191,8 +197,8 @@
 
     <header class="price-hero">
         <div class="container">
-            <span class="hero-tag">Affordable Sovereignty</span>
-            <h1 class="display-4 fw-bold text-white mb-3">Enterprise Security for Everyone</h1>
+            <span class="hero-tag">Secure Transactions</span>
+            <h1 class="display-4 fw-bold text-white mb-3">Upgrade Your Infrastructure</h1>
         </div>
     </header>
 
@@ -203,181 +209,222 @@
                     <div class="price-card">
                         <div class="tier-name">Community</div>
                         <div class="tier-price">$0<span>/forever</span></div>
-                        <p class="tier-desc">Basic protection for small blogs.</p>
-                        <ul class="feature-list">
-                            <li><i class="fas fa-check"></i> 100GB Monthly Traffic</li>
-                            <li><i class="fas fa-check"></i> L3/L4 Mitigation</li>
-                        </ul>
-                        <button class="btn-price" onclick="openPurchaseModal('Free', false)">Get Started</button>
+                        <p class="tier-desc">Personal blog protection.</p>
+                        <button class="btn-price" onclick="openModal('Community', false)">Get Started</button>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="price-card">
                         <div class="tier-name">Pro Sentry</div>
                         <div class="tier-price">$19<span>/mo</span></div>
-                        <p class="tier-desc">Growing startup protection.</p>
-                        <ul class="feature-list">
-                            <li><i class="fas fa-check"></i> 1TB Monthly Traffic</li>
-                            <li><i class="fas fa-check"></i> Advanced Layer 7 WAF</li>
-                        </ul>
-                        <button class="btn-price" onclick="openPurchaseModal('Pro Sentry', true)">Upgrade Now</button>
+                        <p class="tier-desc">Startup grade defense.</p>
+                        <button class="btn-price" onclick="openModal('Pro Sentry', true)">Upgrade Now</button>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="price-card featured">
-                        <div class="popular-badge">Most Popular</div>
+                        <div class="popular-badge">Top Pick</div>
                         <div class="tier-name">Neural Mesh</div>
                         <div class="tier-price">$49<span>/mo</span></div>
-                        <p class="tier-desc">Full autonomous security.</p>
-                        <ul class="feature-list">
-                            <li><i class="fas fa-check"></i> 10TB Monthly Traffic</li>
-                            <li><i class="fas fa-check"></i> AI Intelligence Shield</li>
-                        </ul>
-                        <button class="btn-price" onclick="openPurchaseModal('Neural Mesh', true)">Go Neural</button>
+                        <p class="tier-desc">Autonomous threat hunt.</p>
+                        <button class="btn-price" onclick="openModal('Neural Mesh', true)">Go Neural</button>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="price-card">
                         <div class="tier-name">Global Sovereign</div>
                         <div class="tier-price">$199<span>/mo</span></div>
-                        <p class="tier-desc">Maximum enterprise load.</p>
-                        <ul class="feature-list">
-                            <li><i class="fas fa-check"></i> Unlimited Traffic</li>
-                            <li><i class="fas fa-check"></i> Custom Kernel Mapping</li>
-                        </ul>
-                        <button class="btn-price" onclick="openPurchaseModal('Global Sovereign', true)">Purchase Plan</button>
+                        <p class="tier-desc">Enterprise scale armor.</p>
+                        <button class="btn-price" onclick="openModal('Global Sovereign', true)">Purchase Plan</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="modal fade" id="purchaseModal" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="checkoutModal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div id="form-content">
+                
+                <div id="checkout-form">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalTitle">Setup Your Account</h5>
+                        <h5 class="modal-title" id="tierLabel">Setup Account</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label small text-muted">Full Name</label>
-                            <input type="text" class="form-control" placeholder="John Doe">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label small text-muted">Email Address (Gmail)</label>
-                            <input type="email" class="form-control" placeholder="example@gmail.com">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label small text-muted">Phone Number</label>
-                            <input type="text" class="form-control" placeholder="+1 (555) 000-0000">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label text-muted">FULL NAME</label>
+                                <input type="text" class="form-control required-input" id="userName" placeholder="John Wick">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label text-muted">GMAIL ADDRESS</label>
+                                <input type="email" class="form-control required-input" id="userEmail" placeholder="wick@gmail.com">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label text-muted">PHONE NUMBER</label>
+                                <input type="text" class="form-control required-input" id="userPhone" placeholder="+1 (000) 000-0000">
+                            </div>
                         </div>
 
-                        <div id="payment-info" style="display:none;">
+                        <div id="card-section" style="display: none;">
                             <hr class="my-4 border-accent-border">
-                            <div class="mb-3">
-                                <label class="form-label small text-muted">Credit Card Number</label>
-                                <input type="text" class="form-control" placeholder="0000 0000 0000 0000">
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label class="form-label small text-muted">Expiry</label>
-                                    <input type="text" class="form-control" placeholder="MM/YY">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label class="form-label text-muted">CARD NUMBER</label>
+                                    <input type="text" class="form-control required-input" id="cardNumber" maxlength="19" placeholder="0000 0000 0000 0000">
                                 </div>
                                 <div class="col-6">
-                                    <label class="form-label small text-muted">CVC</label>
-                                    <input type="text" class="form-control" placeholder="123">
+                                    <label class="form-label text-muted">EXPIRATION</label>
+                                    <input type="text" class="form-control required-input" id="cardExpiry" maxlength="5" placeholder="MM/YY">
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label text-muted">CVC CODE</label>
+                                    <input type="text" class="form-control required-input" id="cardCvc" maxlength="3" placeholder="000">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="mt-4 mb-2">
-                            <label class="form-label small text-muted" id="verify-label">Security Verification</label>
-                            <div class="verify-box" onclick="runVerification()">
-                                <div class="checkbox-rect" id="verify-rect">
-                                    <div class="loader" id="verify-loader"></div>
-                                    <i class="fas fa-check checkmark" id="verify-check"></i>
-                                </div>
-                                <span id="verify-text">Verify you are human</span>
+                        <div class="verify-box" id="captchaBox" onclick="startVerification()">
+                            <div class="checkbox-rect" id="vRect">
+                                <div class="loader" id="vLoader"></div>
+                                <i class="fas fa-check checkmark" id="vCheck"></i>
                             </div>
+                            <span id="vText" class="small fw-bold">Verify you are human</span>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-price w-100" id="final-btn" disabled onclick="completePurchase()">
-                            Confirm Registration
+                        <button type="button" class="btn btn-price w-100" id="submitBtn" disabled onclick="handleFinish()">
+                            Confirm Order
                         </button>
                     </div>
                 </div>
 
-                <div id="success-content">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3 class="text-white fw-bold">System Active</h3>
-                    <p class="text-muted mb-4" id="success-msg"></p>
-                    <a href="index.html" class="btn btn-price">Return to Home Page</a>
+                <div id="success-view">
+                    <i class="fas fa-check-circle"></i>
+                    <h3 class="text-white">Transaction Verified</h3>
+                    <p class="text-muted mb-4" id="finalMessage"></p>
+                    <a href="index.html" class="btn btn-price w-100">Return to Home Page</a>
                 </div>
+
             </div>
         </div>
     </div>
 
-    <footer class="footer-wrap text-center">
+    <footer class="footer-wrap">
         <div class="container">
             <a class="navbar-brand" href="index.html">SEC<span>-</span>OPS</a>
-            <p class="small text-muted mt-3">© 2026 SEC-OPS Infrastructure Global</p>
+            <p class="small text-muted mt-2">© 2026 Cyber Shield Infrastructure</p>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        let isPaid = false;
-        let myModal = new bootstrap.Modal(document.getElementById('purchaseModal'));
+        let modalObj = new bootstrap.Modal(document.getElementById('checkoutModal'));
+        let isPaidTier = false;
+        let isVerified = false;
 
-        function openPurchaseModal(tier, paid) {
-            isPaid = paid;
-            // Reset modal state
-            document.getElementById('form-content').style.display = 'block';
-            document.getElementById('success-content').style.display = 'none';
-            document.getElementById('verify-loader').style.display = 'none';
-            document.getElementById('verify-check').style.display = 'none';
-            document.getElementById('verify-text').innerText = 'Verify you are human';
-            document.getElementById('final-btn').disabled = true;
-            document.getElementById('verify-rect').style.borderColor = 'var(--accent-border)';
+        function openModal(tier, paid) {
+            isPaidTier = paid;
+            isVerified = false;
             
-            document.getElementById('modalTitle').innerText = tier + " Deployment";
-            document.getElementById('verify-label').innerText = paid ? "Verify to confirm purchase" : "Security Verification";
-            document.getElementById('payment-info').style.display = paid ? 'block' : 'none';
-            document.getElementById('final-btn').innerText = paid ? "Confirm Purchase" : "Confirm Registration";
+            // UI Resets
+            document.getElementById('checkout-form').style.display = 'block';
+            document.getElementById('success-view').style.display = 'none';
+            document.getElementById('tierLabel').innerText = tier + " Integration";
+            document.getElementById('card-section').style.display = paid ? 'block' : 'none';
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('vCheck').style.display = 'none';
+            document.getElementById('vText').innerText = "Verify you are human";
+            document.getElementById('vRect').style.borderColor = 'var(--accent-border)';
             
-            myModal.show();
+            // Clear inputs
+            document.querySelectorAll('.required-input').forEach(input => input.value = "");
+            
+            modalObj.show();
         }
 
-        function runVerification() {
-            const loader = document.getElementById('verify-loader');
-            const check = document.getElementById('verify-check');
-            const text = document.getElementById('verify-text');
-            const rect = document.getElementById('verify-rect');
+        // --- INPUT FORMATTING & LIMITS ---
 
-            text.innerText = "Verifying...";
+        // Card Number: 2323 2323 2323 2323
+        document.getElementById('cardNumber').addEventListener('input', function (e) {
+            let target = e.target;
+            let position = target.selectionEnd;
+            let length = target.value.length;
+            
+            target.value = target.value.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim();
+            checkFormValidity();
+        });
+
+        // Expiry: MM/YY
+        document.getElementById('cardExpiry').addEventListener('input', function (e) {
+            let target = e.target;
+            target.value = target.value.replace(/[^\d]/g, '').replace(/(.{2})/, '$1/').trim();
+            checkFormValidity();
+        });
+
+        // CVC: 3 numbers only
+        document.getElementById('cardCvc').addEventListener('input', function (e) {
+            e.target.value = e.target.value.replace(/[^\d]/g, '');
+            checkFormValidity();
+        });
+
+        // Generic Listener for all required fields
+        document.querySelectorAll('.required-input').forEach(input => {
+            input.addEventListener('input', checkFormValidity);
+        });
+
+        function checkFormValidity() {
+            let allFilled = true;
+            
+            // Check basic info
+            if(!document.getElementById('userName').value || 
+               !document.getElementById('userEmail').value || 
+               !document.getElementById('userPhone').value) {
+                allFilled = false;
+            }
+
+            // Check card info if paid
+            if(isPaidTier) {
+                if(document.getElementById('cardNumber').value.length < 19 || 
+                   document.getElementById('cardExpiry').value.length < 5 || 
+                   document.getElementById('cardCvc').value.length < 3) {
+                    allFilled = false;
+                }
+            }
+
+            // Button only lights up if filled AND human verified
+            document.getElementById('submitBtn').disabled = !(allFilled && isVerified);
+        }
+
+        function startVerification() {
+            if (isVerified) return;
+            
+            const loader = document.getElementById('vLoader');
+            const text = document.getElementById('vText');
+            
+            text.innerText = "Processing...";
             loader.style.display = "block";
 
             setTimeout(() => {
                 loader.style.display = "none";
-                check.style.display = "block";
-                text.innerText = "Verified";
-                rect.style.borderColor = "var(--success-green)";
-                document.getElementById('final-btn').disabled = false;
-            }, 2500);
+                document.getElementById('vCheck').style.display = "block";
+                document.getElementById('vRect').style.borderColor = "var(--success-green)";
+                text.innerText = "Verified User";
+                isVerified = true;
+                checkFormValidity();
+            }, 2000);
         }
 
-        function completePurchase() {
-            document.getElementById('form-content').style.display = 'none';
-            document.getElementById('success-content').style.display = 'block';
+        function handleFinish() {
+            document.getElementById('checkout-form').style.display = 'none';
+            document.getElementById('success-view').style.display = 'block';
             
-            const msg = isPaid 
-                ? "Thank you for purchasing! Your infrastructure is now secured. We are honored you chose SEC-OPS as your cyber-shield."
-                : "Thank you for choosing SEC-OPS as your cyber-shield. Your free tier is now being provisioned.";
+            const msg = isPaidTier 
+                ? "Thank you for your purchase! Your billing has been processed. SEC-OPS is now serving as your primary Cyber-Shield."
+                : "Welcome to the network! Your free community tier is now active. We are proud to be your chosen Cyber-Shield.";
             
-            document.getElementById('success-msg').innerText = msg;
+            document.getElementById('finalMessage').innerText = msg;
         }
     </script>
 </body>
