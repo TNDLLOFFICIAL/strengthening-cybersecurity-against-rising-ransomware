@@ -2,123 +2,322 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Science | SEC-OPS Research</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEC-OPS | Scientific Methodology & Information Theory</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; padding-top: 80px; line-height: 1.9; font-size: 1.1rem; }
-        .navbar { background-color: #161b22; border-bottom: 1px solid #30363d; }
-        .nav-link { color: #8b949e !important; }
-        .active { color: #58a6ff !important; font-weight: bold; border-bottom: 2px solid #58a6ff; }
-        
-        .science-hero { 
-            background: linear-gradient(135deg, #1f6feb 0%, #0d1117 100%);
-            padding: 100px 0; border-bottom: 1px solid #30363d; margin-bottom: 60px;
+        :root {
+            --bg-base: #05070a;
+            --bg-surface: #0d1117;
+            --bg-card: #161b22;
+            --accent-science: #79c0ff;
+            --accent-logic: #d29922;
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+            --border-standard: #30363d;
+            --nav-height: 80px;
         }
-        
-        .research-paper { max-width: 900px; margin: auto; padding-bottom: 100px; }
-        
-        h1 { font-size: 3.8rem; font-weight: 800; color: white; letter-spacing: -1px; }
-        h2 { color: #58a6ff; font-weight: 800; margin-top: 70px; margin-bottom: 25px; border-bottom: 2px solid #30363d; padding-bottom: 15px; }
-        h3 { color: #79c0ff; font-weight: 700; margin-top: 40px; }
 
-        .logic-card { 
-            background: #161b22; border: 1px solid #30363d; border-radius: 20px; 
-            padding: 45px; margin: 40px 0; border-left: 10px solid #58a6ff;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        /* --- DARK THEME RESET --- */
+        body { 
+            background-color: var(--bg-base); 
+            color: var(--text-main); 
+            font-family: 'Inter', sans-serif;
+            margin: 0; padding: 0;
+            line-height: 1.9;
         }
-        
-        .formula-box { 
-            background: #010409; font-family: 'Consolas', 'Monaco', monospace; 
-            padding: 25px; border-radius: 12px; border: 1px solid #30363d; color: #a5d6ff;
-            margin: 25px 0; font-size: 1rem; position: relative;
+
+        /* --- NAVIGATION --- */
+        .navbar { 
+            background-color: rgba(13, 17, 23, 0.98); 
+            border-bottom: 1px solid var(--border-standard);
+            min-height: var(--nav-height);
+            backdrop-filter: blur(10px);
         }
-        .formula-box::after { content: "MATHEMATICAL PROOF"; position: absolute; top: 10px; right: 15px; font-size: 0.6rem; color: #8b949e; letter-spacing: 1px; }
 
-        .term-def { margin-bottom: 30px; }
-        .term-name { color: #ff7b72; font-weight: bold; font-size: 1.3rem; display: block; margin-bottom: 5px; }
+        .navbar-brand {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            color: #fff !important;
+        }
 
-        .version-tag { 
-            position: fixed; bottom: 10px; right: 15px; background: rgba(22,27,34,0.9); 
-            color: #8b949e; padding: 4px 10px; border-radius: 5px; font-size: 11px; 
-            font-family: monospace; border: 1px solid #30363d; z-index: 10000; pointer-events: none; 
+        .navbar-brand span { color: var(--accent-science); }
+
+        .nav-link { 
+            color: var(--text-muted) !important; 
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px 15px !important;
+        }
+
+        .nav-link:hover { color: var(--accent-science) !important; }
+        .nav-link.active { color: var(--accent-science) !important; border-bottom: 2px solid var(--accent-science); }
+
+        /* --- SCIENCE HERO --- */
+        .science-hero {
+            padding: 160px 0 100px 0;
+            background: radial-gradient(circle at 50% 0%, rgba(121, 192, 255, 0.08) 0%, transparent 70%);
+            border-bottom: 1px solid var(--border-standard);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        /* --- CONTENT SECTIONS --- */
+        .content-section { padding: 120px 0; }
+
+        .abstract-box {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-standard);
+            border-radius: 20px;
+            padding: 60px;
+            margin-bottom: 80px;
+        }
+
+        .technical-heading {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-science);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* --- THEOREM CARDS --- */
+        .theorem-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-standard);
+            border-radius: 12px;
+            padding: 40px;
+            height: 100%;
+            transition: 0.3s;
+        }
+
+        .theorem-card:hover {
+            border-color: var(--accent-science);
+            transform: translateY(-5px);
+        }
+
+        .theorem-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .equation-block {
+            font-family: 'JetBrains Mono', monospace;
+            background: #010409;
+            padding: 20px;
+            border-radius: 8px;
+            color: var(--accent-science);
+            font-size: 0.9rem;
+            margin: 25px 0;
+            border-left: 3px solid var(--accent-science);
+        }
+
+        /* --- METHODOLOGY GRID --- */
+        .method-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .method-item {
+            padding: 25px 0;
+            border-bottom: 1px solid var(--border-standard);
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .method-number {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-science);
+            font-weight: 700;
+        }
+
+        /* --- FOOTER --- */
+        .footer-wrap {
+            padding: 100px 0 50px 0;
+            background: var(--bg-base);
+            border-top: 1px solid var(--border-standard);
+        }
+
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 12px; }
+        .footer-link:hover { color: var(--accent-science); }
+
+        @media (max-width: 991px) {
+            .hero-title { font-size: 2.8rem; }
+            .abstract-box { padding: 30px; }
         }
     </style>
 </head>
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">SEC-OPS</a>
-            <div class="navbar-nav ms-auto d-flex flex-row gap-3">
-                <a class="nav-link" href="index.html">Home</a>
-                <a class="nav-link" href="threats.html">Threats</a>
-                <a class="nav-link active" href="science.html">Science</a>
-                <a class="nav-link" href="solutions.html">Solutions</a>
-                <a class="nav-link" href="impact.html">Impact</a>
-                <a class="nav-link" href="feedback.html">Feedback</a>
-                <a class="nav-link" href="demo.html">Demo</a>
+            <a class="navbar-brand" href="index.html">SEC<span>-</span>OPS</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Infrastructure</a></li>
+                    <li class="nav-item"><a class="nav-link" href="threats.html">Threats</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="science.html">Science</a></li>
+                    <li class="nav-item"><a class="nav-link" href="solutions.html">Solutions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="impact.html">Impact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="demo.html">Neural Lab</a></li>
+                    <li class="nav-item"><a class="nav-link" href="feedback.html">Operations</a></li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <header class="science-hero text-center">
+    <header class="science-hero">
         <div class="container">
-            <h1 class="text-white">Theoretical Foundations</h1>
-            <p class="lead text-light">Exploring the cryptographic algorithms and logical pillars of the digital age.</p>
+            <h1 class="hero-title">Theoretical Foundations & <br>Information Sovereignty</h1>
+            <p class="hero-subtitle">
+                The SEC-OPS framework is built upon the rigorous application of information theory, cryptographic logic, and system architecture principles. We move beyond reactive defense to establish mathematical certainty in digital integrity.
+            </p>
         </div>
     </header>
 
-    <div class="research-paper px-3">
-        <section>
-            <h2>01. Cryptography: The Mathematics of Privacy</h2>
-            <p>At its core, cybersecurity is not a computer science problem; it is a mathematical one. Cryptography is the science of using complex algorithms to transform readable data (plaintext) into an unreadable format (ciphertext). The security of modern civilization depends on the "difficulty" of certain mathematical operations.</p>
-            
-            <div class="logic-card">
-                <h3>The RSA Algorithm & Prime Complexity</h3>
-                <p>RSA (Rivest–Shamir–Adleman) is the cornerstone of internet security. It relies on <strong>Modular Arithmetic</strong> and the <strong>Prime Factorization Problem</strong>. While multiplying two 500-digit prime numbers is trivial for a computer, reversing that process to find the original primes is a "computationally infeasible" task.</p>
-                
-                <div class="formula-box">
-                    1. Generate two large primes, p and q.<br>
-                    2. Compute n = p * q.<br>
-                    3. Public Key = (e, n) | Private Key = (d, n).<br>
-                    4. Ciphertext (c) = m^e mod n.<br>
-                    5. Only someone with 'd' can solve: m = c^d mod n.
-                </div>
-                <p>To break a 2048-bit RSA key, a modern supercomputer would need to run for longer than the current age of the universe. This ensures that even if an attacker intercepts your traffic, they see nothing but mathematical noise.</p>
+    <section class="content-section">
+        <div class="container">
+            <div class="abstract-box">
+                <span class="technical-heading">Executive Abstract</span>
+                <h2 class="text-white mb-4">The Principle of Zero-Trust Architecture</h2>
+                <p class="text-muted">
+                    Modern security fails because it assumes trust once a perimeter is breached. Our scientific approach assumes that every node, packet, and user is potentially compromised until verified. This shift from "Trust but Verify" to "Always Verify, Never Trust" forms the core of our technical methodology. By utilizing decentralized ledger concepts and multi-layered hashing, we create an environment where unauthorized lateral movement is mathematically improbable.
+                </p>
             </div>
-        </section>
 
-        <section>
-            <h2>02. Key Exchange: The Diffie-Hellman Protocol</h2>
-            <p>One of the greatest scientific challenges was the "Key Exchange Problem": How do two people share a secret password over an open, public internet without an attacker seeing it? The solution is the Diffie-Hellman protocol.</p>
-            <p>Think of it as <strong>mixing colors</strong>. Two people start with a common color. They each add their "secret" color and exchange the mixtures. Because you cannot easily "un-mix" paint to find the original secret colors, an eavesdropper cannot recreate the final combined secret color. In computers, we use <strong>Discrete Logarithms</strong> instead of paint.</p>
-        </section>
-
-        <section>
-            <h2>03. Integrity & One-Way Hashing</h2>
-            <p>While encryption protects <strong>Confidentiality</strong>, Hashing protects <strong>Integrity</strong>. A cryptographic hash function (like SHA-256) takes an input of any size and turns it into a fixed-length "digital fingerprint."</p>
-            
-            <div class="logic-card" style="border-left-color: #ff7b72;">
-                <h3>The Three Laws of Hashing</h3>
-                <div class="term-def">
-                    <span class="term-name">I. Deterministic</span>
-                    <p>The same input must ALWAYS produce the exact same hash output.</p>
+            <div class="row g-5 mb-5">
+                <div class="col-lg-12">
+                    <h3 class="fw-bold text-white mb-5">Core Mathematical Domains</h3>
                 </div>
-                <div class="term-def">
-                    <span class="term-name">II. Pre-image Resistance</span>
-                    <p>It must be impossible to take a hash and reverse-engineer it to find the original data.</p>
+                <div class="col-lg-6">
+                    <div class="theorem-card">
+                        <h4 class="theorem-title">Entropy-Based Anomaly Detection</h4>
+                        <p class="text-muted">We analyze the entropy of network traffic to distinguish between standard operational data and malicious packet injection. High-entropy shifts often signal the presence of encrypted payloads or brute-force attempts.</p>
+                        <div class="equation-block">
+                            H(X) = -Σ P(xi) log P(xi)
+                        </div>
+                        <span class="small text-muted">Application: Early Warning Systems</span>
+                    </div>
                 </div>
-                <div class="term-def">
-                    <span class="term-name">III. Collision Resistance</span>
-                    <p>No two different inputs should ever produce the same hash. If they do, the algorithm is considered "broken."</p>
+                <div class="col-lg-6">
+                    <div class="theorem-card">
+                        <h4 class="theorem-title">Asymmetric Cryptographic Integrity</h4>
+                        <p class="text-muted">Utilizing large-prime factorization and elliptic curve cryptography to ensure that data packets cannot be decrypted by unauthorized third parties within any reasonable timeframe.</p>
+                        <div class="equation-block">
+                            E: y^2 = x^3 + ax + b (mod p)
+                        </div>
+                        <span class="small text-muted">Application: Transport Layer Sovereignty</span>
+                    </div>
                 </div>
             </div>
-        </section>
 
-        <footer style="margin-top: 100px; text-align: center; border-top: 1px solid #30363d; padding-top: 40px; color: #8b949e; font-size: 0.9rem;">
-            SEC-OPS ARCHIVE | MATHEMATICAL LOGIC MODULE | v5.8.2.1
-        </footer>
-    </div>
+            <div class="row mt-5 pt-5">
+                <div class="col-lg-5">
+                    <h2 class="text-white fw-bold">Engineering Methodology</h2>
+                    <p class="text-muted mt-4">
+                        Our engineering process follows a strict peer-reviewed pipeline. We don't just build features; we solve information bottlenecks using proven architectural patterns.
+                    </p>
+                    <div class="mt-5">
+                        <div class="p-4 border border-standard rounded-3 bg-surface">
+                            <h5 class="text-white mb-3">System Efficiency</h5>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="small text-muted">Verification Latency</span>
+                                <span class="small text-white">0.02ms</span>
+                            </div>
+                            <div class="progress bg-dark" style="height: 4px;">
+                                <div class="progress-bar bg-info" style="width: 98%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 offset-lg-1">
+                    <ul class="method-list">
+                        <li class="method-item">
+                            <span class="method-number">01.</span>
+                            <div>
+                                <h5 class="text-white">Static Analysis & Baselining</h5>
+                                <p class="small text-muted">Every network environment is unique. We establish a "Golden Baseline" of standard behavior before deploying active protocols.</p>
+                            </div>
+                        </li>
+                        <li class="method-item">
+                            <span class="method-number">02.</span>
+                            <div>
+                                <h5 class="text-white">Heuristic Evaluation</h5>
+                                <p class="small text-muted">Our algorithms look for behavioral signatures that deviate from established norms, identifying zero-day threats through logic alone.</p>
+                            </div>
+                        </li>
+                        <li class="method-item">
+                            <span class="method-number">03.</span>
+                            <div>
+                                <h5 class="text-white">Isolation & Quarantine</h5>
+                                <p class="small text-muted">Upon detection, the system automatically isolates the affected node, preventing the spread of anomalies to critical infrastructure cores.</p>
+                            </div>
+                        </li>
+                        <li class="method-item">
+                            <span class="method-number">04.</span>
+                            <div>
+                                <h5 class="text-white">Post-Incident Verification</h5>
+                                <p class="small text-muted">Following mitigation, the system performs a recursive integrity check on all adjacent nodes to ensure no latent payloads remain.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="version-tag">v5.8.2.1</div>
+    <footer class="footer-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <a class="navbar-brand d-block mb-4" href="index.html">SEC<span>-</span>OPS</a>
+                    <p class="small text-muted">The intersection of advanced mathematics and infrastructure security. Dedicated to the science of digital protection.</p>
+                </div>
+                <div class="col-6 col-lg-2 offset-lg-1">
+                    <h5 class="text-white mb-4">Documentation</h5>
+                    <a href="#" class="footer-link">White Papers</a>
+                    <a href="#" class="footer-link">Algorithm Logs</a>
+                    <a href="#" class="footer-link">RFC Standards</a>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h5 class="text-white mb-4">Ecosystem</h5>
+                    <a href="threats.html" class="footer-link">Threat Center</a>
+                    <a href="solutions.html" class="footer-link">Deployment</a>
+                    <a href="demo.html" class="footer-link">Lab Access</a>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="text-white mb-4">Technical Status</h5>
+                    <p class="small text-muted">All algorithms currently verified under ISO/IEC 27001 standards. Continuous auditing enabled.</p>
+                </div>
+            </div>
+            <div class="mt-5 pt-5 border-top border-standard text-center">
+                <p class="small text-muted mb-0">© 2026 SEC-OPS Research & Development Division.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
