@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEC-OPS | Subscription Tiers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0a0e14;
+            --card-bg: #111827;
+            --accent: #00f2ff;
+            --success: #00ff9d;
+            --text: #94a3b8;
+            --white: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            margin: 0;
+            padding: 50px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .header h1 {
+            color: var(--white);
+            font-size: 3rem;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .pricing-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .price-card {
+            background: var(--card-bg);
+            border: 1px solid #1f2937;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-card.featured {
+            border: 2px solid var(--accent);
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.15);
+        }
+
+        .badge {
+            background: var(--accent);
+            color: var(--bg);
+            font-weight: bold;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .price-card h3 {
+            color: var(--white);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            color: var(--white);
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--text);
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .features-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        .features-list i {
+            color: var(--success);
+            margin-right: 12px;
+        }
+
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            color: var(--white);
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .price-card.featured .cta-button {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        .cta-button:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Deploy Your Shield</h1>
+        <p>Choose the level of protection your infrastructure requires.</p>
+    </div>
+
+    <div class="pricing-container">
+        <div class="price-card">
+            <h3>The Scout</h3>
+            <div class="price">$0<span>/mo</span></div>
+            <p>Ideal for students and individuals learning the basics.</p>
+            <ul class="features-list">
+                <li><i class="fas fa-check"></i> Limited SEC-OPS Lab Access</li>
+                <li><i class="fas fa-check"></i> Basic Packet Analysis</li>
+                <li><i class="fas fa-check"></i> Community Support</li>
+                <li><i class="fas fa-times" style="color: #ef4444;"></i> No AI Autonomous Shield</li>
+            </ul>
+            <a href="#" class="cta-button">Get Started</a>
+        </div>
+
+        <div class="price-card featured">
+            <div class="badge">MOST POPULAR</div>
+            <h3>The Fortress</h3>
+            <div class="price">$499<span>/mo</span></div>
+            <p>For small to mid-sized businesses needing active defense.</p>
+            <ul class="features-list">
+                <li><i class="fas fa-check"></i> Full AI Autonomous Shielding</li>
+                <li><i class="fas fa-check"></i> Zero Trust Architecture</li>
+                <li><i class="fas fa-check"></i> Up to 50 Server Nodes</li>
+                <li><i class="fas fa-check"></i> 24/7 Incident Response</li>
+            </ul>
+            <a href="#" class="cta-button">Start Free Trial</a>
+        </div>
+
+        <div class="price-card">
+            <h3>Enterprise</h3>
+            <div class="price">Custom</div>
+            <p>For government, hospitals, and critical infrastructure.</p>
+            <ul class="features-list">
+                <li><i class="fas fa-check"></i> Self-Healing Network Hardware</li>
+                <li><i class="fas fa-check"></i> Unlimited Server Nodes</li>
+                <li><i class="fas fa-check"></i> Dedicated Cyber-Sentry Team</li>
+                <li><i class="fas fa-check"></i> Custom RSA Key Lengths</li>
+            </ul>
+            <a href="#" class="cta-button">Contact Sales</a>
+        </div>
+    </div>
+
+</body>
+</html>
